@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Site checks</title>
+</head>
+<body>
+  <!-- Open this page through a local server (VS Code Live Preview works) to check that the scripts still work.
+       Every line should say PASS. -->
+  <h1>Site checks</h1>
+  <pre id="results">running…</pre>
+  <iframe id="home" src="index.html" width="1200" height="900"></iframe>
+  <iframe id="project" width="1200" height="900"></iframe>
+
+  <script>
+    const results = [];
+    function check(name, ok) { results.push((ok ? "PASS  " : "FAIL  ") + name); }
+
+    const home = document.getElementById("home");
+    const project = document.getElementById("project");
+
+    home.addEventListener("load", () => {
+      const win = home.contentWindow;
+      const doc = win.document;
+      const $ = (selector) => doc.querySelector(selector);
+      try {
+        // 1. Language toggle
+        const langLeft = $(".lang").getBoundingClientRect().left;
+        $('[data-lang="zh"]').click();
+        check("language toggle switches to Chinese", doc.documentElement.lang === "zh-Hant" && $("#headline").textContent.includes("使用者"));
+        check("the language switch stays where it was", Math.abs($(".lang").getBoundingClientRect().left - langLeft) < 1);
+        $('[data-lang="en"]').click();
+        check("language toggle switches back to English", $("#headline").textContent.startsWith("Even"));
+
+        // 2. Work list
+        const cards = doc.querySelectorAll(".work-card");
+        const card = cards[0];
+        check("the work list has one card per project", cards.length === 2);
+        check("the card shows the project's name, status and banner colour", card.querySelector(".work-banner").textContent.includes("FeetMine") && card.querySelector(".badge-pill").textContent === "COURSE");
+        check("the card's links point at its case study", card.querySelector('.pill-link[href="feetmine.html"]') !== null);
+        check("the headline has its coloured words and the process has three steps", $("#headline em") !== null && doc.querySelectorAll(".steps > li").length === 3);
+        check("the note and the tool chips show their logos", doc.querySelectorAll(".note-logos img").length === 6 && doc.querySelectorAll(".steps .tags img").length === 8);
+
+        // 3. Desk drag
+        const folder = $(".folder");
+        folder.setPointerCapture = () => {}; // synthetic pointers cannot be captured
+        const pointer = (type, x, y) =>
+          folder.dispatchEvent(new win.PointerEvent(type, { pointerId: 1, clientX: x, clientY: y, button: 0, bubbles: true }));
+        pointer("pointerdown", 100, 100);
+        pointer("pointermove", 160, 130);
+        pointer("pointerup", 160, 130);
+        const click = new win.MouseEvent("click", { bubbles: true, cancelable: true });
+        folder.dispatchEvent(click);
+        check("dragging moves the folder and does not follow its link", folder.style.translate === "60px 30px" && click.defaultPrevented);
+      } catch (error) {
+        results.push("FAIL  " + error);
+      }
+
+      // 4. Gliding to a section takes over a second, so the check looks twice: on the way, and once there.
+      const aboutTop = $("#about").getBoundingClientRect().top - $(".topbar").offsetHeight;
+      $('nav a[href="#about"]').click();
+      setTimeout(() => {
+        const onTheWay = win.scrollY > 0 && win.scrollY < aboutTop - 1;
+        setTimeout(() => {
+          check("clicking a nav link glides to the section", onTheWay && Math.abs(win.scrollY - aboutTop) < 2 && win.location.hash === "#about");
+          project.src = "feetmine.html";
+        }, 1200);
+      }, 400);
+
+      // Now the project page.
+      project.addEventListener("load", () => {
+        const win = project.contentWindow;
+        const doc = win.document;
+        const $ = (selector) => doc.querySelector(selector);
+        try {
+          // 5. Phases: all on the page, every slide opens full size, and the links at the top point at them
+          const phases = doc.querySelectorAll(".phase").length;
+          check("every phase and every slide is on the page, slides 6 to 19 of the deck",
+            phases === 6 && doc.querySelectorAll("#phase-nav a").length === phases && doc.querySelectorAll('.figures a[target="_blank"] img[src^="img/feetmine-"]').length === 14);
+          check("the phase links point at the phases", $('#phase-nav a[href="#phase-1"]') !== null && $("#phase-1") !== null);
+          check("only the overview phase has text, the others are slides alone", doc.querySelectorAll(".points").length === 1 && $("#phase-0 .points") !== null);
+        } catch (error) {
+          results.push("FAIL  " + error);
+        }
+        document.getElementById("results").textContent = results.join("\n");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+:root{
+  /* mint ramp — brand primary is --mint-300 (#ADEBE1, given) */
+  --mint-50:#F3FBFA;
+  --mint-100:#E1F7F3;
+  --mint-200:#C7F1E8;
+  --mint-300:#ADEBE1;
+  --mint-400:#8CDDCF;
+  --mint-500:#63C9B7;
+  --mint-600:#3FAE9C;
+  --mint-700:#298A7C;
+
+  /* deep teal — text on mint, dark accents */
+  --teal-900:#0E3A34;
+  --teal-700:#155F55;
+  --teal-500:#1F8A79;
+
+  /* neutrals */
+  --bg:#FAFBF9;
+  --surface:#FFFFFF;
+  --ink-900:#16211F;
+  --ink-700:#3C4A47;
+  --ink-500:#6B7A76;
+  --ink-300:#A7B5B1;
+  --ink-100:#E4ECEA;
+
+  /* accent pops */
+  --coral:#FF7D5C;
+  --sun:#FFC857;
+
+  /* type */
+  --font-display:"Plus Jakarta Sans",Inter,"Noto Sans",Arial,sans-serif;
+  --fs-display:34px;
+  --fs-h1:28px;
+  --fs-h2:22px;
+  --fs-h3:17px;
+  --fs-body-lg:15px;
+  --fs-body:14px;
+  --fs-caption:12px;
+  --fs-micro:10px;
+
+  /* spacing (8pt scale) */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-7:32px;
+  --space-8:40px;
+  --space-9:48px;
+  --space-10:64px;
+
+  /* radius */
+  --radius-xs:8px;
+  --radius-sm:12px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --radius-full:999px;
+
+  /* shadow */
+  --shadow-1:0 1px 2px rgba(22,33,31,.05);
+  --shadow-2:0 4px 14px rgba(22,33,31,.08);
+  --shadow-3:0 14px 36px rgba(22,33,31,.16);
+  --shadow-cta:0 10px 24px rgba(173,235,225,.55);
+
+  /* z-index */
+  --z-deco:0;
+  --z-content:1;
+  --z-tabbar:20;
+  --z-notch:30;
+  --z-status:32;
+  --z-toast:40;
+}

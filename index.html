@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chang Chu-Pei 張主佩, UI/UX designer and researcher</title>
+  <meta name="description" content="Portfolio of Chang Chu-Pei, UI/UX designer and researcher in Taipei.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- The home page: the desk, the list of projects, and the profile (about, skills, contact).
+       Every element with data-text="a.b.c" gets its words from content.js (data-html for the one string with <em> in it).
+       Lists (project cards, timeline, skills) are drawn by home.js into the empty elements with an id. -->
+
+  <a class="skip" href="#work" data-text="site.skip"></a>
+
+  <header class="topbar">
+    <a class="brand" href="#top"><span data-text="site.name"></span> <small data-text="site.nameOther"></small></a>
+    <nav>
+      <a href="#work" data-text="site.nav.work"></a>
+      <a href="#about" data-text="site.nav.about"></a>
+      <a href="#skills" data-text="site.nav.skills"></a>
+      <a href="#contact" data-text="site.nav.contact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / 語言">
+      <button type="button" data-lang="en" lang="en">EN</button>
+      <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- The desk. Four objects, each one leads to a section. On wide screens you can drag them. -->
+    <section class="desk" aria-labelledby="headline">
+      <div class="wrap desk-grid">
+        <div class="desk-copy">
+          <p class="greeting" data-text="desk.greeting"></p>
+          <h1 id="headline" data-html="desk.headline"></h1>
+          <div id="desk-intro"></div>
+          <p class="actions">
+            <a class="button" href="#work" data-text="desk.cta"></a>
+            <a class="button outline" href="#contact" data-text="contact.button"></a>
+          </p>
+        </div>
+
+        <div class="desk-objects">
+          <!-- The folder shows the featured project (the first one in content.js). The mascot is a sticker. -->
+          <a class="object folder" href="#work" draggable="false">
+            <span class="folder-tab" data-text="work.title"></span>
+            <span class="folder-title" data-text="project.name"></span>
+            <span class="folder-title folder-title-zh" data-text="project.nameZh"></span>
+            <span class="folder-caption" data-text="project.summary"></span>
+            <img class="folder-mascot" src="img/mascot.png" width="363" height="342" alt="" draggable="false">
+          </a>
+
+          <a class="object badge" href="#about" draggable="false">
+            <img src="img/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt="" draggable="false">
+            <span class="badge-name" data-text="site.name"></span>
+            <span class="badge-role" data-text="site.role"></span>
+            <span class="object-link" data-text="desk.badge.tab"></span>
+          </a>
+
+          <a class="object note" href="#skills" draggable="false">
+            <span class="note-title" data-text="desk.note.tab"></span>
+            <ul class="note-logos" id="note-logos"></ul>
+          </a>
+
+          <a class="object postcard" href="#contact" draggable="false">
+            <span class="postcard-body" data-text="desk.postcard.body"></span>
+            <span class="object-link" data-text="desk.postcard.tab"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work: one panel per project, in the project's own colour. Each panel links to the project's own page. -->
+    <section id="work" class="section" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 id="work-title" data-text="work.title"></h2>
+        <div class="work-grid" id="work-grid"></div>
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="about-grid">
+          <figure><img src="img/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt=""></figure>
+          <div>
+            <h2 id="about-title" data-text="about.greeting"></h2>
+            <div id="bio"></div>
+          </div>
+        </div>
+        <div class="cv">
+          <div>
+            <h3 data-text="about.experienceTitle"></h3>
+            <ol class="timeline" id="experience"></ol>
+          </div>
+          <div>
+            <h3 data-text="about.educationTitle"></h3>
+            <ol class="timeline" id="education"></ol>
+            <h3 data-text="about.workTitle"></h3>
+            <ol class="timeline" id="work-history"></ol>
+            <h3 data-text="about.languagesTitle"></h3>
+            <ul class="plain" id="languages"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section" aria-labelledby="skills-title">
+      <div class="wrap">
+        <h2 id="skills-title" data-text="skills.title"></h2>
+        <p class="lead" data-text="skills.lead"></p>
+        <ol class="steps" id="steps"></ol>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="postcard-big">
+          <h2 id="contact-title" data-text="contact.title"></h2>
+          <p data-text="contact.body"></p>
+          <a class="button" id="mail-link" href="#"><span data-text="contact.button"></span></a>
+          <p class="email" data-text="site.email"></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer><p data-text="site.footer"></p></footer>
+
+  <script src="content.js"></script>
+  <script src="site.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

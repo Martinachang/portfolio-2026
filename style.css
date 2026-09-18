@@ -1,0 +1,317 @@
+/* style.css — colors, fonts and layout for the whole site.
+   The variables at the top are the design tokens. Change a color here and it changes everywhere.
+   Rules are written for phones first. The @media (min-width: …) blocks at the end add the wider layouts. */
+
+:root {
+  --paper: #fbf9f6;
+  --ink: #3a3a3a;
+  --ink-soft: #6f6f6f;
+  --line: rgba(58, 58, 58, 0.12);
+  --card: #ffffff;
+  --blue: #2f7cf6;                  /* the site's own colour */
+  --blue-wash: #e3edff;
+  --accent: var(--blue);            /* the current section's colour; project pages and cards set their own */
+  --accent-wash: var(--blue-wash);
+  --shadow: 0 12px 32px rgba(70, 50, 30, 0.10), 0 2px 6px rgba(70, 50, 30, 0.06);
+  --shadow-lifted: 0 24px 48px rgba(70, 50, 30, 0.18), 0 4px 10px rgba(70, 50, 30, 0.08);
+  --font-display: "Huninn", "Noto Sans TC", system-ui, sans-serif;
+  --font-body: "Noto Sans TC", system-ui, sans-serif;
+  --radius: 18px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font: 400 17px/1.65 var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+}
+img { max-width: 100%; height: auto; display: block; }
+figure { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, h4,
+.brand, .folder-title, .badge-name, .note-title, .postcard-body {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+h1, h2, h3, h4 { font-weight: 400; line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(32px, 3.4vw, 48px); line-height: 1.15; }
+h2 { font-size: clamp(28px, 3.4vw, 40px); }
+h3 { font-size: 26px; }
+h4 { font-size: 21px; }
+p { margin: 0 0 1em; max-width: 64ch; }
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(64px, 9vw, 112px); }
+
+.skip {
+  position: absolute; top: -60px; left: 16px; z-index: 100;
+  padding: 8px 14px; border-radius: 8px; background: var(--ink); color: #fff;
+}
+.skip:focus { top: 12px; }
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;
+  padding: 14px var(--gutter);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+/* The name at the left; the section links and the language switch together at the right.
+   The links have a fixed width, so the switch stays put when the words change length. */
+.brand { margin-right: auto; font-size: 20px; color: var(--ink); text-decoration: none; }
+.brand small { font-size: 14px; color: var(--ink-soft); margin-left: 6px; }
+.topbar nav { display: flex; gap: 4px; }
+.topbar nav a { min-width: 4.5em; padding: 4px 0; text-align: center; color: var(--ink); text-decoration: none; font-weight: 500; }
+.topbar nav a:hover { color: var(--blue); }
+.lang { display: flex; padding: 2px; border: 1.5px solid var(--ink); border-radius: 999px; }
+.lang button { padding: 4px 12px; border: 0; border-radius: 999px; background: none; font-size: 14px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+/* On phones the name takes the first row; the links and the language switch share the second. */
+@media (max-width: 639px) {
+  .topbar { gap: 8px 12px; }
+  .brand { flex-basis: 100%; }
+  .topbar nav { gap: 12px; font-size: 15px; }
+  .topbar nav a { min-width: 0; }
+  .lang { margin-left: auto; }
+  .lang button { padding: 4px 10px; }
+}
+
+/* ---------- The desk ---------- */
+
+.desk, .project { position: relative; overflow: hidden; }
+.desk-grid { display: grid; gap: 40px; padding-block: 48px; }
+.desk-copy { position: relative; z-index: 1; }
+.desk-copy p { margin-top: 24px; font-size: 18px; color: var(--ink-soft); max-width: 40ch; }
+.desk-copy .greeting { margin: 0 0 12px; font-family: var(--font-display); color: var(--ink); }
+h1 em { font-style: normal; color: var(--blue); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* The big pale rings behind the desk and the project, like the arcs in the FeetMine slides. */
+.desk::before, .desk::after, .project::before {
+  content: ""; position: absolute; pointer-events: none;
+  border-radius: 50%; border: 110px solid var(--accent-wash);
+}
+.desk::before { width: 820px; height: 820px; top: -460px; left: -300px; }
+.desk::after { width: 640px; height: 640px; bottom: -380px; right: -220px; }
+.project::before { width: 720px; height: 720px; top: -320px; right: -300px; }
+
+/* On phones the four objects form a grid. On wide screens (end of file) they scatter across the desk. */
+.desk-objects { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+/* One object on the desk. It is a link, so it also works with the keyboard. */
+.object {
+  position: relative; display: block;
+  color: var(--ink); text-decoration: none;
+  background: var(--card); box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, scale 0.2s;
+}
+.object:hover, .object:focus-visible, .object.lifted { scale: 1.03; box-shadow: var(--shadow-lifted); }
+.object.lifted { cursor: grabbing; scale: 1.05; }
+.object-link { display: block; margin-top: 10px; font-size: 13px; font-weight: 500; color: var(--blue); }
+.folder-title, .folder-caption, .badge-name, .badge-role, .note-title, .postcard-body { display: block; }
+@keyframes drop {
+  from { opacity: 0; translate: 0 -40px; rotate: 0deg; }
+}
+/* The bob uses transform, not translate, because dragging sets translate by hand (home.js). */
+@keyframes float {
+  50% { transform: translateY(-7px); }
+}
+
+/* The work folder. home.js gives it the newest project's colours. */
+.folder {
+  grid-column: 1 / -1;
+  padding: 22px 22px 26px;
+  border-radius: 0 14px 14px 14px;
+  background: var(--accent-wash);
+}
+.folder::before {
+  content: ""; position: absolute; top: -26px; left: 0;
+  width: 48%; height: 28px;
+  background: var(--accent); border-radius: 10px 10px 0 0;
+}
+.folder-tab { position: absolute; top: -22px; left: 14px; font-size: 13px; color: #fff; }
+.folder-title { max-width: 66%; font-size: 26px; line-height: 1.1; }
+html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name only shows in the Chinese version */
+.folder-caption { margin-top: 4px; font-size: 14px; color: var(--ink-soft); max-width: 62%; }
+.folder-mascot { position: absolute; right: 16px; top: 0; bottom: 0; margin: auto 0; width: 84px; } /* top and bottom 0 with auto margins: centred in the folder */
+
+/* The lanyard badge. */
+.badge { padding: 28px 16px 16px; border-radius: 14px; text-align: center; }
+.badge::before {
+  content: ""; position: absolute; top: 10px; left: 50%; translate: -50% 0;
+  width: 44px; height: 8px; border-radius: 4px; background: var(--blue);
+}
+.badge img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; margin-top: 6px; }
+.badge-name { margin-top: 12px; font-size: 18px; }
+.badge-role { font-size: 12px; line-height: 1.4; color: var(--ink-soft); }
+
+/* The sticky note: a title and a grid of tool logos. */
+.note { display: grid; grid-template-rows: auto 1fr; padding: 18px 18px 20px; border-radius: 4px; background: var(--blue-wash); }
+.note-title { margin-bottom: 12px; font-size: 17px; }
+.note-logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 10px; align-content: space-evenly; } /* on phones the card is as tall as the badge beside it, so the logos spread out to fill it */
+.note-logos img { width: 100%; height: 48px; object-fit: contain; } /* contain: the Canva wordmark is wide, the others are square */
+
+/* The postcard. */
+.postcard { grid-column: 1 / -1; padding: 20px 22px; border-radius: 6px; }
+.postcard-body { font-size: 24px; }
+
+/* ---------- Work: one panel per project (home page) ---------- */
+
+.lead { margin: 8px 0 32px; font-size: 18px; color: var(--ink-soft); }
+.work-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+/* One project card: a flat colour banner, then its status, blurb and links. */
+.work-card {
+  display: flex; flex-direction: column;
+  background: var(--card); border-radius: 24px; overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, translate 0.2s;
+}
+.work-card:hover, .work-card:focus-within { box-shadow: var(--shadow-lifted); translate: 0 -4px; }
+.work-banner {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 10; padding: 16px;
+  font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); letter-spacing: 0.04em;
+  color: #fff; text-align: center;
+}
+.work-body { padding: clamp(20px, 3vw, 28px); }
+.work-body h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 22px; }
+.work-body p { margin: 14px 0 0; color: var(--ink-soft); }
+.badge-pill {
+  padding: 3px 12px; border: 1.5px solid var(--ink); border-radius: 999px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+}
+.work-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.pill-link {
+  padding: 8px 16px; border: 1.5px solid var(--ink); border-radius: 999px;
+  color: var(--ink); font-size: 14px; font-weight: 500; text-decoration: none;
+}
+.pill-link:hover { background: var(--paper); }
+
+/* ---------- Work: a project page ---------- */
+
+/* project.js sets --accent and --accent-wash on .project from content.js. */
+.project > .wrap { position: relative; }
+.back { display: inline-block; margin-bottom: 28px; font-weight: 500; }
+
+.cover { margin-bottom: 64px; }
+.zh-name { color: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.tags li { padding: 4px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--card); font-size: 14px; font-weight: 500; }
+.tags img { display: inline; height: 16px; width: auto; margin-right: 6px; vertical-align: -3px; } /* width: auto lets the Canva wordmark be wide */
+.cover img, .about-grid img { border-radius: var(--radius); box-shadow: var(--shadow); }
+
+/* The phases, one after another. The links at the top glide to each one (site.js). */
+.phase-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.phase-nav a { padding: 10px 18px; border-radius: 10px; background: var(--accent-wash); color: var(--ink); font-weight: 500; text-decoration: none; }
+.phase-nav a:hover { background: var(--accent); color: #fff; }
+.phase + .phase { margin-top: 72px; }
+.phase h3 { margin-bottom: 20px; max-width: 30ch; }
+.phase-mark { display: block; margin-bottom: 8px; font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--accent); }
+.phase-mark::before { content: "▸ "; }
+.phase-mark::after { content: " ◂"; }
+.points { display: grid; gap: 12px; margin-bottom: 28px; max-width: 70ch; }
+.points li { position: relative; padding-left: 22px; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.figures { display: grid; gap: 24px; } /* one whole slide per row; clicking a slide opens it full size */
+.figures img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
+.figures a:hover img { box-shadow: var(--shadow-lifted); }
+
+/* ---------- About ---------- */
+
+.about-grid { display: grid; gap: 40px; align-items: center; margin-bottom: 56px; }
+.about-grid figure { max-width: 260px; }
+.about-grid h2 { margin-bottom: 16px; }
+.cv { display: grid; gap: 48px; }
+.cv h3 { margin: 0 0 16px; font-size: 22px; }
+.cv h3:not(:first-child) { margin-top: 32px; }
+.timeline { display: grid; gap: 16px; padding-left: 22px; border-left: 2px solid var(--blue-wash); }
+.timeline li { position: relative; display: grid; gap: 2px; font-size: 15px; }
+.timeline li::before {
+  content: ""; position: absolute; left: -29px; top: 0.45em;
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--ink); background: var(--paper);
+}
+.timeline .when { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.timeline .detail { display: block; font-size: 13px; color: var(--ink-soft); }
+.plain { font-size: 15px; }
+
+/* ---------- How I work: three numbered steps joined by a line ---------- */
+
+.steps { display: grid; gap: 40px; counter-reset: step; }
+.steps > li { position: relative; padding-left: 68px; }
+.steps > li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 0;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--blue-wash); color: var(--blue);
+  font-family: var(--font-display); font-size: 20px;
+}
+.steps > li:not(:last-child)::after { content: ""; position: absolute; left: 21px; top: 52px; bottom: -32px; width: 2px; background: var(--blue-wash); }
+.steps h3 { margin-bottom: 8px; font-size: 22px; line-height: 44px; }
+.steps p { color: var(--ink-soft); max-width: 60ch; }
+.steps .tags { margin: 0; }
+.steps .tags li { font-size: 13px; padding: 3px 12px; }
+
+/* ---------- Contact ---------- */
+
+.postcard-big {
+  position: relative; max-width: 720px; padding: clamp(28px, 5vw, 56px);
+  background: var(--card); border-radius: 10px; box-shadow: var(--shadow);
+}
+.postcard-big h2 { margin-bottom: 12px; max-width: 12ch; }
+.button {
+  display: inline-block; margin-top: 8px; padding: 12px 24px;
+  border-radius: 999px; background: var(--blue); color: #fff;
+  font-weight: 500; text-decoration: none;
+}
+.button:hover { background: color-mix(in srgb, var(--blue) 85%, black); }
+.button.outline { background: none; border: 2px solid var(--ink); color: var(--ink); padding-block: 10px; }
+.button.outline:hover { background: var(--card); }
+.email { margin: 16px 0 0; font-size: 15px; color: var(--ink-soft); }
+
+footer { padding: 32px var(--gutter); font-size: 14px; color: var(--ink-soft); text-align: center; }
+footer p { margin: 0; max-width: none; }
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 720px) {
+  /* The desk: objects scatter at slight angles, drop in once on load, and can be dragged (script.js). */
+  .desk-objects { display: block; height: 600px; }
+  .object {
+    position: absolute;
+    rotate: var(--tilt);
+    cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+    animation: drop 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards, float 3.6s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 110ms), calc(var(--i) * -0.9s);
+  }
+  .object:hover, .object.lifted { animation-play-state: running, paused; } /* holding it stops the bob */
+  .folder   { --tilt: -3deg; --i: 0; top: 6%;  left: 40%; width: 320px; }
+  .badge    { --tilt: 4deg;  --i: 1; top: 16%; left: 4%;  width: 186px; }
+  .note     { --tilt: -5deg; --i: 2; top: 40%; left: 64%; width: 196px; }
+  .note-logos { grid-template-columns: repeat(3, 1fr); } /* the note is its own height here, so a tighter grid */
+  .note-logos img { height: 34px; }
+  .postcard { --tilt: 2deg;  --i: 3; top: 70%; left: 26%; width: 290px; }
+
+  .timeline li { grid-template-columns: 8.5em 1fr; gap: 12px; }
+}
+
+@media (min-width: 900px) {
+  .desk-grid { grid-template-columns: 5fr 7fr; align-items: center; min-height: min(calc(100vh - 66px), 820px); }
+  .about-grid { grid-template-columns: 260px 1fr; }
+  .cv { grid-template-columns: 1.2fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
