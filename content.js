@@ -102,7 +102,7 @@ const content = {
       visualBackground: "linear-gradient(180deg, #FFB26A 0%, #FF820F 100%)",
       visualNoise: true,
       links: [
-        { label: { en: "Case study", zh: "完整案例" }, href: "feetmine.html" },
+        { label: { en: "Case study", zh: "完整案例" }, href: "feetmine.html", primary: true }, // the image links here too
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/foot-dna-test", external: true },
       ],
 
@@ -204,9 +204,18 @@ const content = {
         src: "img/ilandgreen-01.jpg",
         alt: { en: "ILANDGREEN app screens: the persona quiz and the resulting travel itinerary", zh: "綠島的應用畫面：角色測驗與對應的旅行行程" },
       },
+      // The image on the home page's Work section only (the case study above still opens with `cover`).
+      workImage: {
+        src: "img/ilandgreen-app-screens.png",
+        alt: { en: "Three ILANDGREEN screens: the travel mood quiz, the home screen, and the soundscape picker", zh: "三個綠島畫面：旅行心情測驗、首頁，以及音景選擇畫面" },
+        fit: "contain",
+      },
+      visualBackground: "linear-gradient(180deg, #CFEDE9 0%, #00D4B4 100%)",
+      visualNoise: true,
+      visualNoiseOpacity: 0.5,
       links: [
         { label: { en: "Demo", zh: "體驗" }, href: "ilandgreen/index.html", external: true },
-        { label: { en: "Case study", zh: "完整案例" }, href: "ilandgreen.html" },
+        { label: { en: "Case study", zh: "完整案例" }, href: "ilandgreen.html", primary: true }, // the image links here too
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/ILANDGREEN", external: true },
       ],
 
@@ -245,14 +254,21 @@ const content = {
       // The id only has to be unique: it keeps this entry from being picked up as the desk's default project.
       id: "avatar-perception",
       banner: "#5b9dff",           // flat colour for the Work card banner
+      visualBackground: "#5b9dff", // same blue, behind the browser mockup below
       badge: "RESEARCH",
       name: "Visual Perception of Non-Human Features in Avatars",
+      workImage: {
+        src: "img/avatar-perception-notion.png",
+        alt: { en: "The project's Notion page, showing its metadata: authors, year, thesis type and advisor", zh: "研究專案的 Notion 頁面，顯示作者、年份、論文類型與指導教授等後設資料" },
+        frame: "browser",
+        url: "marsh-nannyberry-d49.notion.site",
+      },
       blurb: {
         en: "My master's thesis: a cross-cultural study across Taiwan and Japan on how non-human features, like cat ears and unnatural skin tones, shape first impressions of avatars.",
         zh: "我的碩士論文：一項橫跨台灣與日本的研究，探討貓耳朵、不自然膚色等非人類特徵如何形塑對虛擬化身的第一印象。",
       },
       links: [
-        { label: { en: "Read the study", zh: "閱讀研究" }, href: "https://marsh-nannyberry-d49.notion.site/Visual-Perception-of-Non-Human-Features-in-Avatars-0ad29fa6d89242458c124f122c479ab7", external: true },
+        { label: { en: "Read the study", zh: "閱讀研究" }, href: "https://marsh-nannyberry-d49.notion.site/Visual-Perception-of-Non-Human-Features-in-Avatars-0ad29fa6d89242458c124f122c479ab7", external: true, primary: true }, // the image links here too
       ],
     },
   ],

@@ -189,15 +189,17 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
   position: relative;
   display: flex; align-items: center; justify-content: center;
   aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden;
+  text-decoration: none; color: inherit; /* it's a link now, wrapping the image */
 }
-.work-visual img { position: relative; z-index: 1; width: 100%; height: 100%; }
+.work-visual img { position: relative; z-index: 1; width: 100%; height: 100%; transition: transform 300ms ease-out; }
+.work-visual:hover img { transform: scale(1.05); } /* the frame above clips it, like a Figma dissolve-timed hover */
 /* A grainy backdrop behind a project image with transparent areas, like FeetMine's cut-out phone screens. */
 .work-visual.has-noise::before {
   content: "";
   position: absolute; inset: 0;
   background-image: var(--noise);
   background-size: 200px 200px;
-  opacity: 0.4;
+  opacity: var(--noise-opacity, 0.4);
   pointer-events: none;
 }
 .work-visual-fallback {
@@ -206,6 +208,21 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
   font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); letter-spacing: 0.04em;
   color: #fff; text-align: center;
 }
+/* A browser-window mockup, for a project shown as a live page (e.g. a Notion write-up) rather than app screens. */
+.browser-mock {
+  height: 86%; aspect-ratio: 939 / 823;
+  display: flex; flex-direction: column;
+  background: #fff; border-radius: 12px; overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+.browser-mock-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: #2b2b2f; flex-shrink: 0; }
+.browser-mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+.browser-mock-url {
+  margin-left: 8px; padding: 4px 14px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12); color: rgba(255, 255, 255, 0.75);
+  font-size: 12px; font-family: var(--font-body);
+}
+.browser-mock img { display: block; width: 100%; height: auto; }
 .work-body h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: clamp(24px, 3vw, 32px); }
 .work-body p { margin: 16px 0 0; color: var(--ink-soft); font-size: 18px; max-width: 46ch; }
 .badge-pill {

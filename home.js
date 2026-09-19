@@ -10,12 +10,27 @@ function timelineItem(item) {
 // beside its title, status badge, blurb and links.
 function workCard(project) {
   const image = project.workImage || project.cover;
-  const visual = image
-    ? `<img src="${image.src}" alt="${t(image.alt)}" style="object-fit: ${image.fit || "cover"}">`
-    : `<div class="work-visual-fallback" style="background: ${project.banner}">${project.name}</div>`;
+  let visual;
+  if (image && image.frame === "browser") {
+    visual = `<div class="browser-mock">
+         <div class="browser-mock-bar">
+           <span class="browser-mock-dot" style="background: #ff5f57"></span>
+           <span class="browser-mock-dot" style="background: #febc2e"></span>
+           <span class="browser-mock-dot" style="background: #28c840"></span>
+           <span class="browser-mock-url">${image.url}</span>
+         </div>
+         <img src="${image.src}" alt="${t(image.alt)}">
+       </div>`;
+  } else if (image) {
+    visual = `<img src="${image.src}" alt="${t(image.alt)}" style="object-fit: ${image.fit || "cover"}">`;
+  } else {
+    visual = `<div class="work-visual-fallback" style="background: ${project.banner}">${project.name}</div>`;
+  }
   const visualClass = "work-visual" + (project.visualNoise ? " has-noise" : "");
+  const noiseOpacity = project.visualNoiseOpacity !== undefined ? `; --noise-opacity: ${project.visualNoiseOpacity}` : "";
+  const primaryLink = project.links.find((link) => link.primary) || project.links[0];
   return `<article class="work-item">
-       <div class="${visualClass}" style="background: ${project.visualBackground || project.accentWash || "var(--paper)"}">${visual}</div>
+       <a class="${visualClass}" href="${primaryLink.href}"${primaryLink.external ? ' target="_blank" rel="noopener"' : ""} style="background: ${project.visualBackground || project.accentWash || "var(--paper)"}${noiseOpacity}">${visual}</a>
        <div class="work-body">
          <h3>${project.name} <span class="badge-pill">${project.badge}</span></h3>
          <p>${t(project.blurb)}</p>
