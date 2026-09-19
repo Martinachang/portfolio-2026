@@ -35,7 +35,7 @@
         // 2. Work list
         const cards = doc.querySelectorAll(".work-card");
         const card = cards[0];
-        check("the work list has one card per project", cards.length === 2);
+        check("the work list has one card per project", cards.length === 3);
         check("the card shows the project's name, status and banner colour", card.querySelector(".work-banner").textContent.includes("FeetMine") && card.querySelector(".badge-pill").textContent === "COURSE");
         check("the card's links point at its case study", card.querySelector('.pill-link[href="feetmine.html"]') !== null);
         check("the headline has its coloured words and the process has three steps", $("#headline em") !== null && doc.querySelectorAll(".steps > li").length === 3);

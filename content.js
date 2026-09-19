@@ -53,7 +53,7 @@ const content = {
   },
 
   work: {
-    title: { en: "Selected work", zh: "精選作品" },
+    title: { en: "Work", zh: "作品" },
     readMore: { en: "Read the case study", zh: "閱讀完整案例" },
     all: { en: "All work", zh: "所有作品" },
   },
@@ -230,6 +230,21 @@ const content = {
             { src: "img/ilandgreen-04.jpg", alt: { en: "Trip detail screen with slower, lower-impact activities", zh: "行程細節畫面，呈現步調較慢、衝擊較低的活動" } },
           ],
         },
+      ],
+    },
+    {
+      // No case-study page — just a card in the Work list, linking out to the write-up on Notion.
+      // The id only has to be unique: it keeps this entry from being picked up as the desk's default project.
+      id: "avatar-perception",
+      banner: "#5b9dff",           // flat colour for the Work card banner
+      badge: "RESEARCH",
+      name: "Visual Perception of Non-Human Features in Avatars",
+      blurb: {
+        en: "My master's thesis: a cross-cultural study across Taiwan and Japan on how non-human features, like cat ears and unnatural skin tones, shape first impressions of avatars.",
+        zh: "我的碩士論文：一項橫跨台灣與日本的研究，探討貓耳朵、不自然膚色等非人類特徵如何形塑對虛擬化身的第一印象。",
+      },
+      links: [
+        { label: { en: "Read the study", zh: "閱讀研究" }, href: "https://marsh-nannyberry-d49.notion.site/Visual-Perception-of-Non-Human-Features-in-Avatars-0ad29fa6d89242458c124f122c479ab7", external: true },
       ],
     },
   ],
