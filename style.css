@@ -242,28 +242,175 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 .project > .wrap { position: relative; }
 .back { display: inline-block; margin-bottom: 28px; font-weight: 500; }
 
+/* The hero: an eyebrow, the project's headline and blurb, and a stats card (project.stats). */
+.case-hero { display: grid; gap: 28px; margin-bottom: 40px; }
+.case-hero .actions { margin-top: 8px; }
+.case-eyebrow {
+  margin: 0 0 12px; font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+/* FeetMine's own "View Prototype" link, in the project's colour instead of the site's default blue. */
+.case-hero .button.outline { border-color: var(--accent); color: var(--accent); }
+.case-hero .button.outline:hover { background: var(--accent-wash); }
+/* FeetMine only: the hero reads "FeetMine" (not the badge), bigger and centred (uxfol.io/Nook style). */
+body[data-project="feetmine"] .case-hero { justify-items: center; text-align: center; }
+body[data-project="feetmine"] .case-hero .case-eyebrow { font-size: 18px; font-weight: 700; }
+.case-meta {
+  align-self: start; padding: 24px; border-radius: var(--radius);
+  background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.case-meta dt { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.case-meta dt:not(:first-child) { margin-top: 16px; }
+.case-meta dd { margin: 4px 0 0; font-size: 16px; }
+/* FeetMine only (uxfol.io/Nook style): plain stacked labels, no card. ILANDGREEN keeps the boxed version above. */
+body[data-project="feetmine"] .case-meta { padding: 0; background: none; border: none; box-shadow: none; }
+
+/* FeetMine's banner: the project's own screens on its own colour, like the home page's Work card. */
+.case-banner {
+  position: relative; overflow: hidden;
+  margin-bottom: 56px; border-radius: 32px;
+  aspect-ratio: 16 / 9;
+  display: flex; align-items: center; justify-content: center;
+}
+.case-banner img { position: relative; z-index: 1; width: 100%; height: 100%; }
+.case-banner.has-noise::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: var(--noise); background-size: 200px 200px;
+  opacity: var(--noise-opacity, 0.4); pointer-events: none;
+}
+
+/* The overview: the project's own description beside its stats (uxfol.io/Nook style, FeetMine only). */
+.case-overview { display: grid; gap: 28px; margin-bottom: 56px; }
+.case-overview h2 { margin-bottom: 12px; font-size: clamp(22px, 2.6vw, 28px); }
+.case-overview p { color: var(--ink-soft); }
+
 .cover { margin-bottom: 64px; }
 .zh-name { color: var(--accent); }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
 .tags li { padding: 4px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--card); font-size: 14px; font-weight: 500; }
 .tags img { display: inline; height: 16px; width: auto; margin-right: 6px; vertical-align: -3px; } /* width: auto lets the Canva wordmark be wide */
-.cover img, .about-grid img { border-radius: var(--radius); box-shadow: var(--shadow); }
+.cover img, .about-grid img { border-radius: var(--radius); box-shadow: var(--shadow-lifted); }
 
 /* The phases, one after another. The links at the top glide to each one (site.js). */
 .phase-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
 .phase-nav a { padding: 10px 18px; border-radius: 10px; background: var(--accent-wash); color: var(--ink); font-weight: 500; text-decoration: none; }
 .phase-nav a:hover { background: var(--accent); color: #fff; }
-.phase + .phase { margin-top: 72px; }
-.phase h3 { margin-bottom: 20px; max-width: 30ch; }
-.phase-mark { display: block; margin-bottom: 8px; font-family: var(--font-body); font-size: 16px; font-weight: 500; color: var(--accent); }
-.phase-mark::before { content: "▸ "; }
-.phase-mark::after { content: " ◂"; }
+/* Editorial layout: plain text and CSS/SVG blocks, one after another, no card wrapping the section. */
+.phase + .phase { margin-top: 80px; padding-top: 80px; border-top: 1px solid var(--line); }
+.phase h3 { margin-bottom: 20px; max-width: 34ch; font-size: clamp(24px, 3vw, 32px); }
+.phase-mark {
+  display: block; margin-bottom: 10px; font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
 .points { display: grid; gap: 12px; margin-bottom: 28px; max-width: 70ch; }
 .points li { position: relative; padding-left: 22px; }
 .points li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
-.figures { display: grid; gap: 24px; } /* one whole slide per row; clicking a slide opens it full size */
+.figures { display: grid; gap: 24px; margin: 32px 0; } /* an exempt real photo or screenshot; a click opens it full size */
 .figures img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
 .figures a:hover img { box-shadow: var(--shadow-lifted); }
+
+/* A sub-heading inside a phase, when several of the deck's original slides share one phase. */
+.block-heading { margin: 48px 0 8px; }
+.block-heading:first-child { margin-top: 0; }
+.block-eyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.block-heading h4 { margin: 0; font-size: clamp(19px, 2.2vw, 24px); }
+.block-intro { margin: 8px 0 0; max-width: 60ch; color: var(--ink-soft); }
+
+/* A block of paragraphs. mark is used for an inline coloured emphasis, like "up to 80% of adults". */
+.block-text { max-width: 68ch; margin: 28px 0; }
+.block-text p { margin: 0 0 16px; color: var(--ink-soft); }
+.block-text p:last-child { margin-bottom: 0; }
+.block-text strong { color: var(--ink); }
+.block-text mark { background: none; padding: 0; color: var(--accent); font-weight: 600; }
+
+/* A pulled-out statement, like the deck's own "How might we…" slides. */
+.block-quote {
+  margin: 40px 0; padding: 28px clamp(20px, 5vw, 48px);
+  border-left: 4px solid var(--accent); background: var(--accent-wash);
+}
+.block-quote p { margin: 0; font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 26px); font-weight: 400; line-height: 1.35; }
+.block-quote cite { display: block; margin-top: 12px; font-style: normal; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* Two or three big numbers, like the hero's stats card. */
+.block-stats { display: grid; gap: 24px; margin: 32px 0; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.block-stats strong { display: block; font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); color: var(--accent); }
+.block-stats span { display: block; margin-top: 4px; font-size: 14px; color: var(--ink-soft); }
+
+/* A horizontal percentage bar chart, in CSS. */
+.block-bars { margin: 32px 0; max-width: 640px; }
+.block-bars h4 { margin: 0 0 16px; font-size: 16px; }
+.bar-row { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: center; margin-bottom: 14px; }
+.bar-label { font-size: 14px; }
+.bar-value { font-size: 14px; font-weight: 600; color: var(--accent); }
+.bar-track { grid-column: 1 / -1; height: 10px; border-radius: 999px; background: var(--accent-wash); overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 999px; background: var(--accent); }
+
+/* A donut chart, drawn as inline SVG (project.js), with its legend beside it. */
+.block-donut { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin: 32px 0; }
+.donut-legend { display: grid; gap: 8px; font-size: 14px; }
+.donut-legend li { display: flex; align-items: center; gap: 8px; }
+.donut-legend .swatch { flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; }
+
+/* A horizontal stepped timeline, like the deck's age-stage bar. */
+.block-steps { display: flex; flex-wrap: wrap; list-style: none; margin: 32px 0; padding: 0; border-radius: 12px; overflow: hidden; }
+.block-steps li { flex: 1; min-width: 110px; padding: 12px 16px; background: var(--accent-wash); font-size: 13px; font-weight: 500; text-align: center; }
+.block-steps li.active { background: var(--accent); color: #fff; }
+
+/* Paired columns: a finding on top, a user quote, then what it calls for underneath. */
+.block-pairs { display: grid; gap: 24px; margin: 32px 0; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.pair-a { margin: 0 0 8px; font-weight: 600; }
+.pair-quote { margin: 0 0 8px; padding-left: 14px; border-left: 2px solid var(--line); font-size: 14px; font-style: italic; color: var(--ink-soft); }
+.pair-quote span { display: block; margin-top: 4px; font-style: normal; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+.pair-b { margin: 0; padding: 14px 16px; border-radius: 12px; background: var(--accent-wash); font-size: 14px; }
+
+.feature-icon { width: 38px; height: 38px; margin-bottom: 12px; color: var(--accent); flex-shrink: 0; }
+.feature-icon svg { width: 100%; height: 100%; }
+
+/* A list of features as an accordion: the first stands open, the rest collapse behind a "+" (uxfol.io/Nook style). */
+.block-accordion { margin: 32px 0; border-top: 1px solid var(--line); }
+.block-accordion details { border-bottom: 1px solid var(--line); }
+.block-accordion summary {
+  display: flex; align-items: baseline; gap: 12px; padding: 16px 0;
+  font-weight: 600; cursor: pointer; list-style: none;
+}
+.block-accordion summary::-webkit-details-marker { display: none; }
+.block-accordion summary::before { content: "+"; width: 1em; flex-shrink: 0; color: var(--accent); font-weight: 700; }
+.block-accordion details[open] summary::before { content: "–"; }
+.block-accordion p { margin: 0 0 16px; padding-left: calc(1em + 12px); color: var(--ink-soft); }
+
+/* A single highlighted takeaway, like the deck's coloured "impact" box. */
+.block-callout { display: flex; align-items: center; gap: 20px; margin: 32px 0; padding: 24px clamp(20px, 4vw, 32px); border-radius: 16px; background: var(--accent-wash); }
+.block-callout .feature-icon { flex-shrink: 0; margin: 0; }
+.block-callout p { margin: 0; font-weight: 500; }
+
+/* The competitive analysis: journey steps across the top, a row per competitor, a mark per step it covers. */
+.journey-table { width: 100%; margin: 32px 0; border-collapse: collapse; font-size: 14px; }
+.journey-table th, .journey-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: center; }
+.journey-table th:first-child, .journey-table td:first-child { text-align: left; font-weight: 600; }
+.journey-table thead th { font-weight: 500; color: var(--ink-soft); }
+.journey-table .yes { color: var(--accent); font-weight: 700; }
+.journey-table .no { color: var(--line); }
+
+/* Pre-purchase / in-purchase / post-purchase, and similar staged breakdowns: a coloured bar, then icon cards. */
+.stage-columns { display: grid; gap: 20px; margin: 32px 0; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.stage-bar {
+  margin-bottom: 8px; padding: 10px 16px; border-radius: 8px;
+  background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; text-align: center;
+}
+.stage-items { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stage-item { padding: 16px 12px; border-radius: 8px; background: var(--accent-wash); text-align: center; }
+.stage-item .feature-icon { margin: 0 auto 10px; }
+.stage-item h5 { margin: 0; font-size: 13px; font-weight: 700; }
+.stage-item p { margin: 4px 0 0; font-size: 12px; color: var(--ink-soft); }
+
+/* The closing call to action, reusing the site's own contact copy. */
+.case-cta { margin-top: 40px; padding: clamp(40px, 6vw, 72px) var(--gutter); border-radius: 32px; background: var(--accent-wash); text-align: center; }
+.case-cta .case-eyebrow { text-align: center; }
+.case-cta h2 { margin: 0 auto 16px; max-width: 20ch; }
+.case-cta .lead { margin-inline: auto; max-width: 50ch; }
+.case-cta .actions { justify-content: center; margin-top: 8px; }
+.case-cta .button { background: var(--accent); }
+.case-cta .button:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
 
 /* ---------- About ---------- */
 
@@ -351,6 +498,10 @@ footer p { margin: 0; max-width: none; }
   .work-item { grid-template-columns: 1.1fr 1fr; align-items: center; gap: 48px; }
   .work-item:nth-child(even) .work-visual { order: 2; }
   .work-item:nth-child(even) .work-body { order: 1; }
+  .case-hero { grid-template-columns: 1fr 280px; }
+  .case-overview { grid-template-columns: 1fr 280px; }
+  /* FeetMine's hero has no side card any more (its stats moved into .case-overview below). */
+  body[data-project="feetmine"] .case-hero { grid-template-columns: 1fr; max-width: 68ch; margin-inline: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

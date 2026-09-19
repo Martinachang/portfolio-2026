@@ -73,12 +73,14 @@
         const doc = win.document;
         const $ = (selector) => doc.querySelector(selector);
         try {
-          // 5. Phases: all on the page, every slide opens full size, and the links at the top point at them
+          // 5. Phases: all on the page, the two real photos/screens open full size, and the links at the top point at them
           const phases = doc.querySelectorAll(".phase").length;
-          check("every phase and every slide is on the page, slides 6 to 19 of the deck",
-            phases === 6 && doc.querySelectorAll("#phase-nav a").length === phases && doc.querySelectorAll('.figures a[target="_blank"] img[src^="img/feetmine-"]').length === 14);
+          check("every phase is on the page, with the hero and stats card filled in",
+            phases === 6 && doc.querySelectorAll("#phase-nav a").length === phases &&
+            $("#case-headline").textContent.length > 0 && doc.querySelectorAll("#case-meta dt").length === 4);
+          check("the real photo and prototype screens still open full size", doc.querySelectorAll('.figures a[target="_blank"] img[src^="img/feetmine-"]').length === 2);
           check("the phase links point at the phases", $('#phase-nav a[href="#phase-1"]') !== null && $("#phase-1") !== null);
-          check("only the overview phase has text, the others are slides alone", doc.querySelectorAll(".points").length === 1 && $("#phase-0 .points") !== null);
+          check("only the overview phase has bullet points; the rest are rebuilt as editorial blocks", doc.querySelectorAll(".points").length === 1 && $("#phase-0 .points") !== null && doc.querySelectorAll(".block-text, .block-quote, .block-bars, .block-donut").length > 0);
         } catch (error) {
           results.push("FAIL  " + error);
         }

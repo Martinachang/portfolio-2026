@@ -34,11 +34,40 @@
       <div class="wrap">
         <a class="back" href="index.html#work" data-text="work.all"></a>
 
-        <figure class="cover"><img id="cover" alt=""></figure>
+        <!-- The hero: an eyebrow (the badge), the headline, and a link to the prototype. -->
+        <div class="case-hero">
+          <p class="case-eyebrow" id="case-badge"></p>
+          <h1 id="case-headline"></h1>
+          <p class="actions">
+            <a class="button outline" id="case-prototype-link" href="#" target="_blank" rel="noopener" data-text="work.prototypeLabel"></a>
+          </p>
+        </div>
+
+        <!-- The banner: the project's own screens, on its own colour (content.js: workImage, visualBackground). -->
+        <div class="case-banner" id="case-banner"></div>
+
+        <!-- The overview: what the project is, and its stats, side by side (uxfol.io/Nook style). -->
+        <div class="case-overview">
+          <div>
+            <h2 data-text="work.overviewTitle"></h2>
+            <p id="case-overview-text"></p>
+          </div>
+          <dl class="case-meta" id="case-meta"></dl>
+        </div>
 
         <!-- The phases, one after another. The links glide to each one. -->
         <nav class="phase-nav" id="phase-nav"></nav>
         <div id="phases"></div>
+
+        <!-- The closing call to action, reusing the site's own contact copy. -->
+        <div class="case-cta">
+          <p class="case-eyebrow" data-text="site.nav.contact"></p>
+          <h2 data-text="contact.title"></h2>
+          <p class="lead" data-text="contact.body"></p>
+          <p class="actions">
+            <a class="button" href="index.html#contact" data-text="contact.button"></a>
+          </p>
+        </div>
       </div>
     </section>
   </main>

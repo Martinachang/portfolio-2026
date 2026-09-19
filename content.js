@@ -56,6 +56,8 @@ const content = {
     title: { en: "Work", zh: "作品" },
     readMore: { en: "Read the case study", zh: "閱讀完整案例" },
     all: { en: "All work", zh: "所有作品" },
+    overviewTitle: { en: "Overview", zh: "概述" },
+    prototypeLabel: { en: "View Prototype", zh: "查看原型" },
   },
 
   // Projects, in display order. The first one is featured on the desk.
@@ -68,6 +70,7 @@ const content = {
       accentWash: "#ffe9d6",
       banner: "#FF9F46",           // flat colour for the Work card banner
       badge: "COURSE",
+      heroLabel: "FeetMine", // shown in the case-study hero instead of the badge above
       name: "FeetMine",
       nameZh: "合步合腳",
       summary: { en: "A parent-child shoe-selection app", zh: "親子個人化選鞋 App" },
@@ -81,8 +84,10 @@ const content = {
         zh: "童鞋由家長挑選，卻常常買錯。合步合腳用 AR 在家量測孩子的腳，推薦合腳的鞋，並持續記錄成長。",
       },
       stats: [
-        { label: { en: "Parents interviewed and tested", zh: "訪談與測試的家長" }, value: "10" },
-        { label: { en: "Journey steps covered, competitors cover 1 or 2", zh: "涵蓋的購鞋步驟，競品只有 1 到 2 步" }, value: "5 / 5" },
+        { label: { en: "Year", zh: "年份" }, value: "2024" },
+        { label: { en: "Duration", zh: "時長" }, value: { en: "1 year", zh: "一年" } },
+        { label: { en: "Team", zh: "團隊" }, value: { en: "3 Undergraduate Students, 1 Advisor", zh: "3 位大學生，1 位指導教授" } },
+        { label: { en: "Role", zh: "角色" }, value: { en: "UX/UI Designer, usability test, character design, illustration design", zh: "UX/UI 設計、易用性測試、角色設計、插畫設計" } },
       ],
       tags: [
         { en: "UX research", zh: "使用者研究" },
@@ -101,12 +106,14 @@ const content = {
       },
       visualBackground: "linear-gradient(180deg, #FFB26A 0%, #FF820F 100%)",
       visualNoise: true,
+      prototypeUrl: "#", // TODO: replace with the real prototype link
       links: [
         { label: { en: "Case study", zh: "完整案例" }, href: "feetmine.html", primary: true }, // the image links here too
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/foot-dna-test", external: true },
       ],
 
-      // The case study, one section per phase. Each figure is a whole slide from the deck, img/feetmine-NN.jpg.
+      // The case study, one section per phase. Diagrams and charts are rebuilt as text, CSS and inline SVG (project.js);
+      // a figure/image block is only used for a real photo or an actual designed screen, e.g. feetmine-13 and feetmine-19.
       phasesLabel: { en: "Design phases", zh: "設計階段" },
       phases: [
         {
@@ -129,46 +136,159 @@ const content = {
               zh: "我負責 UX 設計與易用性測試，並繪製角色與插畫。",
             },
           ],
-          figures: [
-            { src: "img/feetmine-18.jpg", alt: { en: "Service flow: the personal foot links user, foot, shoes and shoe store, across pre-purchase, in-purchase and post-purchase stages", zh: "服務流程：個人足型串起使用者、腳、鞋子與鞋店，涵蓋購買前、購買中與購買後" } },
+          blocks: [
+            {
+              type: "text",
+              paragraphs: [
+                { en: "FeetMine connects four players — the user, their foot, the shoes and the shoe store — in a single feedback loop. AR measurements record how a child's foot grows, and wear-comfort feedback keeps improving what gets recommended next.", zh: "合步合腳串連使用者、足部、鞋款與鞋店四方，形成一個回饋循環：AR 量測記錄孩子足部的成長歷程，穿著回饋則持續優化下一次的推薦。" },
+              ],
+            },
+            {
+              type: "stage-columns",
+              stages: [
+                { name: { en: "Pre-purchase", zh: "購買前" }, items: [
+                  { title: { en: "Goal", zh: "目標" }, text: { en: "Understand the child's feet, choose the right shoes", zh: "了解孩子的腳，選對鞋款" } },
+                  { icon: "scan", title: { en: "AR Measurement", zh: "AR 量測" }, text: { en: "Understanding foot health", zh: "建立足部健康意識" } },
+                ] },
+                { name: { en: "In-purchase", zh: "購買中" }, items: [
+                  { icon: "shoe", title: { en: "Shoe Recommendations", zh: "鞋款推薦" } },
+                  { icon: "card", title: { en: "Foot ID Card & Fit Matching", zh: "足型 ID 卡與合腳配對" } },
+                ] },
+                { name: { en: "Post-purchase", zh: "購買後" }, items: [
+                  { icon: "foot", title: { en: "Foot Profile History", zh: "足型歷程紀錄" }, text: { en: "Age stages", zh: "跨年齡階段" } },
+                  { icon: "bulb", title: { en: "Foot Health Knowledge", zh: "足部健康知識" } },
+                ] },
+              ],
+            },
           ],
         },
         {
           name: { en: "Research", zh: "研究" },
-          figures: [
-            { src: "img/feetmine-06.jpg", alt: { en: "Three charts: top foot issues in workers, when people start caring about foot health, and gait types", zh: "三張圖表：上班族常見足部問題、人們開始關心足部健康的年齡、步態類型" } },
-            { src: "img/feetmine-07.jpg", alt: { en: "Physical therapist interview and the foot development stages from birth to seniors, with ages 0 to 14 highlighted", zh: "物理治療師訪談，以及從出生到老年的足部發展階段，強調 0 到 14 歲" } },
-            { src: "img/feetmine-08.jpg", alt: { en: "Five common misconceptions in children's footwear and the problem each one causes", zh: "童鞋的五個常見迷思，以及各自造成的問題" } },
-            { src: "img/feetmine-09.jpg", alt: { en: "Consumption behaviors of modern parents: building trust online, from mobile research to in-store purchase, and video-first parenting", zh: "現代家長的消費行為：在線上建立信任、從手機查詢到店內購買、以及影片優先的育兒方式" } },
+          blocks: [
+            { type: "heading", eyebrow: { en: "Background", zh: "背景" }, title: { en: "Small Foot Flaws, Big Body Problems", zh: "足部小問題，身體大麻煩" },
+              intro: { en: "Our feet are the foundation of the body, bearing our weight and maintaining balance. Without proper support, foot misalignment can trigger chain-reaction pain in the knees, hips and back — today, up to 80% of adults suffer from foot-related issues.", zh: "雙腳是身體的基礎，承擔體重並維持平衡。缺乏適當支撐時，足部歪斜會引發膝蓋、髖部與背部的連鎖疼痛——如今高達 80% 的成年人都有足部相關困擾。" } },
+            { type: "bars", title: { en: "Top foot issues in workers", zh: "上班族常見足部問題" }, bars: [
+              { label: { en: "Varicose veins", zh: "靜脈曲張" }, value: 32.9 },
+              { label: { en: "Plantar fasciitis", zh: "足底筋膜炎" }, value: 32.4 },
+              { label: { en: "Heel pain", zh: "足跟痛" }, value: 25.3 },
+            ] },
+            { type: "bars", title: { en: "When people start caring about foot health", zh: "人們從何時開始關心足部健康" }, bars: [
+              { label: { en: "Under 30", zh: "30 歲以下" }, value: 29.8 },
+              { label: { en: "31–40", zh: "31–40 歲" }, value: 31.2 },
+              { label: { en: "40 and over", zh: "40 歲以上" }, value: 37.6 },
+            ] },
+            { type: "donut", center: { value: "90.9%", label: { en: "walk with an abnormal gait", zh: "步態異常" } }, segments: [
+              { label: { en: "Inward (overpronation)", zh: "內旋（旋前過度）" }, value: 52, color: "#f7943e" },
+              { label: { en: "Outward (supination)", zh: "外旋（旋後）" }, value: 30.6, color: "#fac491" },
+              { label: { en: "Mixed", zh: "混合型" }, value: 8.6, color: "#fde3cc" },
+              { label: { en: "Normal gait", zh: "步態正常" }, value: 8.8, color: "#e5e0da" },
+            ] },
+            { type: "heading", eyebrow: { en: "Field research", zh: "實地調查" }, title: { en: "Understanding Foot Development", zh: "理解足部發展" },
+              intro: { en: "Most adult foot problems stem from childhood development, making it crucial to understand the key growth stages.", zh: "多數成人的足部問題都源自童年的發展階段，理解關鍵成長期因此格外重要。" } },
+            { type: "features", items: [
+              { title: { en: "A continuous process", zh: "持續發展的過程" }, text: { en: "Foot development never stops, and children's foot development lays the foundation for lifelong foot health.", zh: "足部發展是持續不斷的過程，孩童時期的足部發展是終生足部健康的基礎。" } },
+              { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ by age group, from birth through age 14.", zh: "選鞋的關鍵考量會隨年齡層而不同，從出生到 14 歲皆然。" } },
+              { title: { en: "The decision gap", zh: "決策落差" }, text: { en: "Parents usually choose the shoes for their children, but they often fail to make the right choices.", zh: "鞋子多半由家長挑選，卻常常做出不理想的選擇。" } },
+            ] },
+            { type: "steps", steps: [
+              { en: "Birth", zh: "出生" },
+              { en: "Foot development (ages 0–14)", zh: "足部發展期（0–14 歲）", active: true },
+              { en: "Foot shape stabilization", zh: "足型穩定期" },
+              { en: "Foot degeneration (ages 50+)", zh: "足部退化期（50 歲以上）" },
+              { en: "Seniors", zh: "高齡期" },
+            ] },
+            { type: "quote", text: { en: "Parents buy their children's shoes, yet many fail to choose the right pair.", zh: "童鞋多半由家長挑選，卻常常買錯。" }, cite: { en: "Field research", zh: "實地調查" } },
+            { type: "heading", eyebrow: { en: "User research", zh: "使用者研究" }, title: { en: "Common Misconceptions in Children's Footwear", zh: "童鞋的常見迷思" } },
+            { type: "pairs", items: [
+              { a: { en: "Buying one size up", zh: "買大一號" }, b: { en: "Causes poor stability and fatigue, leading to frequent tripping", zh: "導致穩定度不足與疲勞，容易絆倒" } },
+              { a: { en: "Softer shoes for comfort", zh: "追求鞋子越軟越好" }, b: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet", zh: "缺乏支撐與避震，導致足弓塌陷、扁平足" } },
+              { a: { en: "Looks above proper support", zh: "外觀優先於支撐性" }, b: { en: "Kids need wider toe boxes; narrow shoes cause chafing and bone misalignment", zh: "孩童需要較寬的楦頭，過窄的鞋子會摩擦並影響骨骼排列" } },
+              { a: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, b: { en: "Hurts arch development and raises the risk of ankle misalignment during play", zh: "影響足弓發育，增加玩耍時腳踝歪斜的風險" } },
+              { a: { en: "Wear corrective shoes early", zh: "提早穿矯正鞋" }, b: { en: "Meant only for diagnosed flat feet; wearing them unnecessarily limits mobility and weakens foot muscles", zh: "僅適用於已確診的扁平足，不必要的穿著反而限制活動、削弱足部肌力" } },
+            ] },
+            { type: "callout", icon: "foot", text: { en: "These lead to poor foot development, negatively impacting long-term foot health and increasing the incidence of foot-related diseases later in life.", zh: "這些迷思會導致足部發展不良，對長期足部健康造成負面影響，並提高日後罹患足部疾病的機率。" } },
+            { type: "quote", text: { en: "How might we educate parents and provide reliable tools to easily select the right shoe size and structure?", zh: "我們該如何教育家長，並提供可靠的工具，讓他們輕鬆選對鞋子的尺寸與結構？" } },
+            { type: "heading", eyebrow: { en: "User research", zh: "使用者研究" }, title: { en: "Consumption Behaviors of Modern Parents", zh: "現代家長的消費行為" } },
+            { type: "stats", items: [
+              { value: "48%", label: { en: "of brand discovery happens online — the first impression must earn trust immediately", zh: "的品牌認識來自線上——第一印象就必須立刻贏得信任" } },
+              { value: "62%", label: { en: "still visit a store to verify quality after researching on mobile", zh: "在手機上做完功課後，仍會到實體店驗證品質" } },
+              { value: "84%", label: { en: "report higher brand favorability after watching video content", zh: "在看過影片內容後，對品牌的好感度提升" } },
+            ] },
           ],
         },
         {
           name: { en: "Insights", zh: "洞察" },
-          figures: [
-            { src: "img/feetmine-10.jpg", alt: { en: "Pain points and needs from in-depth interviews with 7 parents: children struggle to express comfort, and there is no personalized foot data", zh: "與 7 位家長深度訪談得出的痛點與需求：孩子說不清楚舒不舒服，也沒有孩子專屬的足部資料" } },
-            { src: "img/feetmine-11.jpg", alt: { en: "Competitive analysis: FeetMine covers all five steps, three competitors cover one or two", zh: "競品分析：合步合腳涵蓋全部五個步驟，三個競品只涵蓋一到兩個" } },
+          blocks: [
+            { type: "heading", eyebrow: { en: "In-depth interview", zh: "深度訪談" }, title: { en: "What Problems Do Parents Face When Buying Children's Shoes?", zh: "家長在購買童鞋時面臨哪些問題？" },
+              intro: { en: "In-depth interviews with 7 parents of children aged 6–12, uncovering the online and offline challenges they encounter while shopping.", zh: "與 7 位育有 6–12 歲孩童的家長進行深度訪談，發掘他們在線上與線下購物時遇到的挑戰。" } },
+            { type: "pairs", items: [
+              { a: { en: "Children struggle to express comfort", zh: "孩子說不清楚舒不舒服" }, quote: { en: "My kid only cares about how shoes look, not how they fit.", zh: "我的孩子只在意鞋子好不好看，不在意合不合腳。" }, citeQuote: { en: "Father, 28", zh: "父親，28 歲" }, b: { en: "Need: accurate sizing and fit guidance beyond style preferences", zh: "需求：超越外觀偏好的精準尺寸與合腳指引" } },
+              { a: { en: "Lack of personalized foot data", zh: "沒有孩子專屬的足部資料" }, quote: { en: "There's lots of advice online, but none fits my child, so I don't really do research.", zh: "網路上建議很多，但沒有一個適合我的孩子，所以我乾脆不做功課。" }, citeQuote: { en: "Mother, 34", zh: "母親，34 歲" }, b: { en: "Need: personalized data online, to streamline shoe shopping", zh: "需求：線上的個人化資料，簡化選鞋流程" } },
+            ] },
+            { type: "heading", eyebrow: { en: "Competitive analysis", zh: "競品分析" }, title: { en: "A Shoe-Fitting Guide Connecting Online Sizing to Personalized Picks", zh: "連結線上量測與個人化選鞋的合腳指南" },
+              intro: { en: "Stop guessing through endless size charts and shoe models — FeetMine integrates foot development data and the shoe-selection process into one seamless experience.", zh: "不必再對著沒完沒了的尺寸表與鞋款猜測——合步合腳將足部發展資料與選鞋流程整合為一次流暢的體驗。" } },
+            { type: "journey-table", steps: [
+              { en: "Goal", zh: "目標" }, { en: "Measure", zh: "量測" }, { en: "Select", zh: "挑選" }, { en: "Purchase", zh: "購買" }, { en: "Evaluate", zh: "評估" },
+            ], rows: [
+              { name: "FeetMine", covers: [true, true, true, true, true] },
+              { name: "A.S.O", covers: [true, true, false, true, false] },
+              { name: "OverNice", covers: [false, true, true, false, false] },
+              { name: "Baby View", covers: [true, false, false, false, false] },
+            ] },
           ],
         },
         {
           name: { en: "Design", zh: "設計" },
-          figures: [
-            { src: "img/feetmine-12.jpg", alt: { en: "Three design goals: simplifying foot measurement, guiding personalized fit, tracking continuous growth", zh: "三個設計目標：簡化足部量測、引導個人化的合腳選擇、追蹤持續的成長" } },
-            { src: "img/feetmine-13.jpg", alt: { en: "Five prototype screens: home, AR measurement, foot ID, smart selection, growth evaluation", zh: "五個原型畫面：首頁、AR 量測、足型 ID、智慧選鞋、成長評估" } },
-            { src: "img/feetmine-15.jpg", alt: { en: "Design highlights: AR foot profiling with the five foot metrics, and the foot mascot generated from the profile in eight colors", zh: "設計亮點：AR 足型建檔與五個足部指標，以及依足型生成、有八種顏色的腳腳吉祥物" } },
-            { src: "img/feetmine-16.jpg", alt: { en: "Design highlights: feature-based shoe recommendations, and foot shape records that follow a child's growth", zh: "設計亮點：依足部特徵推薦鞋款，以及陪伴孩子成長的足型紀錄" } },
+          blocks: [
+            { type: "heading", eyebrow: { en: "Design goals", zh: "設計目標" }, title: { en: "FeetMine Builds Healthy Childhood Steps for Lifelong Comfort", zh: "合步合腳，打造孩子健康成長的每一步" } },
+            { type: "features", items: [
+              { title: { en: "Simplifying foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement, without store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
+              { title: { en: "Guiding personalized fit", zh: "引導個人化合腳選擇" }, text: { en: "Turns foot data into smart recommendations, to avoid sizing guesswork.", zh: "將足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
+              { title: { en: "Tracking continuous growth", zh: "追蹤持續成長" }, text: { en: "Integrates foot-data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
+            ] },
+            { type: "image", src: "img/feetmine-13.jpg", alt: { en: "Five prototype screens: home, AR measurement, foot ID, smart selection, growth evaluation", zh: "五個原型畫面：首頁、AR 量測、足型 ID、智慧選鞋、成長評估" } },
+            { type: "heading", eyebrow: { en: "Design highlights", zh: "設計亮點" }, title: { en: "Personalized Foot Profiling", zh: "個人化足型建檔" },
+              intro: { en: "Uses AR technology to let parents measure their child's feet anytime, anywhere, building a dedicated database based on foot type, arch, instep, width and length.", zh: "運用 AR 技術，讓家長隨時隨地都能量測孩子的腳，依足型、足弓、足背高度、寬度與長度建立專屬資料庫。" } },
+            { type: "pairs", items: [
+              { a: { en: "Type of foot", zh: "足型" }, b: { en: "Egyptian, Greek or Roman", zh: "埃及型、希臘型或羅馬型" } },
+              { a: { en: "Arch of foot", zh: "足弓" }, b: { en: "Flat, regular or high arch", zh: "扁平、正常或高足弓" } },
+              { a: { en: "Instep height", zh: "足背高度" }, b: { en: "Low, medium or high instep", zh: "低、中或高足背" } },
+              { a: { en: "Foot width", zh: "足寬" }, b: { en: "Narrow, regular or wide", zh: "窄、正常或寬" } },
+            ] },
+            { type: "text", paragraphs: [
+              { en: "Each profile also generates a personalized foot mascot in one of eight colors, so parents can recognize their child's shoe recommendations and reviews at a glance.", zh: "每份足型檔案還會生成一隻專屬的腳腳吉祥物，共有八種顏色可選，讓家長一眼就能認出孩子專屬的選鞋建議與評價。" },
+            ] },
+            { type: "heading", title: { en: "Feature-Based Shoe Recommendations", zh: "依足部特徵推薦鞋款" },
+              intro: { en: "Provides targeted shoe recommendations on performance and materials based on individual foot profiles. Users can explore reviews from peers with the same foot type, ensuring confident purchases and minimizing sizing mistakes.", zh: "依據個人足型檔案，提供針對性能與材質的鞋款推薦。使用者也能參考相同足型的其他人的評價，安心購買、減少選錯尺寸的機會。" } },
+            { type: "heading", title: { en: "Foot Shape Records: Accompanying Growth", zh: "足型紀錄，陪伴成長" },
+              intro: { en: "Tracks foot changes across age stages and saves them to the personal Foot ID card for future shoe fitting. By preserving raw foot outlines, parents and children can overlay and align their footprints — a heartwarming record of growth to cherish and relive.", zh: "追蹤不同年齡階段的足部變化，並存入個人足型 ID 卡，作為未來選鞋的依據。透過保留原始足型外框，親子可以疊合比對足印，留下溫馨的成長紀錄，未來能反覆回味。" } },
           ],
         },
         {
           name: { en: "Testing", zh: "測試" },
-          figures: [
-            { src: "img/feetmine-14.jpg", alt: { en: "Usability test results: coin calibration replaces sticker tracking, and the foot type code gets an explanation", zh: "易用性測試結果：硬幣校正取代貼紙追蹤，足型代碼加上說明" } },
+          blocks: [
+            { type: "heading", eyebrow: { en: "Usability testing & design iteration", zh: "易用性測試與設計迭代" },
+              intro: { en: "We tested the prototype with 3 parents of children aged 6–12, through moderated usability testing, to see whether parents could independently complete foot measurements and understand the shoe recommendations.", zh: "我們透過主持式易用性測試，邀請 3 位育有 6–12 歲孩童的家長操作行動原型，驗證家長是否能獨立完成足部量測，並理解選鞋建議。" } },
+            { type: "heading", title: { en: "Can parents follow the guided flow to measure feet?", zh: "家長能依照引導流程完成量測嗎？" } },
+            { type: "pairs", items: [
+              { a: { en: "As-is: point-to-point foot tracking", zh: "原始版本：逐點足部追蹤" }, quote: { en: "Stickers waste time, scanning takes too long…", zh: "貼貼紙很花時間，掃描也要很久⋯" }, b: { en: "To-be (expert validated): quick coin calibration — slide a coin halfway under the arch and scan. Much simpler and faster.", zh: "優化版本（經專家驗證）：用硬幣快速校正，滑到足弓下方一半處掃描即可，更簡單也更快速。" } },
+            ] },
+            { type: "heading", title: { en: "Can parents understand the Foot Type?", zh: "家長能理解「足型」代碼嗎？" },
+              intro: { en: "No, but we retained it: although 2 of 3 parents initially struggled to understand the Foot Type, we kept it to shift mindsets from \"buying shoes by length alone\" to a deeper understanding of foot health.", zh: "不完全能，但我們保留了這項設計：雖然 3 位家長中有 2 位一開始看不懂足型代碼，我們仍選擇保留，希望能把「只看鞋長買鞋」的觀念，轉變為對足部健康更深一層的理解。" } },
           ],
         },
         {
           name: { en: "Outcome", zh: "成果" },
-          figures: [
-            { src: "img/feetmine-19.jpg", alt: { en: "Results: the FeetMine booth at YODEX, the pitch to industry judges, and the team with the advisor", zh: "成果：合步合腳在新一代設計展的攤位、向業界評審提案、以及團隊與指導老師合影" } },
-            { src: "img/feetmine-17.jpg", alt: { en: "Business model: the Foot ID card matches partner footwear to foot types for customers, and gives brands feedback across foot profiles", zh: "商業模式：足型 ID 卡為顧客配對合作品牌的鞋款，也讓品牌獲得跨足型的回饋資料" } },
+          blocks: [
+            { type: "image", src: "img/feetmine-19.jpg", alt: { en: "Results: the FeetMine booth at YODEX, the pitch to industry judges, and the team with the advisor", zh: "成果：合步合腳在新一代設計展的攤位、向業界評審提案、以及團隊與指導老師合影" } },
+            { type: "heading", eyebrow: { en: "Business model", zh: "商業模式" }, title: { en: "Foot ID Card", zh: "足型 ID 卡" } },
+            { type: "features", items: [
+              { title: { en: "To customers", zh: "對消費者" }, text: { en: "Match partner footwear to foot types and incorporate peer reviews to enhance fit accuracy.", zh: "依足型配對合作品牌鞋款，並納入同型使用者的評價，提升合腳準確度。" } },
+              { title: { en: "To business", zh: "對品牌" }, text: { en: "Gather feedback across diverse foot profiles to identify user needs and improve product design.", zh: "彙整不同足型的回饋資料，找出使用者需求並優化產品設計。" } },
+            ] },
+            { type: "text", paragraphs: [
+              { en: "By archiving users' foot profiles and scan histories, FeetMine can expand to partner shoe retailers, online and offline, to match personal foot types with brand inventories. Continuously updated with a child's latest growth data, the system delivers highly accurate, personalized recommendations — boosting shopping efficiency and purchase intent while connecting users and merchants in a mutually beneficial, sustainable ecosystem.", zh: "透過建檔使用者的足型資料與掃描紀錄，合步合腳得以擴展至線上與線下的合作鞋店，將個人足型與品牌庫存互相配對。系統會隨孩子最新的成長資料持續更新，提供高度精準的個人化推薦——在提升購物效率與購買意願的同時，也讓使用者與商家之間建立起互利共好的永續生態圈。" },
+            ] },
           ],
         },
       ],
