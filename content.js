@@ -218,12 +218,12 @@ const content = {
     intro: {
       title: { en: "FeetMine 合步合腳", zh: "合步合腳 FeetMine" },
       subtitle: {
-        en: "Graduation project—a personalized parent-child app that helps parents choose the right shoes for growing feet",
-        zh: "畢業製作——一款親子個人化 App，幫家長為成長中的雙腳挑對鞋子",
+        en: "A personalized parent-child app that helps parents choose the right shoes for growing feet",
+        zh: "一款親子個人化 App，幫家長為成長中的雙腳挑對鞋子",
       },
       body: {
-        en: "Parents buy their children's shoes, yet many fail to choose the right pair. Our team of three spent a year researching children's foot development and how parents shop, then designed FeetMine: an app that lets parents measure their child's feet at home, understand their foot type, and get shoe recommendations that grow with their child.",
-        zh: "童鞋多半由家長挑選，卻常常買錯。我們三人的團隊花了一年研究孩童的足部發展與家長的購物行為，設計出合步合腳：一款讓家長在家量測孩子雙腳、了解足型，並取得隨孩子一起成長的選鞋建議的 App。",
+        en: "As a 3-person student team working around our coursework, we spent a year on FeetMine — from early field research through a tested, exhibited prototype for our graduation project.",
+        zh: "身為三人學生團隊，我們餘投入一年時間設計 FeetMine，從前期田野調查到使用者測試、以及最終產出參展的畢業專題原型。",
       },
       problemLabel: { en: "Problem", zh: "問題" },
       problem: {
