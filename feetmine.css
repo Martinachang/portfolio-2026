@@ -1,0 +1,493 @@
+/* feetmine.css — the FeetMine case study (feetmine.html) only.
+   Every rule is scoped under .cs-feetmine, the class on that page's <body>, so style.css and the
+   other pages are untouched. Phone first; the two wider layouts are in the media queries at the end.
+
+   The page is a stack of full-width sections that alternate between a light and a dark theme.
+   Inside each one, .fm-wrap centres the content and .fm-split puts the heading beside the text. */
+
+.cs-feetmine {
+  /* Brand */
+  --fm-primary: #FF9F46;
+  --fm-primary-dark: #E0761A;   /* orange text on a light background */
+  --fm-primary-tint: #FFE7D1;
+
+  /* Themes */
+  --fm-light-bg: #F1EFEA;
+  --fm-dark-bg: #221F1C;
+  --fm-ink: #111111;
+  --fm-ink-invert: #FFFFFF;
+  --fm-muted: #7A7A7A;          /* 4.5:1 on the light background */
+  --fm-muted-invert: #8C8C8C;   /* 6.4:1 on the dark background */
+
+  /* Panel colours, from the mascot palette */
+  --fm-orange: #FF9F46;
+  --fm-peach: #FFC999;
+  --fm-coral: #F7876B;
+  --fm-butter: #F6CF5A;
+  --fm-mint: #8FD9A8;
+  --fm-aqua: #7FD6DC;
+  --fm-blue: #7FA7E8;
+  --fm-charcoal: #2E2925;
+
+  --fm-wrap: 1200px;
+  --fm-pad: clamp(56px, 11vw, 160px);
+  --fm-gap: clamp(16px, 3vw, 36px);
+  --fm-font: "Noto Sans TC", system-ui, sans-serif;
+
+  /* The shared focus ring and link colour come from style.css: give them this project's orange. */
+  --accent: var(--fm-primary-dark);
+  --accent-wash: var(--fm-primary-tint);
+
+  background: var(--fm-light-bg);
+}
+
+/* The shared top bar is translucent, which would leave its dark text unreadable wherever a dark
+   section scrolls underneath. On this page it stays solid. */
+.cs-feetmine .topbar { background: var(--paper); }
+
+/* ---------- Layout ---------- */
+
+.cs-feetmine main { overflow-x: hidden; } /* the panels run edge to edge */
+.fm-wrap { max-width: var(--fm-wrap); margin-inline: auto; padding-inline: var(--gutter); }
+.fm-sec { padding-block: var(--fm-pad); }
+.fm-split { display: grid; gap: clamp(24px, 5vw, 64px); }
+/* A chart row, a table or a diagram under the heading of its own section. */
+.fm-wrap + .fm-wrap { margin-top: clamp(40px, 6vw, 80px); }
+
+/* A feature section holds its panels against its own bottom edge. */
+.fm-feature { padding-bottom: 0; }
+
+/* ---------- Themes ---------- */
+
+.fm-light { background: var(--fm-light-bg); color: var(--fm-ink); }
+.fm-dark { background: var(--fm-dark-bg); color: var(--fm-ink-invert); }
+.fm-orange { background: var(--fm-primary); color: var(--fm-dark-bg); }
+
+.fm-light .fm-h2-soft, .fm-light .fm-lead, .fm-light .fm-note { color: var(--fm-muted); }
+.fm-dark .fm-h2-soft, .fm-dark .fm-lead, .fm-dark .fm-note { color: var(--fm-muted-invert); }
+.fm-orange .fm-h2-soft { color: #6B4413; }      /* 4.6:1 on #FF9F46 */
+.fm-orange .fm-lead, .fm-orange .fm-note { color: #5C3A10; }
+.fm-dark a { color: var(--fm-primary); }
+.fm-dark ::selection { background: var(--fm-primary); color: var(--fm-dark-bg); }
+
+/* ---------- Type ---------- */
+
+.cs-feetmine .fm-title,
+.cs-feetmine .fm-h2,
+.cs-feetmine .fm-label,
+.cs-feetmine .fm-cta h2 {
+  font-family: var(--fm-font);
+  letter-spacing: -0.01em;
+}
+.fm-title { margin: 0; font-size: clamp(32px, 4.6vw, 48px); font-weight: 800; line-height: 1.1; }
+.fm-subtitle {
+  margin: 16px 0 clamp(32px, 5vw, 56px);
+  max-width: 40ch;
+  font-family: var(--fm-font);
+  font-size: clamp(26px, 3.6vw, 44px);
+  font-weight: 300;
+  line-height: 1.22;
+  color: var(--fm-muted);
+}
+/* The two-tone heading: line one in the full text colour, line two in grey. */
+.fm-h2 { margin: 0; font-size: clamp(28px, 3.8vw, 44px); font-weight: 800; line-height: 1.14; }
+.fm-h2 span { display: block; }
+.fm-lead { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.75; max-width: 46ch; }
+.fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 44ch; }
+.fm-label { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
+.fm-lead + .fm-label { margin-top: clamp(28px, 3vw, 40px); }
+.fm-eyebrow {
+  margin: 0 0 20px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--fm-primary-dark);
+}
+.fm-body { margin: 0 0 clamp(28px, 4vw, 40px); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; color: var(--fm-muted); max-width: 62ch; }
+
+/* ---------- Intro ---------- */
+
+.fm-intro-grid { display: grid; gap: clamp(28px, 5vw, 56px); }
+.fm-intro-pair { display: grid; gap: 28px; }
+.fm-intro-pair p { margin: 0; color: var(--fm-muted); font-size: 16px; line-height: 1.7; }
+.fm-meta { margin: 0; display: grid; gap: 4px; }
+.fm-meta dt { font-size: 17px; font-weight: 700; font-family: var(--fm-font); }
+.fm-meta dt:not(:first-of-type) { margin-top: 24px; }
+.fm-meta dd { margin: 0; color: var(--fm-muted); font-size: 16px; line-height: 1.6; }
+
+/* ---------- The numbered list, and the stat list that shares its shape ---------- */
+
+.fm-numlist, .fm-statlist { display: grid; gap: clamp(32px, 4vw, 48px); }
+.fm-numlist li, .fm-statlist li { display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 16px; }
+.fm-numlist .fm-n, .fm-statlist .fm-n {
+  grid-row: span 2;
+  font-family: var(--fm-font); font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums;
+}
+.fm-statlist .fm-n { color: var(--fm-primary); font-size: 19px; }
+.fm-light .fm-statlist .fm-n { color: var(--fm-primary-dark); }
+.fm-numlist h3, .fm-statlist h3 {
+  margin: 0; font-family: var(--fm-font); font-size: 17px; font-weight: 700; line-height: 1.45;
+}
+.fm-numlist p, .fm-statlist p { margin: 0; font-size: 16px; line-height: 1.7; }
+.fm-light .fm-numlist p, .fm-light .fm-statlist p { color: var(--fm-muted); }
+.fm-dark .fm-numlist p, .fm-dark .fm-statlist p { color: var(--fm-muted-invert); }
+.fm-orange .fm-numlist p { color: #5C3A10; }
+.fm-orange .fm-numlist .fm-n { color: var(--fm-dark-bg); }
+
+/* A row of points under a diagram rather than a column beside a heading. */
+.fm-numlist--row { margin-top: clamp(32px, 4vw, 48px); }
+
+/* ---------- Charts (background section) ---------- */
+
+.fm-charts { display: grid; gap: 20px; }
+.fm-chart {
+  margin: 0; padding: clamp(20px, 3vw, 28px);
+  background: #fff; border-radius: 20px; box-shadow: 0 8px 28px rgba(60, 45, 30, 0.07);
+  display: flex; flex-direction: column;
+}
+.fm-chart figcaption {
+  margin-bottom: 24px;
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+  letter-spacing: 0.02em; color: var(--fm-primary-dark);
+}
+.fm-stat-inline { font-family: var(--fm-font); font-size: 1.5em; font-weight: 800; color: var(--fm-primary-dark); }
+
+/* Vertical bars */
+.fm-bars {
+  display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr auto;
+  gap: 0 14px; flex: 1; min-height: 210px;
+}
+.fm-bar-track { display: flex; align-items: flex-end; }
+.fm-bar-fill {
+  width: 100%; border-radius: 10px 10px 0 0;
+  background: linear-gradient(180deg, var(--fm-primary) 0%, #FFD9B4 100%);
+  height: var(--fm-h); transition: height 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  display: flex; justify-content: center; padding-top: 10px;
+}
+.fm-reveal:not(.is-in) .fm-bar-fill { height: 0; }
+.fm-bar-value { font-family: var(--fm-font); font-size: 15px; font-weight: 700; color: #fff; }
+.fm-bar-label { margin: 10px 0 0; font-size: 13px; line-height: 1.4; text-align: center; color: var(--fm-muted); }
+
+/* One segmented bar */
+.fm-ages { display: grid; gap: 8px; }
+.fm-ages-labels, .fm-ages-bar { display: grid; grid-template-columns: var(--fm-cols); }
+.fm-ages-labels span { font-size: 13px; text-align: center; color: var(--fm-muted); }
+.fm-ages-bar { border-radius: 999px; overflow: hidden; }
+.fm-ages-seg {
+  display: grid; place-items: center; height: 54px;
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700; color: var(--fm-dark-bg);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.fm-reveal:not(.is-in) .fm-ages-seg { transform: scaleX(0); }
+.fm-ages-caption { margin: 14px 0 0; font-size: 13px; color: var(--fm-muted); }
+
+/* Donut */
+.fm-donut { display: grid; gap: 20px; justify-items: center; }
+.fm-donut svg { width: min(200px, 100%); height: auto; }
+/* Each ring draws itself: its dash grows from nothing to its own share of the circle. */
+.fm-donut circle {
+  stroke-dasharray: var(--fm-dash) var(--fm-rest);
+  transition: stroke-dasharray 1100ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.fm-reveal:not(.is-in) .fm-donut circle { stroke-dasharray: 0 var(--fm-c); }
+.fm-donut-value { font-family: var(--fm-font); font-size: 22px; font-weight: 800; fill: var(--fm-primary-dark); }
+.fm-donut-label { font-size: 9px; fill: #6F6F6F; }
+.fm-legend-list { display: grid; gap: 8px; width: 100%; font-size: 13px; color: var(--fm-muted); }
+.fm-legend-list li { display: grid; grid-template-columns: 12px 1fr auto; gap: 10px; align-items: center; }
+.fm-swatch { width: 12px; height: 12px; border-radius: 4px; background: var(--fm-c); }
+.fm-legend-value { font-weight: 700; color: var(--fm-ink); font-variant-numeric: tabular-nums; }
+
+/* A data table for screen readers, kept out of sight but not out of the accessibility tree. */
+.fm-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- Life stages bar ---------- */
+
+.fm-stages { display: grid; gap: 4px; margin: 0; }
+.fm-stages li {
+  padding: 16px 18px; border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08); color: var(--fm-muted-invert);
+  font-size: 14px; line-height: 1.35; text-align: center;
+}
+.fm-stages .is-active { background: var(--fm-primary); color: var(--fm-dark-bg); font-weight: 700; }
+
+.fm-quote {
+  margin: clamp(40px, 5vw, 64px) 0 0; max-width: 24ch;
+  font-family: var(--fm-font); font-size: clamp(22px, 3vw, 34px); font-weight: 700; line-height: 1.25;
+  color: var(--fm-primary);
+}
+
+/* ---------- Pain point → need ---------- */
+
+.fm-pains { display: grid; gap: clamp(32px, 4vw, 44px); }
+.fm-pain-head {
+  display: inline-block; margin: 0 0 14px; padding: 8px 18px; border-radius: 999px;
+  background: var(--fm-charcoal); color: #fff;
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+}
+.fm-pain blockquote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid rgba(17, 17, 17, 0.15); }
+.fm-pain blockquote p { margin: 0; font-size: 16px; font-style: italic; line-height: 1.7; color: var(--fm-muted); }
+.fm-pain cite { display: block; margin-top: 6px; font-size: 13px; font-style: normal; color: var(--fm-muted); }
+.fm-pain-line { display: block; width: 2px; height: 34px; margin: 12px 0 12px 18px; background: rgba(17, 17, 17, 0.2); }
+.fm-need { padding: 20px 22px; border-radius: 16px; background: var(--fm-primary); color: var(--fm-dark-bg); }
+.fm-need h3 { margin: 0 0 4px; font-family: var(--fm-font); font-size: 17px; font-weight: 700; }
+.fm-need p { margin: 0; font-size: 15px; line-height: 1.6; color: #5C3A10; }
+.fm-need .fm-need-label {
+  display: block; margin-bottom: 6px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #5C3A10;
+}
+
+/* ---------- The dark card, used for the table, the service flow and the final screens ---------- */
+
+.fm-card {
+  position: relative; overflow: hidden;
+  padding: clamp(20px, 3.5vw, 44px);
+  border-radius: 32px; background: var(--fm-charcoal); color: #fff;
+}
+.fm-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--noise); background-size: 220px 220px; opacity: 0.09;
+}
+.fm-card > * { position: relative; z-index: 1; }
+.fm-card .fm-label { color: #fff; }
+.fm-card .fm-note { color: var(--fm-muted-invert); margin-top: 6px; }
+
+/* ---------- Comparison table ---------- */
+
+.fm-table-scroll { overflow-x: auto; }
+.fm-table-scroll:focus-visible { outline: 3px solid var(--fm-primary); outline-offset: 4px; }
+/* The five journey columns share the width evenly, so the line joining FeetMine's dots
+   runs from the centre of one dot to the centre of the next. */
+.fm-table { width: 100%; min-width: 660px; border-collapse: collapse; table-layout: fixed; }
+.fm-table th:first-child { width: 16%; }
+.fm-table th, .fm-table td { padding: 14px 12px; text-align: left; vertical-align: top; }
+.fm-table thead th { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+.fm-table thead th:not(:first-child) { text-align: center; } /* over the dots below */
+.fm-table thead .fm-col-name { display: block; font-family: var(--fm-font); font-size: 15px; font-weight: 700; }
+.fm-table thead .fm-col-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--fm-muted-invert); }
+.fm-table tbody th { font-family: var(--fm-font); font-size: 15px; font-weight: 700; white-space: nowrap; }
+.fm-table tbody tr + tr td, .fm-table tbody tr + tr th { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.fm-table td { text-align: center; }
+.fm-dot {
+  display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+  border: 2px solid var(--fm-muted-invert);
+}
+.fm-cell-note { display: block; margin-top: 8px; font-size: 12px; line-height: 1.45; color: var(--fm-muted-invert); }
+.fm-cell-empty { color: var(--fm-muted-invert); }
+/* FeetMine's own row: filled dots joined by a line, and a ring around the whole row. */
+.fm-row-mine th, .fm-row-mine td { background: rgba(255, 159, 70, 0.14); }
+.fm-row-mine th { border-radius: 12px 0 0 12px; color: var(--fm-primary); }
+.fm-row-mine td:last-child { border-radius: 0 12px 12px 0; }
+.fm-row-mine .fm-dot { background: var(--fm-primary); border-color: var(--fm-primary); }
+.fm-row-mine td { position: relative; }
+.fm-row-mine td:not(:last-child)::after {
+  content: ""; position: absolute; top: 20px; left: 50%; right: -50%; height: 2px;
+  background: var(--fm-primary);
+}
+
+/* ---------- Foot type legend (feature #2) ---------- */
+
+.fm-legend { margin: 12px 0 20px; display: grid; gap: 12px; }
+.fm-legend dt { font-size: 14px; font-weight: 700; font-family: var(--fm-font); }
+.fm-legend dd { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.fm-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--fm-muted-invert); }
+.fm-key {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--fm-primary); color: var(--fm-dark-bg);
+  font-family: var(--fm-font); font-size: 13px; font-weight: 700;
+}
+
+/* ---------- Full-bleed panels ---------- */
+
+.fm-panels { display: grid; gap: var(--fm-gap); margin-top: clamp(48px, 6vw, 88px); }
+.fm-panel {
+  position: relative; overflow: hidden;
+  display: grid; place-items: end center;
+  min-height: 380px; padding: 28px 20px 0;
+  background: var(--fm-panel);
+}
+.fm-panel--center { place-items: center; padding-bottom: 28px; }
+.fm-panel-label {
+  position: absolute; top: 20px; left: 24px; z-index: 2; margin: 0;
+  font-family: var(--fm-font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.9);
+}
+.fm-panel[style*="peach"] .fm-panel-label, .fm-panel[style*="butter"] .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
+.fm-panels--photos { margin-top: clamp(48px, 6vw, 88px); }
+.fm-panels--photos .fm-panel { min-height: 0; padding: 0; background: var(--fm-charcoal); }
+
+/* ---------- Image crops ----------
+   Until the final exports exist, every image here is a crop of a deck slide: the wrapper shows one
+   region of the slide and nothing else. --cx/--cy is the top-left corner of that region and
+   --cw/--ch its size, both as a fraction of the slide (all slides are 2000 x 1125).
+   When img/feetmine-<name>.png arrives, drop the fm-shot--* class and point the <img> at it. */
+
+.fm-shot { position: relative; overflow: hidden; aspect-ratio: var(--fm-ar); border-radius: 4px; }
+.fm-shot img {
+  position: absolute; top: 0; left: 0; max-width: none;
+  width: calc(100% / var(--cw));
+  transform: translate(calc(var(--cx) * -100%), calc(var(--cy) * -100%));
+}
+.fm-shot--hero   { --cx: 0.510;  --cy: 0.0533; --cw: 0.435;  --ch: 0.9467; --fm-ar: 870 / 1065; }
+.fm-shot--home   { --cx: 0.038;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.fm-shot--ar     { --cx: 0.228;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.fm-shot--result { --cx: 0.418;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.fm-shot--idcard { --cx: 0.608;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.fm-shot--growth { --cx: 0.798;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.fm-shot--shoe   { --cx: 0.085;  --cy: 0.4178; --cw: 0.265;  --ch: 0.5244; --fm-ar: 530 / 590; }
+.fm-shot--record { --cx: 0.450;  --cy: 0.1467; --cw: 0.280;  --ch: 0.5644; --fm-ar: 560 / 635; }
+.fm-shot--mascots{ --cx: 0.510;  --cy: 0.8000; --cw: 0.405;  --ch: 0.1333; --fm-ar: 810 / 150; }
+.fm-shot--before { --cx: 0.0575; --cy: 0.5156; --cw: 0.1775; --ch: 0.3911; --fm-ar: 355 / 440; }
+.fm-shot--after  { --cx: 0.2950; --cy: 0.5200; --cw: 0.1800; --ch: 0.4044; --fm-ar: 360 / 455; }
+.fm-shot--yodex1 { --cx: 0.0440; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+.fm-shot--yodex2 { --cx: 0.3525; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+.fm-shot--yodex3 { --cx: 0.6600; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+
+/* A phone screen stands on the bottom edge of its panel; a wider image sits in the middle. */
+.fm-panel > .fm-shot { height: 94%; width: auto; max-height: 560px; border-radius: 12px 12px 0 0; }
+.fm-panel--center > .fm-shot { height: auto; width: min(100%, 420px); border-radius: 12px; }
+.fm-panel--center > .fm-shot--mascots { width: min(100%, 620px); }
+.fm-panels--photos .fm-shot { width: 100%; height: auto; border-radius: 0; }
+
+/* ---------- Hero ---------- */
+
+.fm-hero {
+  position: relative; overflow: hidden;
+  display: grid; justify-items: center; align-items: end;
+  padding-top: clamp(32px, 5vw, 72px);
+  background: linear-gradient(180deg, #FFB26A 0%, #FF820F 100%);
+}
+.fm-hero .fm-shot {
+  width: min(78%, 520px); height: auto;
+  border-radius: 18px 18px 0 0;
+  filter: drop-shadow(0 24px 48px rgba(90, 45, 0, 0.22));
+}
+
+/* ---------- Film grain ---------- */
+
+.fm-grain::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image: var(--noise);
+  background-size: 200px 200px;
+  opacity: 0.08;
+}
+.fm-hero > *, .fm-panel > * { position: relative; z-index: 2; }
+
+/* ---------- Service flow ---------- */
+
+.fm-loop { margin: 28px 0 0; }
+.fm-loop svg { width: 100%; height: auto; }
+.fm-loop text { font-family: var(--fm-font); fill: #fff; }
+.fm-loop .fm-loop-node { font-size: 15px; font-weight: 700; }
+.fm-loop .fm-loop-edge { font-size: 13px; fill: var(--fm-muted-invert); }
+/* The edges only: the arrowhead inside <defs> keeps its own fill. */
+.fm-loop svg > path { stroke: var(--fm-primary); stroke-width: 1.5; fill: none; }
+.fm-loop .fm-chip { fill: rgba(255, 159, 70, 0.18); }
+.fm-loop .fm-node-dot { fill: var(--fm-primary); }
+.fm-loop .fm-plate { fill: var(--fm-charcoal); }  /* clears the line behind the Feedback label */
+.fm-loop-stack { display: grid; gap: 10px; margin: 24px 0 0; }
+.fm-loop-stack li { display: grid; gap: 2px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.07); }
+.fm-loop-stack strong { font-family: var(--fm-font); font-size: 15px; }
+.fm-loop-stack span { font-size: 13px; color: var(--fm-muted-invert); }
+
+.fm-flow { display: grid; gap: 14px; margin-top: 32px; }
+.fm-flow-stage { display: grid; gap: 10px; align-content: start; }
+.fm-flow-bar {
+  padding: 12px 16px; border-radius: 10px; text-align: center;
+  background: var(--fm-primary); color: var(--fm-dark-bg);
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+}
+.fm-flow-items { display: grid; gap: 10px; }
+.fm-flow-items li {
+  padding: 16px; border-radius: 12px; background: var(--fm-primary-tint); color: var(--fm-dark-bg);
+  font-size: 14px; line-height: 1.5; text-align: center;
+}
+
+/* ---------- Final designs ---------- */
+
+.fm-card--screens { padding-inline: 0; }
+.fm-screens {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 74%;
+  gap: 20px; padding-inline: clamp(20px, 3.5vw, 44px);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+}
+.fm-screens li { scroll-snap-align: center; }
+.fm-screens .fm-shot { width: 100%; height: auto; border-radius: 14px; }
+.fm-screen-label { display: grid; grid-template-columns: auto 1fr; gap: 8px; margin: 14px 0 0; font-size: 13px; color: var(--fm-muted-invert); }
+.fm-screen-label b { font-family: var(--fm-font); color: #fff; font-variant-numeric: tabular-nums; }
+
+/* ---------- Ending ---------- */
+
+.fm-next { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid rgba(17, 17, 17, 0.1); }
+.fm-next .fm-wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; }
+.fm-next-link { display: grid; gap: 4px; text-decoration: none; color: inherit; }
+.fm-next-link span { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fm-muted); }
+.fm-next-link strong { font-family: var(--fm-font); font-size: clamp(24px, 3vw, 34px); font-weight: 800; }
+.fm-next-link:hover strong { color: var(--fm-primary-dark); }
+.fm-back-link { color: var(--fm-primary-dark); font-weight: 500; }
+
+.fm-cta-wrap { padding-top: 0; }
+.fm-cta {
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 4vw, 48px);
+  border-radius: 32px; background: var(--fm-primary-tint); text-align: center;
+}
+.fm-cta h2 { margin: 0 auto 12px; max-width: 18ch; font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; }
+.fm-cta p { margin: 0 auto 8px; max-width: 46ch; color: #5C4632; }
+.fm-button {
+  display: inline-block; margin-top: 16px; padding: 14px 28px; border-radius: 999px;
+  background: var(--fm-dark-bg); color: #fff; font-weight: 500; text-decoration: none;
+}
+.fm-button:hover { background: var(--fm-primary-dark); }
+
+/* ---------- Lightbox ---------- */
+
+.fm-zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.fm-lightbox { width: min(94vw, 1100px); padding: 0; border: 0; border-radius: 18px; background: #111; }
+.fm-lightbox::backdrop { background: rgba(17, 17, 17, 0.82); }
+.fm-lightbox .fm-shot { width: 100%; height: auto; border-radius: 18px; }
+.fm-lightbox-close {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9); font-size: 22px; line-height: 1; cursor: pointer;
+}
+
+/* ---------- Reveal on scroll ---------- */
+
+.fm-reveal { opacity: 0; translate: 0 24px; transition: opacity 700ms ease, translate 700ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.fm-reveal.is-in { opacity: 1; translate: none; }
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 720px) {
+  .fm-charts { grid-template-columns: repeat(3, 1fr); }
+  .fm-intro-pair { grid-template-columns: 1fr 1fr; }
+  .fm-stages { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .fm-numlist--row { grid-template-columns: repeat(3, 1fr); }
+  .fm-pains { grid-template-columns: 1fr 1fr; }
+  .fm-flow { grid-template-columns: repeat(3, 1fr); }
+  .fm-panels { grid-template-columns: var(--fm-ratio); }
+  .fm-panel { min-height: clamp(420px, 42vw, 600px); }
+  .fm-screens { grid-auto-columns: 30%; }
+  .fm-legend { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
+}
+
+@media (min-width: 900px) {
+  .fm-split { grid-template-columns: 1fr 1.15fr; }
+  .fm-intro-grid { grid-template-columns: 2fr 1fr; }
+  .fm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  .fm-screens { grid-auto-columns: 1fr; overflow-x: visible; }
+}
+
+@media (max-width: 899px) {
+  .fm-cards { display: grid; gap: 16px; margin-top: 28px; }
+}
+
+/* The loop diagram is too wide to read on a phone: the stacked list stands in for it.
+   Both live inside #fm-loop, so it is the svg that hides, not its host. */
+@media (max-width: 719px) {
+  .fm-loop svg { display: none; }
+}
+@media (min-width: 720px) {
+  .fm-loop-stack { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-reveal { opacity: 1; translate: none; }
+}

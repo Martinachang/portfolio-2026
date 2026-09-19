@@ -11,6 +11,7 @@
   <pre id="results">running…</pre>
   <iframe id="home" src="index.html" width="1200" height="900"></iframe>
   <iframe id="project" width="1200" height="900"></iframe>
+  <iframe id="case" width="1200" height="900"></iframe>
 
   <script>
     const results = [];
@@ -18,6 +19,7 @@
 
     const home = document.getElementById("home");
     const project = document.getElementById("project");
+    const study = document.getElementById("case");
 
     home.addEventListener("load", () => {
       const win = home.contentWindow;
@@ -63,24 +65,81 @@
         const onTheWay = win.scrollY > 0 && win.scrollY < aboutTop - 1;
         setTimeout(() => {
           check("clicking a nav link glides to the section", onTheWay && Math.abs(win.scrollY - aboutTop) < 2 && win.location.hash === "#about");
-          project.src = "feetmine.html";
+          project.src = "ilandgreen.html";
         }, 1200);
       }, 400);
 
-      // Now the project page.
+      // 5. A case-study page built from content.js (project.js): the hero, the cover and the phases.
       project.addEventListener("load", () => {
-        const win = project.contentWindow;
-        const doc = win.document;
+        const doc = project.contentWindow.document;
         const $ = (selector) => doc.querySelector(selector);
         try {
-          // 5. Phases: all on the page, the two real photos/screens open full size, and the links at the top point at them
           const phases = doc.querySelectorAll(".phase").length;
-          check("every phase is on the page, with the hero and stats card filled in",
-            phases === 6 && doc.querySelectorAll("#phase-nav a").length === phases &&
-            $("#case-headline").textContent.length > 0 && doc.querySelectorAll("#case-meta dt").length === 4);
-          check("the real photo and prototype screens still open full size", doc.querySelectorAll('.figures a[target="_blank"] img[src^="img/feetmine-"]').length === 2);
-          check("the phase links point at the phases", $('#phase-nav a[href="#phase-1"]') !== null && $("#phase-1") !== null);
-          check("only the overview phase has bullet points; the rest are rebuilt as editorial blocks", doc.querySelectorAll(".points").length === 1 && $("#phase-0 .points") !== null && doc.querySelectorAll(".block-text, .block-quote, .block-bars, .block-donut").length > 0);
+          check("ILANDGREEN puts every phase on the page, with its hero and stats filled in",
+            phases === 1 && doc.querySelectorAll("#phase-nav a").length === phases &&
+            $("#case-headline").textContent.length > 0 && doc.querySelectorAll("#case-meta dt").length === 2);
+          check("ILANDGREEN's cover and figures are on the page and open full size",
+            $("#cover").getAttribute("src").startsWith("img/") && doc.querySelectorAll('.figures a[target="_blank"] img').length === 3);
+          check("the phase links point at the phases", $('#phase-nav a[href="#phase-0"]') !== null && $("#phase-0") !== null);
+        } catch (error) {
+          results.push("FAIL  " + error);
+        }
+        study.src = "feetmine.html";
+      });
+
+      // 6. FeetMine: its own page (feetmine.html + feetmine.js + feetmine.css).
+      study.addEventListener("load", () => {
+        const doc = study.contentWindow.document;
+        const $ = (selector) => doc.querySelector(selector);
+        const $$ = (selector) => [...doc.querySelectorAll(selector)];
+        try {
+          check("FeetMine has its sections, its intro and its meta list",
+            $$(".fm-sec").length >= 18 && $("#intro-title").textContent.includes("FeetMine") &&
+            doc.querySelectorAll("#fm-meta dt").length === 4);
+          check("the lists are filled from content.js",
+            doc.querySelectorAll("#fm-process li").length === 5 &&
+            doc.querySelectorAll("#fm-misconceptions li").length === 5 &&
+            doc.querySelectorAll("#fm-goals li").length === 3 &&
+            doc.querySelectorAll("#fm-parent-stats li").length === 3 &&
+            doc.querySelectorAll("#fm-results li").length === 3);
+          check("the charts are drawn in CSS and SVG, with their numbers in a table as well",
+            doc.querySelectorAll("#fm-chart-bars .fm-bar-fill").length === 3 &&
+            doc.querySelectorAll("#fm-chart-ages .fm-ages-seg").length === 3 &&
+            doc.querySelectorAll("#fm-chart-gait .fm-donut svg circle").length === 4 &&
+            $$(".fm-chart").every((chart) => chart.querySelector("table.fm-sr") !== null));
+          check("the comparison table has every competitor, and says in words what a dot means",
+            doc.querySelectorAll("#fm-compare tbody tr").length === 4 &&
+            doc.querySelectorAll("#fm-compare thead th").length === 6 &&
+            $("#fm-compare .fm-row-mine") !== null &&
+            $$("#fm-compare tbody td").every((cell) => cell.querySelector(".fm-sr") !== null));
+          check("the service flow and the five final screens are on the page",
+            $("#fm-loop svg") !== null && doc.querySelectorAll("#fm-flow .fm-flow-stage").length === 3 &&
+            doc.querySelectorAll("#fm-screens li").length === 5 && doc.querySelectorAll("#fm-photos .fm-panel").length === 3);
+          // Every image here is a crop of a deck slide, so no slide is ever shown whole with its text.
+          check("every image is cropped, and every image has alt text",
+            $$("img").every((image) => image.closest(".fm-shot") !== null && image.alt.length > 0));
+          check("a click opens the same crop in the lightbox, not the whole slide", (() => {
+            const zoom = $(".fm-zoom");
+            zoom.click();
+            const frame = $("#fm-lightbox-frame");
+            const opened = $("#fm-lightbox").open && frame.className.includes("fm-shot--") && frame.querySelector("img") !== null;
+            $("#fm-lightbox").close();
+            return opened;
+          })());
+          // The page is bilingual like the rest of the site: every word comes from content.feetmine.
+          // A string with no Chinese written for it comes out of t() as undefined, and lands on the
+          // page as the word "undefined" or as nothing at all, so both languages are checked for that.
+          const allFilled = () =>
+            !doc.body.textContent.includes("undefined") &&
+            [...doc.querySelectorAll("[data-text]")].every((el) => el.textContent.trim().length > 0);
+          const englishFilled = allFilled();
+          doc.querySelector('[data-lang="zh"]').click();
+          const chineseFilled = allFilled();
+          const chinese = $("#process-title").textContent.includes("研究") && $("#fm-process h3").textContent.includes("研究");
+          doc.querySelector('[data-lang="en"]').click();
+          check("the language switch fills the whole page from content.js",
+            chinese && $("#fm-process h3").textContent === "Research");
+          check("every string on the page is written in both languages", englishFilled && chineseFilled);
         } catch (error) {
           results.push("FAIL  " + error);
         }
