@@ -77,7 +77,7 @@ const content = {
         zh: "從對著尺寸表猜測，到一份真正合腳的足型檔案",
       },
       blurb: {
-        en: "FeetMine parents buy their children's shoes and often choose wrong. FeetMine measures a child's feet at home with AR, recommends shoes that fit, and tracks growth.",
+        en: "Parents buy their children's shoes and often choose wrong. FeetMine is an app that measures a child's feet at home with AR, recommends shoes that fit, and tracks growth.",
         zh: "童鞋由家長挑選，卻常常買錯。合步合腳用 AR 在家量測孩子的腳，推薦合腳的鞋，並持續記錄成長。",
       },
       stats: [
@@ -93,6 +93,14 @@ const content = {
         src: "img/feetmine-05.jpg",
         alt: { en: "FeetMine title card: follow your feet to choose your fit, with the home and measurement screens", zh: "合步合腳的標題頁：跟著腳步選一雙合腳的鞋，以及首頁與量測結果畫面" },
       },
+      // The image on the home page's Work section only (the case study above still opens with `cover`).
+      workImage: {
+        src: "img/feetmine-app-screens.png",
+        alt: { en: "Three FeetMine screens: measurement results, the home dashboard, and the Foot ID card", zh: "三個合步合腳畫面：量測結果、首頁儀表板，以及足型 ID 卡" },
+        fit: "contain",
+      },
+      visualBackground: "linear-gradient(180deg, #FFB26A 0%, #FF820F 100%)",
+      visualNoise: true,
       links: [
         { label: { en: "Case study", zh: "完整案例" }, href: "feetmine.html" },
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/foot-dna-test", external: true },

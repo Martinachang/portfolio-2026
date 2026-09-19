@@ -18,6 +18,8 @@
   --font-body: "Noto Sans TC", system-ui, sans-serif;
   --radius: 18px;
   --gutter: clamp(16px, 4vw, 40px);
+  /* A tileable grain, for glass panels and coloured backgrounds. Each place that uses it sets its own opacity. */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ---------- Base ---------- */
@@ -63,8 +65,19 @@ button { font: inherit; color: inherit; }
   position: sticky; top: 0; z-index: 50;
   display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;
   padding: 14px var(--gutter);
-  background: var(--paper);
+  background: color-mix(in srgb, var(--paper) 50%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
+}
+/* A little grain over the glass blur, so the bar reads as textured rather than flat. */
+.topbar::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background-image: var(--noise);
+  background-size: 200px 200px;
+  opacity: 0.3;
+  pointer-events: none;
 }
 /* The name at the left; the section links and the language switch together at the right.
    The links have a fixed width, so the switch stays put when the words change length. */
@@ -165,32 +178,41 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 .postcard { grid-column: 1 / -1; padding: 20px 22px; border-radius: 6px; }
 .postcard-body { font-size: 24px; }
 
-/* ---------- Work: one panel per project (home page) ---------- */
+/* ---------- Work: one full-width section per project (home page) ---------- */
 
+#work-title { margin-bottom: 48px; }
 .lead { margin: 8px 0 32px; font-size: 18px; color: var(--ink-soft); }
-.work-grid { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-/* One project card: a flat colour banner, then its status, blurb and links. */
-.work-card {
-  display: flex; flex-direction: column;
-  background: var(--card); border-radius: 24px; overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.2s, translate 0.2s;
-}
-.work-card:hover, .work-card:focus-within { box-shadow: var(--shadow-lifted); translate: 0 -4px; }
-.work-banner {
+.work-list { display: flex; flex-direction: column; gap: 56px; }
+/* One project: its image, then its title, status, blurb and links. Side by side on wider screens (below). */
+.work-item { display: grid; gap: 24px; }
+.work-visual {
+  position: relative;
   display: flex; align-items: center; justify-content: center;
-  aspect-ratio: 16 / 10; padding: 16px;
+  aspect-ratio: 4 / 3; border-radius: 24px; overflow: hidden;
+}
+.work-visual img { position: relative; z-index: 1; width: 100%; height: 100%; }
+/* A grainy backdrop behind a project image with transparent areas, like FeetMine's cut-out phone screens. */
+.work-visual.has-noise::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: var(--noise);
+  background-size: 200px 200px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.work-visual-fallback {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%; padding: 16px;
   font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); letter-spacing: 0.04em;
   color: #fff; text-align: center;
 }
-.work-body { padding: clamp(20px, 3vw, 28px); }
-.work-body h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 22px; }
-.work-body p { margin: 14px 0 0; color: var(--ink-soft); }
+.work-body h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: clamp(24px, 3vw, 32px); }
+.work-body p { margin: 16px 0 0; color: var(--ink-soft); font-size: 18px; max-width: 46ch; }
 .badge-pill {
   padding: 3px 12px; border: 1.5px solid var(--ink); border-radius: 999px;
   font-family: var(--font-body); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
 }
-.work-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.work-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .pill-link {
   padding: 8px 16px; border: 1.5px solid var(--ink); border-radius: 999px;
   color: var(--ink); font-size: 14px; font-weight: 500; text-decoration: none;
@@ -309,6 +331,9 @@ footer p { margin: 0; max-width: none; }
   .desk-grid { grid-template-columns: 5fr 7fr; align-items: center; min-height: min(calc(100vh - 66px), 820px); }
   .about-grid { grid-template-columns: 260px 1fr; }
   .cv { grid-template-columns: 1.2fr 1fr; }
+  .work-item { grid-template-columns: 1.1fr 1fr; align-items: center; gap: 48px; }
+  .work-item:nth-child(even) .work-visual { order: 2; }
+  .work-item:nth-child(even) .work-body { order: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

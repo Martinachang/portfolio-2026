@@ -6,17 +6,23 @@ function timelineItem(item) {
   return `<li><span class="when">${t(item.when)}</span><span>${t(item.what)}${detail}</span></li>`;
 }
 
-// One panel in the Work section: a banner in the project's colour, then its status, blurb and links.
+// One section in the Work list: the project's image (or a flat colour, for a project with none)
+// beside its title, status badge, blurb and links.
 function workCard(project) {
-  return `<div class="work-card">
-       <div class="work-banner" style="background: ${project.banner}">${project.name}</div>
+  const image = project.workImage || project.cover;
+  const visual = image
+    ? `<img src="${image.src}" alt="${t(image.alt)}" style="object-fit: ${image.fit || "cover"}">`
+    : `<div class="work-visual-fallback" style="background: ${project.banner}">${project.name}</div>`;
+  const visualClass = "work-visual" + (project.visualNoise ? " has-noise" : "");
+  return `<article class="work-item">
+       <div class="${visualClass}" style="background: ${project.visualBackground || project.accentWash || "var(--paper)"}">${visual}</div>
        <div class="work-body">
          <h3>${project.name} <span class="badge-pill">${project.badge}</span></h3>
          <p>${t(project.blurb)}</p>
          <div class="work-links">${project.links.map((link) =>
            `<a class="pill-link" href="${link.href}"${link.external ? ' target="_blank" rel="noopener"' : ""}>${t(link.label)} ↗</a>`).join("")}</div>
        </div>
-     </div>`;
+     </article>`;
 }
 
 // One chip in a step's list. A tool named in content.logos gets its logo in front of its name.

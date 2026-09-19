@@ -33,11 +33,11 @@
         check("language toggle switches back to English", $("#headline").textContent.startsWith("Even"));
 
         // 2. Work list
-        const cards = doc.querySelectorAll(".work-card");
+        const cards = doc.querySelectorAll(".work-item");
         const card = cards[0];
-        check("the work list has one card per project", cards.length === 3);
-        check("the card shows the project's name, status and banner colour", card.querySelector(".work-banner").textContent.includes("FeetMine") && card.querySelector(".badge-pill").textContent === "COURSE");
-        check("the card's links point at its case study", card.querySelector('.pill-link[href="feetmine.html"]') !== null);
+        check("the work list has one section per project", cards.length === 3);
+        check("the section shows the project's name, status and image", card.querySelector("h3").textContent.includes("FeetMine") && card.querySelector(".badge-pill").textContent === "COURSE" && card.querySelector(".work-visual img") !== null);
+        check("the section's links point at its case study", card.querySelector('.pill-link[href="feetmine.html"]') !== null);
         check("the headline has its coloured words and the process has three steps", $("#headline em") !== null && doc.querySelectorAll(".steps > li").length === 3);
         check("the note and the tool chips show their logos", doc.querySelectorAll(".note-logos img").length === 6 && doc.querySelectorAll(".steps .tags img").length === 8);
 
