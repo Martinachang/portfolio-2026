@@ -42,12 +42,12 @@ const content = {
     cta: { en: "See my work", zh: "看看作品" },
     intro: [
       {
-        en: "UI/UX Designer & Researcher based in Taipei. Grounded in 4+ years of design studies and end-to-end project experience.",
-        zh: "我是一位剛畢業的 UI/UX 新鮮人，從大學到研究所累積了四年的使用者訪談、原型與易用性測試經驗。",
+        en: "Four years of studying and practicing UI/UX have taught me that a good interview means hearing what participants leave unsaid, so I always ask one more \"why.\"",
+        zh: "4年的 UI/UX 學習與專案實作，讓我明白好的訪談要聽見受訪者沒說出口的話，所以我總會多問一句「為什麼」。",
       },
       {
-        en: "Kyoto exchange alumna, eager to bring fresh research insights and continuous learning into product teams.",
-        zh: "隨著 AI 快速發展，我了解 UI/UX 也迎來了新的挑戰，但還是那句老話：我很願意學！",
+        en: "A six-month exchange in Kyoto taught me to notice the details. Japanese design anticipates users' needs at every turn, and I've made it a habit to let details do the persuading.",
+        zh: "京都半年的交換生活，則讓我學會看細節，日本設計處處替使用者多想一步，我也習慣用細節說服人。",
       },
     ],
     badge: {
@@ -705,12 +705,12 @@ const content = {
     photoAlt: { en: "Chang Chu-Pei standing in front of hydrangeas", zh: "張主佩站在繡球花前" },
     bio: [
       {
-        en: "With four years in UI/UX across diverse domains, I've honed sharp observation skills and a flexible, user-centered mindset.",
-        zh: "4年的 UI/UX 學習與專案實作，讓我明白好的訪談要聽見受訪者沒說出口的話，所以我總會多問一句「為什麼」。",
+        en: "I'm a recent UI/UX graduate with 4 years of hands-on UIUX Design, built up from my undergraduate through graduate studies.",
+        zh: "我是一位剛畢業的 UI/UX 新鮮人，從大學到研究所累積了四年的使用者訪談、原型與易用性測試經驗。",
       },
       {
-        en: "My six-month exchange in Kyoto deepened my cross-cultural perspective and my appreciation for detail-oriented Japanese design.",
-        zh: "京都半年的交換生活，則讓我學會看細節，日本設計處處替使用者多想一步，我也習慣用細節說服人。",
+        en: "",
+        zh: "隨著 AI 快速發展，我了解 UI/UX 也迎來了新的挑戰，但還是那句老話：我很願意學！",
       },
     ],
     experienceTitle: { en: "Experience", zh: "經歷" },
