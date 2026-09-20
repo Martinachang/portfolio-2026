@@ -295,6 +295,8 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 .about-grid { display: grid; gap: 40px; align-items: center; margin-bottom: 56px; }
 .about-grid figure { max-width: 260px; }
 .about-grid h2 { margin-bottom: 16px; }
+/* Overrides the generic p{max-width:64ch} above, which wrapped bio text ~150px short of the grid column. */
+#bio p { max-width: none; }
 .cv { display: grid; gap: 48px; }
 .cv h3 { margin: 0 0 16px; font-size: 22px; }
 .cv h3:not(:first-child) { margin-top: 32px; }
@@ -322,8 +324,10 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 }
 .steps > li:not(:last-child)::after { content: ""; position: absolute; left: 21px; top: 52px; bottom: -32px; width: 2px; background: var(--blue-wash); }
 .steps h3 { margin-bottom: 8px; font-size: 22px; line-height: 44px; }
-.steps p { color: var(--ink-soft); max-width: 60ch; }
-.steps .tags { margin: 0; }
+/* The text and its tool chips share one measure (the site's wide reading column, used for
+   .points on the project pages too), so the chip row doesn't run wider than the paragraph above it. */
+.steps p { color: var(--ink-soft); max-width: 70ch; }
+.steps .tags { margin: 0; max-width: 70ch; }
 .steps .tags li { font-size: 13px; padding: 3px 12px; }
 
 /* ---------- Contact ---------- */
@@ -332,7 +336,9 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
   position: relative; max-width: 720px; padding: clamp(28px, 5vw, 56px);
   background: var(--card); border-radius: 10px; box-shadow: var(--shadow);
 }
-.postcard-big h2 { margin-bottom: 12px; max-width: 12ch; }
+/* 12ch broke "Let's work together." into two short lines though the card has room for one;
+   18ch matches the same heading's width on the case-study CTA (.fm-cta h2). */
+.postcard-big h2 { margin-bottom: 12px; max-width: 18ch; }
 .button {
   display: inline-block; margin-top: 8px; padding: 12px 24px;
   border-radius: 999px; background: var(--blue); color: #fff;

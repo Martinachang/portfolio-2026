@@ -98,20 +98,24 @@
 .fm-h2 { margin: 0; font-size: clamp(28px, 3.8vw, 44px); font-weight: 800; line-height: 1.14; }
 .fm-h2 span { display: block; }
 .fm-lead { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.75; max-width: 46ch; }
-.fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 44ch; }
+/* 44ch left it ~100px short of the .fm-split column (the same column its own h2 fills). */
+.fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 50ch; }
 .fm-label { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
 .fm-lead + .fm-label { margin-top: clamp(28px, 3vw, 40px); }
 .fm-eyebrow {
   margin: 0 0 20px; font-size: 12px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--fm-primary-dark);
 }
-.fm-body { margin: 0 0 clamp(28px, 4vw, 40px); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; color: var(--fm-muted); max-width: 62ch; }
+.fm-body { margin: 0 0 clamp(28px, 4vw, 40px); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; color: var(--fm-muted); }
 
 /* ---------- Intro ---------- */
 
 .fm-intro-grid { display: grid; gap: clamp(28px, 5vw, 56px); }
-.fm-intro-pair { display: grid; gap: 28px; }
-.fm-intro-pair p { margin: 0; color: var(--fm-muted); font-size: 16px; line-height: 1.7; }
+/* The paragraph and the Problem/Outcome row below it share this one measure, so their right
+   edges line up instead of the row running wider than the text above it. */
+.fm-intro-col { max-width: 62ch; }
+.fm-intro-pair { display: grid; gap: 28px clamp(24px, 3vw, 40px); }
+.fm-intro-pair p { margin: 0; color: var(--fm-muted); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; }
 .fm-meta { margin: 0; display: grid; gap: 4px; }
 .fm-meta dt { font-size: 17px; font-weight: 700; font-family: var(--fm-font); }
 .fm-meta dt:not(:first-of-type) { margin-top: 24px; }
@@ -216,7 +220,7 @@
 .fm-stages .is-active { background: var(--fm-primary); color: var(--fm-dark-bg); font-weight: 700; }
 
 .fm-quote {
-  margin: clamp(40px, 5vw, 64px) 0 0; max-width: 24ch;
+  margin: clamp(40px, 5vw, 64px) 0 0; max-width: 36ch;
   font-family: var(--fm-font); font-size: clamp(22px, 3vw, 34px); font-weight: 700; line-height: 1.25;
   color: var(--fm-primary);
 }
@@ -431,11 +435,7 @@
 /* ---------- Ending ---------- */
 
 .fm-next { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid rgba(17, 17, 17, 0.1); }
-.fm-next .fm-wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px; }
-.fm-next-link { display: grid; gap: 4px; text-decoration: none; color: inherit; }
-.fm-next-link span { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fm-muted); }
-.fm-next-link strong { font-family: var(--fm-font); font-size: clamp(24px, 3vw, 34px); font-weight: 800; }
-.fm-next-link:hover strong { color: var(--fm-primary-dark); }
+.fm-next .fm-wrap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; }
 .fm-back-link { color: var(--fm-primary-dark); font-weight: 500; }
 
 .fm-cta-wrap { padding-top: 0; }

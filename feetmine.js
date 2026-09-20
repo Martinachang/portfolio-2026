@@ -248,10 +248,7 @@ function renderPage() {
   renderLoop(document.getElementById("fm-loop"));
   renderFlow(document.getElementById("fm-flow"));
 
-  // The link to the next case study, and the contact button, both from the shared content.
-  const next = content.projects.find((project) => project.id === "ilandgreen");
-  document.getElementById("fm-next-name").textContent = next.name;
-  document.getElementById("fm-next-link").href = next.page;
+  // The contact button, from the shared content.
   document.getElementById("fm-mail-link").href = "mailto:" + content.site.email;
 
   reveal();

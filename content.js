@@ -143,8 +143,8 @@ const content = {
       visualNoise: true,
       visualNoiseOpacity: 0.5,
       links: [
+        // No "primary" link, so the cover image falls back to this one (see home.js).
         { label: { en: "Demo", zh: "體驗" }, href: "ilandgreen/index.html", external: true },
-        { label: { en: "Case study", zh: "完整案例" }, href: "ilandgreen.html", primary: true }, // the image links here too
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/ILANDGREEN", external: true },
       ],
 
@@ -533,7 +533,7 @@ const content = {
       // (same treatment as Pain Points' lead).
       lead: {
         en: "Moderated usability tests with 3 parents of children aged 6–12, on the mobile prototype.",
-        zh: "以行動原型，與 3 位育有 6–12 歲孩童的家長進行主持式易用性測試。",
+        zh: "與 3 位育有 6–12 歲孩童的家長進行易用性測試。",
       },
       items: [
         {
@@ -541,9 +541,13 @@ const content = {
           // Text: the AS-IS reaction quote, the TO-BE description, and the TO-BE reaction quote —
           // all verbatim from slide 14. The AS-IS card's own description isn't included, to keep
           // this to the slide's quotes plus its one full sentence, as elsewhere in this pass.
+          // zh: a team-written before/after summary replaces the two verbatim quotes (owner's
+          // call). Its <br> is a deliberate one-off exception to the site's text-only convention
+          // (only desk.headline otherwise carries HTML), needed for the two-line layout — this
+          // string is inserted via innerHTML in feetmine.js's numberedItem(), so it renders.
           text: {
             en: "\"Stickers waste time, scanning takes too long…\" Quick Coin Calibration: slide an NT$10 coin horizontally halfway under the arch and scan. \"Much simpler and faster!\"",
-            zh: "「貼貼紙很花時間，掃描也要很久⋯」硬幣快速校正：將一枚十元硬幣水平滑到足弓下方一半處，再進行掃描。「更簡單、更快速！」",
+            zh: "原本：貼貼紙當比例尺，準備與掃描都很久<br>調整後：改用十元硬幣，滑入足弓下方就能掃描",
           },
         },
         {
@@ -551,7 +555,7 @@ const content = {
           // Text: slide 14's own paragraph, verbatim, plus its quote.
           text: {
             en: "Although 2/3 of parents initially struggled to understand the Foot Type, we retained them to shift mindsets from \"buying shoes by length alone\" to a deeper understanding of foot health. \"What does GFNO mean?\"",
-            zh: "雖然 2/3 的家長一開始不理解足型，我們仍保留它，希望能將心態從「只看鞋長買鞋」轉變為更深入的足部健康理解。「GFNO 是什麼意思？」",
+            zh: "雖然 2/3 的家長一開始不理解足型，提出「GFNO 是什麼意思？」我們仍保留它，希望能將心態從「只看鞋長買鞋」轉變為更深入的足部健康理解。",
           },
         },
       ],
@@ -670,15 +674,14 @@ const content = {
     reflection: {
       line1: { en: "Reflection", zh: "回顧：" },
       line2: { en: "what I learned", zh: "我學到什麼" },
-      // TODO: the owner still has to write this section.
+      // TODO: the owner still has to write the English version of this section.
       body: {
         en: "Placeholder. What I would keep, what I would change, and what a year on one project taught me about testing early and cutting steps that only designers enjoy.",
-        zh: "（待補）我會保留什麼、會改掉什麼，以及在同一個專案上待滿一年，讓我學到要盡早測試，並刪掉那些只有設計師自己喜歡的步驟。",
+        zh: "在同一個專案上待滿一年，我學到好的研究是問出來的，不是說服出來的。準確不等於好用，貼紙改成硬幣就是最好的例子；而且要盡早測試，刪掉那些只有我們設計師自己喜歡的步驟。",
       },
     },
 
     next: {
-      label: { en: "Next project", zh: "下一個專案" },
       back: { en: "Back to work", zh: "回到作品列表" },
     },
   },
