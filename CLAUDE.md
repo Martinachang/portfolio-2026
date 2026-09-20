@@ -48,8 +48,14 @@ one orange section for the design goals. Its brand colour is `#FF9F46`.
 ## Checking work
 
 ```
-python3 -m http.server 8123          # then open http://127.0.0.1:8123/test.html
+powershell -ExecutionPolicy Bypass -File tools/serve.ps1   # then open http://127.0.0.1:8123/test.html
 ```
+
+`tools/serve.ps1` is a small static server written in PowerShell, because this machine has no working
+Python: `python` and `python3` are Microsoft Store stubs that print nothing and exit with code 49,
+so `python3 -m http.server` fails. Any other static server on port 8123 does just as well. The
+pages themselves still open by double-click; only `test.html` needs `http://`, because a `file://`
+page is not allowed to read the other files it checks.
 
 Headless Chrome with `--virtual-time-budget` fails the glide check (no real animation frames); the rest passes. Headless Chrome enforces a 500px minimum window width. To screenshot a phone layout, load the page inside a 375px-wide `<iframe>` in a scratch page and screenshot that; give the iframe the page's full `scrollHeight` and offset it with a negative `top` to reach a section further down.
 

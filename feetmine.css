@@ -48,7 +48,11 @@
 
 /* ---------- Layout ---------- */
 
-.cs-feetmine main { overflow-x: hidden; } /* the panels run edge to edge */
+/* position: relative makes main the containing block for the absolutely positioned .fm-sr
+   tables below. Without it their containing block is <body>, so overflow-x never clips them
+   and the page scrolls 338px sideways on a phone: clip-path hides them but does not shrink
+   the area they take up. */
+.cs-feetmine main { overflow-x: hidden; position: relative; } /* the panels run edge to edge */
 .fm-wrap { max-width: var(--fm-wrap); margin-inline: auto; padding-inline: var(--gutter); }
 .fm-sec { padding-block: var(--fm-pad); }
 .fm-split { display: grid; gap: clamp(24px, 5vw, 64px); }
