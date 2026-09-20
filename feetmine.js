@@ -16,12 +16,11 @@ function numberedItem(item, i) {
   return `<li><span class="fm-n">${two(i)}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
 }
 
-function statItem(item, i) {
-  // The English version leads with the stat's own number; the Chinese titles now stand on
-  // their own as full statements, so the number is dropped from that language's display only
-  // (the field itself stays shared — see fm-no-stat below, which fills the column it frees up).
-  if (lang === "zh") return `<li class="fm-no-stat"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
-  return `<li><span class="fm-n">${item.value}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
+function statItem(item) {
+  // Neither language shows the stat number any more: both sets of titles stand on their own as
+  // statements. fm-no-stat collapses the column the number used to occupy. The figures stay in
+  // content.js's `value` as a record of the deck's own numbers.
+  return `<li class="fm-no-stat"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
 }
 
 function painItem(item) {

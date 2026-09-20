@@ -212,7 +212,7 @@ const content = {
   // The Chinese was drafted from the English deck and has not been reviewed by the owner.
   feetmine: {
     hero: {
-      alt: { en: "The FeetMine home screen and measurement results screen on two phones", zh: "兩支手機上的合步合腳首頁與量測結果畫面" },
+      alt: { en: "The FeetMine banner artwork: the logo, three foot mascots, and a phone showing the home screen", zh: "合步合腳的主視覺：標誌、三隻腳腳吉祥物，以及顯示首頁的手機" },
     },
 
     intro: {
@@ -243,7 +243,7 @@ const content = {
       meta: [
         { label: { en: "Role", zh: "職責" }, value: { en: "UX design, usability test, character design, illustration design", zh: "UX 設計、易用性測試、角色設計、插畫設計" } },
         { label: { en: "Timeline", zh: "時程" }, value: { en: "1 year", zh: "一年" } },
-        { label: { en: "Team", zh: "團隊" }, value: { en: "3 undergraduate students, 1 advisor", zh: "3 位大學生，1 位業界指導老師" } },
+        { label: { en: "Team", zh: "團隊" }, value: { en: "3 undergraduate students, 1 industry advisor", zh: "3 位大學生，1 位業界指導老師" } },
         { label: { en: "Type", zh: "類型" }, value: { en: "Graduation project", zh: "畢業製作" } },
       ],
     },
@@ -269,7 +269,7 @@ const content = {
       line1: { en: "Small foot flaws,", zh: "小小的足部問題" },
       line2: { en: "big body problems", zh: "對身體來說是大麻煩" },
       lead: {
-        en: "Our feet are the foundation of the body, bearing our weight and maintaining balance. Without proper support, foot misalignment can trigger chain-reaction pain in the knees, hips, and back. Today, up to",
+        en: "Our feet are the foundation of the body, bearing our weight and maintaining balance. Without proper support, a misaligned foot is like a house on an uneven footing: weight stops spreading evenly, and the strain travels to the knees, hips, and back. Today, up to",
         zh: "足部是全身的根基，支撐起身體重量並保持平衡，若缺乏適當支撐，足部歪斜就像房子根基不穩一樣，無法平均分散身體重量且會影響到其他部位。如今，高達",
       },
       statValue: "80%",
@@ -313,7 +313,7 @@ const content = {
       // Lead: a deliberate earlier decision, not slide text — excluded from slide-matching,
       // same treatment as Intro's body/outcome.
       lead: {
-        en: "A physical therapist interview showed that most adult foot problems begin in childhood.",
+        en: "A physical therapist interview traced foot problems back to uneven loading, most directly caused by shoes — which makes childhood the stage where choosing the right pair matters most.",
         zh: "與物理治療師深入訪談表示，足部會引發問題，源於足部受力不均，其中與鞋子最為直接相關，而兒童時期是最需要正確選鞋的觀念。",
       },
       stagesLabel: { en: "Foot development through life", zh: "一生的足部發展階段" },
@@ -326,7 +326,7 @@ const content = {
       ],
       points: [
         { title: { en: "Continuous process", zh: "足部發育具連續性影響" }, text: { en: "The development of children's feet lays the foundation for foot health.", zh: "足部發育是一個持續的過程，兒童足部的發育為足部健康奠定了基礎。" } },
-        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ depending on the age group (ages 0–14).", zh: "選鞋的關鍵考量會依年齡層而不同（0–14 歲是發育關鍵）。" } },
+        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ depending on the age group (ages 0–14 are the critical window).", zh: "選鞋的關鍵考量會依年齡層而不同（0–14 歲是發育關鍵）。" } },
         { title: { en: "The decision gap", zh: "家長挑鞋的認知落差" }, text: { en: "Parents choose the shoes for their children, but they often fail to make the right choices.", zh: "家長為孩子選鞋，但常常無法做出正確的選擇。" } },
       ],
       quote: {
@@ -348,7 +348,7 @@ const content = {
       items: [
         { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Causes poor stability and fatigue, leading to frequent tripping.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累也容易摔倒。" } },
         { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "無法支撐體重，且不易吸震，長期使足弓易塌陷，造成扁平足。" } },
-        { title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Kids need wider toe boxes. Narrow shoes cause chafing and bone misalignment.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
+        { title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Parents shop on looks and colour, but a child's toes need room to spread. Narrow shoes chafe, squeeze the toes, and can affect bone alignment over time.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
         { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "支撐性差，長時間穿不利足弓發展，可能因跑跳活動而歪斜。" } },
         { title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "提供已有足弓塌陷的孩子穿，一般孩子穿不好活動，且足底力氣不易建立。" } },
       ],
@@ -364,13 +364,15 @@ const content = {
         en: "Understanding the target audience: how modern parents discover brands, research, and decide what to trust.",
         zh: "理解目標族群：現代家長如何認識品牌、做功課，並決定要相信什麼。",
       },
-      // Each item's title is the %-bearing clause from the card's own paragraph on the slide
-      // (the card headlines — "Building Trust Online" etc. — don't contain the numbers); the
-      // rest of that paragraph becomes the explanatory text below, both trimmed by deletion only.
+      // Both languages follow the slide's own card format: a slogan headline plus #-prefixed
+      // notes, one per line. The <br> is the same deliberate exception to the site's text-only
+      // convention as in Usability Testing below — these strings go through innerHTML in
+      // feetmine.js's statItem(), so it renders. The deck's own figures stay in `value` for the
+      // record but are no longer displayed in either language.
       items: [
-        { value: "48%", title: { en: "of brand discovery happening online", zh: "新世代父母搜出信賴「好品牌」" }, text: { en: "Earning modern parents' long-term loyalty hinges on their first digital touchpoint.", zh: "# 網路平台的重要性高　# 了解消費意圖，即時回應，建立信任感，成為忠實顧客" } },
-        { value: "62%", title: { en: "still head in-store to verify product quality", zh: "行動裝置成為最佳消費夥伴" }, text: { en: "Next-gen parents leverage mobile devices for intensive pre-purchase research to save time.", zh: "# 即便網路購物快速省時，但實際購買時父母還是偏好走向線下店看實體" } },
-        { value: "84%", title: { en: "of modern parents report higher brand favorability after engaging with online video content", zh: "新世代父母的影音育兒法" }, text: { en: "Video tutorials effectively address parenting concerns and foster consumer trust.", zh: "# 影片能快速學習，在產生品牌好感的同時，也能建立信賴感" } },
+        { value: "48%", title: { en: "New-generation parents search out the brands they trust", zh: "新世代父母搜出信賴「好品牌」" }, text: { en: "# Online platforms carry the most weight<br># Read intent, respond fast, build trust, earn loyalty", zh: "# 網路平台的重要性高<br># 了解消費意圖，即時回應，建立信任感，成為忠實顧客" } },
+        { value: "62%", title: { en: "Mobile devices are the best shopping companion", zh: "行動裝置成為最佳消費夥伴" }, text: { en: "# Online shopping saves time, but parents still go to the store to see the real thing", zh: "# 即便網路購物快速省時，但實際購買時父母還是偏好走向線下店看實體" } },
+        { value: "84%", title: { en: "New-generation parents learn parenting from video", zh: "新世代父母的影音育兒法" }, text: { en: "# Video teaches fast, and builds goodwill and trust at the same time", zh: "# 影片能快速學習，在產生品牌好感的同時，也能建立信賴感" } },
       ],
     },
 
@@ -410,10 +412,11 @@ const content = {
       // Heading: slide 11's own title, split at its natural "to" boundary.
       line1: { en: "A shoe-fitting guide connecting online sizing", zh: "一份串連線上量測" },
       line2: { en: "to personalized picks", zh: "與個人化選鞋的合腳指南" },
-      // Lead: slide 11's own subtitle, verbatim (already 2 sentences, within length).
+      // Lead: slide 11's own subtitle. Its first sentence is verbatim; the second was rewritten
+      // to drop the slide's "ultimate guide" marketing register.
       lead: {
-        en: "Stop guessing aimlessly through endless size charts and shoe models. FeetMine is the ultimate guide integrating foot development data and the shoe-selection process into a single seamless experience.",
-        zh: "別再對著沒完沒了的尺寸表與鞋款瞎猜。FeetMine 是一套整合足部數據與選鞋推薦的app，打造流暢的選鞋體驗。",
+        en: "Stop guessing aimlessly through endless size charts and shoe models. FeetMine brings foot development data and shoe selection into one flow.",
+        zh: "別再對著沒完沒了的尺寸表與鞋款瞎猜。FeetMine 是一套整合足部數據與選鞋推薦的 App，打造流暢的選鞋體驗。",
       },
       caption: { en: "The shoe-buying journey, FeetMine against three competitors", zh: "選鞋旅程：合步合腳與三個競品的對照" },
       productLabel: { en: "Product", zh: "產品" },
@@ -463,11 +466,11 @@ const content = {
       },
       two: {
         name: { en: "Foot type & personal mascot", zh: "足型與專屬吉祥物" },
-        // Text: slide 15's second sentence (foot profile), trimmed by deleting its trailing
-        // clause, plus the Mascot card's own first sentence, trimmed the same way, with its
-        // omitted subject ("The app") restored.
+        // Text: slide 15's second sentence (foot profile) plus the Mascot card's own first
+        // sentence, both trimmed by deleting their trailing clauses and joined into one sentence
+        // (kept apart, the two both opened "The app generates…").
         text: {
-          en: "Based on foot metrics: type, arch, instep, width, and length, the app generates a personalized foot profile. The app generates a unique foot mascot.",
+          en: "Based on foot metrics — type, arch, instep, width and length — the app generates a personalized foot profile and a unique foot mascot.",
           zh: "依足型、足弓、足背、足寬、足長等指標，生成個人化足型檔案，並打造專屬的腳腳吉祥物。",
         },
         legendTitle: { en: "Reading a foot type code", zh: "怎麼看懂足型代碼" },
@@ -513,8 +516,8 @@ const content = {
         altB: { en: "The Foot ID card screen with the child's foot type and partner stores", zh: "足型 ID 卡畫面，顯示孩子的足型與合作店家" },
       },
       four: {
-        // Name: slide 16's own card title.
-        name: { en: "Foot Shape Records: Accompanying Growth", zh: "足型紀錄：陪伴成長" },
+        // Name: slide 16's own card title, recased to match the other three feature names.
+        name: { en: "Foot shape records: accompanying growth", zh: "足型紀錄：陪伴成長" },
         // Text: slide 16's own two sentences; the second trimmed by deleting its trailing clause.
         text: {
           en: "Tracks foot changes across different age stages and saves them to the personal Foot ID Card for future shoe fitting. By preserving raw foot outlines, parents and children can overlay and align their footprints.",
@@ -538,23 +541,22 @@ const content = {
       items: [
         {
           title: { en: "Can parents follow the guided flow to measure feet?", zh: "家長能依照引導流程量測雙腳嗎？" },
-          // Text: the AS-IS reaction quote, the TO-BE description, and the TO-BE reaction quote —
-          // all verbatim from slide 14. The AS-IS card's own description isn't included, to keep
-          // this to the slide's quotes plus its one full sentence, as elsewhere in this pass.
-          // zh: a team-written before/after summary replaces the two verbatim quotes (owner's
-          // call). Its <br> is a deliberate one-off exception to the site's text-only convention
-          // (only desk.headline otherwise carries HTML), needed for the two-line layout — this
-          // string is inserted via innerHTML in feetmine.js's numberedItem(), so it renders.
+          // Text: a before/after summary in both languages (owner's call), in place of slide 14's
+          // two verbatim reaction quotes — which now appear nowhere on the page. The <br> is a
+          // deliberate exception to the site's text-only convention (only desk.headline otherwise
+          // carries HTML), needed for the two-line layout; both strings go through innerHTML in
+          // feetmine.js's numberedItem(), so it renders.
           text: {
-            en: "\"Stickers waste time, scanning takes too long…\" Quick Coin Calibration: slide an NT$10 coin horizontally halfway under the arch and scan. \"Much simpler and faster!\"",
+            en: "Before: coloured stickers as the scale reference, slow to prepare and slow to scan.<br>After: an NT$10 coin slid under the arch, then scan.",
             zh: "原本：貼貼紙當比例尺，準備與掃描都很久<br>調整後：改用十元硬幣，滑入足弓下方就能掃描",
           },
         },
         {
           title: { en: "Can parents understand the foot type?", zh: "家長看得懂足型代碼嗎？" },
-          // Text: slide 14's own paragraph, verbatim, plus its quote.
+          // Text: slide 14's own paragraph plus its quote, which is set inline where the confusion
+          // is described rather than left trailing at the end.
           text: {
-            en: "Although 2/3 of parents initially struggled to understand the Foot Type, we retained them to shift mindsets from \"buying shoes by length alone\" to a deeper understanding of foot health. \"What does GFNO mean?\"",
+            en: "Although 2/3 of parents initially struggled with the Foot Type — \"What does GFNO mean?\" — we kept it, to shift mindsets from buying shoes by length alone toward a real understanding of foot health.",
             zh: "雖然 2/3 的家長一開始不理解足型，提出「GFNO 是什麼意思？」我們仍保留它，希望能將心態從「只看鞋長買鞋」轉變為更深入的足部健康理解。",
           },
         },
@@ -674,9 +676,10 @@ const content = {
     reflection: {
       line1: { en: "Reflection", zh: "回顧：" },
       line2: { en: "what I learned", zh: "我學到什麼" },
-      // TODO: the owner still has to write the English version of this section.
+      // The English was written from the owner's Chinese, not the other way round — it carries the
+      // same three lessons and is the one section where Chinese came first.
       body: {
-        en: "Placeholder. What I would keep, what I would change, and what a year on one project taught me about testing early and cutting steps that only designers enjoy.",
+        en: "A year on one project taught me that good research comes from asking, not from persuading. Accurate is not the same as usable: the clearest example is the sticker flow we replaced with a single coin. And testing early is what let us cut the steps only we designers enjoyed.",
         zh: "在同一個專案上待滿一年，我學到好的研究是問出來的，不是說服出來的。準確不等於好用，貼紙改成硬幣就是最好的例子；而且要盡早測試，刪掉那些只有我們設計師自己喜歡的步驟。",
       },
     },
