@@ -32,11 +32,11 @@ const content = {
     intro: [
       {
         en: "UI/UX Designer & Researcher based in Taipei. Grounded in 4+ years of design studies and end-to-end project experience.",
-        zh: "我是一位來自台北的 UI/UX 設計師與研究員。有四年的訪談、原型與易用性測試經驗。",
+        zh: "我是一位剛畢業的 UI/UX 新鮮人，從大學到研究所累積了四年的使用者訪談、原型與易用性測試經驗。",
       },
       {
         en: "Kyoto exchange alumna, eager to bring fresh research insights and continuous learning into product teams.",
-        zh: "在京都交換的一個學期，體驗不同文化的設計。",
+        zh: "隨著 AI 快速發展，我了解 UI/UX 也迎來了新的挑戰，但還是那句老話：我很願意學！",
       },
     ],
     badge: {
@@ -80,7 +80,7 @@ const content = {
       },
       blurb: {
         en: "Parents buy their children's shoes and often choose wrong. FeetMine is an app that measures a child's feet at home with AR, recommends shoes that fit, and tracks growth.",
-        zh: "童鞋由家長挑選，卻常常買錯。合步合腳用 AR 在家量測孩子的腳，推薦合腳的鞋，並持續記錄成長。",
+        zh: "童鞋由家長挑選，卻常常買錯。合步合腳用 AR 在家測量孩子的腳，推薦合腳的鞋，並持續記錄成長足跡。",
       },
       stats: [
         { label: { en: "Year", zh: "年份" }, value: "2024" },
@@ -118,7 +118,7 @@ const content = {
       },
       blurb: {
         en: "ILANDGREEN makes sustainable travel effortless, guiding users to mood-tailored local and nature experiences through quick quizzes and curated soundscapes.",
-        zh: "旅人往往不知道如何在不放棄理想行程的前提下永續旅行。綠島透過一份簡短測驗，將旅人配對到「自然愛好者」「生態旅人」或「好奇漫遊者」的角色，再據此規劃一趟更慢、衝擊更低的行程。",
+        zh: "ILANDGREEN 讓規劃永續旅行過程變得輕鬆方便，透過快速問答與搭配喜愛的白噪音，給予使用者體驗符合心情與需求的當地風情和自然風光。",
       },
       stats: [
         { label: { en: "Traveler personas", zh: "旅人角色" }, value: "3" },
@@ -194,7 +194,7 @@ const content = {
       },
       blurb: {
         en: "My master's thesis: a cross-cultural study across Taiwan and Japan on how non-human features, like cat ears and unnatural skin tones, shape first impressions of avatars.",
-        zh: "我的碩士論文：一項橫跨台灣與日本的研究，探討貓耳朵、不自然膚色等非人類特徵如何形塑對虛擬化身的第一印象。",
+        zh: "我的碩士論文研究橫跨台灣與日本，探討貓耳、非人類膚色等非人類特徵與色彩如何形塑觀者對虛擬角色的第一印象。",
       },
       links: [
         { label: { en: "Read the study", zh: "閱讀研究" }, href: "https://marsh-nannyberry-d49.notion.site/Visual-Perception-of-Non-Human-Features-in-Avatars-0ad29fa6d89242458c124f122c479ab7", external: true, primary: true }, // the image links here too
@@ -220,30 +220,30 @@ const content = {
       // Subtitle: slide 05's own tagline, verbatim.
       subtitle: {
         en: "Follow your feet to choose your fit",
-        zh: "跟著你的腳，選對你的鞋",
+        zh: "Follow your feet to choose your fit",
       },
       // Body: a deliberate earlier decision, not slide text — excluded from slide-matching.
       body: {
         en: "As a 3-person student team working around our coursework, we spent a year on FeetMine — from early field research through a tested, exhibited prototype for our graduation project.",
-        zh: "身為三人學生團隊，我們餘投入一年時間設計 FeetMine，從前期田野調查到使用者測試、以及最終產出參展的畢業專題原型。",
+        zh: "由三人學生組成的設計團隊，我們投入一年時間設計 FeetMine，從前期市場調查、使用者研究到測試、以及最終產出參展的畢業專題原型。",
       },
       problemLabel: { en: "Problem", zh: "問題" },
       // Problem: kept as its own question, so it doesn't repeat field.quote's slide-07 line below.
       problem: {
         en: "How might we educate parents and provide reliable tools to easily select the right shoe size and structure?",
-        zh: "我們該如何教育家長，並提供可靠的工具，讓他們輕鬆選對鞋子的尺寸與結構？",
+        zh: "我們該如何提供家長可靠且方便的工具，讓他們輕鬆選對鞋子的同時也能了解足部知識？",
       },
       outcomeLabel: { en: "Outcome", zh: "成果" },
       // Outcome: a deliberate earlier decision, not slide text — excluded from slide-matching.
       outcome: {
         en: "A tested end-to-end app prototype, a Foot ID Card business model for B2C and B2B, and an exhibition at YODEX with an award nomination (Vision Get Wild).",
-        zh: "一套經過測試的完整 App 原型、一個同時面向 B2C 與 B2B 的足型 ID 卡商業模式，以及一次入圍 Vision Get Wild 的新一代設計展展出。",
+        zh: "一套經過測試的完整 App 原型、B2C 與 B2B 的足型 ID 卡商業模式、入圍 Vision Get Wild 以及新一代設計展展出。",
       },
       // Meta: slide 05's Position / Time / Team stat lines, plus its "Graduation Project" pill for Type.
       meta: [
-        { label: { en: "Role", zh: "角色" }, value: { en: "UX design, usability test, character design, illustration design", zh: "UX 設計、易用性測試、角色設計、插畫設計" } },
+        { label: { en: "Role", zh: "職責" }, value: { en: "UX design, usability test, character design, illustration design", zh: "UX 設計、易用性測試、角色設計、插畫設計" } },
         { label: { en: "Timeline", zh: "時程" }, value: { en: "1 year", zh: "一年" } },
-        { label: { en: "Team", zh: "團隊" }, value: { en: "3 undergraduate students, 1 advisor", zh: "3 位大學生，1 位指導教授" } },
+        { label: { en: "Team", zh: "團隊" }, value: { en: "3 undergraduate students, 1 advisor", zh: "3 位大學生，1 位業界指導老師" } },
         { label: { en: "Type", zh: "類型" }, value: { en: "Graduation project", zh: "畢業製作" } },
       ],
     },
@@ -254,27 +254,27 @@ const content = {
       line2: { en: "& test in 1 year", zh: "研究、設計與測試" },
       lead: {
         en: "FeetMine went from desk research to a tested, exhibited prototype. Here is how the work was broken down.",
-        zh: "合步合腳從桌面研究一路走到經過測試、公開展出的原型。以下是工作的拆解方式。",
+        zh: "合步合腳從市場調研一路走到經過測試、公開展出的原型。以下是工作的拆解方式。",
       },
       steps: [
-        { title: { en: "Research", zh: "研究" }, text: { en: "Desk research on foot health, a physical therapist interview, and user research on footwear misconceptions and parent shopping behavior.", zh: "足部健康的桌面研究、物理治療師訪談，以及針對選鞋迷思與家長購物行為的使用者研究。" } },
+        { title: { en: "Research", zh: "研究" }, text: { en: "Desk research on foot health, a physical therapist interview, and user research on footwear misconceptions and parent shopping behavior.", zh: "足部健康的市場調研、與物理治療師訪談，以及針對選鞋錯誤觀念與家長購物行為的使用者研究。" } },
         { title: { en: "Define", zh: "定義" }, text: { en: "In-depth interviews with 7 parents and a competitive analysis.", zh: "與 7 位家長進行深度訪談，並完成競品分析。" } },
-        { title: { en: "Design", zh: "設計" }, text: { en: "Design goals, core flows, the foot type system, and a personal foot mascot.", zh: "訂定設計目標、核心流程、足型系統，以及專屬的腳腳吉祥物。" } },
+        { title: { en: "Design", zh: "設計" }, text: { en: "Design goals, core flows, the foot type system, and a personal foot mascot.", zh: "訂定設計目標、核心流程、足型系統，以及具識別度的專屬吉祥物。" } },
         { title: { en: "Test & iterate", zh: "測試與迭代" }, text: { en: "Moderated usability tests with 3 parents, then a redesigned measurement flow.", zh: "與 3 位家長進行主持式易用性測試，接著重新設計量測流程。" } },
         { title: { en: "Launch", zh: "推出" }, text: { en: "Business model, YODEX exhibition, and an industry pitch.", zh: "商業模式、新一代設計展展出，以及向業界提案。" } },
       ],
     },
 
     background: {
-      line1: { en: "Small foot flaws,", zh: "足部小問題，" },
-      line2: { en: "big body problems", zh: "身體大麻煩" },
+      line1: { en: "Small foot flaws,", zh: "小小的足部問題" },
+      line2: { en: "big body problems", zh: "對身體來說是大麻煩" },
       lead: {
         en: "Our feet are the foundation of the body, bearing our weight and maintaining balance. Without proper support, foot misalignment can trigger chain-reaction pain in the knees, hips, and back. Today, up to",
-        zh: "雙腳是身體的基礎，承擔體重並維持平衡。若缺乏適當支撐，足部歪斜會引發膝蓋、髖部與背部的連鎖疼痛。如今，高達",
+        zh: "足部是全身的根基，支撐起身體重量並保持平衡，若缺乏適當支撐，足部歪斜就像房子根基不穩一樣，無法平均分散身體重量且會影響到其他部位。如今，高達",
       },
       statValue: "80%",
       leadEnd: { en: "of adults suffer from foot-related issues.", zh: "的成年人都有足部相關的困擾。" },
-      eyebrow: { en: "Desk research", zh: "桌面研究" },
+      eyebrow: { en: "Desk research", zh: "市場調研" },
       bars: {
         title: { en: "Top foot issues in workers", zh: "上班族常見的足部問題" },
         items: [
@@ -293,7 +293,7 @@ const content = {
         caption: { en: "Only 1.4% think it is not important at all.", zh: "只有 1.4% 的人認為完全不重要。" },
       },
       gait: {
-        title: { en: "Over 90.9% walk with abnormal gait", zh: "超過 90.9% 的人步態異常" },
+        title: { en: "Over 90.9% walk with abnormal gait", zh: "超過 90.9% 的人有著步態異常" },
         centerValue: "90.9%",
         centerLabel: { en: "abnormal gait", zh: "步態異常" },
         segments: [
@@ -309,12 +309,12 @@ const content = {
       // Heading: slide 07's title has no natural 2-line split, so line2 falls back to its
       // subtitle, trimmed by deletion (rule 4).
       line1: { en: "Understanding Foot Development", zh: "理解足部發展" },
-      line2: { en: "Most adult foot problems stem from childhood development", zh: "多數成人的足部問題源自童年發展" },
+      line2: { en: "Most adult foot problems stem from childhood development", zh: "兒童時期足部發育是未來身體健康根基，影響很大" },
       // Lead: a deliberate earlier decision, not slide text — excluded from slide-matching,
       // same treatment as Intro's body/outcome.
       lead: {
         en: "A physical therapist interview showed that most adult foot problems begin in childhood.",
-        zh: "物理治療師的訪談顯示，多數成人的足部問題都始於童年。",
+        zh: "與物理治療師深入訪談表示，足部會引發問題，源於足部受力不均，其中與鞋子最為直接相關，而兒童時期是最需要正確選鞋的觀念。",
       },
       stagesLabel: { en: "Foot development through life", zh: "一生的足部發展階段" },
       stages: [
@@ -325,32 +325,32 @@ const content = {
         { name: { en: "Seniors", zh: "高齡期" } },
       ],
       points: [
-        { title: { en: "Continuous process", zh: "持續發展的過程" }, text: { en: "The development of children's feet lays the foundation for foot health.", zh: "孩童足部的發展，是足部健康的基礎。" } },
-        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ depending on the age group (ages 0–14).", zh: "選鞋的關鍵考量會依年齡層而不同（0–14 歲）。" } },
-        { title: { en: "The decision gap", zh: "決策落差" }, text: { en: "Parents choose the shoes for their children, but they often fail to make the right choices.", zh: "家長為孩子選鞋，但常常無法做出正確的選擇。" } },
+        { title: { en: "Continuous process", zh: "足部發育具連續性影響" }, text: { en: "The development of children's feet lays the foundation for foot health.", zh: "足部發育是一個持續的過程，兒童足部的發育為足部健康奠定了基礎。" } },
+        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ depending on the age group (ages 0–14).", zh: "選鞋的關鍵考量會依年齡層而不同（0–14 歲是發育關鍵）。" } },
+        { title: { en: "The decision gap", zh: "家長挑鞋的認知落差" }, text: { en: "Parents choose the shoes for their children, but they often fail to make the right choices.", zh: "家長為孩子選鞋，但常常無法做出正確的選擇。" } },
       ],
       quote: {
         en: "Parents buy their children's shoes, yet many fail to choose the right pair.",
-        zh: "童鞋多半由家長挑選，卻常常買錯。",
+        zh: "許多家長為孩子買鞋，卻選不到合適的那雙。",
       },
     },
 
     misconceptions: {
-      line1: { en: "Common misconceptions", zh: "童鞋的" },
-      line2: { en: "in children's footwear", zh: "常見迷思" },
+      line1: { en: "Common misconceptions", zh: "常見的" },
+      line2: { en: "in children's footwear", zh: "錯誤選鞋觀念" },
       // Lead: slide 08's orange summary card, trimmed by deletion (dropped "and increasing the
       // incidence of foot-related diseases later in life"), with "misconceptions" added back in
       // for "These" so the sentence still reads clearly outside the card it sat beside on the slide.
       lead: {
         en: "These misconceptions lead to poor foot development, negatively impacting long-term foot health.",
-        zh: "這些迷思會導致足部發展不良，進而影響長期的足部健康。",
+        zh: "這些錯誤觀念容易導致足部發展不良，進而影響長期的足部健康。",
       },
       items: [
-        { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Causes poor stability and fatigue, leading to frequent tripping.", zh: "導致穩定度不足與疲勞，容易絆倒。" } },
-        { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "缺乏支撐與避震，導致足弓塌陷、扁平足。" } },
-        { title: { en: "Looks above proper support", zh: "外觀優先於支撐性" }, text: { en: "Kids need wider toe boxes. Narrow shoes cause chafing and bone misalignment.", zh: "孩童需要較寬的楦頭，過窄的鞋子會摩擦並影響骨骼排列。" } },
-        { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "影響足弓發育，也提高玩耍時腳踝歪斜的風險。" } },
-        { title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "僅適用於已確診的扁平足，不必要的穿著反而限制活動、削弱足部肌力。" } },
+        { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Causes poor stability and fatigue, leading to frequent tripping.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累也容易摔倒。" } },
+        { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "無法支撐體重，且不易吸震，長期使足弓易塌陷，造成扁平足。" } },
+        { title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Kids need wider toe boxes. Narrow shoes cause chafing and bone misalignment.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
+        { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "支撐性差，長時間穿不利足弓發展，可能因跑跳活動而歪斜。" } },
+        { title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "提供已有足弓塌陷的孩子穿，一般孩子穿不好活動，且足底力氣不易建立。" } },
       ],
     },
 
@@ -368,9 +368,9 @@ const content = {
       // (the card headlines — "Building Trust Online" etc. — don't contain the numbers); the
       // rest of that paragraph becomes the explanatory text below, both trimmed by deletion only.
       items: [
-        { value: "48%", title: { en: "of brand discovery happening online", zh: "的品牌認識來自線上" }, text: { en: "Earning modern parents' long-term loyalty hinges on their first digital touchpoint.", zh: "贏得家長的長期忠誠，關鍵在於第一個數位接觸點。" } },
-        { value: "62%", title: { en: "still head in-store to verify product quality", zh: "仍會到實體店確認品質" }, text: { en: "Next-gen parents leverage mobile devices for intensive pre-purchase research to save time.", zh: "新世代家長善用行動裝置進行密集的購前研究，節省時間。" } },
-        { value: "84%", title: { en: "of modern parents report higher brand favorability after engaging with online video content", zh: "的家長在觀看線上影片內容後，對品牌好感度提升" }, text: { en: "Video tutorials effectively address parenting concerns and foster consumer trust.", zh: "影片教學能有效回應育兒疑慮，並建立消費者信任。" } },
+        { value: "48%", title: { en: "of brand discovery happening online", zh: "新世代父母搜出信賴「好品牌」" }, text: { en: "Earning modern parents' long-term loyalty hinges on their first digital touchpoint.", zh: "# 網路平台的重要性高　# 了解消費意圖，即時回應，建立信任感，成為忠實顧客" } },
+        { value: "62%", title: { en: "still head in-store to verify product quality", zh: "行動裝置成為最佳消費夥伴" }, text: { en: "Next-gen parents leverage mobile devices for intensive pre-purchase research to save time.", zh: "# 即便網路購物快速省時，但實際購買時父母還是偏好走向線下店看實體" } },
+        { value: "84%", title: { en: "of modern parents report higher brand favorability after engaging with online video content", zh: "新世代父母的影音育兒法" }, text: { en: "Video tutorials effectively address parenting concerns and foster consumer trust.", zh: "# 影片能快速學習，在產生品牌好感的同時，也能建立信賴感" } },
       ],
     },
 
@@ -413,7 +413,7 @@ const content = {
       // Lead: slide 11's own subtitle, verbatim (already 2 sentences, within length).
       lead: {
         en: "Stop guessing aimlessly through endless size charts and shoe models. FeetMine is the ultimate guide integrating foot development data and the shoe-selection process into a single seamless experience.",
-        zh: "別再對著沒完沒了的尺寸表與鞋款瞎猜。FeetMine 是一套整合足部發展資料與選鞋流程的終極指南，打造單一流暢的體驗。",
+        zh: "別再對著沒完沒了的尺寸表與鞋款瞎猜。FeetMine 是一套整合足部數據與選鞋推薦的app，打造流暢的選鞋體驗。",
       },
       caption: { en: "The shoe-buying journey, FeetMine against three competitors", zh: "選鞋旅程：合步合腳與三個競品的對照" },
       productLabel: { en: "Product", zh: "產品" },
@@ -435,12 +435,12 @@ const content = {
     },
 
     goals: {
-      line1: { en: "Healthy childhood steps", zh: "健康的童年步伐，" },
-      line2: { en: "for lifelong comfort", zh: "換一生的舒適" },
+      line1: { en: "Healthy childhood steps", zh: "FeetMine 為孩子踏穩健康的每一步" },
+      line2: { en: "for lifelong comfort", zh: "讓年老時身體不再煩惱" },
       items: [
         { title: { en: "Simplifying foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement without store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
-        { title: { en: "Guiding personalized fit", zh: "引導個人化合腳" }, text: { en: "Turn foot data into smart recommendations to avoid sizing guesswork.", zh: "把足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
-        { title: { en: "Tracking continuous growth", zh: "追蹤持續成長" }, text: { en: "Integrate foot data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
+        { title: { en: "Guiding personalized fit", zh: "專屬個人化推薦" }, text: { en: "Turn foot data into smart recommendations to avoid sizing guesswork.", zh: "把足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
+        { title: { en: "Tracking continuous growth", zh: "持續追蹤足部成長" }, text: { en: "Integrate foot data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
       ],
     },
 
@@ -689,11 +689,11 @@ const content = {
     bio: [
       {
         en: "With four years in UI/UX across diverse domains, I've honed sharp observation skills and a flexible, user-centered mindset.",
-        zh: "四年來在不同領域的 UI/UX 經驗，磨練出敏銳的觀察力，以及彈性的使用者中心思維。",
+        zh: "4年的 UI/UX 學習與專案實作，讓我明白好的訪談要聽見受訪者沒說出口的話，所以我總會多問一句「為什麼」。",
       },
       {
         en: "My six-month exchange in Kyoto deepened my cross-cultural perspective and my appreciation for detail-oriented Japanese design.",
-        zh: "在京都交換的半年，拓展了我的跨文化視野，也讓我更欣賞日本設計對細節的講究。",
+        zh: "京都半年的交換生活，則讓我學會看細節，日本設計處處替使用者多想一步，我也習慣用細節說服人。",
       },
     ],
     experienceTitle: { en: "Experience", zh: "經歷" },
@@ -722,8 +722,8 @@ const content = {
     ],
     workTitle: { en: "Worked", zh: "工作經驗" },
     work: [
-      { when: { en: "May 2024 – Mar 2025", zh: "2024.05 – 2025.03" }, what: { en: "Graphic designer, JusYoung Integrated Marketing Co., Ltd.", zh: "平面設計師，JusYoung Integrated Marketing Co., Ltd." } },
-      { when: { en: "Apr 2022 – Jun 2023", zh: "2022.04 – 2023.06" }, what: { en: "Graphic designer, DIF Design Co., Ltd.", zh: "平面設計師，DIF Design Co., Ltd." } },
+      { when: { en: "May 2024 – Mar 2025", zh: "2024.05 – 2025.03" }, what: { en: "Graphic designer, JusYoung Integrated Marketing Co., Ltd.", zh: "平面設計師，佳斯昂整合行銷有限公司" } },
+      { when: { en: "Apr 2022 – Jun 2023", zh: "2022.04 – 2023.06" }, what: { en: "Graphic designer, DIF Design Co., Ltd.", zh: "平面設計師，布衣漾創意設計有限公司" } },
     ],
     languagesTitle: { en: "Languages", zh: "語言" },
     languages: ["TOEIC 760", "CEFR B2", "JLPT N3"],
@@ -739,6 +739,7 @@ const content = {
     Canva: "img/canva.svg",
     Miro: "img/miro.svg",
     Notion: "img/notion.svg",
+    "Visual Studio Code": "img/visual-studio-code.svg",
   },
 
   // How I work: three steps, each with a sentence and the methods and tools used at that step.
@@ -747,45 +748,43 @@ const content = {
     lead: { en: "Three steps, and the tools I reach for at each one.", zh: "三個步驟，以及每一步會用到的工具。" },
     steps: [
       {
-        name: { en: "Understand", zh: "理解" },
+        name: { en: "Understand", zh: "使用者研究" },
         text: {
           en: "I start with people, not screens. Interviews, personas and journey maps show where the real problem is, and desk research checks that it is not just one person's problem.",
-          zh: "我從人開始，而不是從畫面開始。訪談、人物誌與旅程地圖找出真正的問題在哪裡，桌面研究則確認它不只是某一個人的問題。",
+          zh: "一切從人的需求與痛點開始。使用者訪談、人物誌與旅程地圖，找出真正的問題與痛點，市場調研則確認它是許多人的共同需求。",
         },
         tools: [
           { en: "Interview", zh: "訪談" },
           { en: "Persona", zh: "人物誌" },
           { en: "Journey map", zh: "旅程地圖" },
-          { en: "User story", zh: "使用者故事" },
           { en: "Design thinking", zh: "設計思考" },
-          "Notion", "Miro", "SPSS", "EndNote",
+          "Notion", "Miro",
           { en: "AI tools", zh: "AI 工具" },
         ],
       },
       {
-        name: { en: "Design", zh: "設計" },
+        name: { en: "Design", zh: "設計方法" },
         text: {
           en: "User flows first, then wireframes, then a prototype people can hold. I draw my own characters, illustrations and motion, so the interface and its personality come from the same hand.",
-          zh: "先畫使用者流程，再畫線框圖，再做出可以實際操作的原型。角色、插畫與動態都由我自己繪製，讓介面與它的個性出自同一雙手。",
+          zh: "從繪製使用者流程，再到線框稿，做出可以實際操作的原型進行測試。角色、插畫通常都由我繪製，讓風格保持一致性與獨特性。",
         },
         tools: [
           { en: "User flow", zh: "使用者流程" },
-          { en: "Wireframing", zh: "線框圖" },
+          { en: "Wireframing", zh: "線框稿" },
           { en: "Prototyping", zh: "原型製作" },
           { en: "Design system", zh: "設計系統" },
           { en: "Motion graphics", zh: "動態圖像" },
-          "Figma", "Adobe XD", "Illustrator", "Photoshop", "After Effects", "Canva",
+          "Figma", "Adobe XD", "Illustrator", "Photoshop", "After Effects", "Canva", "插畫設計", "Miro", "KJ法", "Crazy 8", "Visual Studio Code",
         ],
       },
       {
         name: { en: "Test", zh: "測試" },
         text: {
           en: "Moderated usability tests with real users, then I change what they trip on. In FeetMine, one session replaced six stickers with a single coin.",
-          zh: "與真實使用者進行引導式易用性測試，然後修改他們卡住的地方。在合步合腳裡，一次測試就讓六張貼紙變成了一枚硬幣。",
+          zh: "邀請使用者進行引導式易用性測試，然後修改他們卡住的地方。在合步合腳裡，一次測試就讓六張貼紙變成了一枚硬幣。",
         },
         tools: [
           { en: "Usability test", zh: "易用性測試" },
-          { en: "Think-aloud", zh: "放聲思考" },
           { en: "Expert review", zh: "專家評估" },
         ],
       },

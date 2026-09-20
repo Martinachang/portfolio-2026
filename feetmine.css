@@ -127,6 +127,8 @@
 }
 .fm-statlist .fm-n { color: var(--fm-primary); font-size: 19px; }
 .fm-light .fm-statlist .fm-n { color: var(--fm-primary-dark); }
+/* zh drops the stat number (its titles stand on their own); the freed column collapses. */
+.fm-statlist li.fm-no-stat { grid-template-columns: 1fr; }
 .fm-numlist h3, .fm-statlist h3 {
   margin: 0; font-family: var(--fm-font); font-size: 17px; font-weight: 700; line-height: 1.45;
 }

@@ -17,6 +17,10 @@ function numberedItem(item, i) {
 }
 
 function statItem(item, i) {
+  // The English version leads with the stat's own number; the Chinese titles now stand on
+  // their own as full statements, so the number is dropped from that language's display only
+  // (the field itself stays shared — see fm-no-stat below, which fills the column it frees up).
+  if (lang === "zh") return `<li class="fm-no-stat"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
   return `<li><span class="fm-n">${item.value}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
 }
 
