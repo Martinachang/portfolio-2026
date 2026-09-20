@@ -115,9 +115,11 @@
           check("the service flow and the five final screens are on the page",
             $("#fm-loop svg") !== null && doc.querySelectorAll("#fm-flow .fm-flow-stage").length === 3 &&
             doc.querySelectorAll("#fm-screens li").length === 5 && doc.querySelectorAll("#fm-photos .fm-panel").length === 3);
-          // Every image here is a crop of a deck slide, so no slide is ever shown whole with its text.
-          check("every image is cropped, and every image has alt text",
-            $$("img").every((image) => image.closest(".fm-shot") !== null && image.alt.length > 0));
+          // Every image still waiting on its final export is a crop of a deck slide, so no slide
+          // is ever shown whole with its text; the hero is the one image that's a finished asset
+          // (img/banner.jpg) shown in full. Every image has alt text either way.
+          check("every temporary image is cropped, the hero is its own finished asset, and every image has alt text",
+            $$("img").every((image) => (image.closest(".fm-shot") !== null || image.classList.contains("fm-hero-img")) && image.alt.length > 0));
           check("a click opens the same crop in the lightbox, not the whole slide", (() => {
             const zoom = $(".fm-zoom");
             zoom.click();

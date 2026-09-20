@@ -41,9 +41,10 @@
   background: var(--fm-light-bg);
 }
 
-/* The shared top bar is translucent, which would leave its dark text unreadable wherever a dark
-   section scrolls underneath. On this page it stays solid. */
-.cs-feetmine .topbar { background: var(--paper); }
+/* No override here: the top bar inherits style.css's own 50%-paper tint, blur(16px) and 30%
+   grain unchanged, so it matches the homepage exactly. Known tradeoff (tested and shown
+   previously): over this page's dark sections, that 50% tint drops nav-text contrast to
+   ~1.8:1, well under the 4.5:1 minimum — kept anyway per instruction to match the homepage. */
 
 /* ---------- Layout ---------- */
 
@@ -325,7 +326,6 @@
   width: calc(100% / var(--cw));
   transform: translate(calc(var(--cx) * -100%), calc(var(--cy) * -100%));
 }
-.fm-shot--hero   { --cx: 0.510;  --cy: 0.0533; --cw: 0.435;  --ch: 0.9467; --fm-ar: 870 / 1065; }
 .fm-shot--home   { --cx: 0.038;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
 .fm-shot--ar     { --cx: 0.228;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
 .fm-shot--result { --cx: 0.418;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
@@ -348,16 +348,25 @@
 
 /* ---------- Hero ---------- */
 
+/* The finished banner artwork (img/banner.jpg), centred as a device mockup on its own full-width
+   colour band — the Menti pattern, not an edge-to-edge photo. The band is a solid, site-standard
+   light background, not a brand-orange gradient (the artwork itself already carries the orange).
+   Phone first: the image is close to full width with a little breathing room; wider screens keep
+   it large (~88%) with more vertical padding so the band still reads clearly around it. */
 .fm-hero {
   position: relative; overflow: hidden;
-  display: grid; justify-items: center; align-items: end;
-  padding-top: clamp(32px, 5vw, 72px);
-  background: linear-gradient(180deg, #FFB26A 0%, #FF820F 100%);
+  display: flex; justify-content: center;
+  padding: clamp(28px, 9vw, 48px) clamp(20px, 6vw, 40px);
+  background: var(--fm-light-bg);
 }
-.fm-hero .fm-shot {
-  width: min(78%, 520px); height: auto;
-  border-radius: 18px 18px 0 0;
-  filter: drop-shadow(0 24px 48px rgba(90, 45, 0, 0.22));
+.fm-hero-img {
+  display: block; width: min(90%, 460px); height: auto;
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(90, 45, 0, 0.22);
+}
+@media (min-width: 720px) {
+  .fm-hero { padding-block: clamp(56px, 9vw, 96px); }
+  .fm-hero-img { width: min(88%, 1400px); }
 }
 
 /* ---------- Film grain ---------- */
@@ -368,7 +377,7 @@
   background-size: 200px 200px;
   opacity: 0.08;
 }
-.fm-hero > *, .fm-panel > * { position: relative; z-index: 2; }
+.fm-panel > * { position: relative; z-index: 2; }
 
 /* ---------- Service flow ---------- */
 
