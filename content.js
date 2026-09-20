@@ -217,28 +217,33 @@ const content = {
 
     intro: {
       title: { en: "FeetMine 合步合腳", zh: "合步合腳 FeetMine" },
+      // Subtitle: slide 05's own tagline, verbatim.
       subtitle: {
-        en: "A personalized parent-child app that helps parents choose the right shoes for growing feet",
-        zh: "一款親子個人化 App，幫家長為成長中的雙腳挑對鞋子",
+        en: "Follow your feet to choose your fit",
+        zh: "跟著你的腳，選對你的鞋",
       },
+      // Body: a deliberate earlier decision, not slide text — excluded from slide-matching.
       body: {
         en: "As a 3-person student team working around our coursework, we spent a year on FeetMine — from early field research through a tested, exhibited prototype for our graduation project.",
         zh: "身為三人學生團隊，我們餘投入一年時間設計 FeetMine，從前期田野調查到使用者測試、以及最終產出參展的畢業專題原型。",
       },
       problemLabel: { en: "Problem", zh: "問題" },
+      // Problem: kept as its own question, so it doesn't repeat field.quote's slide-07 line below.
       problem: {
         en: "How might we educate parents and provide reliable tools to easily select the right shoe size and structure?",
         zh: "我們該如何教育家長，並提供可靠的工具，讓他們輕鬆選對鞋子的尺寸與結構？",
       },
       outcomeLabel: { en: "Outcome", zh: "成果" },
+      // Outcome: a deliberate earlier decision, not slide text — excluded from slide-matching.
       outcome: {
-        en: "A tested end-to-end app prototype, a Foot ID Card business model for B2C and B2B, and an exhibition at YODEX with an award nomination.",
-        zh: "一套經過測試的完整 App 原型、一個同時面向 B2C 與 B2B 的足型 ID 卡商業模式，以及一次入圍獲提名的新一代設計展展出。",
+        en: "A tested end-to-end app prototype, a Foot ID Card business model for B2C and B2B, and an exhibition at YODEX with an award nomination (Vision Get Wild).",
+        zh: "一套經過測試的完整 App 原型、一個同時面向 B2C 與 B2B 的足型 ID 卡商業模式，以及一次入圍 Vision Get Wild 的新一代設計展展出。",
       },
+      // Meta: slide 05's Position / Time / Team stat lines, plus its "Graduation Project" pill for Type.
       meta: [
-        { label: { en: "Role", zh: "角色" }, value: { en: "UX design, usability testing, character design, illustration", zh: "UX 設計、易用性測試、角色設計、插畫" } },
+        { label: { en: "Role", zh: "角色" }, value: { en: "UX design, usability test, character design, illustration design", zh: "UX 設計、易用性測試、角色設計、插畫設計" } },
         { label: { en: "Timeline", zh: "時程" }, value: { en: "1 year", zh: "一年" } },
-        { label: { en: "Team", zh: "團隊" }, value: { en: "3 designers, 1 advisor", zh: "3 位設計師，1 位指導老師" } },
+        { label: { en: "Team", zh: "團隊" }, value: { en: "3 undergraduate students, 1 advisor", zh: "3 位大學生，1 位指導教授" } },
         { label: { en: "Type", zh: "類型" }, value: { en: "Graduation project", zh: "畢業製作" } },
       ],
     },
@@ -264,8 +269,8 @@ const content = {
       line1: { en: "Small foot flaws,", zh: "足部小問題，" },
       line2: { en: "big body problems", zh: "身體大麻煩" },
       lead: {
-        en: "Our feet carry our weight and keep us balanced. Without proper support, misalignment can cause chain-reaction pain in the knees, hips, and back. Up to",
-        zh: "雙腳承擔體重並維持平衡。缺乏適當支撐時，足部歪斜會引發膝蓋、髖部與背部的連鎖疼痛。高達",
+        en: "Our feet are the foundation of the body, bearing our weight and maintaining balance. Without proper support, foot misalignment can trigger chain-reaction pain in the knees, hips, and back. Today, up to",
+        zh: "雙腳是身體的基礎，承擔體重並維持平衡。若缺乏適當支撐，足部歪斜會引發膝蓋、髖部與背部的連鎖疼痛。如今，高達",
       },
       statValue: "80%",
       leadEnd: { en: "of adults suffer from foot-related issues.", zh: "的成年人都有足部相關的困擾。" },
@@ -288,7 +293,7 @@ const content = {
         caption: { en: "Only 1.4% think it is not important at all.", zh: "只有 1.4% 的人認為完全不重要。" },
       },
       gait: {
-        title: { en: "Over 90.9% walk with an abnormal gait", zh: "超過 90.9% 的人步態異常" },
+        title: { en: "Over 90.9% walk with abnormal gait", zh: "超過 90.9% 的人步態異常" },
         centerValue: "90.9%",
         centerLabel: { en: "abnormal gait", zh: "步態異常" },
         segments: [
@@ -301,8 +306,12 @@ const content = {
     },
 
     field: {
-      line1: { en: "Healthy feet", zh: "健康的雙腳，" },
-      line2: { en: "start in childhood", zh: "從童年開始" },
+      // Heading: slide 07's title has no natural 2-line split, so line2 falls back to its
+      // subtitle, trimmed by deletion (rule 4).
+      line1: { en: "Understanding Foot Development", zh: "理解足部發展" },
+      line2: { en: "Most adult foot problems stem from childhood development", zh: "多數成人的足部問題源自童年發展" },
+      // Lead: a deliberate earlier decision, not slide text — excluded from slide-matching,
+      // same treatment as Intro's body/outcome.
       lead: {
         en: "A physical therapist interview showed that most adult foot problems begin in childhood.",
         zh: "物理治療師的訪談顯示，多數成人的足部問題都始於童年。",
@@ -316,9 +325,9 @@ const content = {
         { name: { en: "Seniors", zh: "高齡期" } },
       ],
       points: [
-        { title: { en: "Continuous process", zh: "持續發展的過程" }, text: { en: "Children's foot development lays the foundation for lifelong foot health.", zh: "孩童時期的足部發展，是一生足部健康的基礎。" } },
-        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "What matters when choosing shoes differs by age (0–14).", zh: "選鞋時的關鍵考量會隨年齡（0–14 歲）而不同。" } },
-        { title: { en: "The decision gap", zh: "決策落差" }, text: { en: "Parents choose their children's shoes, but often choose wrong.", zh: "孩子的鞋子由家長挑選，卻常常選錯。" } },
+        { title: { en: "Continuous process", zh: "持續發展的過程" }, text: { en: "The development of children's feet lays the foundation for foot health.", zh: "孩童足部的發展，是足部健康的基礎。" } },
+        { title: { en: "Age-specific needs", zh: "依年齡而異的需求" }, text: { en: "The key considerations for choosing shoes differ depending on the age group (ages 0–14).", zh: "選鞋的關鍵考量會依年齡層而不同（0–14 歲）。" } },
+        { title: { en: "The decision gap", zh: "決策落差" }, text: { en: "Parents choose the shoes for their children, but they often fail to make the right choices.", zh: "家長為孩子選鞋，但常常無法做出正確的選擇。" } },
       ],
       quote: {
         en: "Parents buy their children's shoes, yet many fail to choose the right pair.",
@@ -329,36 +338,49 @@ const content = {
     misconceptions: {
       line1: { en: "Common misconceptions", zh: "童鞋的" },
       line2: { en: "in children's footwear", zh: "常見迷思" },
+      // Lead: slide 08's orange summary card, trimmed by deletion (dropped "and increasing the
+      // incidence of foot-related diseases later in life"), with "misconceptions" added back in
+      // for "These" so the sentence still reads clearly outside the card it sat beside on the slide.
       lead: {
-        en: "User research showed five beliefs that hurt children's foot development and raise the risk of foot problems later in life.",
-        zh: "使用者研究發現五個迷思，會傷害孩子的足部發展，並提高日後罹患足部問題的風險。",
+        en: "These misconceptions lead to poor foot development, negatively impacting long-term foot health.",
+        zh: "這些迷思會導致足部發展不良，進而影響長期的足部健康。",
       },
       items: [
         { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Causes poor stability and fatigue, leading to frequent tripping.", zh: "導致穩定度不足與疲勞，容易絆倒。" } },
-        { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lack support and shock absorption, leading to collapsed arches and flat feet.", zh: "缺乏支撐與避震，導致足弓塌陷、扁平足。" } },
-        { title: { en: "Looks over proper support", zh: "外觀優先於支撐性" }, text: { en: "Kids need wider toe boxes. Narrow shoes cause chafing and bone misalignment.", zh: "孩童需要較寬的楦頭，過窄的鞋子會摩擦並影響骨骼排列。" } },
-        { title: { en: "Sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurt arch development and raise the risk of ankle misalignment during play.", zh: "影響足弓發育，也提高玩耍時腳踝歪斜的風險。" } },
-        { title: { en: "Corrective shoes too early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Unnecessary use limits mobility and weakens foot muscles.", zh: "僅適用於已確診的扁平足，不必要的穿著反而限制活動、削弱足部肌力。" } },
+        { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "缺乏支撐與避震，導致足弓塌陷、扁平足。" } },
+        { title: { en: "Looks above proper support", zh: "外觀優先於支撐性" }, text: { en: "Kids need wider toe boxes. Narrow shoes cause chafing and bone misalignment.", zh: "孩童需要較寬的楦頭，過窄的鞋子會摩擦並影響骨骼排列。" } },
+        { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "影響足弓發育，也提高玩耍時腳踝歪斜的風險。" } },
+        { title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "僅適用於已確診的扁平足，不必要的穿著反而限制活動、削弱足部肌力。" } },
       ],
     },
 
     parents: {
-      line1: { en: "How parents", zh: "現代家長" },
-      line2: { en: "shop today", zh: "怎麼買東西" },
+      // Heading: slide 09's title, split at its natural "of" boundary (same pattern as Misconceptions).
+      line1: { en: "Consumption behaviors", zh: "現代家長的" },
+      line2: { en: "of modern parents", zh: "消費行為" },
+      // Lead: a deliberate earlier decision, not slide text — excluded from slide-matching,
+      // same treatment as Intro's body/outcome and Field Research's lead.
       lead: {
-        en: "Understanding the target audience: how next-generation parents discover brands, verify quality, and decide what to trust.",
-        zh: "理解目標族群：新一代家長如何認識品牌、確認品質，以及決定要相信什麼。",
+        en: "Understanding the target audience: how modern parents discover brands, research, and decide what to trust.",
+        zh: "理解目標族群：現代家長如何認識品牌、做功課，並決定要相信什麼。",
       },
+      // Each item's title is the %-bearing clause from the card's own paragraph on the slide
+      // (the card headlines — "Building Trust Online" etc. — don't contain the numbers); the
+      // rest of that paragraph becomes the explanatory text below, both trimmed by deletion only.
       items: [
-        { value: "48%", title: { en: "of brand discovery happens online", zh: "的品牌認識來自線上" }, text: { en: "Loyalty starts at the first digital touchpoint.", zh: "忠誠度從第一個數位接觸點就開始建立。" } },
-        { value: "62%", title: { en: "still go in-store to verify quality", zh: "仍會到實體店確認品質" }, text: { en: "Parents research on mobile but check before buying.", zh: "家長在手機上做功課，但購買前仍會親自確認。" } },
-        { value: "84%", title: { en: "report higher brand favorability after watching video content", zh: "在看過影片內容後對品牌好感度提升" }, text: { en: "Video tutorials address parenting concerns and build trust.", zh: "影片教學能回應育兒上的疑慮，並建立信任。" } },
+        { value: "48%", title: { en: "of brand discovery happening online", zh: "的品牌認識來自線上" }, text: { en: "Earning modern parents' long-term loyalty hinges on their first digital touchpoint.", zh: "贏得家長的長期忠誠，關鍵在於第一個數位接觸點。" } },
+        { value: "62%", title: { en: "still head in-store to verify product quality", zh: "仍會到實體店確認品質" }, text: { en: "Next-gen parents leverage mobile devices for intensive pre-purchase research to save time.", zh: "新世代家長善用行動裝置進行密集的購前研究，節省時間。" } },
+        { value: "84%", title: { en: "of modern parents report higher brand favorability after engaging with online video content", zh: "的家長在觀看線上影片內容後，對品牌好感度提升" }, text: { en: "Video tutorials effectively address parenting concerns and foster consumer trust.", zh: "影片教學能有效回應育兒疑慮，並建立消費者信任。" } },
       ],
     },
 
     pains: {
+      // Heading: kept as its own phrasing, not slide 10's title — the slide highlights "buying
+      // children's shoes?" in orange, but this component always renders line 2 in muted grey,
+      // which would reverse that emphasis.
       line1: { en: "What parents", zh: "家長真正" },
       line2: { en: "struggle with", zh: "卡住的地方" },
+      // Lead: already drawn from the slide's own Participants/Method lines — no change needed.
       lead: {
         en: "Semi-structured, in-person interviews with 7 parents of children aged 6–12.",
         zh: "與 7 位育有 6–12 歲孩童的家長進行半結構式面對面訪談。",
@@ -368,27 +390,30 @@ const content = {
       items: [
         {
           pain: { en: "Children struggle to express comfort", zh: "孩子說不清楚舒不舒服" },
-          quote: { en: "My kid only cares about how shoes look, not how they fit.", zh: "我的孩子只在意鞋子好不好看，不在意合不合腳。" },
-          cite: { en: "Father, 28", zh: "父親，28 歲" },
+          // Quote kept verbatim, including the slide's own grammar ("only care", not "cares").
+          quote: { en: "My kid only care about how shoes look, not how they fit.", zh: "我的孩子只在意鞋子好不好看，不在意合不合腳。" },
+          cite: { en: "Father, 28 y/o", zh: "父親，28 歲" },
           need: { en: "Accurate sizing & fit guidance", zh: "精準的尺寸與合腳指引" },
-          needText: { en: "Reliable guidance on fit and support, beyond style.", zh: "超越外觀的合腳與支撐性建議，而且值得信賴。" },
+          needText: { en: "Beyond style preferences, parents need reliable guidance on proper fit and support.", zh: "除了外觀，家長需要關於合腳與支撐性的可靠指引。" },
         },
         {
           pain: { en: "Lack of personalized foot data", zh: "沒有孩子專屬的足部資料" },
           quote: { en: "There's lots of advice online, but none fits my child, so I don't really do research.", zh: "網路上建議很多，但沒有一個適合我的孩子，所以我乾脆不做功課。" },
-          cite: { en: "Mother, 34", zh: "母親，34 歲" },
+          cite: { en: "Mother, 34 y/o", zh: "母親，34 歲" },
           need: { en: "Personalized data online", zh: "線上的個人化資料" },
-          needText: { en: "A fast app that makes shoe shopping easier.", zh: "一個快速的 App，讓選鞋這件事變簡單。" },
+          needText: { en: "Modern parents want fast online solutions, using an app to streamline shoe shopping.", zh: "現代家長想要快速的線上解方，用 App 讓選鞋購物更順暢。" },
         },
       ],
     },
 
     compare: {
-      line1: { en: "Covering the", zh: "涵蓋" },
-      line2: { en: "whole journey", zh: "完整的旅程" },
+      // Heading: slide 11's own title, split at its natural "to" boundary.
+      line1: { en: "A shoe-fitting guide connecting online sizing", zh: "一份串連線上量測" },
+      line2: { en: "to personalized picks", zh: "與個人化選鞋的合腳指南" },
+      // Lead: slide 11's own subtitle, verbatim (already 2 sentences, within length).
       lead: {
-        en: "We mapped the shoe-buying journey against three competitors. None of the three competitors help parents after purchase.",
-        zh: "我們把選鞋旅程與三個競品逐段對照。三個競品都沒有在購買之後繼續陪伴家長。",
+        en: "Stop guessing aimlessly through endless size charts and shoe models. FeetMine is the ultimate guide integrating foot development data and the shoe-selection process into a single seamless experience.",
+        zh: "別再對著沒完沒了的尺寸表與鞋款瞎猜。FeetMine 是一套整合足部發展資料與選鞋流程的終極指南，打造單一流暢的體驗。",
       },
       caption: { en: "The shoe-buying journey, FeetMine against three competitors", zh: "選鞋旅程：合步合腳與三個競品的對照" },
       productLabel: { en: "Product", zh: "產品" },
@@ -398,14 +423,14 @@ const content = {
         { name: { en: "Goal", zh: "目標" }, note: { en: "define needs", zh: "釐清需求" } },
         { name: { en: "Measure", zh: "量測" }, note: { en: "measure feet", zh: "量測雙腳" } },
         { name: { en: "Select", zh: "挑選" }, note: { en: "compare options", zh: "比較選項" } },
-        { name: { en: "Purchase", zh: "購買" }, note: { en: "verify & buy", zh: "確認並購買" } },
+        { name: { en: "Purchase", zh: "購買" }, note: { en: "verify size and purchase", zh: "確認尺寸並購買" } },
         { name: { en: "Evaluate", zh: "評估" }, note: { en: "track comfort", zh: "追蹤舒適度" } },
       ],
       rows: [
         { name: "FeetMine", highlight: true, cells: [{}, {}, {}, {}, {}] },
         { name: "A.S.O", cells: [{}, { note: { en: "Book an in-store measurement", zh: "需預約到店量測" } }, {}, {}, null] },
         { name: "OverNice", cells: [null, { note: { en: "Store-provided tools", zh: "使用店內提供的工具" } }, { note: { en: "Choose the right insole", zh: "挑選合適的鞋墊" } }, null, null] },
-        { name: "Baby View", cells: [{}, { note: { en: "Only measures foot length", zh: "只量測足長" } }, {}, {}, null] },
+        { name: "Baby View", cells: [{}, { note: { en: "Only measure foot length", zh: "只量測足長" } }, {}, {}, null] },
       ],
     },
 
@@ -413,9 +438,9 @@ const content = {
       line1: { en: "Healthy childhood steps", zh: "健康的童年步伐，" },
       line2: { en: "for lifelong comfort", zh: "換一生的舒適" },
       items: [
-        { title: { en: "Simplify foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement, with no store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
-        { title: { en: "Guide personalized fit", zh: "引導個人化合腳" }, text: { en: "Turn foot data into recommendations, so parents stop guessing sizes.", zh: "把足部資料轉成推薦，讓家長不必再猜尺寸。" } },
-        { title: { en: "Track continuous growth", zh: "追蹤持續成長" }, text: { en: "Connect foot tracking and recurring shopping as children grow.", zh: "隨孩子成長，把足型追蹤與後續購物串在一起。" } },
+        { title: { en: "Simplifying foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement without store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
+        { title: { en: "Guiding personalized fit", zh: "引導個人化合腳" }, text: { en: "Turn foot data into smart recommendations to avoid sizing guesswork.", zh: "把足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
+        { title: { en: "Tracking continuous growth", zh: "追蹤持續成長" }, text: { en: "Integrate foot data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
       ],
     },
 
@@ -426,18 +451,24 @@ const content = {
       eyebrow4: "Feature #4",
       one: {
         name: { en: "AR foot measurement", zh: "AR 足部量測" },
+        // Text: slide 15's first sentence (its second sentence, about the foot-metric profile,
+        // is used for Feature #2 below). The coin-calibration story is Usability Testing's own
+        // finding (slide 14) and stays there rather than being repeated here.
         text: {
-          en: "Parents measure their child's feet at home with AR. Usability testing showed stickers were too slow, so we replaced them with coin calibration: slide an NT$10 coin under the arch, then scan.",
-          zh: "家長在家就能用 AR 量測孩子的腳。易用性測試顯示貼紙太花時間，因此我們改用硬幣校正：把一枚十元硬幣滑到足弓下方，再開始掃描。",
+          en: "Uses AR technology to allow parents to measure their child's feet anytime, anywhere, building a dedicated database.",
+          zh: "運用 AR 技術，讓家長隨時隨地都能量測孩子的腳，建立專屬資料庫。",
         },
         altA: { en: "The AR measurement screen, scanning a child's foot", zh: "AR 量測畫面，正在掃描孩子的腳" },
         altB: { en: "The FeetMine home screen with the child's latest foot length and next shoe-changing day", zh: "合步合腳首頁，顯示孩子最新的足長與下次換鞋日" },
       },
       two: {
         name: { en: "Foot type & personal mascot", zh: "足型與專屬吉祥物" },
+        // Text: slide 15's second sentence (foot profile), trimmed by deleting its trailing
+        // clause, plus the Mascot card's own first sentence, trimmed the same way, with its
+        // omitted subject ("The app") restored.
         text: {
-          en: "Five metrics (type, arch, instep, width, length) create a foot type code like GFNO-20, plus a unique mascot that parents can recolor.",
-          zh: "五項指標（足型、足弓、足背、足寬、足長）組成像 GFNO-20 這樣的足型代碼，並生成一隻可以自己換色的專屬吉祥物。",
+          en: "Based on foot metrics: type, arch, instep, width, and length, the app generates a personalized foot profile. The app generates a unique foot mascot.",
+          zh: "依足型、足弓、足背、足寬、足長等指標，生成個人化足型檔案，並打造專屬的腳腳吉祥物。",
         },
         legendTitle: { en: "Reading a foot type code", zh: "怎麼看懂足型代碼" },
         legend: [
@@ -470,19 +501,24 @@ const content = {
         altB: { en: "The eight mascot colours parents can choose from", zh: "家長可以選擇的八種吉祥物顏色" },
       },
       three: {
+        // Name: kept as its own phrasing, not slide 16's title — on a page numbering
+        // "Feature #1/#2/#3," the slide's "Feature-Based" would read as an app feature rather
+        // than a foot characteristic.
         name: { en: "Shoe recommendations by foot type", zh: "依足型推薦鞋款" },
         text: {
-          en: "Recommendations match each child's foot profile on performance and materials. Parents read reviews from families with the same foot type, so parents buy with confidence and make fewer sizing mistakes.",
-          zh: "推薦會依每個孩子的足型檔案，比對鞋款的性能與材質。家長也能看到相同足型家庭的評價，因此買得安心，也更少買錯尺寸。",
+          en: "Provides targeted shoe recommendations on performance and materials based on individual foot profiles. Users can explore reviews from peers with the same foot type, ensuring confident purchases and minimizing sizing mistakes.",
+          zh: "依據個人足型檔案，提供針對性能與材質的鞋款推薦。使用者也能參考相同足型的其他人的評價，安心購買、減少選錯尺寸的機會。",
         },
         altA: { en: "A parent browsing a recommended shoe and the foot types it suits", zh: "家長正在瀏覽推薦鞋款，以及這雙鞋適合的足型" },
         altB: { en: "The Foot ID card screen with the child's foot type and partner stores", zh: "足型 ID 卡畫面，顯示孩子的足型與合作店家" },
       },
       four: {
-        name: { en: "Foot records that grow with your child", zh: "陪孩子一起長大的足部紀錄" },
+        // Name: slide 16's own card title.
+        name: { en: "Foot Shape Records: Accompanying Growth", zh: "足型紀錄：陪伴成長" },
+        // Text: slide 16's own two sentences; the second trimmed by deleting its trailing clause.
         text: {
-          en: "Every measurement is saved to the child's Foot ID Card with growth trends and raw foot outlines. Parents and children can overlay their footprints to keep a record of growth.",
-          zh: "每一次量測都會存進孩子的足型 ID 卡，包含成長趨勢與原始足型外框。親子可以把彼此的足印疊在一起，留下成長的紀錄。",
+          en: "Tracks foot changes across different age stages and saves them to the personal Foot ID Card for future shoe fitting. By preserving raw foot outlines, parents and children can overlay and align their footprints.",
+          zh: "追蹤不同年齡階段的足部變化，並存入個人足型 ID 卡，作為未來選鞋的依據。透過保留原始足型外框，親子可以疊合比對足印。",
         },
         altA: { en: "The growth evaluation screen with a foot-length trend chart", zh: "成長評估畫面，包含足長趨勢圖" },
         altB: { en: "The foot record screen with saved footprints and a family footprint comparison", zh: "足部紀錄畫面，包含歷次足印與家庭足印比對" },
@@ -490,28 +526,37 @@ const content = {
     },
 
     testing: {
-      line1: { en: "Testing", zh: "和家長" },
-      line2: { en: "with parents", zh: "一起測試" },
+      // Heading: slide 14's own title, split at its natural "&" boundary.
+      line1: { en: "Usability testing", zh: "易用性測試" },
+      line2: { en: "& design iteration", zh: "與設計迭代" },
+      // Lead: already drawn from the slide's own Participants/Method lines — no change needed
+      // (same treatment as Pain Points' lead).
       lead: {
         en: "Moderated usability tests with 3 parents of children aged 6–12, on the mobile prototype.",
         zh: "以行動原型，與 3 位育有 6–12 歲孩童的家長進行主持式易用性測試。",
       },
       items: [
         {
-          title: { en: "Can parents follow the measurement flow?", zh: "家長能跟著量測流程走完嗎？" },
+          title: { en: "Can parents follow the guided flow to measure feet?", zh: "家長能依照引導流程量測雙腳嗎？" },
+          // Text: the AS-IS reaction quote, the TO-BE description, and the TO-BE reaction quote —
+          // all verbatim from slide 14. The AS-IS card's own description isn't included, to keep
+          // this to the slide's quotes plus its one full sentence, as elsewhere in this pass.
           text: {
-            en: "Not easily. \"Stickers waste time, scanning takes too long.\" We switched to expert-validated coin calibration. Parents found coin calibration much simpler and faster.",
-            zh: "沒那麼容易。「貼貼紙很花時間，掃描也要很久。」我們改用經專家驗證的硬幣校正，家長覺得簡單也快得多。",
+            en: "\"Stickers waste time, scanning takes too long…\" Quick Coin Calibration: slide an NT$10 coin horizontally halfway under the arch and scan. \"Much simpler and faster!\"",
+            zh: "「貼貼紙很花時間，掃描也要很久⋯」硬幣快速校正：將一枚十元硬幣水平滑到足弓下方一半處，再進行掃描。「更簡單、更快速！」",
           },
         },
         {
           title: { en: "Can parents understand the foot type?", zh: "家長看得懂足型代碼嗎？" },
+          // Text: slide 14's own paragraph, verbatim, plus its quote.
           text: {
-            en: "2 of 3 parents struggled at first: \"What does GFNO mean?\" We kept the code on purpose, to move parents beyond buying by length alone, and we added a clear legend.",
-            zh: "3 位家長中有 2 位一開始看不懂：「GFNO 是什麼意思？」我們刻意保留代碼，希望家長不再只看鞋長買鞋，同時補上清楚的圖例。",
+            en: "Although 2/3 of parents initially struggled to understand the Foot Type, we retained them to shift mindsets from \"buying shoes by length alone\" to a deeper understanding of foot health. \"What does GFNO mean?\"",
+            zh: "雖然 2/3 的家長一開始不理解足型，我們仍保留它，希望能將心態從「只看鞋長買鞋」轉變為更深入的足部健康理解。「GFNO 是什麼意思？」",
           },
         },
       ],
+      // Before/after labels: a deliberate earlier decision, not slide text — excluded from
+      // slide-matching, same treatment as Intro's body/outcome.
       beforeLabel: { en: "AS-IS: sticker tracking", zh: "原始版本：貼紙追蹤" },
       afterLabel: { en: "TO-BE: coin calibration", zh: "優化版本：硬幣校正" },
       beforeAlt: { en: "The old measurement flow: six screens asking parents to place coloured stickers on five foot points", zh: "舊的量測流程：六個畫面，要家長在五個足部位置貼上彩色貼紙" },
@@ -519,20 +564,29 @@ const content = {
     },
 
     business: {
-      line1: { en: "The Foot ID Card", zh: "足型 ID 卡" },
-      line2: { en: "as a business model", zh: "作為商業模式" },
+      // Heading: slide 17's own title, split at its natural colon.
+      line1: { en: "Business model:", zh: "商業模式：" },
+      line2: { en: "Foot ID Card", zh: "足型 ID 卡" },
+      // Lead: slide 17's own two sentences — the partnership fact, then the business-value
+      // argument (growth data → recommendations → efficiency/ecosystem), its second sentence
+      // trimmed only by deleting its opening clause ("Continuously updated with the child's
+      // latest growth data,").
       lead: {
-        en: "By archiving foot profiles and scan histories, FeetMine can partner with shoe retailers online and offline to match foot types with the retailers' inventory.",
-        zh: "透過建檔足型資料與掃描紀錄，合步合腳可以和線上與線下的鞋店合作，把足型與店家的庫存互相配對。",
+        en: "By archiving users' foot profiles and scan histories, FeetMine can expand to partner shoe retailers (both online and offline) to match personal foot types with brand inventories. The system delivers highly accurate, personalized shoe recommendations—boosting shopping efficiency and purchase intent while connecting users and merchants in a mutually beneficial, sustainable ecosystem.",
+        zh: "透過建檔使用者的足型資料與掃描紀錄，合步合腳可以拓展至合作鞋店（線上與線下），將個人足型與品牌庫存互相配對。系統能提供高度精準的個人化選鞋推薦——提升購物效率與購買意願，同時讓使用者與商家建立起互利共好的永續生態圈。",
       },
+      // Card titles ("To customers"/"To businesses") are a deliberate earlier decision, not
+      // slide text (the slide's own "TO Customer"/"TO Business" don't read as headings in
+      // English) — excluded from slide-matching, same treatment as Intro's body/outcome.
       cards: [
-        { title: { en: "To customers", zh: "對消費者" }, text: { en: "Partner shoes matched to each foot type, backed by peer reviews.", zh: "依足型配對合作鞋款，並有同型使用者的評價作為佐證。" } },
-        { title: { en: "To businesses", zh: "對品牌" }, text: { en: "Feedback across many foot profiles, to understand needs and improve product design.", zh: "彙整多種足型的回饋，理解需求並優化產品設計。" } },
+        { title: { en: "To customers", zh: "對消費者" }, text: { en: "Match partner footwear to foot types and incorporate peer reviews to enhance fit accuracy.", zh: "為每種足型配對合作鞋款，並納入同儕評價以提升合腳準確度。" } },
+        { title: { en: "To businesses", zh: "對品牌" }, text: { en: "Gather feedback across diverse foot profiles to identify user needs and improve product design.", zh: "彙整不同足型的回饋，找出使用者需求並優化產品設計。" } },
       ],
       flowTitle: { en: "Service flow", zh: "服務流程" },
+      // Flow caption: slide 18's own sentence, trimmed by deleting its trailing clause.
       flowCaption: {
-        en: "End-to-end support before, during and after the purchase.",
-        zh: "在購買前、購買中與購買後，提供全程的支援。",
+        en: "Provides end-to-end support across pre-purchase, in-purchase, and post-purchase stages.",
+        zh: "提供購買前、購買中與購買後的全程支援。",
       },
       loop: {
         user: { en: "User", zh: "使用者" },
@@ -541,7 +595,7 @@ const content = {
         store: { en: "Shoe store", zh: "鞋店" },
         measure: { en: "AR measurement", zh: "AR 量測" },
         comfort: { en: "Wearing comfort", zh: "穿著舒適度" },
-        specs: { en: "Product specs", zh: "產品規格" },
+        specs: { en: "Product specifications", zh: "產品規格" },
         feedback: { en: "Feedback", zh: "回饋" },
         maps: [
           { from: { en: "type, instep", zh: "足型、足背" }, to: { en: "shoes", zh: "鞋款" } },
@@ -549,25 +603,32 @@ const content = {
           { from: { en: "arch, age", zh: "足弓、年齡" }, to: { en: "performance", zh: "性能" } },
         ],
       },
+      // Stage items render one line each (no separate subtitle slot), so where slide 18's card
+      // has a title plus a short subtitle, both are kept in the one title, joined by a colon.
       stages: [
         { name: { en: "Pre-purchase", zh: "購買前" }, items: [
-          { title: { en: "Goal: understand children's feet", zh: "目標：了解孩子的腳" } },
-          { title: { en: "AR measurement", zh: "AR 量測" } },
+          { title: { en: "Goal: understand children's feet. Choose the right shoes.", zh: "目標：了解孩子的腳，選擇合適的鞋款。" } },
+          { title: { en: "AR measurement: understanding foot health.", zh: "AR 量測：理解足部健康。" } },
         ] },
         { name: { en: "In-purchase", zh: "購買中" }, items: [
           { title: { en: "Shoe recommendations", zh: "鞋款推薦" } },
           { title: { en: "Foot ID Card & fit matching", zh: "足型 ID 卡與合腳配對" } },
         ] },
         { name: { en: "Post-purchase", zh: "購買後" }, items: [
-          { title: { en: "Foot profile history", zh: "足型歷程紀錄" } },
+          { title: { en: "Foot profile history: age stages.", zh: "足型歷程紀錄：跨年齡階段。" } },
           { title: { en: "Foot health knowledge", zh: "足部健康知識" } },
         ] },
       ],
     },
 
     finals: {
+      // Heading: a deliberate earlier decision, not slide text — excluded from slide-matching.
+      // Slide 13's only heading is the single word "Prototyping": no natural 2-line split and
+      // no subtitle to fall back on (rule 4's stop-and-ask case), so there's nothing to restore
+      // this to. Flagging in case you'd rather it read "Prototyping" some other way.
       line1: { en: "Final designs", zh: "最終設計：" },
       line2: { en: "five core flows", zh: "五個核心流程" },
+      // Lead: already the slide's own 5 screen names, joined into one sentence — no change needed.
       lead: {
         en: "Profile & home, AR measurement, foot ID & mascot, smart selection, and growth evaluation.",
         zh: "個人檔案與首頁、AR 量測、足型 ID 與吉祥物、智慧選鞋，以及成長評估。",
@@ -582,12 +643,22 @@ const content = {
     },
 
     results: {
+      // Heading: a deliberate earlier decision, not slide text — excluded from slide-matching.
+      // Slide 19's only heading is the single word "Results": same stop-and-ask case as
+      // Final Designs' "Prototyping" (no natural split, no subtitle).
       line1: { en: "Results", zh: "成果" },
       line2: { en: "& recognition", zh: "與肯定" },
       items: [
-        { title: { en: "Exhibited at YODEX", zh: "於新一代設計展展出" }, text: { en: "Live testing with parents and visitors. Visitors praised the precise shoe-fitting and asked useful questions about measurement accuracy and technical feasibility.", zh: "現場與家長和觀眾一起實測。觀眾對精準的選鞋配對給予肯定，也提出關於量測準確度與技術可行性的好問題。" } },
-        { title: { en: "Vision Get Wild nomination (Cross-Disciplinary Category)", zh: "入圍 Vision Get Wild（跨領域組）" }, text: { en: "We pitched FeetMine and its B2B and B2C models to industry judges and brands.", zh: "我們向業界評審與品牌提案，說明合步合腳以及它的 B2B 與 B2C 模式。" } },
-        { title: { en: "Team collaboration & mentorship", zh: "團隊協作與指導" }, text: { en: "Fast feedback loops and structured advisor mentorship kept execution on schedule.", zh: "快速的回饋循環與有結構的指導，讓執行維持在進度上。" } },
+        // Title already matched slide 19 exactly via deletion; text restored to the slide's own
+        // wording, trimmed only by deleting its middle clause ("while advocating foot health").
+        { title: { en: "Exhibited at YODEX", zh: "於新一代設計展展出" }, text: { en: "We engaged parents and visitors in live testing, receiving strong praise for precise shoe-fitting alongside valid inquiries regarding measurement accuracy and technical feasibility.", zh: "我們邀請家長與訪客一起進行現場實測，獲得對精準選鞋的高度讚賞，也收到許多關於量測準確度與技術可行性的好問題。" } },
+        // Title restored to the slide's own card title, trimmed by deleting "& Industry Pitch",
+        // with the award category (from the text's own "Cross-Disciplinary Category") kept in,
+        // since it's a specific fact rather than filler. Text restored to the slide's own
+        // sentence, trimmed by deleting its opening clause, which the title now covers.
+        { title: { en: "Award nomination (Vision Get Wild, Cross-Disciplinary)", zh: "獲 Vision Get Wild（跨領域組）獎項提名" }, text: { en: "We presented FeetMine along with our B2B and B2C business models to industry judges and brands at YODEX.", zh: "我們在 YODEX 向業界評審與品牌展示合步合腳，以及其 B2B 與 B2C 商業模式。" } },
+        // Text restored to the slide's own wording.
+        { title: { en: "Team collaboration & mentorship", zh: "團隊協作與指導" }, text: { en: "Rapid internal feedback loops and structured advisor mentorship ensured efficient execution and seamless design delivery.", zh: "快速的內部回饋循環與有結構的指導，確保了高效執行與流暢的設計交付。" } },
       ],
       photos: [
         { alt: { en: "The FeetMine booth at YODEX, with the mascots and the measuring station", zh: "新一代設計展的合步合腳攤位，有吉祥物與量測台" } },
