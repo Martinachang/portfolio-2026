@@ -17,15 +17,15 @@ const content = {
     nav: {
       work: { en: "Work", zh: "作品" },
       about: { en: "About", zh: "關於" },
-      skills: { en: "Process", zh: "流程" },
       contact: { en: "Contact", zh: "聯絡" },
     },
     // The topbar nav always uses the English words, in both languages — the section labels
-    // elsewhere on the page (site.nav above) still translate.
+    // elsewhere on the page (site.nav above) still translate. Resume links straight to the PDF,
+    // not to a section on the page.
     headerNav: {
       work: "Work",
       about: "About",
-      skills: "Process",
+      resume: "Resume",
       contact: "Contact",
     },
     footer: { en: "Designed and built by Chang Chu-Pei.", zh: "由張主佩設計與製作。" },
