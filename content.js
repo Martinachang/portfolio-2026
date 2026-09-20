@@ -8,6 +8,9 @@ const content = {
   site: {
     name: { en: "Chang Chu-Pei", zh: "張主佩" },
     nameOther: { en: "張主佩", zh: "Chang Chu-Pei" },
+    // The topbar brand always shows the English name first, in both languages — see headerNav below.
+    brandName: "Chang Chu-Pei",
+    brandNameOther: "張主佩",
     role: { en: "UI/UX designer and researcher", zh: "UI/UX 設計師與研究員" },
     email: "c21m22h29@gmail.com",
     skip: { en: "Skip to the work", zh: "跳到作品" },
@@ -16,6 +19,14 @@ const content = {
       about: { en: "About", zh: "關於" },
       skills: { en: "Process", zh: "流程" },
       contact: { en: "Contact", zh: "聯絡" },
+    },
+    // The topbar nav always uses the English words, in both languages — the section labels
+    // elsewhere on the page (site.nav above) still translate.
+    headerNav: {
+      work: "Work",
+      about: "About",
+      skills: "Process",
+      contact: "Contact",
     },
     footer: { en: "Designed and built by Chang Chu-Pei.", zh: "由張主佩設計與製作。" },
   },
