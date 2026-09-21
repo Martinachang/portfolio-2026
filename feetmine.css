@@ -183,16 +183,6 @@
 /* A data table for screen readers, kept out of sight but not out of the accessibility tree. */
 .fm-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* ---------- Life stages bar ---------- */
-
-.fm-stages { display: grid; gap: 4px; margin: 0; }
-.fm-stages li {
-  padding: 16px 18px; border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08); color: var(--fm-muted-invert);
-  font-size: 14px; line-height: 1.35; text-align: center;
-}
-.fm-stages .is-active { background: var(--fm-primary); color: var(--fm-dark-bg); font-weight: 700; }
-
 .fm-quote {
   margin: clamp(40px, 5vw, 64px) 0 0; max-width: 36ch;
   font-family: var(--fm-font); font-size: clamp(22px, 3vw, 34px); font-weight: 700; line-height: 1.25;
@@ -447,7 +437,6 @@
 @media (min-width: 720px) {
   .fm-charts { grid-template-columns: repeat(3, 1fr); }
   .fm-intro-pair { grid-template-columns: 1fr 1fr; }
-  .fm-stages { grid-template-columns: repeat(5, 1fr); gap: 6px; }
   .fm-numlist--row { grid-template-columns: repeat(3, 1fr); }
   .fm-pains { grid-template-columns: 1fr 1fr; }
   .fm-flow { grid-template-columns: repeat(3, 1fr); }

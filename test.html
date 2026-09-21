@@ -105,9 +105,9 @@
             doc.querySelectorAll("#fm-goals li").length === 3 &&
             doc.querySelectorAll("#fm-parent-stats li").length === 3 &&
             doc.querySelectorAll("#fm-results li").length === 3);
-          check("the three charts are the exported Figma SVGs, each with its numbers in a table as well",
+          check("the four charts are the exported Figma SVGs, each with its numbers in a table as well",
             $("#fm-chart-bars img.fm-chart-img") !== null && $("#fm-chart-ages img.fm-chart-img") !== null &&
-            $("#fm-chart-gait img.fm-chart-img") !== null &&
+            $("#fm-chart-gait img.fm-chart-img") !== null && $("#fm-stages img.fm-chart-img") !== null &&
             $$(".fm-chart").every((chart) => chart.querySelector("table.fm-sr") !== null));
           check("the comparison table has every competitor, and says in words what a dot means",
             doc.querySelectorAll("#fm-compare tbody tr").length === 4 &&

@@ -362,6 +362,7 @@ const content = {
         zh: "與物理治療師深入訪談表示，足部會引發問題，源於足部受力不均，其中與鞋子最為直接相關，而兒童時期是最需要正確選鞋的觀念。",
       },
       stagesLabel: { en: "Foot development through life", zh: "一生的足部發展階段" },
+      currentFocusNote: { en: "This project's focus", zh: "本專案聚焦的階段" },
       stages: [
         { name: { en: "Birth", zh: "出生" } },
         { name: { en: "Foot Development (Ages 0–14)", zh: "足部發展期（0–14 歲）" }, active: true },

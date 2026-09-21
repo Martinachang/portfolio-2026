@@ -33,13 +33,15 @@ one orange section for the design goals. Its brand colour is `#FF9F46`.
   full-bleed row of two coloured panels, ratio set inline per feature), `.fm-card` (the dark rounded
   card), `.fm-grain`, `.fm-shot` (image crops).
 - **Nothing on this page is a picture of a slide.** Every table and diagram is HTML, CSS and inline
-  SVG. The three background-section charts (`img/chart1.svg`, `chart2.svg`, `chart3.svg`) are the
-  exact SVGs exported from Figma rather than a rebuild — their labels and numbers are Figma
-  "outline text" paths, not real `<text>`, so they're invisible to a screen reader; each chart's
-  `<img>` is decorative (`alt=""`) and carries its numbers in a visually hidden table right beside
-  it, the same `.fm-sr` pattern every other chart on this page uses. One tradeoff worth knowing:
-  because their words are baked into the SVGs as shapes, these three charts stay in English even
-  when the page is switched to Chinese, unlike the rest of the page. Other images are app screens
+  SVG. Four charts (the three in the background section, plus the life-stage bar in field
+  research — `img/chart1.svg` through `chart4.svg`) are the exact SVGs exported from Figma rather
+  than a rebuild — their labels and numbers are Figma "outline text" paths, not real `<text>`, so
+  they're invisible to a screen reader; each chart's `<img>` is decorative (`alt=""`) and carries
+  its numbers in a visually hidden table right beside it (`renderChartSvg`/`renderStages` in
+  `feetmine.js`), the same `.fm-sr` pattern every other chart on this page uses. One tradeoff
+  worth knowing, accepted for now: because their words are baked into the SVGs as shapes, these
+  four charts stay in English even when the page is switched to Chinese, unlike the rest of the
+  page. Other images are app screens
   and photos.
 - **Image crops.** The final exports (`img/feetmine-hero.png`, `feetmine-screen-*.png`,
   `feetmine-yodex-*.jpg`, …) do not exist yet, so each `<img>` still points at a deck slide and an

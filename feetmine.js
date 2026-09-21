@@ -53,16 +53,27 @@ function dataTable(caption, rows) {
      </table>`;
 }
 
-// Each of these three charts is now the exact SVG exported from Figma (img/chart1/2/3.svg) rather
+// Each of these four charts is now the exact SVG exported from Figma (img/chart1–4.svg) rather
 // than a CSS/JS drawing — the source file is the design, so this stays a picture of it, not a
 // rebuild. Every label and number inside those files is a Figma "outline text" path, not a real
 // <text> node, so none of it exists for a screen reader; the img is decorative (alt="") and the
 // same numbers go into a table.fm-sr next to it, exactly like every other chart on this page.
-// One limitation worth knowing: because the words are baked into the SVG as shapes, these three
+// One limitation worth knowing: because the words are baked into the SVG as shapes, these four
 // charts stay in English even when the page is switched to Chinese — unlike the rest of the page.
 function renderChartSvg(figure, src, caption, rows) {
   figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
      ${dataTable(caption, rows)}`;
+}
+
+// The life-stage bar (img/chart4.svg) has no percentages, just an ordered sequence of stages
+// with one marked as this project's focus — so its accessible table is one column of names
+// plus a note on the active row, not the label/value shape dataTable() expects.
+function renderStages(figure, src, caption, stages) {
+  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
+     <table class="fm-sr"><caption>${caption}</caption>
+       <tbody>${stages.map((stage) => `
+         <tr><th scope="row">${t(stage.name)}</th><td>${stage.active ? t(fm.field.currentFocusNote) : ""}</td></tr>`).join("")}</tbody>
+     </table>`;
 }
 
 // ---------- Comparison table ----------
@@ -193,10 +204,7 @@ function renderPage() {
   fill("fm-screens", fm.finals.screens, screenItem);
   fill("fm-photos", fm.results.photos, photoPanel);
 
-  const stages = document.getElementById("fm-stages");
-  stages.setAttribute("aria-label", t(fm.field.stagesLabel));
-  fill("fm-stages", fm.field.stages, (stage) =>
-    `<li${stage.active ? ' class="is-active"' : ""}>${t(stage.name)}</li>`);
+  renderStages(document.getElementById("fm-stages"), "chart4.svg", t(fm.field.stagesLabel), fm.field.stages);
 
   fill("fm-legend", fm.features.two.legend, (row) =>
     `<dt>${t(row.label)}</dt><dd>${row.options.map((option) =>
