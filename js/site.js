@@ -17,7 +17,7 @@ function t(value) {
   return value[lang];
 }
 
-// get("site.nav.work") walks down the content object one key at a time.
+// get("site.nav.contact") walks down the content object one key at a time.
 function get(path) {
   return path.split(".").reduce((object, key) => object[key], content);
 }

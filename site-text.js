@@ -7,7 +7,6 @@
 const content = {
   site: {
     name: { en: "Chang Chu-Pei", zh: "張主佩" },
-    nameOther: { en: "張主佩", zh: "Chang Chu-Pei" },
     // The topbar brand always shows the English name first, in both languages — see headerNav below.
     brandName: "Chang Chu-Pei",
     brandNameOther: "張主佩",
@@ -15,8 +14,6 @@ const content = {
     email: "c21m22h29@gmail.com",
     skip: { en: "Skip to the work", zh: "跳到作品" },
     nav: {
-      work: { en: "Work", zh: "作品" },
-      about: { en: "About", zh: "關於" },
       contact: { en: "Contact", zh: "聯絡" },
     },
     // The topbar nav always uses the English words, in both languages — the section labels
@@ -67,9 +64,6 @@ const content = {
 
   work: {
     title: { en: "Work", zh: "作品" },
-    readMore: { en: "Read the case study", zh: "閱讀完整案例" },
-    overviewTitle: { en: "Overview", zh: "概述" },
-    prototypeLabel: { en: "View Prototype", zh: "查看原型" },
   },
 
   // Projects, in display order. The first one is featured on the desk.
@@ -77,7 +71,6 @@ const content = {
   projects: [
     {
       id: "feetmine",              // must match data-project in the page's <body>
-      page: "work/feetmine/index.html",
       accent: "#f7943e",           // the project's own colours
       accentWash: "#ffe9d6",
       banner: "#FF9F46",           // flat colour for the Work card banner
@@ -152,7 +145,6 @@ const content = {
     },
     {
       id: "ilandgreen",            // must match data-project in the page's <body>
-      page: "work/ilandgreen/index.html",
       accent: "#3fa895",           // the project's own colours
       accentWash: "#e3f7f3",
       banner: "#77DBCC",           // flat colour for the Work card banner
