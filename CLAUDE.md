@@ -4,8 +4,9 @@ A portfolio site for Chang Chu-Pei (張主佩), a UI/UX designer and researcher.
 and Traditional Chinese. A home page with a draggable desk, one panel per project, and one
 case-study page per project.
 
-`context/gotchas.md` holds the things that bite and the commands to run. Read it when something
-surprises you or before you run anything.
+`docs/gotchas.md` holds the things that bite and the commands to run. Read it when something
+surprises you or before you run anything. `README.md` is the owner's copy — plain language, no
+internals — so keep it true when the tree changes.
 
 ## Stack
 
@@ -20,59 +21,67 @@ and no continuous integration. Anything broken on `main` is live.
 
 ```
 portfolio-2026/
+├── README.md                   the owner's front door: task -> file, and the three traps
 ├── CLAUDE.md                   this file
-├── context/gotchas.md          what bites, and how to run things
+├── docs/gotchas.md             what bites, and how to run things
 │
 ├── index.html            129   the home page: desk, work list, about, skills, contact
+├── site-text.js        1,116   every word on the site, in both languages
 │
-├── work/                       one folder per case study, each page named index.html
+├── work/                       one folder per case study; everything about a project is here
 │   ├── feetmine/
 │   │   ├── index.html    428   an editorial case study
-│   │   └── feetmine.js   265   FeetMine's lists, charts, tables and diagrams
+│   │   ├── feetmine.js   265   FeetMine's lists, charts, tables and diagrams
+│   │   └── img/               11 files
 │   ├── xizhou/
 │   │   ├── index.html    364   an editorial case study
-│   │   └── xizhou.js      42   Walk Xizhou's lists
+│   │   ├── xizhou.js      42   Walk Xizhou's lists
+│   │   └── img/                1 file
 │   └── ilandgreen/
-│       └── index.html     62   built entirely from content.js by js/project.js
+│       ├── index.html     62   built entirely from site-text.js by js/page-project.js
+│       └── img/                5 files
 │
-├── js/                         scripts more than one page loads
-│   ├── content.js      1,123   every word on the site, in both languages
+├── js/                         the machinery; nothing here holds copy
 │   ├── site.js           133   language, the chrome, data-* filling, the glide, item templates
-│   ├── home.js           110   the desk, the work cards, the profile lists
-│   └── project.js         39   fills any standard project page from content.js
+│   ├── page-home.js      110   the desk, the work cards, the profile lists
+│   └── page-project.js    39   fills any standard project page from site-text.js
 │
 ├── css/
 │   ├── style.css         406   tokens and the shared site layout
 │   └── editorial.css     658   the two case-study pages: shared, then FeetMine, then Xizhou
 │
-├── img/                        by owner, not by kind
+├── img/                        site-wide images only
 │   ├── site/                   2 files: the mascot and the profile photo
 │   ├── logos/                  9 tool logos, one SVG each
-│   ├── feetmine/              11 files
-│   ├── xizhou/                 1 file
-│   ├── ilandgreen/             5 files
-│   ├── avatar/                 1 file
-│   └── _unused/               23 files referenced by nothing; the owner prunes them
+│   └── avatar-perception/      1 file: the one project with no page of its own
 │
-├── files/Resume-ENG.pdf
-├── demo/ilandgreen/            a separate prototype app; ignore it
-└── tools/
-    ├── test.html         219   the only check; serve it over http://
-    └── serve.ps1               a static server, for the owner's Windows machine
+├── resume/Resume-ENG.pdf
+├── demo/ilandgreen-app/        a separate prototype app; ignore it
+├── tools/
+│   ├── test.html         232   the only check; serve it over http://
+│   └── serve.ps1               a static server, for the owner's Windows machine
+│
+└── feetmine.html · xizhou.html · ilandgreen.html · ilandgreen/index.html
+    forwarding stubs for the URLs the site served before the reorganisation.
+    Not pages. Do not add to them, and do not delete them without asking.
 ```
 
-`demo/ilandgreen/` is 12 files and 1,452 lines with its own router, state and namespace. It shares
-nothing with the site. It is served from here as the Demo link on the ILANDGREEN work card. Its
-case-study page is the unrelated `work/ilandgreen/index.html`; the parent folder is what tells the
-two apart, so always name it.
+`demo/ilandgreen-app/` is 12 files and 1,452 lines with its own router, state and namespace. It
+shares nothing with the site. It is served from here as the Demo link on the ILANDGREEN work card.
+Its case-study page is the unrelated `work/ilandgreen/index.html`; the `-app` suffix is what tells
+the two apart.
 
 A script one page loads lives beside that page, which is why `feetmine.js` and `xizhou.js` sit in
-their project folders. A script more than one page loads lives in `js/`, which is why `project.js`
-does not — any standard project page can use it.
+their project folders. A script more than one page loads lives in `js/`, which is why
+`page-project.js` does not — any standard project page can use it.
+
+**A project's images live with its page**, in `work/<id>/img/`, so one folder holds everything
+about one project. Root `img/` is site-wide only. The single exception is a project with no page
+of its own: its image stays in `img/<id>/`, which is why `img/avatar-perception/` exists.
 
 ## How a page renders
 
-Script order is the dependency graph. `content.js`, then `site.js`, then the page's own script.
+Script order is the dependency graph. `site-text.js`, then `js/site.js`, then the page's own script.
 `site.js` calls `renderPage()` without a guard, so every page must define it.
 
 `render()` runs on load and on every language switch, and does four things in order:
@@ -96,10 +105,14 @@ the chrome links to lives at the root, so `root` prefixes the resume link, and `
 derives from it — an empty `root` means this is the home page, which links to its own sections
 with `#work` so the glide can take over.
 
-**A path stored in `content.js` is root-relative, and the renderer adds `root`.** `home.js` runs
-only at the root and needs no prefix; `project.js` runs at depth two and prefixes every path it
-reads. Store `img/feetmine/banner.jpg` in content, never `../../img/...` — the same value is read
-from two depths.
+**A path stored in `site-text.js` is root-relative, and the renderer adds `root`.** `page-home.js`
+runs only at the root and needs no prefix; `page-project.js` runs at depth two and prefixes every
+path it reads. Store `work/feetmine/img/banner.jpg` in site-text, never `../../...` — the same
+value is read from two depths.
+
+The same file therefore has two spellings, and both are correct: `img/banner.jpg` written inside
+`work/feetmine/index.html`, `work/feetmine/img/banner.jpg` written in `site-text.js`. A path
+written in a page file or that page's own script is relative to the page.
 
 ## Conventions
 
@@ -113,11 +126,11 @@ from two depths.
   queries sit mid-file beside the rule they belong to, so search for `@media` before editing.
 - Per-project colour arrives as a custom property set from JavaScript. Write rules against the
   property, never against a hex value that belongs to one project.
-- `img/` is filed by owner, not by kind: a new project image goes in `img/<project>/`. Anything in
-  `img/_unused/` is referenced by nothing and is the owner's to prune.
+- A new image for a project with a page goes in `work/<project>/img/`. Root `img/` takes only
+  site-wide images: `img/site/`, `img/logos/`, and a project that has no page.
 - Comments: see the section at the end of this file.
 
-### `content.js`
+### `site-text.js`
 
 One object. Top-level keys: `site`, `desk`, `work`, `projects`, `feetmine`, `xizhou`, `about`,
 `logos`, `skills`, `contact`.
@@ -153,16 +166,23 @@ The `fm-` prefix is historical. It means the editorial layout, not FeetMine.
 
 Do not re-suggest these. Each was weighed and settled.
 
-- **`content.js` stays one file.** Delete it and the complexity does not vanish, it reappears as
-  hard-coded bilingual text in four HTML files. Splitting needs either ES modules, which break the
-  double-click requirement, or more script tags in a fixed order. Revisit only for a concrete
-  problem such as merge conflicts, never for file size.
+- **`site-text.js` stays one file, at the root.** Delete it and the complexity does not vanish, it
+  reappears as hard-coded bilingual text in four HTML files. Splitting needs either ES modules,
+  which break the double-click requirement, or more script tags in a fixed order. It sits at the
+  root, not in `js/`, because it is the file the owner edits and `js/` is machinery. Revisit only
+  for a concrete problem such as merge conflicts, never for file size.
+  Its filename and the global it defines (`content`) deliberately differ; renaming the global
+  would touch every file and buy nothing.
 - **The chrome stays in JavaScript.** Putting the nav back in the HTML means four copies, and the
   git history shows the same nav edit hitting three files twice in five commits.
 - **`.fm-*` is not renamed.** 1,127 occurrences across HTML, JavaScript and CSS. Pure churn.
-- **The demo app lives at `demo/ilandgreen/`.** It was moved out of the root to stop it reading
-  as the sibling of the case-study page. The Demo href in `content.js` moved with it, so the old
-  `/ilandgreen/` URL is dead. Do not move it again.
+- **The demo app lives at `demo/ilandgreen-app/`.** It was moved out of the root to stop it
+  reading as the sibling of the case-study page, and suffixed so a search for "ilandgreen" tells
+  the two apart. The Demo href in `site-text.js` moved with it. Do not move it again.
+- **The four forwarding stubs stay until the owner says otherwise.** `feetmine.html`,
+  `xizhou.html`, `ilandgreen.html` and `ilandgreen/index.html` are the URLs the deployed site
+  served before the reorganisation. GitHub Pages has no redirect config, so a stub file is the
+  only mechanism. They are not pages and carry no copy.
 
 ## Comments
 
