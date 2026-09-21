@@ -83,7 +83,7 @@ function renderChrome() {
       <nav>
         <a href="${inPagePrefix}#work" data-text="site.headerNav.work"></a>
         <a href="${inPagePrefix}#about" data-text="site.headerNav.about"></a>
-        <a href="${root}files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
+        <a href="${root}resume/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
         <a href="${inPagePrefix}#contact" data-text="site.headerNav.contact"></a>
       </nav>
       <div class="lang" role="group" aria-label="Language / 語言">
