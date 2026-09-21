@@ -192,7 +192,7 @@ const content = {
       visualNoiseOpacity: 0.5,
       links: [
         // No "primary" link, so the cover image falls back to this one (see home.js).
-        { label: { en: "Demo", zh: "體驗" }, href: "demo/ilandgreen/index.html", external: true },
+        { label: { en: "Demo", zh: "體驗" }, href: "demo/ilandgreen-app/index.html", external: true },
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/ILANDGREEN", external: true },
       ],
 
