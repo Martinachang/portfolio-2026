@@ -103,7 +103,7 @@ const content = {
       // The image on the home page's Work section. FeetMine's case study (feetmine.html) is a page of its
       // own: its words live in content.feetmine below, not in `phases`.
       workImage: {
-        src: "img/feetmine/feetmine-app-screens.png",
+        src: "work/feetmine/img/feetmine-app-screens.png",
         alt: { en: "Three FeetMine screens: measurement results, the home dashboard, and the Foot ID card", zh: "三個合步合腳畫面：量測結果、首頁儀表板，以及足型 ID 卡" },
         fit: "contain",
       },
@@ -130,7 +130,7 @@ const content = {
         zh: "透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
       },
       workImage: {
-        src: "img/xizhou/xizhoubanner.png",
+        src: "work/xizhou/img/xizhoubanner.png",
         alt: {
           en: "The Walk Xizhou key visual: a yellow folder holding the project's sticker sheet, illustrated town guide and a phone showing its LINE chatbot",
           zh: "與泥探險主視覺：一個黃色資料夾，裡面放著貼紙、手繪街區導覽與顯示 LINE 聊天機器人的手機",
@@ -178,12 +178,12 @@ const content = {
         { en: "Sustainability", zh: "永續設計" },
       ],
       cover: {
-        src: "img/ilandgreen/ilandgreen-01.jpg",
+        src: "work/ilandgreen/img/ilandgreen-01.jpg",
         alt: { en: "ILANDGREEN app screens: the persona quiz and the resulting travel itinerary", zh: "綠島的應用畫面：角色測驗與對應的旅行行程" },
       },
       // The image on the home page's Work section only (the case study above still opens with `cover`).
       workImage: {
-        src: "img/ilandgreen/ilandgreen-app-screens.png",
+        src: "work/ilandgreen/img/ilandgreen-app-screens.png",
         alt: { en: "Three ILANDGREEN screens: the travel mood quiz, the home screen, and the soundscape picker", zh: "三個綠島畫面：旅行心情測驗、首頁，以及音景選擇畫面" },
         fit: "contain",
       },
@@ -219,9 +219,9 @@ const content = {
             },
           ],
           figures: [
-            { src: "img/ilandgreen/ilandgreen-02.jpg", alt: { en: "Persona results: Nature Lover, Eco Traveler, Curious Wanderer", zh: "測驗結果：自然愛好者、生態旅人、好奇漫遊者" } },
-            { src: "img/ilandgreen/ilandgreen-03.jpg", alt: { en: "The itinerary built from the traveler's persona", zh: "依旅人角色所規劃出的行程" } },
-            { src: "img/ilandgreen/ilandgreen-04.jpg", alt: { en: "Trip detail screen with slower, lower-impact activities", zh: "行程細節畫面，呈現步調較慢、衝擊較低的活動" } },
+            { src: "work/ilandgreen/img/ilandgreen-02.jpg", alt: { en: "Persona results: Nature Lover, Eco Traveler, Curious Wanderer", zh: "測驗結果：自然愛好者、生態旅人、好奇漫遊者" } },
+            { src: "work/ilandgreen/img/ilandgreen-03.jpg", alt: { en: "The itinerary built from the traveler's persona", zh: "依旅人角色所規劃出的行程" } },
+            { src: "work/ilandgreen/img/ilandgreen-04.jpg", alt: { en: "Trip detail screen with slower, lower-impact activities", zh: "行程細節畫面，呈現步調較慢、衝擊較低的活動" } },
           ],
         },
       ],
@@ -235,7 +235,7 @@ const content = {
       badge: "RESEARCH",
       name: "Visual Perception of Non-Human Features in Avatars",
       workImage: {
-        src: "img/avatar/avatar-perception-notion.png",
+        src: "img/avatar-perception/avatar-perception-notion.png",
         alt: { en: "The project's Notion page, showing its metadata: authors, year, thesis type and advisor", zh: "研究專案的 Notion 頁面，顯示作者、年份、論文類型與指導教授等後設資料" },
         frame: "browser",
         url: "marsh-nannyberry-d49.notion.site",

@@ -48,7 +48,7 @@ function dataTable(caption, rows) {
 // One limitation worth knowing: because the words are baked into the SVG as shapes, these four
 // charts stay in English even when the page is switched to Chinese — unlike the rest of the page.
 function renderChartSvg(figure, src, caption, rows) {
-  figure.innerHTML = `<img class="fm-chart-img" src="../../img/feetmine/${src}" alt="" loading="lazy">
+  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
      ${dataTable(caption, rows)}`;
 }
 
@@ -56,7 +56,7 @@ function renderChartSvg(figure, src, caption, rows) {
 // with one marked as this project's focus — so its accessible table is one column of names
 // plus a note on the active row, not the label/value shape dataTable() expects.
 function renderStages(figure, src, caption, stages) {
-  figure.innerHTML = `<img class="fm-chart-img" src="../../img/feetmine/${src}" alt="" loading="lazy">
+  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
      <table class="fm-sr"><caption>${caption}</caption>
        <tbody>${stages.map((stage) => `
          <tr><th scope="row">${t(stage.name)}</th><td>${stage.active ? t(fm.field.currentFocusNote) : ""}</td></tr>`).join("")}</tbody>
@@ -161,7 +161,7 @@ function screenItem(screen, i) {
   return `<li>
        <!-- TODO: replace with img/feetmine/feetmine-screen-${screenCrops[i]}.png -->
        <button type="button" class="fm-zoom fm-shot fm-shot--${screenCrops[i]}">
-         <img src="../../img/feetmine/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
+         <img src="img/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
        </button>
        <p class="fm-screen-label"><b>${two(i)}</b>${t(screen.name)}</p>
      </li>`;
@@ -171,7 +171,7 @@ function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
        <!-- TODO: replace with img/feetmine/feetmine-yodex-${i + 1}.jpg -->
        <button type="button" class="fm-zoom fm-shot fm-shot--yodex${i + 1}">
-         <img src="../../img/feetmine/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
+         <img src="img/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
        </button>
      </div>`;
 }
