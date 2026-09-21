@@ -300,16 +300,30 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 .cv { display: grid; gap: 48px; }
 .cv h3 { margin: 0 0 16px; font-size: 22px; }
 .cv h3:not(:first-child) { margin-top: 32px; }
-.timeline { display: grid; gap: 16px; padding-left: 22px; border-left: 2px solid var(--blue-wash); }
+.timeline { display: grid; gap: 16px; padding-left: 22px; position: relative; }
+/* The connecting line: a pseudo-element (not border-left) so it can start at the first
+   dot's own centre — dots sit at li::before's left:-29px/top:0.45em below — instead of
+   running the full height of the box and overshooting above the first dot. */
+.timeline::before {
+  content: ""; position: absolute; left: -3px; width: 2px;
+  top: calc(0.45em + 5px); bottom: 0;
+  background: #4C4C4C;
+}
+/* Masks the bottom of that line to var(--paper), so it reads as a fade instead of a hard stop. */
+.timeline::after {
+  content: ""; position: absolute; left: -3px; width: 2px;
+  top: calc(0.45em + 5px); bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, transparent 65%, var(--paper) 100%);
+  pointer-events: none;
+}
 .timeline li { position: relative; display: grid; gap: 2px; font-size: 15px; }
 .timeline li::before {
-  content: ""; position: absolute; left: -29px; top: 0.45em;
+  content: ""; position: absolute; left: -29px; top: 0.45em; z-index: 1;
   width: 10px; height: 10px; border-radius: 50%;
-  border: 2px solid var(--ink); background: var(--paper);
+  border: 2px solid #4C4C4C; background: var(--paper);
 }
 .timeline .when { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .timeline .detail { display: block; font-size: 13px; color: var(--ink-soft); }
-.plain { font-size: 15px; }
 
 /* ---------- How I work: three numbered steps joined by a line ---------- */
 

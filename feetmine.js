@@ -16,6 +16,12 @@ function numberedItem(item, i) {
   return `<li><span class="fm-n">${two(i)}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
 }
 
+// Same shape as numberedItem, but the number sits in a circle and .fm-numlist--timeline draws
+// the connecting line between circles, so the five phases read as one continuous process.
+function timelineItem(item, i) {
+  return `<li><span class="fm-n"><span class="fm-n-circle">${two(i)}</span></span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
+}
+
 function statItem(item) {
   // Neither language shows the stat number any more: both sets of titles stand on their own as
   // statements. fm-no-stat collapses the column the number used to occupy. The figures stay in
@@ -47,57 +53,16 @@ function dataTable(caption, rows) {
      </table>`;
 }
 
-function renderBars(figure, chart) {
-  const max = 40; // the tallest bar is 32.9%, so the scale tops out a little above it
-  // The tracks and the labels are two rows of one grid, so the bars all stand on the same line
-  // however many lines a label takes.
-  figure.innerHTML = `<figcaption>${t(chart.title)}</figcaption>
-     <div class="fm-bars" aria-hidden="true">
-       ${chart.items.map((bar) => `
-         <div class="fm-bar-track"><div class="fm-bar-fill" style="--fm-h: ${(bar.value / max) * 100}%"><span class="fm-bar-value">${bar.value}%</span></div></div>`).join("")}
-       ${chart.items.map((bar) => `<p class="fm-bar-label">${t(bar.label)}</p>`).join("")}
-     </div>
-     ${dataTable(t(chart.title), chart.items.map((bar) => [t(bar.label), bar.value]))}`;
-}
-
-function renderAges(figure, chart) {
-  // One bar, split in proportion to the three shares: a column per share, sized by its own value.
-  const columns = chart.items.map((item) => `${item.value}fr`).join(" ");
-  const tones = ["#FFD9B4", "#FFBE80", "#FF9F46"]; // lighter to darker, youngest to oldest
-  figure.innerHTML = `<figcaption>${t(chart.title)}</figcaption>
-     <div class="fm-ages" aria-hidden="true" style="--fm-cols: ${columns}">
-       <div class="fm-ages-labels">${chart.items.map((item) => `<span>${t(item.label)}</span>`).join("")}</div>
-       <div class="fm-ages-bar">${chart.items.map((item, i) => `
-         <div class="fm-ages-seg" style="background: ${tones[i]}">${item.value}%</div>`).join("")}</div>
-     </div>
-     <p class="fm-ages-caption" aria-hidden="true">${t(chart.caption)}</p>
-     ${dataTable(t(chart.title) + " — " + t(chart.caption), chart.items.map((item) => [t(item.label), item.value]))}`;
-}
-
-function renderDonut(figure, chart) {
-  const size = 160, stroke = 24, r = (size - stroke) / 2, c = 2 * Math.PI * r;
-  const tones = ["#FF9F46", "#FFC999", "#FFE0C2", "#E3DFD9"]; // the last one is the normal-gait rest
-  let offset = 0;
-  const rings = chart.segments.map((seg, i) => {
-    const dash = (seg.value / 100) * c;
-    const ring = `<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${tones[i]}"
-        stroke-width="${stroke}" stroke-dashoffset="${-offset}"
-        style="--fm-dash: ${dash}; --fm-rest: ${c - dash}; --fm-c: ${c}"
-        transform="rotate(-90 ${size / 2} ${size / 2})"></circle>`;
-    offset += dash;
-    return ring;
-  }).join("");
-  figure.innerHTML = `<figcaption>${t(chart.title)}</figcaption>
-     <div class="fm-donut">
-       <svg viewBox="0 0 ${size} ${size}" aria-hidden="true">
-         ${rings}
-         <text class="fm-donut-value" x="50%" y="48%" text-anchor="middle">${chart.centerValue}</text>
-         <text class="fm-donut-label" x="50%" y="62%" text-anchor="middle">${t(chart.centerLabel)}</text>
-       </svg>
-       <ul class="fm-legend-list" aria-hidden="true">${chart.segments.map((seg, i) => `
-         <li><span class="fm-swatch" style="--fm-c: ${tones[i]}"></span>${t(seg.label)}<span class="fm-legend-value">${seg.value}%</span></li>`).join("")}</ul>
-     </div>
-     ${dataTable(t(chart.title), chart.segments.map((seg) => [t(seg.label), seg.value]))}`;
+// Each of these three charts is now the exact SVG exported from Figma (img/chart1/2/3.svg) rather
+// than a CSS/JS drawing — the source file is the design, so this stays a picture of it, not a
+// rebuild. Every label and number inside those files is a Figma "outline text" path, not a real
+// <text> node, so none of it exists for a screen reader; the img is decorative (alt="") and the
+// same numbers go into a table.fm-sr next to it, exactly like every other chart on this page.
+// One limitation worth knowing: because the words are baked into the SVG as shapes, these three
+// charts stay in English even when the page is switched to Chinese — unlike the rest of the page.
+function renderChartSvg(figure, src, caption, rows) {
+  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
+     ${dataTable(caption, rows)}`;
 }
 
 // ---------- Comparison table ----------
@@ -217,7 +182,7 @@ function photoPanel(photo, i) {
 
 function renderPage() {
   fill("fm-meta", fm.intro.meta, (item) => `<dt>${t(item.label)}</dt><dd>${t(item.value)}</dd>`);
-  fill("fm-process", fm.process.steps, numberedItem);
+  fill("fm-process", fm.process.steps, timelineItem);
   fill("fm-misconceptions", fm.misconceptions.items, numberedItem);
   fill("fm-parent-stats", fm.parents.items, statItem);
   fill("fm-goals", fm.goals.items, numberedItem);
@@ -240,9 +205,12 @@ function renderPage() {
   fill("fm-business-cards", fm.business.cards, (card) =>
     `<div><h3 class="fm-label">${t(card.title)}</h3><p class="fm-note">${t(card.text)}</p></div>`);
 
-  renderBars(document.getElementById("fm-chart-bars"), fm.background.bars);
-  renderAges(document.getElementById("fm-chart-ages"), fm.background.ages);
-  renderDonut(document.getElementById("fm-chart-gait"), fm.background.gait);
+  renderChartSvg(document.getElementById("fm-chart-bars"), "chart1.svg", t(fm.background.bars.title),
+    fm.background.bars.items.map((item) => [t(item.label), item.value]));
+  renderChartSvg(document.getElementById("fm-chart-ages"), "chart2.svg", t(fm.background.ages.title) + " — " + t(fm.background.ages.caption),
+    fm.background.ages.items.map((item) => [t(item.label), item.value]));
+  renderChartSvg(document.getElementById("fm-chart-gait"), "chart3.svg", t(fm.background.gait.title),
+    fm.background.gait.segments.map((seg) => [t(seg.label), seg.value]));
   renderCompare(document.getElementById("fm-compare"));
   renderLoop(document.getElementById("fm-loop"));
   renderFlow(document.getElementById("fm-flow"));

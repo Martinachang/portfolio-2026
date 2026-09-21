@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Walk Xizhou, Keep Its Story — Social Design Case Study</title>
+  <meta name="description" content="Walk Xizhou is a puzzle-based walking kit for a rural township in central Taiwan, designed with With Mud (與泥共好) through the CHT Foundation's social design programme to pass on local history without depending on a single guide.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="xizhou.css">
+</head>
+<body data-project="xizhou" class="cs-xizhou">
+  <!-- The Walk Xizhou case study. Same pattern as feetmine.html: the sections below are written
+       out here, every word comes from content.xizhou (data-text), and xizhou.css does the styling,
+       scoped under .cs-xizhou so the rest of the site is untouched. There is no xizhou.js yet —
+       every list below is static markup with named data-text keys, not a JS-rendered array. -->
+
+  <a class="skip" href="#intro" data-text="site.skip"></a>
+
+  <header class="topbar">
+    <a class="brand" href="index.html"><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
+    <nav>
+      <a href="index.html#work" data-text="site.headerNav.work"></a>
+      <a href="index.html#about" data-text="site.headerNav.about"></a>
+      <a href="files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
+      <a href="index.html#contact" data-text="site.headerNav.contact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / 語言">
+      <button type="button" data-lang="en" lang="en">EN</button>
+      <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ---------- Hero: the finished banner artwork, centred on its own colour band ---------- -->
+    <div class="fm-hero">
+      <img class="fm-hero-img" src="img/xizhoubanner.png" data-alt="xizhou.hero.alt" alt="">
+    </div>
+
+    <!-- ---------- Intro ---------- -->
+    <section id="intro" class="fm-sec fm-light" aria-labelledby="intro-title">
+      <div class="fm-wrap">
+        <h1 id="intro-title" class="fm-title" data-text="xizhou.intro.title"></h1>
+        <p class="fm-subtitle" data-text="xizhou.intro.subtitle"></p>
+        <div class="fm-intro-grid">
+          <div class="fm-intro-col">
+            <p class="fm-body" data-text="xizhou.intro.body"></p>
+            <div class="fm-intro-pair">
+              <div>
+                <h2 class="fm-label" data-text="xizhou.intro.problemLabel"></h2>
+                <p data-text="xizhou.intro.problem"></p>
+              </div>
+              <div>
+                <h2 class="fm-label" data-text="xizhou.intro.outcomeLabel"></h2>
+                <p data-text="xizhou.intro.outcome"></p>
+              </div>
+            </div>
+          </div>
+          <dl class="fm-meta">
+            <dt data-text="xizhou.intro.meta.roleLabel"></dt><dd data-text="xizhou.intro.meta.role"></dd>
+            <dt data-text="xizhou.intro.meta.timelineLabel"></dt><dd data-text="xizhou.intro.meta.timeline"></dd>
+            <dt data-text="xizhou.intro.meta.teamLabel"></dt><dd data-text="xizhou.intro.meta.team"></dd>
+            <dt data-text="xizhou.intro.meta.typeLabel"></dt><dd data-text="xizhou.intro.meta.type"></dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Process: five static steps (no xizhou.js yet, so no JS-rendered list) ---------- -->
+    <section class="fm-sec fm-dark" aria-labelledby="process-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="process-title" class="fm-h2">
+            <span data-text="xizhou.process.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.process.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="xizhou.process.lead"></p>
+        </div>
+        <ol class="fm-numlist fm-numlist--timeline">
+          <li><span class="fm-n"><span class="fm-n-circle">01</span></span><h3 data-text="xizhou.process.step1.title"></h3><p data-text="xizhou.process.step1.text"></p></li>
+          <li><span class="fm-n"><span class="fm-n-circle">02</span></span><h3 data-text="xizhou.process.step2.title"></h3><p data-text="xizhou.process.step2.text"></p></li>
+          <li><span class="fm-n"><span class="fm-n-circle">03</span></span><h3 data-text="xizhou.process.step3.title"></h3><p data-text="xizhou.process.step3.text"></p></li>
+          <li><span class="fm-n"><span class="fm-n-circle">04</span></span><h3 data-text="xizhou.process.step4.title"></h3><p data-text="xizhou.process.step4.text"></p></li>
+          <li><span class="fm-n"><span class="fm-n-circle">05</span></span><h3 data-text="xizhou.process.step5.title"></h3><p data-text="xizhou.process.step5.text"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ---------- The problem: one guide, one story ---------- -->
+    <section class="fm-sec fm-light" aria-labelledby="problem-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="problem-title" class="fm-h2">
+            <span data-text="xizhou.problem.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.problem.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead" data-text="xizhou.problem.lead"></p>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <!-- A real list, not one <p> with <br> — content.js strings stay text-only site-wide. -->
+          <ul class="fm-note fm-bullet-list">
+            <li data-text="xizhou.problem.point1"></li>
+            <li data-text="xizhou.problem.point2"></li>
+            <li data-text="xizhou.problem.point3"></li>
+            <li data-text="xizhou.problem.point4"></li>
+            <li data-text="xizhou.problem.point5"></li>
+            <li data-text="xizhou.problem.point6"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Research: three stages, a table, and two field quotes ---------- -->
+    <section class="fm-sec fm-dark" aria-labelledby="research-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="research-title" class="fm-h2">
+            <span data-text="xizhou.research.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.research.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead" data-text="xizhou.research.lead"></p>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <!-- fm-table--stage narrows the first column for a row label (Stage); the business
+               table below stays plain .fm-table so its three columns split evenly. -->
+          <div class="fm-table-scroll" tabindex="0" role="region" aria-labelledby="research-title">
+            <table class="fm-table fm-table--stage">
+              <caption class="fm-sr" data-text="xizhou.research.tableCaption"></caption>
+              <thead>
+                <tr>
+                  <th scope="col" data-text="xizhou.research.tableStage"></th>
+                  <th scope="col" data-text="xizhou.research.tableMethod"></th>
+                  <th scope="col" data-text="xizhou.research.tablePurpose"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row" data-text="xizhou.research.stage1.stage"></th><td data-text="xizhou.research.stage1.method"></td><td data-text="xizhou.research.stage1.purpose"></td></tr>
+                <tr><th scope="row" data-text="xizhou.research.stage2.stage"></th><td data-text="xizhou.research.stage2.method"></td><td data-text="xizhou.research.stage2.purpose"></td></tr>
+                <tr><th scope="row" data-text="xizhou.research.stage3.stage"></th><td data-text="xizhou.research.stage3.method"></td><td data-text="xizhou.research.stage3.purpose"></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <blockquote class="fm-quote">
+            <p data-text="xizhou.research.quote1"></p>
+            <cite data-text="xizhou.research.quote1cite"></cite>
+          </blockquote>
+          <blockquote class="fm-quote">
+            <p data-text="xizhou.research.quote2"></p>
+            <cite data-text="xizhou.research.quote2cite"></cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Who walks into Xizhou ---------- -->
+    <section class="fm-sec fm-light" aria-labelledby="users-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="users-title" class="fm-h2">
+            <span data-text="xizhou.users.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.users.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="xizhou.users.lead"></p>
+        </div>
+        <ol class="fm-numlist">
+          <li><span class="fm-n">01</span><h3 data-text="xizhou.users.group1.title"></h3><p data-text="xizhou.users.group1.text"></p></li>
+          <li><span class="fm-n">02</span><h3 data-text="xizhou.users.group2.title"></h3><p data-text="xizhou.users.group2.text"></p></li>
+          <li><span class="fm-n">03</span><h3 data-text="xizhou.users.group3.title"></h3><p data-text="xizhou.users.group3.text"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ---------- The two insights that shaped every decision ---------- -->
+    <section class="fm-sec fm-orange" aria-labelledby="insights-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="insights-title" class="fm-h2">
+            <span data-text="xizhou.insights.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.insights.line2"></span>
+          </h2>
+        </div>
+        <ol class="fm-numlist">
+          <li><span class="fm-n">01</span><h3 data-text="xizhou.insights.item1.title"></h3><p data-text="xizhou.insights.item1.text"></p></li>
+          <li><span class="fm-n">02</span><h3 data-text="xizhou.insights.item2.title"></h3><p data-text="xizhou.insights.item2.text"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ---------- Five design decisions, each with a reason ---------- -->
+    <section class="fm-sec fm-light" aria-labelledby="decisions-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="decisions-title" class="fm-h2">
+            <span data-text="xizhou.decisions.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.decisions.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="xizhou.decisions.lead"></p>
+        </div>
+        <ol class="fm-numlist">
+          <li><span class="fm-n">01</span><h3 data-text="xizhou.decisions.item1.title"></h3><p data-text="xizhou.decisions.item1.text"></p></li>
+          <li><span class="fm-n">02</span><h3 data-text="xizhou.decisions.item2.title"></h3><p data-text="xizhou.decisions.item2.text"></p></li>
+          <li><span class="fm-n">03</span><h3 data-text="xizhou.decisions.item3.title"></h3><p data-text="xizhou.decisions.item3.text"></p></li>
+          <li><span class="fm-n">04</span><h3 data-text="xizhou.decisions.item4.title"></h3><p data-text="xizhou.decisions.item4.text"></p></li>
+          <li><span class="fm-n">05</span><h3 data-text="xizhou.decisions.item5.title"></h3><p data-text="xizhou.decisions.item5.text"></p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ---------- Design #1: teaching aids & field signage ---------- -->
+    <section class="fm-sec fm-feature fm-dark" aria-labelledby="f1-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f1-title" class="fm-h2">
+          <span data-text="xizhou.features.eyebrow1"></span>
+          <span class="fm-h2-soft" data-text="xizhou.features.one.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="xizhou.features.one.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.one.panelALabel"></p>
+          <!-- TODO: replace with the real worksheet before/after export. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.one.panelALabel"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.one.panelBLabel"></p>
+          <!-- TODO: replace with a photo of the field signage. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.one.panelBLabel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Design #2: puzzle walking kit ---------- -->
+    <section class="fm-sec fm-feature fm-light" aria-labelledby="f2-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f2-title" class="fm-h2">
+          <span data-text="xizhou.features.eyebrow2"></span>
+          <span class="fm-h2-soft" data-text="xizhou.features.two.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="xizhou.features.two.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 2fr 1fr">
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.two.panelALabel"></p>
+          <!-- TODO: replace with the route map export. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.two.panelALabel"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.two.panelBLabel"></p>
+          <!-- TODO: replace with a level-card export. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.two.panelBLabel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Design #3: mascot Ni Bobo ---------- -->
+    <section class="fm-sec fm-feature fm-dark" aria-labelledby="f3-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f3-title" class="fm-h2">
+          <span data-text="xizhou.features.eyebrow3"></span>
+          <span class="fm-h2-soft" data-text="xizhou.features.three.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="xizhou.features.three.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.three.panelALabel"></p>
+          <!-- TODO: replace with the character sheet export. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.three.panelALabel"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.three.panelBLabel"></p>
+          <!-- TODO: replace with a photo of the mascot applied across materials. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.three.panelBLabel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Design #4: online-to-offline funnel ---------- -->
+    <section class="fm-sec fm-feature fm-light" aria-labelledby="f4-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f4-title" class="fm-h2">
+          <span data-text="xizhou.features.eyebrow4"></span>
+          <span class="fm-h2-soft" data-text="xizhou.features.four.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="xizhou.features.four.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 2fr">
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.four.panelALabel"></p>
+          <!-- TODO: replace with a diagram export of the funnel. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.four.panelALabel"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <p class="fm-panel-label" data-text="xizhou.features.four.panelBLabel"></p>
+          <!-- TODO: replace with a screenshot of the LINE chatbot. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.features.four.panelBLabel"></div>
+        </div>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <ol class="fm-numlist fm-numlist--row">
+            <li><span class="fm-n">01</span><h3 data-text="xizhou.features.four.funnel.step1"></h3></li>
+            <li><span class="fm-n">02</span><h3 data-text="xizhou.features.four.funnel.step2"></h3></li>
+            <li><span class="fm-n">03</span><h3 data-text="xizhou.features.four.funnel.step3"></h3></li>
+            <li><span class="fm-n">04</span><h3 data-text="xizhou.features.four.funnel.step4"></h3></li>
+            <li><span class="fm-n">05</span><h3 data-text="xizhou.features.four.funnel.step5"></h3></li>
+            <li><span class="fm-n">06</span><h3 data-text="xizhou.features.four.funnel.step6"></h3></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Business model: a loop that benefits everyone ---------- -->
+    <section class="fm-sec fm-dark" aria-labelledby="business-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="business-title" class="fm-h2">
+            <span data-text="xizhou.business.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.business.line2"></span>
+          </h2>
+        </div>
+        <div>
+          <p class="fm-lead" data-text="xizhou.business.lead"></p>
+          <div class="fm-cards">
+            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card1.title"></h3><p data-text="xizhou.business.card1.text"></p></div>
+            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card2.title"></h3><p data-text="xizhou.business.card2.text"></p></div>
+            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card3.title"></h3><p data-text="xizhou.business.card3.text"></p></div>
+          </div>
+        </div>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <h3 class="fm-label" data-text="xizhou.business.flowTitle"></h3>
+          <div class="fm-table-scroll" tabindex="0" role="region" aria-label="Service journey">
+            <table class="fm-table">
+              <thead>
+                <tr>
+                  <th scope="col" data-text="xizhou.business.journeyBeforeLabel"></th>
+                  <th scope="col" data-text="xizhou.business.journeyDuringLabel"></th>
+                  <th scope="col" data-text="xizhou.business.journeyAfterLabel"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-text="xizhou.business.journeyBefore"></td>
+                  <td data-text="xizhou.business.journeyDuring"></td>
+                  <td data-text="xizhou.business.journeyAfter"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Results ---------- -->
+    <section class="fm-sec fm-feature fm-dark" aria-labelledby="results-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="results-title" class="fm-h2">
+            <span data-text="xizhou.results.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.results.line2"></span>
+          </h2>
+        </div>
+        <ol class="fm-numlist">
+          <li><span class="fm-n">01</span><h3 data-text="xizhou.results.item1.title"></h3><p data-text="xizhou.results.item1.text"></p></li>
+          <li><span class="fm-n">02</span><h3 data-text="xizhou.results.item2.title"></h3><p data-text="xizhou.results.item2.text"></p></li>
+          <li><span class="fm-n">03</span><h3 data-text="xizhou.results.item3.title"></h3><p data-text="xizhou.results.item3.text"></p></li>
+        </ol>
+      </div>
+      <div class="fm-panels fm-panels--photos" style="--fm-ratio: 1fr 1fr 1fr">
+        <div class="fm-panel fm-grain">
+          <!-- TODO: replace with a photo from the CHT Foundation showcase. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.results.photo1"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <!-- TODO: replace with a photo from the field test with local children. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.results.photo2"></div>
+        </div>
+        <div class="fm-panel fm-grain">
+          <!-- TODO: replace with a photo of the With Mud team at the event. -->
+          <div class="fm-shot-placeholder" data-text="xizhou.results.photo3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Reflection ---------- -->
+    <section class="fm-sec fm-light" aria-labelledby="reflection-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="reflection-title" class="fm-h2">
+            <span data-text="xizhou.reflection.line1"></span>
+            <span class="fm-h2-soft" data-text="xizhou.reflection.line2"></span>
+          </h2>
+        </div>
+        <!-- TODO: the owner still has to write this section (see the [bracketed] note in content.js). -->
+        <p class="fm-lead" data-text="xizhou.reflection.body"></p>
+      </div>
+    </section>
+
+    <!-- ---------- Where to go next ---------- -->
+    <nav class="fm-sec fm-light fm-next" aria-label="More work">
+      <div class="fm-wrap">
+        <a class="fm-back-link" href="index.html#work" data-text="xizhou.next.back"></a>
+      </div>
+    </nav>
+
+    <!-- The site's own closing call to action, as on the other case-study pages.
+         TODO: needs xizhou.js (fm-mail-link.href = "mailto:" + content.site.email) to work — until
+         then this points at "#", same as every other id-driven behaviour that needs a page script. -->
+    <section class="fm-sec fm-light fm-cta-wrap" aria-labelledby="cta-title">
+      <div class="fm-wrap">
+        <div class="fm-cta">
+          <p class="fm-eyebrow" data-text="site.nav.contact"></p>
+          <h2 id="cta-title" data-text="contact.title"></h2>
+          <p data-text="contact.body"></p>
+          <a class="fm-button" id="fm-mail-link" href="#" data-text="contact.button"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer><p data-text="site.footer"></p></footer>
+
+  <script src="content.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

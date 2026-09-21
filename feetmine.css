@@ -32,6 +32,7 @@
   --fm-wrap: 1200px;
   --fm-pad: clamp(56px, 11vw, 160px);
   --fm-gap: clamp(16px, 3vw, 36px);
+  --fm-list-gap: clamp(32px, 4vw, 48px);
   --fm-font: "Noto Sans TC", system-ui, sans-serif;
 
   /* The shared focus ring and link colour come from style.css: give them this project's orange. */
@@ -123,7 +124,7 @@
 
 /* ---------- The numbered list, and the stat list that shares its shape ---------- */
 
-.fm-numlist, .fm-statlist { display: grid; gap: clamp(32px, 4vw, 48px); }
+.fm-numlist, .fm-statlist { display: grid; gap: var(--fm-list-gap); }
 .fm-numlist li, .fm-statlist li { display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 16px; }
 .fm-numlist .fm-n, .fm-statlist .fm-n {
   grid-row: span 2;
@@ -142,69 +143,42 @@
 .fm-orange .fm-numlist p { color: #5C3A10; }
 .fm-orange .fm-numlist .fm-n { color: var(--fm-dark-bg); }
 
+/* The process list reads as a timeline: a circled number per step, joined by a line running
+   down the column behind them. Tuned for the dark section it appears in. */
+.fm-numlist--timeline li { position: relative; }
+.fm-numlist--timeline .fm-n { display: flex; }
+.fm-numlist--timeline .fm-n-circle {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.3em; height: 2.3em; border-radius: 50%;
+  border: 1.5px solid var(--fm-primary);
+  background: rgba(255, 159, 70, 0.15);
+  color: var(--fm-primary);
+  font-size: 15px;
+}
+/* The line sits only in the gap between one circle's bottom and the next one's top, so it
+   never runs behind the circles themselves. */
+.fm-numlist--timeline li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 2.3em;
+  bottom: calc(-1 * var(--fm-list-gap));
+  left: calc(1.15em - 0.75px);
+  width: 1.5px;
+  background: var(--fm-muted-invert);
+  opacity: 0.4;
+}
+
 /* A row of points under a diagram rather than a column beside a heading. */
 .fm-numlist--row { margin-top: clamp(32px, 4vw, 48px); }
 
 /* ---------- Charts (background section) ---------- */
 
 .fm-charts { display: grid; gap: 20px; }
-.fm-chart {
-  margin: 0; padding: clamp(20px, 3vw, 28px);
-  background: #fff; border-radius: 20px; box-shadow: 0 8px 28px rgba(60, 45, 30, 0.07);
-  display: flex; flex-direction: column;
-}
-.fm-chart figcaption {
-  margin-bottom: 24px;
-  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
-  letter-spacing: 0.02em; color: var(--fm-primary-dark);
-}
-.fm-stat-inline { font-family: var(--fm-font); font-size: 1.5em; font-weight: 800; color: var(--fm-primary-dark); }
-
-/* Vertical bars */
-.fm-bars {
-  display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr auto;
-  gap: 0 14px; flex: 1; min-height: 210px;
-}
-.fm-bar-track { display: flex; align-items: flex-end; }
-.fm-bar-fill {
-  width: 100%; border-radius: 10px 10px 0 0;
-  background: linear-gradient(180deg, var(--fm-primary) 0%, #FFD9B4 100%);
-  height: var(--fm-h); transition: height 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  display: flex; justify-content: center; padding-top: 10px;
-}
-.fm-reveal:not(.is-in) .fm-bar-fill { height: 0; }
-.fm-bar-value { font-family: var(--fm-font); font-size: 15px; font-weight: 700; color: #fff; }
-.fm-bar-label { margin: 10px 0 0; font-size: 13px; line-height: 1.4; text-align: center; color: var(--fm-muted); }
-
-/* One segmented bar */
-.fm-ages { display: grid; gap: 8px; }
-.fm-ages-labels, .fm-ages-bar { display: grid; grid-template-columns: var(--fm-cols); }
-.fm-ages-labels span { font-size: 13px; text-align: center; color: var(--fm-muted); }
-.fm-ages-bar { border-radius: 999px; overflow: hidden; }
-.fm-ages-seg {
-  display: grid; place-items: center; height: 54px;
-  font-family: var(--fm-font); font-size: 15px; font-weight: 700; color: var(--fm-dark-bg);
-  transform-origin: left;
-  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.fm-reveal:not(.is-in) .fm-ages-seg { transform: scaleX(0); }
-.fm-ages-caption { margin: 14px 0 0; font-size: 13px; color: var(--fm-muted); }
-
-/* Donut */
-.fm-donut { display: grid; gap: 20px; justify-items: center; }
-.fm-donut svg { width: min(200px, 100%); height: auto; }
-/* Each ring draws itself: its dash grows from nothing to its own share of the circle. */
-.fm-donut circle {
-  stroke-dasharray: var(--fm-dash) var(--fm-rest);
-  transition: stroke-dasharray 1100ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.fm-reveal:not(.is-in) .fm-donut circle { stroke-dasharray: 0 var(--fm-c); }
-.fm-donut-value { font-family: var(--fm-font); font-size: 22px; font-weight: 800; fill: var(--fm-primary-dark); }
-.fm-donut-label { font-size: 9px; fill: #6F6F6F; }
-.fm-legend-list { display: grid; gap: 8px; width: 100%; font-size: 13px; color: var(--fm-muted); }
-.fm-legend-list li { display: grid; grid-template-columns: 12px 1fr auto; gap: 10px; align-items: center; }
-.fm-swatch { width: 12px; height: 12px; border-radius: 4px; background: var(--fm-c); }
-.fm-legend-value { font-weight: 700; color: var(--fm-ink); font-variant-numeric: tabular-nums; }
+/* Each chart is now the exact SVG exported from Figma (see renderChartSvg in feetmine.js): the
+   card, its title and its drawing are all part of that image, so .fm-chart adds no card chrome
+   of its own — just makes sure the image scales down with its column and never overflows it. */
+.fm-chart { margin: 0; }
+.fm-chart-img { display: block; width: 100%; height: auto; }
 
 /* A data table for screen readers, kept out of sight but not out of the accessibility tree. */
 .fm-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

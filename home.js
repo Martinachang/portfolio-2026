@@ -24,7 +24,7 @@ function workCard(project) {
   } else if (image) {
     visual = `<img src="${image.src}" alt="${t(image.alt)}" style="object-fit: ${image.fit || "cover"}">`;
   } else {
-    visual = `<div class="work-visual-fallback" style="background: ${project.banner}">${project.name}</div>`;
+    visual = `<div class="work-visual-fallback" style="background: ${project.banner}">${t(project.name)}</div>`;
   }
   const visualClass = "work-visual" + (project.visualNoise ? " has-noise" : "");
   const noiseOpacity = project.visualNoiseOpacity !== undefined ? `; --noise-opacity: ${project.visualNoiseOpacity}` : "";
@@ -32,7 +32,7 @@ function workCard(project) {
   return `<article class="work-item">
        <a class="${visualClass}" href="${primaryLink.href}"${primaryLink.external ? ' target="_blank" rel="noopener"' : ""} style="background: ${project.visualBackground || project.accentWash || "var(--paper)"}${noiseOpacity}">${visual}</a>
        <div class="work-body">
-         <h3>${project.name} <span class="badge-pill">${project.badge}</span></h3>
+         <h3>${t(project.name)} <span class="badge-pill">${project.badge}</span></h3>
          <p>${t(project.blurb)}</p>
          <div class="work-links">${project.links.map((link) =>
            `<a class="pill-link" href="${link.href}"${link.external ? ' target="_blank" rel="noopener"' : ""}>${t(link.label)} ↗</a>`).join("")}</div>

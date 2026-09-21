@@ -114,6 +114,42 @@ const content = {
       ],
     },
     {
+      // No case-study page yet — see the TODO on the Case study link below.
+      id: "xizhou",
+      accent: "#F1BF00",           // the folder yellow from the banner artwork
+      accentWash: "#FDF3D7",
+      banner: "#F1BF00",           // flat colour for the Work card banner
+      badge: "LIVE",
+      // An { en, zh } pair, so this card's title switches with the language. The other projects keep
+      // plain-string names, so t() hands those back unchanged and they stay English in both.
+      name: { en: "Walk Xizhou, Keep Its Story", zh: "與泥探險" },
+      nameZh: "與泥探險",          // only read by the desk folder, and only for the first project
+      blurb: {
+        en: "Walk Xizhou blends the town's local character with new kinds of experience, drawing young people toward rural life and helping pass on its local economy and cultural stories.",
+        zh: "透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
+      },
+      workImage: {
+        src: "img/xizhoubanner.png",
+        alt: {
+          en: "The Walk Xizhou key visual: a yellow folder holding the project's sticker sheet, illustrated town guide and a phone showing its LINE chatbot",
+          zh: "與泥探險主視覺：一個黃色資料夾，裡面放著貼紙、手繪街區導覽與顯示 LINE 聊天機器人的手機",
+        },
+        // "cover", not "contain": the artwork is 16:9 in a 4:3 frame, so cover trims only the empty
+        // cream at the left and right edges and lets the folder fill the card like the others do.
+        fit: "cover",
+      },
+      // The banner's own cream, so the 16:9 artwork sits invisibly in the 4:3 frame. No visualNoise:
+      // the bars above and below the image would go grainy against the flat artwork.
+      visualBackground: "#FDF3D7",
+      links: [
+        // The image links here too (primary: true).
+        { label: { en: "Case study", zh: "完整案例" }, href: "xizhou.html", primary: true },
+        // TODO: the first press mention only — more to be added alongside it later.
+        { label: { en: "Press", zh: "新聞介紹" }, href: "https://tw.news.yahoo.com/%E7%A8%AE-%E6%A3%B5%E7%A7%91%E6%8A%80%E6%A8%B9-%E7%B5%90-%E4%B8%B2%E4%BA%BA%E6%96%87%E6%9E%9C-%E4%B8%AD%E8%8F%AF%E9%9B%BB%E4%BF%A1%E5%9F%BA%E9%87%91%E6%9C%83%E8%AE%93%E5%BD%B0%E5%8C%96%E6%BA%AA%E5%B7%9E-033730447.html", external: true },
+        { label: { en: "Highlights", zh: "成果展示" }, href: "https://www.chtf.org.tw/news/844", external: true },
+      ],
+    },
+    {
       id: "ilandgreen",            // must match data-project in the page's <body>
       page: "ilandgreen.html",
       accent: "#3fa895",           // the project's own colours
@@ -305,13 +341,11 @@ const content = {
       },
       gait: {
         title: { en: "Over 90.9% walk with abnormal gait", zh: "超過 90.9% 的人有著步態異常" },
-        centerValue: "90.9%",
-        centerLabel: { en: "abnormal gait", zh: "步態異常" },
         segments: [
           { label: { en: "Inward (overpronation)", zh: "內旋（旋前過度）" }, value: 52 },
           { label: { en: "Outward (supination)", zh: "外旋（旋後）" }, value: 30.6 },
           { label: { en: "Mixed", zh: "混合型" }, value: 8.6 },
-          { label: { en: "Normal", zh: "步態正常" }, value: 8.8, rest: true },
+          { label: { en: "Normal", zh: "步態正常" }, value: 8.8 },
         ],
       },
     },
@@ -697,6 +731,248 @@ const content = {
 
     next: {
       back: { en: "Back to work", zh: "回到作品列表" },
+    },
+  },
+
+  // ---------- The Walk Xizhou case study (xizhou.html) ----------
+  //
+  // Same pattern as content.feetmine above: xizhou.html holds the sections and every word comes
+  // from here through data-text. Unlike FeetMine, this page has no xizhou.js yet, so every list
+  // below is written with named keys (step1, step2, …), not an array — nothing here is JS-rendered,
+  // so every item has to be reachable by its own data-text path.
+  //
+  // The English is the brief as given by the owner. The Chinese was drafted from it for this first
+  // pass and is unreviewed; anywhere the content itself (not just the translation) was invented to
+  // fill a gap in the brief — the research table's rows, the service-journey table, the funnel
+  // steps' Chinese — is marked with its own TODO.
+  xizhou: {
+    hero: {
+      alt: { en: "The Walk Xizhou key visual: a yellow folder holding the project's sticker sheet, town map card and LINE chatbot screen", zh: "與泥探險主視覺：一個黃色資料夾，內含貼紙、街區地圖卡與 LINE 機器人畫面" },
+    },
+
+    intro: {
+      title: { en: "Walk Xizhou, Keep Its Story", zh: "與泥探險" },
+      subtitle: {
+        en: "A puzzle-based walking kit for a rural township in central Taiwan, designed to pass on local history without depending on a single guide.",
+        zh: "為彰化溪州設計的解謎走讀包，讓地方故事不再只靠一個人口述傳遞。",
+      },
+      body: {
+        en: "With Mud (與泥共好) runs farm experiences along the Zhuoshui River in Xizhou, Changhua. Their tours of historic buildings depended entirely on verbal guides — no materials, no tools, no way to scale. We joined through the CHT Foundation's social design programme and built a system that lets the story carry itself.",
+        zh: "與泥共好在彰化溪州沿濁水溪推廣農村體驗。他們的古建築導覽全靠口述，沒有教材、沒有教具、無法擴大規模。我們透過中華電信基金會的蹲點計畫加入，設計了一套能讓故事自己說話的系統。",
+      },
+      problemLabel: { en: "The question", zh: "設計問題" },
+      problem: {
+        en: "How might we help a small rural team share local history in a way that works even when no one is there to narrate it?",
+        zh: "如何幫助人力有限的農村團隊，打造一套不靠口述也能傳遞在地故事的體驗？",
+      },
+      outcomeLabel: { en: "Outcomes", zh: "成果" },
+      outcome: {
+        en: "A puzzle walking kit, optimised teaching aids, field signage and an online-to-offline funnel — adopted and run by the With Mud team, presented at the CHT Foundation showcase.",
+        zh: "解謎走讀包、優化教具、場域立牌與線上到線下導流機制，由與泥共好團隊實際採用並試跑，並於中華電信基金會成果發表中展示。",
+      },
+      // TODO: owner to confirm the exact team size — kept as the brief's own "[X]" placeholder.
+      meta: {
+        roleLabel: { en: "Role", zh: "職責" },
+        role: { en: "UX research · character design · walking-kit level design", zh: "UX 研究・吉祥物角色設計・走讀關卡設計" },
+        timelineLabel: { en: "Timeline", zh: "時程" },
+        timeline: { en: "2024", zh: "2024" },
+        teamLabel: { en: "Team", zh: "團隊" },
+        team: { en: "[X] students · 1 CHT Foundation programme", zh: "[X] 位學生・中華電信基金會蹲點計畫" },
+        typeLabel: { en: "Type", zh: "類型" },
+        type: { en: "Social design · commissioned by CHT Foundation", zh: "社會設計・中華電信基金會委託" },
+      },
+    },
+
+    process: {
+      line1: { en: "Research, design", zh: "研究、設計" },
+      line2: { en: "and a live field test", zh: "與實地試跑" },
+      lead: {
+        en: "Walk Xizhou moved from an online kickoff call to a field-tested kit adopted by the client team.",
+        zh: "與泥探險從線上啟動會議，一路走到客戶團隊實際採用的試跑成果。",
+      },
+      // TODO: the five steps' own text is drafted from the brief's short phrases, not verbatim —
+      // check against the owner's own account of the timeline before treating it as final.
+      step1: { title: { en: "Research", zh: "研究" }, text: { en: "Online meetings to scope the project, then a field trip to Xizhou.", zh: "線上會議討論需求，並前往溪州進行實地考察。" } },
+      step2: { title: { en: "Define", zh: "定義" }, text: { en: "A stakeholder map, three user groups, and a design direction.", zh: "整理利害關係人地圖、劃分三類使用者，並訂出設計方向。" } },
+      step3: { title: { en: "Design", zh: "設計" }, text: { en: "Teaching aids, field signage, a puzzle walking kit, and the mascot Ni Bobo.", zh: "設計教具、場域立牌、解謎走讀包，以及吉祥物泥伯伯。" } },
+      step4: { title: { en: "Field test", zh: "田野測試" }, text: { en: "The team ran the kit with local children in Xizhou.", zh: "團隊帶著溪州當地孩童實際試跑走讀包。" } },
+      step5: { title: { en: "Launch", zh: "上線" }, text: { en: "Presented at the CHT Foundation; adopted by the With Mud team.", zh: "於中華電信基金會發表成果，並由與泥共好團隊採用。" } },
+    },
+
+    problem: {
+      line1: { en: "One guide, one tour —", zh: "一個人撐起一場導覽——" },
+      line2: { en: "no guide, no story", zh: "人不在，故事就消失" },
+      lead: {
+        en: "Xizhou has a rich history: a sugar refinery that once defined the town, historic buildings, a close-knit community. None of it was written down or visualised. Every tour depended on one person's voice, and when young people moved to the city, that voice became scarcer.",
+        zh: "溪州有豐富的歷史：曾是地方命脈的糖廠、充滿故事的古建築、緊密的鄉里關係。但這一切都沒有被文字化或視覺化。每場導覽都靠一個人的聲音，而隨著年輕人北漂，這個聲音越來越難找。",
+      },
+      point1: { en: "Tour content existed only in the guide's memory — impossible to carry, repeat or scale.", zh: "導覽內容只存在導覽員的記憶裡——無法攜帶、重複或擴大規模。" },
+      point2: { en: "Activity information was scattered across FB, IG and ACCUPASS, with no single entry point.", zh: "活動資訊分散於 FB、IG 與 ACCUPASS，沒有統一入口。" },
+      point3: { en: "No teaching aids meant each session could only transfer a limited amount of knowledge.", zh: "缺乏教具，每場活動能傳遞的知識有限。" },
+      point4: { en: "The main audience was school and cram-school groups; too few visitors meant the session couldn't break even.", zh: "主要客群是學校與補習班團體，人太少時收支難以打平。" },
+      point5: { en: "Social posts reached people once and disappeared — no way to re-engage.", zh: "社群貼文觸及一次就消失，沒有可重複接觸的管道。" },
+      point6: { en: "Young people had left the town, leaving the organisation short-staffed and dependent on a handful of people.", zh: "年輕人北漂，組織人力不足，高度依賴少數幾個人。" },
+    },
+
+    research: {
+      line1: { en: "Three stages of research:", zh: "三個研究階段：" },
+      line2: { en: "from needs to the real goal", zh: "從表面需求到真正目標" },
+      lead: {
+        en: "We started with an online meeting to understand the team's needs, then travelled to Xizhou for a field visit and interviewed three With Mud team members in depth.",
+        zh: "我們先透過線上會議了解團隊需求，再前往溪州進行田野調查，並深度訪談了三位與泥共好的團隊成員。",
+      },
+      tableCaption: { en: "Research stages", zh: "研究階段" },
+      tableStage: { en: "Stage", zh: "階段" },
+      tableMethod: { en: "Method", zh: "方法" },
+      tablePurpose: { en: "Purpose", zh: "目的" },
+      // TODO: the three rows below restate research.lead as a table — reasonable, but not the
+      // owner's own wording, so check them against it.
+      stage1: { stage: { en: "Pre-visit", zh: "事前" }, method: { en: "Online meeting", zh: "線上會議" }, purpose: { en: "Understand the team's needs", zh: "了解團隊的需求" } },
+      stage2: { stage: { en: "Field visit", zh: "田野調查" }, method: { en: "On-site visit to Xizhou", zh: "前往溪州實地考察" }, purpose: { en: "See the space and community firsthand", zh: "親身觀察場域與社區" } },
+      stage3: { stage: { en: "Interviews", zh: "深度訪談" }, method: { en: "In-depth interviews with 3 team members", zh: "與 3 位團隊成員深度訪談" }, purpose: { en: "Uncover what mattered most to the team", zh: "找出團隊最在意的事" } },
+      quote1: { en: "“We don't expect visitors to fully understand the history. We just hope that Xizhou's past prosperity and culture won't be forgotten.”", zh: "「我們不期望遊客完全明白歷史，只期望過去溪州的繁榮與文化不要被遺忘。」" },
+      quote1cite: { en: "— With Mud team member, on Xizhou's sugar-refinery history", zh: "— 與泥共好團隊成員，談溪州糖廠歷史" },
+      quote2: { en: "“People in Changhua are very warm and friendly — there's a real sense of community here.”", zh: "「彰化在地人都非常熱情友善，富有人情味。」" },
+      quote2cite: { en: "— With Mud team member (confirmed in our field visit: neighbours greet each other on the street)", zh: "— 與泥共好團隊成員（田調時親身驗證：鄉里之間大家都認識、會互相打招呼）" },
+    },
+
+    users: {
+      line1: { en: "Three kinds of people", zh: "三類會走進溪州的人" },
+      line2: { en: "who walk into Xizhou", zh: "" },
+      lead: {
+        en: "Design direction: blend local character with innovative experience to draw young people toward rural life and help pass on local economic and cultural stories.",
+        zh: "設計理念：透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
+      },
+      group1: { title: { en: "Niche-spot seekers", zh: "小眾景點愛好者" }, text: { en: "Escape weekday stress through quiet nature. Design implication: leave breathing room; don't over-explain.", zh: "用寧靜自然風光忘卻平日繁忙。設計啟示：保留留白，不過度解說。" } },
+      group2: { title: { en: "Young day-trippers from Taichung", zh: "台中機車族年輕人" }, text: { en: "Xizhou is close; a one-day loop with friends. Design implication: a walkable route completable in a day.", zh: "距離近，適合與朋友一日往返。設計啟示：路線可步行、一日完成。" } },
+      group3: { title: { en: "Cram schools and school groups", zh: "補習班與學校團體" }, text: { en: "Bring children to experience nature and local space. Design implication: kit must work for many people at once, without depending on a single presenter.", zh: "帶孩子體驗大自然與在地空間。設計啟示：教具能同時服務多人，不依賴單一講者。" } },
+    },
+
+    insights: {
+      line1: { en: "Two insights that", zh: "兩個洞察" },
+      line2: { en: "shaped every decision", zh: "決定了所有設計方向" },
+      item1: {
+        title: { en: "The bottleneck isn't lack of content — it's content locked inside people", zh: "瓶頸不是內容不夠，而是內容全綁在人身上" },
+        text: { en: "Xizhou's stories are rich. What's missing is a way to carry them, repeat them, and let them run without anyone present. The goal wasn't to make a better tour — it was to detach the tour from the person.", zh: "溪州的故事很豐富。缺的是讓它被攜帶、重複、在沒有人的時候繼續運作的方式。目標不是做更好的導覽，而是把導覽從人身上拆下來。" },
+      },
+      item2: {
+        title: { en: "The goal isn't to make visitors understand history — it's to make sure history isn't forgotten", zh: "目標不是讓人記住歷史，而是讓歷史不被遺忘" },
+        text: { en: "Once the goal shifted from 'transfer knowledge' to 'leave a memory,' gamification stopped being decoration and became the right answer: an experience that makes people actively engage leaves a deeper trace than a correct and complete explanation.", zh: "當目標從「傳遞知識」變成「不被遺忘」，遊戲化就不再是包裝，而是正解：讓人主動投入的體驗，比正確而完整的知識留下更深的痕跡。" },
+      },
+    },
+
+    decisions: {
+      line1: { en: "Five decisions,", zh: "五個設計決策，" },
+      line2: { en: "each with a reason", zh: "每個都有為什麼" },
+      lead: {
+        en: "Every choice was constrained by the same premise: the team is small, the budget is limited, and the solution must keep working after we leave.",
+        zh: "每個選擇都建立在同一個前提：組織人力少、預算有限，方案必須在我們離開後還能繼續運作。",
+      },
+      item1: { title: { en: "A physical kit, not an app", zh: "實體走讀包，不做 App" }, text: { en: "No one on the team can maintain a digital product. A physical kit is made once and handed out repeatedly — and participants take it home as a keepsake.", zh: "組織沒有人能維護數位產品。實體包一次製作即可重複發放，參與者還能帶回家當紀念。" } },
+      item2: { title: { en: "Alternating indoor and outdoor stops", zh: "室內外場域交替" }, text: { en: "Our field visit showed that long outdoor sessions in summer Xizhou hurt the experience. Alternating stops create natural rest points without scheduling breaks.", zh: "田調時親身感受到夏季長時間戶外活動的疲憊。室內外交替自然形成休息點，不必額外安排。" } },
+      item3: { title: { en: "Paper worksheet + QR code, not pure paper or pure digital", zh: "紙本學習單＋QR code，不純紙本也不純數位" }, text: { en: "Paper keeps the on-site ritual of writing and discussion. The QR code carries deeper knowledge that can be updated later without reprinting.", zh: "紙本保留現場書寫與討論的儀式感，QR code 補充延伸知識且可隨時更新，不必重印。" } },
+      item4: { title: { en: "Funnel from IG/FB to official LINE", zh: "從 FB/IG 導流到官方 LINE" }, text: { en: "A social post reaches people once and disappears. LINE lets the team push new events repeatedly, turning a one-off impression into an ongoing relationship.", zh: "社群貼文觸及一次就消失。LINE 讓團隊重複推播新活動，把一次曝光變成長期關係。" } },
+      item5: { title: { en: "Journey ends at a local partner shop", zh: "旅程終點設在在地合作商家" }, text: { en: "Routing visitors to a partner for their final reward spills the economic benefit into the wider community — consistent with the With Mud brand's core value of 共好 (shared flourishing).", zh: "把最終獎勵設在合作商家，讓效益外溢到整個聚落，呼應品牌核心主張「共好」。" } },
+    },
+
+    features: {
+      eyebrow1: "Design #1",
+      eyebrow2: "Design #2",
+      eyebrow3: "Design #3",
+      eyebrow4: "Design #4",
+      one: {
+        name: { en: "Teaching aids & field signage", zh: "教具與場域立牌" },
+        text: {
+          en: "We redesigned the 'One-Day Cattle Farmer' activity worksheet: paper for on-site guidance, a QR code for extended knowledge that satisfies curiosity. We added signage throughout the site so the space explains itself, reducing how much the guide needs to narrate.",
+          zh: "我們重新設計「一日養牛人」的學習單：紙本負責現場引導，QR code 補充延伸知識、激發好奇心。場域內加上介紹立牌，讓空間自己說明，減少導覽員口述的負擔。",
+        },
+        panelALabel: { en: "Before / After worksheet", zh: "學習單改版前後" },
+        panelBLabel: { en: "Field signage", zh: "場域立牌" },
+      },
+      two: {
+        name: { en: "Puzzle walking kit", zh: "解謎走讀包" },
+        text: {
+          en: "Xizhou's history anchors the route. Historic buildings become stops on a walkable path, with indoor and outdoor stages alternating to manage summer heat. Each card carries a puzzle, a tip from Ni Bobo, and a stamp box.",
+          zh: "以溪州歷史故事為主軸，把古建築串成可步行的解謎路線，室內外交替應對夏季的炎熱。每張關卡卡片都有謎題、泥伯伯的提示，以及蓋章欄。",
+        },
+        panelALabel: { en: "Route map", zh: "走讀路線地圖" },
+        panelBLabel: { en: "Level card", zh: "關卡卡片" },
+      },
+      three: {
+        name: { en: "Mascot: Ni Bobo", zh: "吉祥物：泥伯伯" },
+        text: {
+          en: "Teaching aids, signage, walking-kit cards and social posts all live in different formats and sizes. Ni Bobo is the single visual element that threads them together, making every touchpoint recognisable as one system.",
+          zh: "教具、立牌、走讀卡片與社群貼文分屬不同媒材與尺寸。泥伯伯是貫穿其中的唯一視覺元素，讓每個接觸點都被認出是同一套體驗。",
+        },
+        panelALabel: { en: "Character sheet", zh: "角色設定稿" },
+        panelBLabel: { en: "Applied across materials", zh: "跨媒材應用" },
+      },
+      four: {
+        name: { en: "Online-to-offline funnel", zh: "線上到線下導流" },
+        text: {
+          en: "Starting from existing IG and FB accounts, visitors complete a small puzzle task online to earn a kit discount. They join the official LINE account, use the kit on-site, then redeem a local discount and an origami reward at a partner shop. LINE continues to push new events after.",
+          zh: "從既有的 IG 與 FB 出發，線上完成解謎小任務即可獲得走讀包折扣。加入官方 LINE 後開始走讀，完成後至合作商家領取在地折扣與摺紙小獎勵，LINE 也持續推播新活動。",
+        },
+        panelALabel: { en: "Funnel overview", zh: "導流機制總覽" },
+        panelBLabel: { en: "LINE chatbot", zh: "LINE 聊天機器人" },
+        // TODO: the funnel steps' Chinese is a straight translation, not verbatim from the brief.
+        funnel: {
+          step1: { en: "Complete IG/FB puzzle task", zh: "完成 IG/FB 解謎任務" },
+          step2: { en: "Earn kit discount", zh: "獲得走讀包折扣" },
+          step3: { en: "Join official LINE", zh: "加入官方 LINE" },
+          step4: { en: "On-site walking kit", zh: "現場走讀包體驗" },
+          step5: { en: "Redeem reward at partner shop", zh: "至合作商家兌換獎勵" },
+          step6: { en: "LINE pushes new events", zh: "LINE 持續推播新活動" },
+        },
+      },
+    },
+
+    business: {
+      line1: { en: "A loop that benefits", zh: "一個讓三方共好的循環" },
+      line2: { en: "visitors, the team and local shops", zh: "" },
+      lead: {
+        en: "The kit connects three groups: visitors who want an engaging experience, With Mud who need a repeatable programme, and local shops who gain foot traffic. Each benefits the others.",
+        zh: "走讀包串連三個對象：想要有趣體驗的遊客、需要可複製活動的與泥共好，以及希望帶進客流的在地商家。三方互相促成。",
+      },
+      card1: { title: { en: "For visitors", zh: "對遊客" }, text: { en: "Gamified tasks lower the barrier to join. Completing the route earns tangible rewards.", zh: "遊戲化任務降低參與門檻，完成路線可獲得實體獎勵。" } },
+      card2: { title: { en: "For With Mud", zh: "對與泥共好" }, text: { en: "LINE followers grow; new events can be pushed repeatedly. Tour content no longer depends on verbal delivery.", zh: "LINE 好友持續累積，可重複推播新活動。導覽內容不再全靠口述。" } },
+      card3: { title: { en: "For local shops", zh: "對在地商家" }, text: { en: "The kit's final destination is a partner shop, routing visitor spending into the local community.", zh: "走讀包的終點在合作商家，把遊客動線導向在地消費。" } },
+      flowTitle: { en: "Service journey", zh: "服務流程" },
+      // TODO: the journey table's headers are translated from the brief; its three cells are
+      // this pass's own summary of feature #4's funnel, not the owner's wording — check both.
+      journeyBeforeLabel: { en: "Before", zh: "事前" },
+      journeyBefore: { en: "Discover Walk Xizhou through IG or FB and complete a small puzzle task to unlock a kit discount.", zh: "透過 IG 或 FB 發現與泥探險，完成小解謎任務解鎖走讀包折扣。" },
+      journeyDuringLabel: { en: "During", zh: "過程中" },
+      journeyDuring: { en: "Join the official LINE account, then use the walking kit on-site to explore Xizhou's history.", zh: "加入官方 LINE，接著在現場使用走讀包探索溪州歷史。" },
+      journeyAfterLabel: { en: "After", zh: "事後" },
+      journeyAfter: { en: "Redeem a discount and an origami reward at a partner shop; LINE keeps pushing new events.", zh: "至合作商家兌換折扣與摺紙小獎勵；LINE 持續推播新活動。" },
+    },
+
+    results: {
+      line1: { en: "Results", zh: "成果" },
+      line2: { en: "and recognition", zh: "與肯定" },
+      item1: { title: { en: "Presented at the CHT Foundation showcase", zh: "於中華電信基金會蹲點成果發表中展示" }, text: { en: "The project was publicly presented as part of the 2024 CHT Foundation Social Design Programme.", zh: "專案於 2024 年中華電信基金會蹲點創新設計行動成果發表中公開展示。" } },
+      item2: { title: { en: "Adopted and field-tested by the With Mud team", zh: "由與泥共好團隊實際採用並試跑" }, text: { en: "The kit was made and run by the With Mud team with local children in Xizhou, then shared on the team's official social channels.", zh: "走讀包由與泥共好團隊帶領溪州在地孩子試跑，並在官方社群發布。" } },
+      // Left as the brief's own placeholder for the owner to fill in.
+      item3: { title: { en: "Team collaboration and mentorship", zh: "團隊協作與指導" }, text: { en: "[To fill in: one sentence on how the team worked and what the advisor or programme contributed.]", zh: "[待補：一句話說明團隊如何分工以及指導老師或計畫給了什麼幫助。]" } },
+      // TODO: photo captions translated for this pass, not given in the brief.
+      photo1: { en: "CHT Foundation showcase", zh: "中華電信基金會成果發表" },
+      photo2: { en: "Field test with local children", zh: "與在地孩童的實地測試" },
+      photo3: { en: "With Mud team at the event", zh: "與泥共好團隊出席活動" },
+    },
+
+    reflection: {
+      line1: { en: "What I", zh: "我學到" },
+      line2: { en: "learned", zh: "的事" },
+      // Left as the brief's own placeholder for the owner to fill in.
+      body: {
+        en: "In resource-constrained settings, the best solution isn't always the most complete one — it's the one the organisation can sustain without you. A good interview means hearing what isn't said: the quote 'we just hope it won't be forgotten' rewrote the entire project direction, and it only came out because I kept asking why. [Add one specific thing you'd test or change if the project continued.]",
+        zh: "在資源受限的場域，最好的設計不一定最完整，而是組織自己能持續運作的那一個。好的訪談是聽見沒說出口的話：「只期望不要被遺忘」這句話改寫了整個設計方向，也是我習慣多問一句「為什麼」的地方。[補充：如果專案延續，你最想測試或改變的一件事。]",
+      },
+    },
+
+    next: {
+      back: { en: "← Back to all work", zh: "← 回到所有作品" },
     },
   },
 

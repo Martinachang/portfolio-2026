@@ -40,7 +40,7 @@
         // 2. Work list
         const cards = doc.querySelectorAll(".work-item");
         const card = cards[0];
-        check("the work list has one section per project", cards.length === 3);
+        check("the work list has one section per project", cards.length === 4);
         check("the section shows the project's name, status and image", card.querySelector("h3").textContent.includes("FeetMine") && card.querySelector(".badge-pill").textContent === "COURSE" && card.querySelector(".work-visual img") !== null);
         check("the section's links point at its case study", card.querySelector('.pill-link[href="feetmine.html"]') !== null);
         check("the headline has its coloured words and the process has three steps", $("#headline em") !== null && doc.querySelectorAll(".steps > li").length === 3);
@@ -105,10 +105,9 @@
             doc.querySelectorAll("#fm-goals li").length === 3 &&
             doc.querySelectorAll("#fm-parent-stats li").length === 3 &&
             doc.querySelectorAll("#fm-results li").length === 3);
-          check("the charts are drawn in CSS and SVG, with their numbers in a table as well",
-            doc.querySelectorAll("#fm-chart-bars .fm-bar-fill").length === 3 &&
-            doc.querySelectorAll("#fm-chart-ages .fm-ages-seg").length === 3 &&
-            doc.querySelectorAll("#fm-chart-gait .fm-donut svg circle").length === 4 &&
+          check("the three charts are the exported Figma SVGs, each with its numbers in a table as well",
+            $("#fm-chart-bars img.fm-chart-img") !== null && $("#fm-chart-ages img.fm-chart-img") !== null &&
+            $("#fm-chart-gait img.fm-chart-img") !== null &&
             $$(".fm-chart").every((chart) => chart.querySelector("table.fm-sr") !== null));
           check("the comparison table has every competitor, and says in words what a dot means",
             doc.querySelectorAll("#fm-compare tbody tr").length === 4 &&
@@ -120,9 +119,14 @@
             doc.querySelectorAll("#fm-screens li").length === 5 && doc.querySelectorAll("#fm-photos .fm-panel").length === 3);
           // Every image still waiting on its final export is a crop of a deck slide, so no slide
           // is ever shown whole with its text; the hero is the one image that's a finished asset
-          // (img/banner.jpg) shown in full. Every image has alt text either way.
-          check("every temporary image is cropped, the hero is its own finished asset, and every image has alt text",
-            $$("img").every((image) => (image.closest(".fm-shot") !== null || image.classList.contains("fm-hero-img")) && image.alt.length > 0));
+          // (img/banner.jpg) shown in full. Every other image needs real alt text, except the
+          // three exported chart SVGs: their words are outlined paths, not text a screen reader
+          // can read, so they're decorative (alt="") and their numbers live in a table.fm-sr
+          // right beside them instead — never a bare, undescribed image.
+          check("every temporary image is cropped, the hero is its own finished asset, and every other image is described or backed by a table",
+            $$("img").every((image) => image.classList.contains("fm-chart-img")
+              ? image.closest("figure").querySelector("table.fm-sr") !== null
+              : (image.closest(".fm-shot") !== null || image.classList.contains("fm-hero-img")) && image.alt.length > 0));
           check("a click opens the same crop in the lightbox, not the whole slide", (() => {
             const zoom = $(".fm-zoom");
             zoom.click();
