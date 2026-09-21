@@ -57,13 +57,9 @@ portfolio-2026/
 │
 ├── resume/Resume-ENG.pdf
 ├── demo/ilandgreen-app/        a separate prototype app; ignore it
-├── tools/
-│   ├── test.html         232   the only check; serve it over http://
-│   └── serve.ps1               a static server, for the owner's Windows machine
-│
-└── feetmine.html · xizhou.html · ilandgreen.html · ilandgreen/index.html
-    forwarding stubs for the URLs the site served before the reorganisation.
-    Not pages. Do not add to them, and do not delete them without asking.
+└── tools/
+    ├── test.html         232   the only check; serve it over http://
+    └── serve.ps1               a static server, for the owner's Windows machine
 ```
 
 `demo/ilandgreen-app/` is 12 files and 1,452 lines with its own router, state and namespace. It
@@ -179,10 +175,10 @@ Do not re-suggest these. Each was weighed and settled.
 - **The demo app lives at `demo/ilandgreen-app/`.** It was moved out of the root to stop it
   reading as the sibling of the case-study page, and suffixed so a search for "ilandgreen" tells
   the two apart. The Demo href in `site-text.js` moved with it. Do not move it again.
-- **The four forwarding stubs stay until the owner says otherwise.** `feetmine.html`,
-  `xizhou.html`, `ilandgreen.html` and `ilandgreen/index.html` are the URLs the deployed site
-  served before the reorganisation. GitHub Pages has no redirect config, so a stub file is the
-  only mechanism. They are not pages and carry no copy.
+- **No redirect stubs for the pre-reorganisation URLs.** The deployed site used to serve
+  `/feetmine.html`, `/xizhou.html`, `/ilandgreen.html` and `/ilandgreen/`, and the move to
+  `work/<id>/` kills them. The owner confirmed those links were never shared, so they were left
+  to 404 rather than kept alive by stub files at the root.
 
 ## Comments
 

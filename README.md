@@ -75,6 +75,3 @@ every image actually loading, every list rendered. It needs a local server; the 
 
 - `CLAUDE.md` is written for coding assistants, not for you. It tells them the conventions to
   follow so they don't undo things on purpose.
-- `feetmine.html`, `xizhou.html` and `ilandgreen/` at the top level are not real pages. They are
-  forwarding stubs so links shared before the site was reorganised still work. Delete them when
-  you're sure nothing points at the old addresses.
