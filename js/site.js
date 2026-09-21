@@ -1,7 +1,7 @@
 // site.js — shared by every page. Holds the language, fills every data-text element from
-// content.js, draws the chrome, and glides to in-page links.
+// site-text.js, draws the chrome, and glides to in-page links.
 //
-// Load order is the dependency graph: content.js, then this file, then the page's own script.
+// Load order is the dependency graph: site-text.js, then this file, then the page's own script.
 // That script must define a global renderPage(); render() calls it unguarded.
 
 // The home page has no data-project, and falls through to the newest project for the desk folder.

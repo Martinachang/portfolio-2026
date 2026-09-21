@@ -1,7 +1,7 @@
-// feetmine.js — the FeetMine case study (feetmine.html).
+// feetmine.js — the FeetMine case study (work/feetmine/index.html).
 // site.js has loaded, so t(), fill() and the shared item templates exist.
 //
-// The page's sections are written out in feetmine.html; this file draws the parts that repeat:
+// The page's sections are written out in work/feetmine/index.html; this file draws the parts that repeat:
 // the lists, the three charts, the comparison table, the service flow and the image rows.
 // Everything here is text, CSS and inline SVG — the only <img> tags are app screens and photos.
 
@@ -12,7 +12,7 @@ const fm = content.feetmine;
 function statItem(item) {
   // Neither language shows the stat number any more: both sets of titles stand on their own as
   // statements. fm-no-stat collapses the column the number used to occupy. The figures stay in
-  // content.js's `value` as a record of the deck's own numbers.
+  // site-text.js's `value` as a record of the deck's own numbers.
   return `<li class="fm-no-stat"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
 }
 
@@ -40,7 +40,7 @@ function dataTable(caption, rows) {
      </table>`;
 }
 
-// Each of these four charts is now the exact SVG exported from Figma (img/feetmine/chart1–4.svg) rather
+// Each of these four charts is now the exact SVG exported from Figma (img/chart1–4.svg) rather
 // than a CSS/JS drawing — the source file is the design, so this stays a picture of it, not a
 // rebuild. Every label and number inside those files is a Figma "outline text" path, not a real
 // <text> node, so none of it exists for a screen reader; the img is decorative (alt="") and the
@@ -52,7 +52,7 @@ function renderChartSvg(figure, src, caption, rows) {
      ${dataTable(caption, rows)}`;
 }
 
-// The life-stage bar (img/feetmine/chart4.svg) has no percentages, just an ordered sequence of stages
+// The life-stage bar (img/chart4.svg) has no percentages, just an ordered sequence of stages
 // with one marked as this project's focus — so its accessible table is one column of names
 // plus a note on the active row, not the label/value shape dataTable() expects.
 function renderStages(figure, src, caption, stages) {
@@ -95,7 +95,7 @@ function renderCompare(host) {
 
 // The loop from the deck: the user measures a foot, the foot's metrics decide the shoes, the store
 // supplies the specs, and the user's feedback goes back to the store. Wide screens get the diagram;
-// phones get the same steps as a list (see the media queries in feetmine.css).
+// phones get the same steps as a list (see the media queries in css/editorial.css).
 function renderLoop(host) {
   const loop = fm.business.loop;
   // Three metric pairs sit above the line from the foot to the shoes: what each pair decides.
@@ -153,13 +153,13 @@ function renderFlow(host) {
 
 // ---------- Image rows ----------
 // Until the final exports exist these are crops of the deck slides; the fm-shot--* class holds the
-// crop and feetmine.css explains it. A click opens the same crop, larger, in the lightbox.
+// crop and css/editorial.css explains it. A click opens the same crop, larger, in the lightbox.
 
 const screenCrops = ["home", "ar", "result", "idcard", "growth"];
 
 function screenItem(screen, i) {
   return `<li>
-       <!-- TODO: replace with img/feetmine/feetmine-screen-${screenCrops[i]}.png -->
+       <!-- TODO: replace with img/feetmine-screen-${screenCrops[i]}.png -->
        <button type="button" class="fm-zoom fm-shot fm-shot--${screenCrops[i]}">
          <img src="img/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
        </button>
@@ -169,7 +169,7 @@ function screenItem(screen, i) {
 
 function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
-       <!-- TODO: replace with img/feetmine/feetmine-yodex-${i + 1}.jpg -->
+       <!-- TODO: replace with img/feetmine-yodex-${i + 1}.jpg -->
        <button type="button" class="fm-zoom fm-shot fm-shot--yodex${i + 1}">
          <img src="img/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
        </button>
@@ -217,7 +217,7 @@ function renderPage() {
 
 // ---------- Reveal on scroll ----------
 
-// Sections fade up once, and the charts inside them grow at the same moment (feetmine.css keys the
+// Sections fade up once, and the charts inside them grow at the same moment (css/editorial.css keys the
 // bars and the donut off .is-in). With reduced motion asked for, everything is simply shown.
 const still = window.matchMedia("(prefers-reduced-motion: reduce)");
 let watcher = null;

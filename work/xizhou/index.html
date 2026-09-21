@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="../../css/editorial.css">
 </head>
 <body data-root="../../" data-project="xizhou" class="cs-xizhou">
-  <!-- The Walk Xizhou case study. Same pattern as feetmine.html: the sections below are written
-       out here, every word comes from content.xizhou (data-text), and xizhou.css does the styling,
-       scoped under .cs-xizhou so the rest of the site is untouched. There is no xizhou.js yet —
-       every list below is static markup with named data-text keys, not a JS-rendered array. -->
+  <!-- The Walk Xizhou case study. Same pattern as work/feetmine/index.html: the sections below are written
+       out here, every word comes from content.xizhou (data-text), and css/editorial.css does the styling,
+       scoped under .cs-xizhou so the rest of the site is untouched. xizhou.js fills the eleven
+       repeating lists — process, quotes, insights, the photo panels — into the empty ids below. -->
 
   <a class="skip" href="#intro" data-text="site.skip"></a>
 
@@ -58,7 +58,7 @@
       </div>
     </section>
 
-    <!-- ---------- Process: five static steps (no xizhou.js yet, so no JS-rendered list) ---------- -->
+    <!-- ---------- Process: xizhou.js fills #fm-process from content.xizhou.process.steps ---------- -->
     <section class="fm-sec fm-dark" aria-labelledby="process-title">
       <div class="fm-wrap fm-split">
         <div>
@@ -85,7 +85,7 @@
       </div>
       <div class="fm-wrap">
         <div class="fm-card">
-          <!-- A real list, not one <p> with <br> — content.js strings stay text-only site-wide. -->
+          <!-- A real list, not one <p> with <br> — site-text.js strings stay text-only site-wide. -->
           <ul class="fm-note fm-bullet-list" id="fm-problem-points"></ul>
         </div>
       </div>
@@ -327,7 +327,7 @@
             <span class="fm-h2-soft" data-text="xizhou.reflection.line2"></span>
           </h2>
         </div>
-        <!-- TODO: the owner still has to write this section (see the [bracketed] note in content.js). -->
+        <!-- TODO: the owner still has to write this section (see the [bracketed] note in site-text.js). -->
         <p class="fm-lead" data-text="xizhou.reflection.body"></p>
       </div>
     </section>

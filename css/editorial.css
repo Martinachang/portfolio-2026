@@ -1,4 +1,4 @@
-/* editorial.css — everything the two case-study pages need: feetmine.html and xizhou.html.
+/* editorial.css — everything the two case-study pages need: work/feetmine/index.html and work/xizhou/index.html.
 
    Three parts, in this order: the shared layout, then FeetMine's rules, then Walk Xizhou's.
    A page supplies six brand tokens and the shared rules read them, so a third editorial page
@@ -441,7 +441,7 @@ main { overflow-x: hidden; position: relative; }
    Until the final exports exist, every image here is a crop of a deck slide: the wrapper shows one
    region of the slide and nothing else. --cx/--cy is the top-left corner of that region and
    --cw/--ch its size, both as a fraction of the slide (all slides are 2000 x 1125).
-   When img/feetmine-<name>.png arrives, drop the fm-shot--* class and point the <img> at it. */
+   When work/feetmine/img/<name>.png arrives, drop the fm-shot--* class and point the <img> at it. */
 
 .cs-feetmine .fm-shot { position: relative; overflow: hidden; aspect-ratio: var(--fm-ar); border-radius: 4px; }
 .cs-feetmine .fm-shot img {
@@ -596,7 +596,7 @@ main { overflow-x: hidden; position: relative; }
 }
 .cs-xizhou .fm-quote:first-of-type { margin-top: clamp(40px, 5vw, 64px); }
 .cs-xizhou .fm-quote p { margin: 0; }
-/* New, not in feetmine.css: feetmine's own .fm-quote wraps a plain string with no attribution.
+/* New, not in css/editorial.css: feetmine's own .fm-quote wraps a plain string with no attribution.
    This page's quotes are cited, so the citation line needs its own (smaller, unbolded) style. */
 .cs-xizhou .fm-quote cite {
   display: block; margin-top: 10px;
@@ -607,7 +607,7 @@ main { overflow-x: hidden; position: relative; }
 /* ---------- The dark card, used for the problem list, the tables and the business cards ---------- */
 .cs-xizhou .fm-card p { color: var(--fm-muted-invert); }
 
-/* New, not in feetmine.css: the six problem points. CLAUDE.md keeps content.js strings text-only
+/* New, not in css/editorial.css: the six problem points. CLAUDE.md keeps site-text.js strings text-only
    (no embedded <br>), so this is a real list rather than feetmine's one-<p>-with-<br> pattern —
    same look (a bulleted stack of short sentences), no HTML in the content string. */
 /* No margin reset: style.css already zeroes ul margins, and .fm-card .fm-note sets the top. */
@@ -629,7 +629,7 @@ main { overflow-x: hidden; position: relative; }
 /* ---------- Full-bleed panels (the four Design sections, and the closing photos) ---------- */
 .cs-xizhou .fm-light .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
 
-/* New, not in feetmine.css: every image on this page is still a placeholder (no exports yet, and
+/* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
    no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets
    this dashed box. Given by the owner; the light-section variant is the one addition needed to
    keep it readable on both themes. */

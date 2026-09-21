@@ -11,8 +11,8 @@
 </head>
 <body>
   <!-- The home page: the desk, the list of projects, and the profile (about, skills, contact).
-       Every element with data-text="a.b.c" gets its words from content.js (data-html for the one string with <em> in it).
-       Lists (project cards, timeline, skills) are drawn by home.js into the empty elements with an id. -->
+       Every element with data-text="a.b.c" gets its words from site-text.js (data-html for the one string with <em> in it).
+       Lists (project cards, timeline, skills) are drawn by js/page-home.js into the empty elements with an id. -->
 
   <a class="skip" href="#work" data-text="site.skip"></a>
 
@@ -36,7 +36,7 @@
         </div>
 
         <div class="desk-objects">
-          <!-- The folder shows the featured project (the first one in content.js). The mascot is a sticker. -->
+          <!-- The folder shows the featured project (the first one in site-text.js). The mascot is a sticker. -->
           <a class="object folder" href="#work" draggable="false">
             <span class="folder-tab" data-text="work.title"></span>
             <span class="folder-title" data-text="project.name"></span>

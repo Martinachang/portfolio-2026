@@ -1,8 +1,8 @@
-// content.js — every word on the site lives here. Edit this file to change text.
+// site-text.js — every word on the site lives here. Edit this file to change text.
 //
 // Each string has both languages side by side: { en: "...", zh: "..." }.
 // A plain string (a name, a tool, an email) is the same in both languages.
-// script.js reads this file and puts the words into index.html.
+// js/site.js reads this file and puts the words into index.html.
 
 const content = {
   site: {
@@ -93,7 +93,7 @@ const content = {
         { label: { en: "Team", zh: "團隊" }, value: { en: "3 Undergraduate Students, 1 Advisor", zh: "3 位大學生，1 位指導教授" } },
         { label: { en: "Role", zh: "角色" }, value: { en: "UX/UI Designer, usability test, character design, illustration design", zh: "UX/UI 設計、易用性測試、角色設計、插畫設計" } },
       ],
-      // The image on the home page's Work section. FeetMine's case study (feetmine.html) is a page of its
+      // The image on the home page's Work section. FeetMine's case study (work/feetmine/index.html) is a page of its
       // own: its words live in content.feetmine below, not in `phases`.
       workImage: {
         src: "work/feetmine/img/feetmine-app-screens.png",
@@ -183,7 +183,7 @@ const content = {
       visualNoise: true,
       visualNoiseOpacity: 0.5,
       links: [
-        // No "primary" link, so the cover image falls back to this one (see home.js).
+        // No "primary" link, so the cover image falls back to this one (see js/page-home.js).
         { label: { en: "Demo", zh: "體驗" }, href: "demo/ilandgreen-app/index.html", external: true },
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/ILANDGREEN", external: true },
       ],
@@ -242,12 +242,13 @@ const content = {
     },
   ],
 
-  // ---------- The FeetMine case study (feetmine.html) ----------
+  // ---------- The FeetMine case study (work/feetmine/index.html) ----------
   //
-  // A page of its own, not built from `phases`: feetmine.html holds the sections and feetmine.js
+  // A page of its own, not built from `phases`: work/feetmine/index.html holds the sections and feetmine.js
   // draws the lists, charts, table and diagrams from the arrays below. Every heading is two lines:
   // `line1` is the dark (or white) half, `line2` the grey half. Numbers here are the deck's own,
-  // so check img/feetmine-05…19.jpg before changing any of them.
+  // The deck slides they came from are no longer in the tree; recover one with
+  //   git show 6559df9:img/_unused/feetmine-05.jpg > feetmine-05.jpg
   //
   // The Chinese was drafted from the English deck and has not been reviewed by the owner.
   feetmine: {
@@ -725,9 +726,9 @@ const content = {
 
   },
 
-  // ---------- The Walk Xizhou case study (xizhou.html) ----------
+  // ---------- The Walk Xizhou case study (work/xizhou/index.html) ----------
   //
-  // Same pattern as content.feetmine above: xizhou.html holds the sections and every word comes
+  // Same pattern as content.feetmine above: work/xizhou/index.html holds the sections and every word comes
   // from here through data-text. Unlike FeetMine, this page has no xizhou.js yet, so every list
   // below is written with named keys (step1, step2, …), not an array — nothing here is JS-rendered,
   // so every item has to be reachable by its own data-text path.

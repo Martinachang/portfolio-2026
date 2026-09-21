@@ -1,4 +1,4 @@
-// xizhou.js — the Walk Xizhou case study (xizhou.html).
+// xizhou.js — the Walk Xizhou case study (work/xizhou/index.html).
 // site.js has loaded, so t(), fill() and the shared item templates exist.
 
 const xz = content.xizhou;

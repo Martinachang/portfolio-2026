@@ -90,8 +90,8 @@
       const content = win.eval("content");
       checkPage("index.html", win);
 
-      // Every word on the site is in content.js, so one walk covers every page's copy.
-      check("no { en, zh } pair in content.js is missing a half", () => {
+      // Every word on the site is in site-text.js, so one walk covers every page's copy.
+      check("no { en, zh } pair in site-text.js is missing a half", () => {
         const bad = [];
         (function walk(node, path) {
           if (node === null || typeof node !== "object") return;
@@ -117,7 +117,7 @@
             card.querySelectorAll(".work-links .pill-link").length === content.projects[i].links.length);
       });
 
-      check("the profile sections are filled from content.js", () =>
+      check("the profile sections are filled from site-text.js", () =>
         doc.querySelectorAll(".steps > li").length === content.skills.steps.length &&
         doc.querySelectorAll("#experience li").length === content.about.experience.length &&
         $("#mail-link").href === "mailto:" + content.site.email);
@@ -157,11 +157,11 @@
         doc.querySelectorAll(".phase").length === entry.phases.length &&
         [...doc.querySelectorAll("#phase-nav a")].every((a) => doc.querySelector(a.hash) !== null));
 
-      check("ILANDGREEN fills its hero and cover from content.js", () =>
+      check("ILANDGREEN fills its hero and cover from site-text.js", () =>
         $("#case-badge").textContent === entry.badge &&
         $("#case-headline").textContent.length > 0 &&
-        // project.js prefixes every content.js path with the page's depth root, so this asserts
-        // the prefix is applied as well as the value coming from content.js.
+        // js/page-project.js prefixes every site-text.js path with the page's depth root, so this asserts
+        // the prefix is applied as well as the value coming from site-text.js.
         $("#cover").getAttribute("src") === win.eval("root") + entry.cover.src);
 
       print();
@@ -206,10 +206,10 @@
       const content = win.eval("content");
       checkPage("work/xizhou/", win);
 
-      check("the contact button is a mailto link to the address in content.js",
+      check("the contact button is a mailto link to the address in site-text.js",
         () => doc.querySelector("#fm-mail-link").href === "mailto:" + content.site.email);
 
-      check("the lists are rendered from content.js, not written out in the markup",
+      check("the lists are rendered from site-text.js, not written out in the markup",
         () => doc.querySelectorAll("#fm-process li").length === content.xizhou.process.steps.length);
 
       print();

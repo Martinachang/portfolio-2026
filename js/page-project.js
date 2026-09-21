@@ -1,13 +1,13 @@
-// project.js — a case-study page built from content.js: the hero, the cover and the phases.
+// js/page-project.js — a case-study page built from site-text.js: the hero, the cover and the phases.
 // site.js has already put this page's project (from <body data-project="…">) in content.project.
 //
-// ilandgreen.html uses this. Copy that page to add a standard project. A project that needs a
-// bespoke layout gets a page of its own instead, as feetmine.html and xizhou.html do.
+// work/ilandgreen/index.html uses this. Copy that page to add a standard project. A project that needs a
+// bespoke layout gets a page of its own instead, as work/feetmine/index.html and work/xizhou/index.html do.
 
 const project = content.project;
 
 function renderPage() {
-  // The whole section wears the project's colours, the way home.js colours the desk folder.
+  // The whole section wears the project's colours, the way js/page-home.js colours the desk folder.
   const section = document.querySelector(".project");
   section.style.setProperty("--accent", project.accent);
   section.style.setProperty("--accent-wash", project.accentWash);
