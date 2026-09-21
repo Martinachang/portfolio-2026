@@ -77,6 +77,19 @@
         $$("img[data-alt]").every((img) => img.alt.trim().length > 0) &&
         $$("img.fm-chart-img").every((img) =>
           img.closest("figure").querySelector("table.fm-sr") !== null));
+
+      // The check above proves an image is described, not that it exists. A 404 keeps its alt
+      // text and passes. naturalWidth would catch it, but loading="lazy" images below the fold
+      // never load inside an iframe, so a HEAD on the resolved src is what covers every image.
+      check(url + " every image resolves to a file that exists", () => {
+        const images = $$("img[src]");
+        return images.length > 0 && images.every((img) => {
+          const request = new win.XMLHttpRequest();
+          request.open("HEAD", img.src, false);
+          request.send();
+          return request.status === 200;
+        });
+      });
     }
 
     const home = document.getElementById("home");
