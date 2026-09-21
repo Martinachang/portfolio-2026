@@ -1,74 +1,62 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this
+repository. It is an entry point only — the detail lives in `context/`, indexed below. Read a
+context file when its trigger matches; don't load them all.
 
 ## What this is
 
-Portfolio site for Chang Chu-Pei (張主佩), UI/UX designer and researcher. Built for someone learning HTML, CSS and JavaScript, so the code stays plain: no npm, no bundler, no framework, no ES modules. Classic `<script src>` tags, so `index.html` works by double-click and in VS Code Live Preview. Hosted on GitHub Pages from the repo root. Keep it that way unless the owner asks otherwise.
+Portfolio site for Chang Chu-Pei (張主佩), UI/UX designer and researcher. A bilingual
+(English / Traditional Chinese) static site: a home page with a draggable "desk", one Work panel
+per project, and a case-study page per project.
 
-## Files
+Built for someone learning HTML, CSS and JavaScript, so the code stays plain. **Keep it that
+way unless the owner asks otherwise.**
 
-- `index.html`: the home page. The desk, one Work panel per project, then About, How I work (three steps, `#skills`), Contact.
-- `ilandgreen.html`: the standard case-study page. `<body data-project="ilandgreen">` names its entry in `content.js`, and `project.js` fills the hero, the cover and the phases from it. To add a project: copy this file, change `data-project`, add an entry to `content.projects` (newest first; the first one is featured on the desk) and its images.
-- `feetmine.html` + `feetmine.css` + `feetmine.js`: FeetMine's case study, a page of its own — see the section below. It does not use `project.js`.
-- `content.js`: every word on the site, in both languages side by side: `{ en: "...", zh: "..." }`. Plain strings are language-neutral. Each project carries its own `accent` and `accentWash` colours, plus `headline`, `blurb` and `stats` for its panel on the home page. `content.feetmine` holds that one page's words. Only `desk.headline` may contain HTML (`<em>`); it is filled through `data-html` instead of `data-text`. `content.logos` maps a tool name to its SVG; any tool with an entry shows the logo.
-- `site.js` (shared: language, `t()`, `fill()`, `render()`, the one-second glide to `#section` links), `home.js` (project cards, profile lists, desk drag), `project.js` (phase sections), `feetmine.js`. Each page script defines `renderPage()`, which `site.js` calls on load and on every language switch.
-- `style.css`: tokens at the top, phone-first rules, then two `@media (min-width: …)` blocks at the end for wider screens. Site accent is blue; `.project`, the folder and the work cards get a project's colours from JS.
-- `test.html`: the runnable check. Open it through a local server; every line must say PASS.
-- `img/`: tool logos (`*.svg`, from simple-icons and Wikimedia Commons), `profile.jpg`, `mascot.png`, and the deck's slides as `<project>-NN.jpg`, 2000px wide, exported from `portfolio-example/` (the source deck, 19 slides at 7680×4320, git-ignored) with `sips -Z 2000 -s format jpeg -s formatOptions 80 in.jpg --out out.jpg`. ILANDGREEN shows its slides whole; FeetMine never does — it crops them (see below).
-- `menti/`: the reference screenshots the FeetMine page's layout was built from. Git-ignored, reference only — none of that page's words, images or logo are copied.
+## Tech stack
 
-## The FeetMine page
+- **Plain HTML, CSS and JavaScript.** No npm, no bundler, no framework, no ES modules, no
+  `package.json`. Classic `<script src>` tags, so `index.html` works by double-click and in VS
+  Code Live Preview.
+- **Every word is in `content.js`**, both languages side by side as `{ en: "…", zh: "…" }`.
+  `site.js` fills the page from `data-text` attributes; each page's own script defines
+  `renderPage()` for the lists only it has.
+- **Hosted on GitHub Pages from the repo root** — pushing to `main` is the deploy.
+- **Checks are `test.html`**, one runnable page. Serve it over `http://`; every line must say PASS.
 
-An editorial case study in the style of Tammy Taabassum's Menti page: full-bleed hero, then
-full-width sections that alternate between a light (`#F1EFEA`) and a dark (`#221F1C`) theme, with
-one orange section for the design goals. Its brand colour is `#FF9F46`.
+Root files: `index.html`, `ilandgreen.html`, `feetmine.html` (+`.css`/`.js`), `xizhou.html`
+(+`.css`), `content.js`, `site.js`, `home.js`, `project.js`, `style.css`, `test.html`, `img/`,
+`tools/serve.ps1`. Plus `ilandgreen/`, a standalone prototype app that shares nothing with the
+site.
 
-- **Structure.** The sections are written out in `feetmine.html`; one-off strings carry
-  `data-text="feetmine.…"` and `site.js` fills them. `feetmine.js` defines `renderPage()` and draws
-  the parts that repeat — the lists, the three charts, the comparison table, the service flow, the
-  screen row — with the shared `fill()` helper, the way `home.js` does.
-- **Layout pieces**, each written once in `feetmine.css`: `.fm-split` (heading beside text, 1200px),
-  `.fm-h2` (two lines, the second in grey), `.fm-numlist` / `.fm-statlist`, `.fm-panels` (a
-  full-bleed row of two coloured panels, ratio set inline per feature), `.fm-card` (the dark rounded
-  card), `.fm-grain`, `.fm-shot` (image crops).
-- **Nothing on this page is a picture of a slide.** Every table and diagram is HTML, CSS and inline
-  SVG. Four charts (the three in the background section, plus the life-stage bar in field
-  research — `img/chart1.svg` through `chart4.svg`) are the exact SVGs exported from Figma rather
-  than a rebuild — their labels and numbers are Figma "outline text" paths, not real `<text>`, so
-  they're invisible to a screen reader; each chart's `<img>` is decorative (`alt=""`) and carries
-  its numbers in a visually hidden table right beside it (`renderChartSvg`/`renderStages` in
-  `feetmine.js`), the same `.fm-sr` pattern every other chart on this page uses. One tradeoff
-  worth knowing, accepted for now: because their words are baked into the SVGs as shapes, these
-  four charts stay in English even when the page is switched to Chinese, unlike the rest of the
-  page. Other images are app screens
-  and photos.
-- **Image crops.** The final exports (`img/feetmine-hero.png`, `feetmine-screen-*.png`,
-  `feetmine-yodex-*.jpg`, …) do not exist yet, so each `<img>` still points at a deck slide and an
-  `.fm-shot--*` class in `feetmine.css` crops it down to the one screen or photo that belongs there.
-  Every one is marked with a `TODO` comment. When an export arrives, point the `<img>` at it and
-  drop the `.fm-shot--*` class.
-- **Styling is scoped.** Everything is under `.cs-feetmine`, the class on that page's `<body>`, so
-  `style.css` and the other pages are untouched.
-- All of this replaced a set of generic `block-*` renderers in `project.js` and matching rules in
-  `style.css` that no other page used; they are gone.
+## Context index
 
-## Checking work
+**`context/01_architecture/`**
+- `data-flow.md` — how a page renders: script order, the one render pass, `t()`/`fill()`/`get()`,
+  how colour flows from data into CSS. *Read before changing any `.js` file or adding a page.*
+- `pages.md` — what each page is and which of the three case-study patterns it follows. *Read
+  before editing a page you haven't opened yet, or when deciding where something belongs.*
+- `decisions.md` — the deliberate constraints and why. *Read before proposing a tool, dependency,
+  or restructure — most obvious improvements are already ruled out here.*
 
-```
-powershell -ExecutionPolicy Bypass -File tools/serve.ps1   # then open http://127.0.0.1:8123/test.html
-```
+**`context/02_conventions/`**
+- `code-style.md` — comment register, JS/HTML/CSS idioms, class prefixes, phone-first CSS. *Read
+  before writing more than a couple of lines.*
+- `content-model.md` — the shape of `content.js` and a project entry, with the ordering and `id`
+  rules that are easy to get wrong. *Read before editing copy or adding a project.*
+- `accessibility.md` — the `.fm-sr` hidden-table pattern, alt-text rules, focus, reduced motion.
+  *Read before adding an image, chart, table or animation. Several of these are test-enforced.*
 
-`tools/serve.ps1` is a small static server written in PowerShell, because this machine has no working
-Python: `python` and `python3` are Microsoft Store stubs that print nothing and exit with code 49,
-so `python3 -m http.server` fails. Any other static server on port 8123 does just as well. The
-pages themselves still open by double-click; only `test.html` needs `http://`, because a `file://`
-page is not allowed to read the other files it checks.
+**`context/03_commands/`**
+- `serve-and-test.md` — serve the site, run the checks (browser and headless), read a page's
+  console, screenshot a phone layout, deploy. *Read when you need to run or verify anything.*
+- `add-a-project.md` — adding a project, adding a tool logo, exporting deck slides. *Read when
+  doing one of those three things.*
 
-Headless Chrome with `--virtual-time-budget` fails the glide check (no real animation frames); the rest passes. Headless Chrome enforces a 500px minimum window width. To screenshot a phone layout, load the page inside a 375px-wide `<iframe>` in a scratch page and screenshot that; give the iframe the page's full `scrollHeight` and offset it with a negative `top` to reach a section further down.
-
-## Content facts to know
-
-- Chinese copy was drafted from the English deck and is unreviewed by the owner. The deck's two "Worked" date ranges were reversed in the source and were normalised to start–end order.
-- FeetMine's five process phases (Research, Define, Design, Test & iterate, Launch) were inferred from the deck, which never states them; the owner still has to confirm them. Its Reflection section is a placeholder.
-- The desk objects map to sections: folder → Work, badge → About, note → Skills, postcard → Contact. On screens under 720px they become a grid with no drag.
+**`context/04_gotchas/`**
+- `known-issues.md` — what is currently broken or unfinished: `xizhou.html` throws, test coverage
+  gaps, pending image exports, unreferenced assets. *Read before touching `xizhou.html`, before
+  trusting a green test run, and when something behaves oddly.*
+- `tricky-behaviour.md` — intentional behaviour that looks like a bug: re-render on language
+  switch, charts that stay English, drag only on wide screens, unreviewed copy. *Read when
+  something surprises you, or before treating any copy as final.*
