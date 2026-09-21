@@ -397,9 +397,7 @@ footer p { margin: 0; max-width: none; }
   .work-item:nth-child(even) .work-visual { order: 2; }
   .work-item:nth-child(even) .work-body { order: 1; }
   .case-hero { grid-template-columns: 1fr 280px; }
-  .case-overview { grid-template-columns: 1fr 280px; }
-  /* FeetMine's hero has no side card any more (its stats moved into .case-overview below). */
-  body[data-project="feetmine"] .case-hero { grid-template-columns: 1fr; max-width: 68ch; margin-inline: auto; }
+  /* .case-hero exists on ilandgreen.html only; the editorial pages use their own .fm-* markup. */
 }
 
 @media (prefers-reduced-motion: reduce) {

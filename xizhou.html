@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="xizhou.css">
+  <link rel="stylesheet" href="editorial.css">
 </head>
 <body data-project="xizhou" class="cs-xizhou">
   <!-- The Walk Xizhou case study. Same pattern as feetmine.html: the sections below are written
@@ -18,19 +18,9 @@
 
   <a class="skip" href="#intro" data-text="site.skip"></a>
 
-  <header class="topbar">
-    <a class="brand" href="index.html"><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
-    <nav>
-      <a href="index.html#work" data-text="site.headerNav.work"></a>
-      <a href="index.html#about" data-text="site.headerNav.about"></a>
-      <a href="files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
-      <a href="index.html#contact" data-text="site.headerNav.contact"></a>
-    </nav>
-    <div class="lang" role="group" aria-label="Language / 語言">
-      <button type="button" data-lang="en" lang="en">EN</button>
-      <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
-    </div>
-  </header>
+  <!-- The top bar and the footer are drawn by renderChrome() in site.js, so they exist once
+       for the whole site rather than four times. Leave these two elements empty. -->
+  <header class="topbar"></header>
 
   <main>
 
@@ -78,13 +68,7 @@
           </h2>
           <p class="fm-note" data-text="xizhou.process.lead"></p>
         </div>
-        <ol class="fm-numlist fm-numlist--timeline">
-          <li><span class="fm-n"><span class="fm-n-circle">01</span></span><h3 data-text="xizhou.process.step1.title"></h3><p data-text="xizhou.process.step1.text"></p></li>
-          <li><span class="fm-n"><span class="fm-n-circle">02</span></span><h3 data-text="xizhou.process.step2.title"></h3><p data-text="xizhou.process.step2.text"></p></li>
-          <li><span class="fm-n"><span class="fm-n-circle">03</span></span><h3 data-text="xizhou.process.step3.title"></h3><p data-text="xizhou.process.step3.text"></p></li>
-          <li><span class="fm-n"><span class="fm-n-circle">04</span></span><h3 data-text="xizhou.process.step4.title"></h3><p data-text="xizhou.process.step4.text"></p></li>
-          <li><span class="fm-n"><span class="fm-n-circle">05</span></span><h3 data-text="xizhou.process.step5.title"></h3><p data-text="xizhou.process.step5.text"></p></li>
-        </ol>
+        <ol class="fm-numlist fm-numlist--timeline" id="fm-process"></ol>
       </div>
     </section>
 
@@ -102,14 +86,7 @@
       <div class="fm-wrap">
         <div class="fm-card">
           <!-- A real list, not one <p> with <br> — content.js strings stay text-only site-wide. -->
-          <ul class="fm-note fm-bullet-list">
-            <li data-text="xizhou.problem.point1"></li>
-            <li data-text="xizhou.problem.point2"></li>
-            <li data-text="xizhou.problem.point3"></li>
-            <li data-text="xizhou.problem.point4"></li>
-            <li data-text="xizhou.problem.point5"></li>
-            <li data-text="xizhou.problem.point6"></li>
-          </ul>
+          <ul class="fm-note fm-bullet-list" id="fm-problem-points"></ul>
         </div>
       </div>
     </section>
@@ -139,21 +116,10 @@
                   <th scope="col" data-text="xizhou.research.tablePurpose"></th>
                 </tr>
               </thead>
-              <tbody>
-                <tr><th scope="row" data-text="xizhou.research.stage1.stage"></th><td data-text="xizhou.research.stage1.method"></td><td data-text="xizhou.research.stage1.purpose"></td></tr>
-                <tr><th scope="row" data-text="xizhou.research.stage2.stage"></th><td data-text="xizhou.research.stage2.method"></td><td data-text="xizhou.research.stage2.purpose"></td></tr>
-                <tr><th scope="row" data-text="xizhou.research.stage3.stage"></th><td data-text="xizhou.research.stage3.method"></td><td data-text="xizhou.research.stage3.purpose"></td></tr>
-              </tbody>
+              <tbody id="fm-stages"></tbody>
             </table>
           </div>
-          <blockquote class="fm-quote">
-            <p data-text="xizhou.research.quote1"></p>
-            <cite data-text="xizhou.research.quote1cite"></cite>
-          </blockquote>
-          <blockquote class="fm-quote">
-            <p data-text="xizhou.research.quote2"></p>
-            <cite data-text="xizhou.research.quote2cite"></cite>
-          </blockquote>
+          <div id="fm-quotes"></div>
         </div>
       </div>
     </section>
@@ -168,11 +134,7 @@
           </h2>
           <p class="fm-note" data-text="xizhou.users.lead"></p>
         </div>
-        <ol class="fm-numlist">
-          <li><span class="fm-n">01</span><h3 data-text="xizhou.users.group1.title"></h3><p data-text="xizhou.users.group1.text"></p></li>
-          <li><span class="fm-n">02</span><h3 data-text="xizhou.users.group2.title"></h3><p data-text="xizhou.users.group2.text"></p></li>
-          <li><span class="fm-n">03</span><h3 data-text="xizhou.users.group3.title"></h3><p data-text="xizhou.users.group3.text"></p></li>
-        </ol>
+        <ol class="fm-numlist" id="fm-users"></ol>
       </div>
     </section>
 
@@ -185,10 +147,7 @@
             <span class="fm-h2-soft" data-text="xizhou.insights.line2"></span>
           </h2>
         </div>
-        <ol class="fm-numlist">
-          <li><span class="fm-n">01</span><h3 data-text="xizhou.insights.item1.title"></h3><p data-text="xizhou.insights.item1.text"></p></li>
-          <li><span class="fm-n">02</span><h3 data-text="xizhou.insights.item2.title"></h3><p data-text="xizhou.insights.item2.text"></p></li>
-        </ol>
+        <ol class="fm-numlist" id="fm-insights"></ol>
       </div>
     </section>
 
@@ -202,13 +161,7 @@
           </h2>
           <p class="fm-note" data-text="xizhou.decisions.lead"></p>
         </div>
-        <ol class="fm-numlist">
-          <li><span class="fm-n">01</span><h3 data-text="xizhou.decisions.item1.title"></h3><p data-text="xizhou.decisions.item1.text"></p></li>
-          <li><span class="fm-n">02</span><h3 data-text="xizhou.decisions.item2.title"></h3><p data-text="xizhou.decisions.item2.text"></p></li>
-          <li><span class="fm-n">03</span><h3 data-text="xizhou.decisions.item3.title"></h3><p data-text="xizhou.decisions.item3.text"></p></li>
-          <li><span class="fm-n">04</span><h3 data-text="xizhou.decisions.item4.title"></h3><p data-text="xizhou.decisions.item4.text"></p></li>
-          <li><span class="fm-n">05</span><h3 data-text="xizhou.decisions.item5.title"></h3><p data-text="xizhou.decisions.item5.text"></p></li>
-        </ol>
+        <ol class="fm-numlist" id="fm-decisions"></ol>
       </div>
     </section>
 
@@ -304,14 +257,7 @@
       </div>
       <div class="fm-wrap">
         <div class="fm-card">
-          <ol class="fm-numlist fm-numlist--row">
-            <li><span class="fm-n">01</span><h3 data-text="xizhou.features.four.funnel.step1"></h3></li>
-            <li><span class="fm-n">02</span><h3 data-text="xizhou.features.four.funnel.step2"></h3></li>
-            <li><span class="fm-n">03</span><h3 data-text="xizhou.features.four.funnel.step3"></h3></li>
-            <li><span class="fm-n">04</span><h3 data-text="xizhou.features.four.funnel.step4"></h3></li>
-            <li><span class="fm-n">05</span><h3 data-text="xizhou.features.four.funnel.step5"></h3></li>
-            <li><span class="fm-n">06</span><h3 data-text="xizhou.features.four.funnel.step6"></h3></li>
-          </ol>
+          <ol class="fm-numlist fm-numlist--row" id="fm-funnel"></ol>
         </div>
       </div>
     </section>
@@ -327,11 +273,7 @@
         </div>
         <div>
           <p class="fm-lead" data-text="xizhou.business.lead"></p>
-          <div class="fm-cards">
-            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card1.title"></h3><p data-text="xizhou.business.card1.text"></p></div>
-            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card2.title"></h3><p data-text="xizhou.business.card2.text"></p></div>
-            <div class="fm-card"><h3 class="fm-label" data-text="xizhou.business.card3.title"></h3><p data-text="xizhou.business.card3.text"></p></div>
-          </div>
+          <div class="fm-cards" id="fm-business-cards"></div>
         </div>
       </div>
       <div class="fm-wrap">
@@ -368,26 +310,12 @@
             <span class="fm-h2-soft" data-text="xizhou.results.line2"></span>
           </h2>
         </div>
-        <ol class="fm-numlist">
-          <li><span class="fm-n">01</span><h3 data-text="xizhou.results.item1.title"></h3><p data-text="xizhou.results.item1.text"></p></li>
-          <li><span class="fm-n">02</span><h3 data-text="xizhou.results.item2.title"></h3><p data-text="xizhou.results.item2.text"></p></li>
-          <li><span class="fm-n">03</span><h3 data-text="xizhou.results.item3.title"></h3><p data-text="xizhou.results.item3.text"></p></li>
-        </ol>
+        <ol class="fm-numlist" id="fm-results"></ol>
       </div>
-      <div class="fm-panels fm-panels--photos" style="--fm-ratio: 1fr 1fr 1fr">
-        <div class="fm-panel fm-grain">
-          <!-- TODO: replace with a photo from the CHT Foundation showcase. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.results.photo1"></div>
-        </div>
-        <div class="fm-panel fm-grain">
-          <!-- TODO: replace with a photo from the field test with local children. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.results.photo2"></div>
-        </div>
-        <div class="fm-panel fm-grain">
-          <!-- TODO: replace with a photo of the With Mud team at the event. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.results.photo3"></div>
-        </div>
-      </div>
+      <!-- TODO: three photos still to come — the CHT Foundation showcase, the field test with
+           local children, and the With Mud team at the event. xizhou.js draws a placeholder for
+           each until they arrive. -->
+      <div class="fm-panels fm-panels--photos" id="fm-photos" style="--fm-ratio: 1fr 1fr 1fr"></div>
     </section>
 
     <!-- ---------- Reflection ---------- -->
@@ -407,7 +335,7 @@
     <!-- ---------- Where to go next ---------- -->
     <nav class="fm-sec fm-light fm-next" aria-label="More work">
       <div class="fm-wrap">
-        <a class="fm-back-link" href="index.html#work" data-text="xizhou.next.back"></a>
+        <a class="fm-back-link" href="index.html#work" data-text="site.backToWork"></a>
       </div>
     </nav>
 
@@ -427,9 +355,10 @@
 
   </main>
 
-  <footer><p data-text="site.footer"></p></footer>
+  <footer></footer>
 
   <script src="content.js"></script>
   <script src="site.js"></script>
+  <script src="xizhou.js"></script>
 </body>
 </html>

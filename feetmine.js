@@ -1,6 +1,5 @@
 // feetmine.js — the FeetMine case study (feetmine.html).
-// site.js has already loaded, so t(), fill() and content exist, and it calls renderPage() below
-// on load and again on every language switch.
+// site.js has loaded, so t(), fill() and the shared item templates exist.
 //
 // The page's sections are written out in feetmine.html; this file draws the parts that repeat:
 // the lists, the three charts, the comparison table, the service flow and the image rows.
@@ -8,19 +7,7 @@
 
 const fm = content.feetmine;
 
-const two = (i) => String(i + 1).padStart(2, "0"); // 0 → "01"
-
 // ---------- Lists ----------
-
-function numberedItem(item, i) {
-  return `<li><span class="fm-n">${two(i)}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
-}
-
-// Same shape as numberedItem, but the number sits in a circle and .fm-numlist--timeline draws
-// the connecting line between circles, so the five phases read as one continuous process.
-function timelineItem(item, i) {
-  return `<li><span class="fm-n"><span class="fm-n-circle">${two(i)}</span></span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
-}
 
 function statItem(item) {
   // Neither language shows the stat number any more: both sets of titles stand on their own as
@@ -210,8 +197,7 @@ function renderPage() {
     `<dt>${t(row.label)}</dt><dd>${row.options.map((option) =>
       `<span><b class="fm-key">${option.key}</b>${t(option.value)}</span>`).join("")}</dd>`);
 
-  fill("fm-business-cards", fm.business.cards, (card) =>
-    `<div><h3 class="fm-label">${t(card.title)}</h3><p class="fm-note">${t(card.text)}</p></div>`);
+  fill("fm-business-cards", fm.business.cards, cardItem);
 
   renderChartSvg(document.getElementById("fm-chart-bars"), "chart1.svg", t(fm.background.bars.title),
     fm.background.bars.items.map((item) => [t(item.label), item.value]));

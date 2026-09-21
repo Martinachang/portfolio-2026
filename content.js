@@ -29,6 +29,8 @@ const content = {
       contact: "Contact",
     },
     footer: { en: "Designed and built by Chang Chu-Pei.", zh: "由張主佩設計與製作。" },
+    // One string for every case-study page's back link, so the wording cannot drift apart.
+    backToWork: { en: "← Back to all work", zh: "← 回到所有作品" },
   },
 
   // The home page is a desk. Each object on it leads to one section.
@@ -66,7 +68,6 @@ const content = {
   work: {
     title: { en: "Work", zh: "作品" },
     readMore: { en: "Read the case study", zh: "閱讀完整案例" },
-    all: { en: "All work", zh: "所有作品" },
     overviewTitle: { en: "Overview", zh: "概述" },
     prototypeLabel: { en: "View Prototype", zh: "查看原型" },
   },
@@ -730,9 +731,6 @@ const content = {
       },
     },
 
-    next: {
-      back: { en: "Back to work", zh: "回到作品列表" },
-    },
   },
 
   // ---------- The Walk Xizhou case study (xizhou.html) ----------
@@ -793,11 +791,13 @@ const content = {
       },
       // TODO: the five steps' own text is drafted from the brief's short phrases, not verbatim —
       // check against the owner's own account of the timeline before treating it as final.
-      step1: { title: { en: "Research", zh: "研究" }, text: { en: "Online meetings to scope the project, then a field trip to Xizhou.", zh: "線上會議討論需求，並前往溪州進行實地考察。" } },
-      step2: { title: { en: "Define", zh: "定義" }, text: { en: "A stakeholder map, three user groups, and a design direction.", zh: "整理利害關係人地圖、劃分三類使用者，並訂出設計方向。" } },
-      step3: { title: { en: "Design", zh: "設計" }, text: { en: "Teaching aids, field signage, a puzzle walking kit, and the mascot Ni Bobo.", zh: "設計教具、場域立牌、解謎走讀包，以及吉祥物泥伯伯。" } },
-      step4: { title: { en: "Field test", zh: "田野測試" }, text: { en: "The team ran the kit with local children in Xizhou.", zh: "團隊帶著溪州當地孩童實際試跑走讀包。" } },
-      step5: { title: { en: "Launch", zh: "上線" }, text: { en: "Presented at the CHT Foundation; adopted by the With Mud team.", zh: "於中華電信基金會發表成果，並由與泥共好團隊採用。" } },
+      steps: [
+        { title: { en: "Research", zh: "研究" }, text: { en: "Online meetings to scope the project, then a field trip to Xizhou.", zh: "線上會議討論需求，並前往溪州進行實地考察。" } },
+        { title: { en: "Define", zh: "定義" }, text: { en: "A stakeholder map, three user groups, and a design direction.", zh: "整理利害關係人地圖、劃分三類使用者，並訂出設計方向。" } },
+        { title: { en: "Design", zh: "設計" }, text: { en: "Teaching aids, field signage, a puzzle walking kit, and the mascot Ni Bobo.", zh: "設計教具、場域立牌、解謎走讀包，以及吉祥物泥伯伯。" } },
+        { title: { en: "Field test", zh: "田野測試" }, text: { en: "The team ran the kit with local children in Xizhou.", zh: "團隊帶著溪州當地孩童實際試跑走讀包。" } },
+        { title: { en: "Launch", zh: "上線" }, text: { en: "Presented at the CHT Foundation; adopted by the With Mud team.", zh: "於中華電信基金會發表成果，並由與泥共好團隊採用。" } },
+      ],
     },
 
     problem: {
@@ -807,12 +807,14 @@ const content = {
         en: "Xizhou has a rich history: a sugar refinery that once defined the town, historic buildings, a close-knit community. None of it was written down or visualised. Every tour depended on one person's voice, and when young people moved to the city, that voice became scarcer.",
         zh: "溪州有豐富的歷史：曾是地方命脈的糖廠、充滿故事的古建築、緊密的鄉里關係。但這一切都沒有被文字化或視覺化。每場導覽都靠一個人的聲音，而隨著年輕人北漂，這個聲音越來越難找。",
       },
-      point1: { en: "Tour content existed only in the guide's memory — impossible to carry, repeat or scale.", zh: "導覽內容只存在導覽員的記憶裡——無法攜帶、重複或擴大規模。" },
-      point2: { en: "Activity information was scattered across FB, IG and ACCUPASS, with no single entry point.", zh: "活動資訊分散於 FB、IG 與 ACCUPASS，沒有統一入口。" },
-      point3: { en: "No teaching aids meant each session could only transfer a limited amount of knowledge.", zh: "缺乏教具，每場活動能傳遞的知識有限。" },
-      point4: { en: "The main audience was school and cram-school groups; too few visitors meant the session couldn't break even.", zh: "主要客群是學校與補習班團體，人太少時收支難以打平。" },
-      point5: { en: "Social posts reached people once and disappeared — no way to re-engage.", zh: "社群貼文觸及一次就消失，沒有可重複接觸的管道。" },
-      point6: { en: "Young people had left the town, leaving the organisation short-staffed and dependent on a handful of people.", zh: "年輕人北漂，組織人力不足，高度依賴少數幾個人。" },
+      items: [
+        { en: "Tour content existed only in the guide's memory — impossible to carry, repeat or scale.", zh: "導覽內容只存在導覽員的記憶裡——無法攜帶、重複或擴大規模。" },
+        { en: "Activity information was scattered across FB, IG and ACCUPASS, with no single entry point.", zh: "活動資訊分散於 FB、IG 與 ACCUPASS，沒有統一入口。" },
+        { en: "No teaching aids meant each session could only transfer a limited amount of knowledge.", zh: "缺乏教具，每場活動能傳遞的知識有限。" },
+        { en: "The main audience was school and cram-school groups; too few visitors meant the session couldn't break even.", zh: "主要客群是學校與補習班團體，人太少時收支難以打平。" },
+        { en: "Social posts reached people once and disappeared — no way to re-engage.", zh: "社群貼文觸及一次就消失，沒有可重複接觸的管道。" },
+        { en: "Young people had left the town, leaving the organisation short-staffed and dependent on a handful of people.", zh: "年輕人北漂，組織人力不足，高度依賴少數幾個人。" },
+      ],
     },
 
     research: {
@@ -828,13 +830,21 @@ const content = {
       tablePurpose: { en: "Purpose", zh: "目的" },
       // TODO: the three rows below restate research.lead as a table — reasonable, but not the
       // owner's own wording, so check them against it.
-      stage1: { stage: { en: "Pre-visit", zh: "事前" }, method: { en: "Online meeting", zh: "線上會議" }, purpose: { en: "Understand the team's needs", zh: "了解團隊的需求" } },
-      stage2: { stage: { en: "Field visit", zh: "田野調查" }, method: { en: "On-site visit to Xizhou", zh: "前往溪州實地考察" }, purpose: { en: "See the space and community firsthand", zh: "親身觀察場域與社區" } },
-      stage3: { stage: { en: "Interviews", zh: "深度訪談" }, method: { en: "In-depth interviews with 3 team members", zh: "與 3 位團隊成員深度訪談" }, purpose: { en: "Uncover what mattered most to the team", zh: "找出團隊最在意的事" } },
-      quote1: { en: "“We don't expect visitors to fully understand the history. We just hope that Xizhou's past prosperity and culture won't be forgotten.”", zh: "「我們不期望遊客完全明白歷史，只期望過去溪州的繁榮與文化不要被遺忘。」" },
-      quote1cite: { en: "— With Mud team member, on Xizhou's sugar-refinery history", zh: "— 與泥共好團隊成員，談溪州糖廠歷史" },
-      quote2: { en: "“People in Changhua are very warm and friendly — there's a real sense of community here.”", zh: "「彰化在地人都非常熱情友善，富有人情味。」" },
-      quote2cite: { en: "— With Mud team member (confirmed in our field visit: neighbours greet each other on the street)", zh: "— 與泥共好團隊成員（田調時親身驗證：鄉里之間大家都認識、會互相打招呼）" },
+      stages: [
+        { stage: { en: "Pre-visit", zh: "事前" }, method: { en: "Online meeting", zh: "線上會議" }, purpose: { en: "Understand the team's needs", zh: "了解團隊的需求" } },
+        { stage: { en: "Field visit", zh: "田野調查" }, method: { en: "On-site visit to Xizhou", zh: "前往溪州實地考察" }, purpose: { en: "See the space and community firsthand", zh: "親身觀察場域與社區" } },
+        { stage: { en: "Interviews", zh: "深度訪談" }, method: { en: "In-depth interviews with 3 team members", zh: "與 3 位團隊成員深度訪談" }, purpose: { en: "Uncover what mattered most to the team", zh: "找出團隊最在意的事" } },
+      ],
+      quotes: [
+        {
+          text: { en: "“We don't expect visitors to fully understand the history. We just hope that Xizhou's past prosperity and culture won't be forgotten.”", zh: "「我們不期望遊客完全明白歷史，只期望過去溪州的繁榮與文化不要被遺忘。」" },
+          cite: { en: "— With Mud team member, on Xizhou's sugar-refinery history", zh: "— 與泥共好團隊成員，談溪州糖廠歷史" },
+        },
+        {
+          text: { en: "“People in Changhua are very warm and friendly — there's a real sense of community here.”", zh: "「彰化在地人都非常熱情友善，富有人情味。」" },
+          cite: { en: "— With Mud team member (confirmed in our field visit: neighbours greet each other on the street)", zh: "— 與泥共好團隊成員（田調時親身驗證：鄉里之間大家都認識、會互相打招呼）" },
+        },
+      ],
     },
 
     users: {
@@ -844,22 +854,26 @@ const content = {
         en: "Design direction: blend local character with innovative experience to draw young people toward rural life and help pass on local economic and cultural stories.",
         zh: "設計理念：透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
       },
-      group1: { title: { en: "Niche-spot seekers", zh: "小眾景點愛好者" }, text: { en: "Escape weekday stress through quiet nature. Design implication: leave breathing room; don't over-explain.", zh: "用寧靜自然風光忘卻平日繁忙。設計啟示：保留留白，不過度解說。" } },
-      group2: { title: { en: "Young day-trippers from Taichung", zh: "台中機車族年輕人" }, text: { en: "Xizhou is close; a one-day loop with friends. Design implication: a walkable route completable in a day.", zh: "距離近，適合與朋友一日往返。設計啟示：路線可步行、一日完成。" } },
-      group3: { title: { en: "Cram schools and school groups", zh: "補習班與學校團體" }, text: { en: "Bring children to experience nature and local space. Design implication: kit must work for many people at once, without depending on a single presenter.", zh: "帶孩子體驗大自然與在地空間。設計啟示：教具能同時服務多人，不依賴單一講者。" } },
+      items: [
+        { title: { en: "Niche-spot seekers", zh: "小眾景點愛好者" }, text: { en: "Escape weekday stress through quiet nature. Design implication: leave breathing room; don't over-explain.", zh: "用寧靜自然風光忘卻平日繁忙。設計啟示：保留留白，不過度解說。" } },
+        { title: { en: "Young day-trippers from Taichung", zh: "台中機車族年輕人" }, text: { en: "Xizhou is close; a one-day loop with friends. Design implication: a walkable route completable in a day.", zh: "距離近，適合與朋友一日往返。設計啟示：路線可步行、一日完成。" } },
+        { title: { en: "Cram schools and school groups", zh: "補習班與學校團體" }, text: { en: "Bring children to experience nature and local space. Design implication: kit must work for many people at once, without depending on a single presenter.", zh: "帶孩子體驗大自然與在地空間。設計啟示：教具能同時服務多人，不依賴單一講者。" } },
+      ],
     },
 
     insights: {
       line1: { en: "Two insights that", zh: "兩個洞察" },
       line2: { en: "shaped every decision", zh: "決定了所有設計方向" },
-      item1: {
-        title: { en: "The bottleneck isn't lack of content — it's content locked inside people", zh: "瓶頸不是內容不夠，而是內容全綁在人身上" },
-        text: { en: "Xizhou's stories are rich. What's missing is a way to carry them, repeat them, and let them run without anyone present. The goal wasn't to make a better tour — it was to detach the tour from the person.", zh: "溪州的故事很豐富。缺的是讓它被攜帶、重複、在沒有人的時候繼續運作的方式。目標不是做更好的導覽，而是把導覽從人身上拆下來。" },
-      },
-      item2: {
-        title: { en: "The goal isn't to make visitors understand history — it's to make sure history isn't forgotten", zh: "目標不是讓人記住歷史，而是讓歷史不被遺忘" },
-        text: { en: "Once the goal shifted from 'transfer knowledge' to 'leave a memory,' gamification stopped being decoration and became the right answer: an experience that makes people actively engage leaves a deeper trace than a correct and complete explanation.", zh: "當目標從「傳遞知識」變成「不被遺忘」，遊戲化就不再是包裝，而是正解：讓人主動投入的體驗，比正確而完整的知識留下更深的痕跡。" },
-      },
+      items: [
+        {
+          title: { en: "The bottleneck isn't lack of content — it's content locked inside people", zh: "瓶頸不是內容不夠，而是內容全綁在人身上" },
+          text: { en: "Xizhou's stories are rich. What's missing is a way to carry them, repeat them, and let them run without anyone present. The goal wasn't to make a better tour — it was to detach the tour from the person.", zh: "溪州的故事很豐富。缺的是讓它被攜帶、重複、在沒有人的時候繼續運作的方式。目標不是做更好的導覽，而是把導覽從人身上拆下來。" },
+        },
+        {
+          title: { en: "The goal isn't to make visitors understand history — it's to make sure history isn't forgotten", zh: "目標不是讓人記住歷史，而是讓歷史不被遺忘" },
+          text: { en: "Once the goal shifted from 'transfer knowledge' to 'leave a memory,' gamification stopped being decoration and became the right answer: an experience that makes people actively engage leaves a deeper trace than a correct and complete explanation.", zh: "當目標從「傳遞知識」變成「不被遺忘」，遊戲化就不再是包裝，而是正解：讓人主動投入的體驗，比正確而完整的知識留下更深的痕跡。" },
+        },
+      ],
     },
 
     decisions: {
@@ -869,11 +883,13 @@ const content = {
         en: "Every choice was constrained by the same premise: the team is small, the budget is limited, and the solution must keep working after we leave.",
         zh: "每個選擇都建立在同一個前提：組織人力少、預算有限，方案必須在我們離開後還能繼續運作。",
       },
-      item1: { title: { en: "A physical kit, not an app", zh: "實體走讀包，不做 App" }, text: { en: "No one on the team can maintain a digital product. A physical kit is made once and handed out repeatedly — and participants take it home as a keepsake.", zh: "組織沒有人能維護數位產品。實體包一次製作即可重複發放，參與者還能帶回家當紀念。" } },
-      item2: { title: { en: "Alternating indoor and outdoor stops", zh: "室內外場域交替" }, text: { en: "Our field visit showed that long outdoor sessions in summer Xizhou hurt the experience. Alternating stops create natural rest points without scheduling breaks.", zh: "田調時親身感受到夏季長時間戶外活動的疲憊。室內外交替自然形成休息點，不必額外安排。" } },
-      item3: { title: { en: "Paper worksheet + QR code, not pure paper or pure digital", zh: "紙本學習單＋QR code，不純紙本也不純數位" }, text: { en: "Paper keeps the on-site ritual of writing and discussion. The QR code carries deeper knowledge that can be updated later without reprinting.", zh: "紙本保留現場書寫與討論的儀式感，QR code 補充延伸知識且可隨時更新，不必重印。" } },
-      item4: { title: { en: "Funnel from IG/FB to official LINE", zh: "從 FB/IG 導流到官方 LINE" }, text: { en: "A social post reaches people once and disappears. LINE lets the team push new events repeatedly, turning a one-off impression into an ongoing relationship.", zh: "社群貼文觸及一次就消失。LINE 讓團隊重複推播新活動，把一次曝光變成長期關係。" } },
-      item5: { title: { en: "Journey ends at a local partner shop", zh: "旅程終點設在在地合作商家" }, text: { en: "Routing visitors to a partner for their final reward spills the economic benefit into the wider community — consistent with the With Mud brand's core value of 共好 (shared flourishing).", zh: "把最終獎勵設在合作商家，讓效益外溢到整個聚落，呼應品牌核心主張「共好」。" } },
+      items: [
+        { title: { en: "A physical kit, not an app", zh: "實體走讀包，不做 App" }, text: { en: "No one on the team can maintain a digital product. A physical kit is made once and handed out repeatedly — and participants take it home as a keepsake.", zh: "組織沒有人能維護數位產品。實體包一次製作即可重複發放，參與者還能帶回家當紀念。" } },
+        { title: { en: "Alternating indoor and outdoor stops", zh: "室內外場域交替" }, text: { en: "Our field visit showed that long outdoor sessions in summer Xizhou hurt the experience. Alternating stops create natural rest points without scheduling breaks.", zh: "田調時親身感受到夏季長時間戶外活動的疲憊。室內外交替自然形成休息點，不必額外安排。" } },
+        { title: { en: "Paper worksheet + QR code, not pure paper or pure digital", zh: "紙本學習單＋QR code，不純紙本也不純數位" }, text: { en: "Paper keeps the on-site ritual of writing and discussion. The QR code carries deeper knowledge that can be updated later without reprinting.", zh: "紙本保留現場書寫與討論的儀式感，QR code 補充延伸知識且可隨時更新，不必重印。" } },
+        { title: { en: "Funnel from IG/FB to official LINE", zh: "從 FB/IG 導流到官方 LINE" }, text: { en: "A social post reaches people once and disappears. LINE lets the team push new events repeatedly, turning a one-off impression into an ongoing relationship.", zh: "社群貼文觸及一次就消失。LINE 讓團隊重複推播新活動，把一次曝光變成長期關係。" } },
+        { title: { en: "Journey ends at a local partner shop", zh: "旅程終點設在在地合作商家" }, text: { en: "Routing visitors to a partner for their final reward spills the economic benefit into the wider community — consistent with the With Mud brand's core value of 共好 (shared flourishing).", zh: "把最終獎勵設在合作商家，讓效益外溢到整個聚落，呼應品牌核心主張「共好」。" } },
+      ],
     },
 
     features: {
@@ -918,12 +934,14 @@ const content = {
         panelBLabel: { en: "LINE chatbot", zh: "LINE 聊天機器人" },
         // TODO: the funnel steps' Chinese is a straight translation, not verbatim from the brief.
         funnel: {
-          step1: { en: "Complete IG/FB puzzle task", zh: "完成 IG/FB 解謎任務" },
-          step2: { en: "Earn kit discount", zh: "獲得走讀包折扣" },
-          step3: { en: "Join official LINE", zh: "加入官方 LINE" },
-          step4: { en: "On-site walking kit", zh: "現場走讀包體驗" },
-          step5: { en: "Redeem reward at partner shop", zh: "至合作商家兌換獎勵" },
-          step6: { en: "LINE pushes new events", zh: "LINE 持續推播新活動" },
+          steps: [
+            { en: "Complete IG/FB puzzle task", zh: "完成 IG/FB 解謎任務" },
+            { en: "Earn kit discount", zh: "獲得走讀包折扣" },
+            { en: "Join official LINE", zh: "加入官方 LINE" },
+            { en: "On-site walking kit", zh: "現場走讀包體驗" },
+            { en: "Redeem reward at partner shop", zh: "至合作商家兌換獎勵" },
+            { en: "LINE pushes new events", zh: "LINE 持續推播新活動" },
+          ],
         },
       },
     },
@@ -935,9 +953,11 @@ const content = {
         en: "The kit connects three groups: visitors who want an engaging experience, With Mud who need a repeatable programme, and local shops who gain foot traffic. Each benefits the others.",
         zh: "走讀包串連三個對象：想要有趣體驗的遊客、需要可複製活動的與泥共好，以及希望帶進客流的在地商家。三方互相促成。",
       },
-      card1: { title: { en: "For visitors", zh: "對遊客" }, text: { en: "Gamified tasks lower the barrier to join. Completing the route earns tangible rewards.", zh: "遊戲化任務降低參與門檻，完成路線可獲得實體獎勵。" } },
-      card2: { title: { en: "For With Mud", zh: "對與泥共好" }, text: { en: "LINE followers grow; new events can be pushed repeatedly. Tour content no longer depends on verbal delivery.", zh: "LINE 好友持續累積，可重複推播新活動。導覽內容不再全靠口述。" } },
-      card3: { title: { en: "For local shops", zh: "對在地商家" }, text: { en: "The kit's final destination is a partner shop, routing visitor spending into the local community.", zh: "走讀包的終點在合作商家，把遊客動線導向在地消費。" } },
+      cards: [
+        { title: { en: "For visitors", zh: "對遊客" }, text: { en: "Gamified tasks lower the barrier to join. Completing the route earns tangible rewards.", zh: "遊戲化任務降低參與門檻，完成路線可獲得實體獎勵。" } },
+        { title: { en: "For With Mud", zh: "對與泥共好" }, text: { en: "LINE followers grow; new events can be pushed repeatedly. Tour content no longer depends on verbal delivery.", zh: "LINE 好友持續累積，可重複推播新活動。導覽內容不再全靠口述。" } },
+        { title: { en: "For local shops", zh: "對在地商家" }, text: { en: "The kit's final destination is a partner shop, routing visitor spending into the local community.", zh: "走讀包的終點在合作商家，把遊客動線導向在地消費。" } },
+      ],
       flowTitle: { en: "Service journey", zh: "服務流程" },
       // TODO: the journey table's headers are translated from the brief; its three cells are
       // this pass's own summary of feature #4's funnel, not the owner's wording — check both.
@@ -952,14 +972,18 @@ const content = {
     results: {
       line1: { en: "Results", zh: "成果" },
       line2: { en: "and recognition", zh: "與肯定" },
-      item1: { title: { en: "Presented at the CHT Foundation showcase", zh: "於中華電信基金會蹲點成果發表中展示" }, text: { en: "The project was publicly presented as part of the 2024 CHT Foundation Social Design Programme.", zh: "專案於 2024 年中華電信基金會蹲點創新設計行動成果發表中公開展示。" } },
-      item2: { title: { en: "Adopted and field-tested by the With Mud team", zh: "由與泥共好團隊實際採用並試跑" }, text: { en: "The kit was made and run by the With Mud team with local children in Xizhou, then shared on the team's official social channels.", zh: "走讀包由與泥共好團隊帶領溪州在地孩子試跑，並在官方社群發布。" } },
+      items: [
+        { title: { en: "Presented at the CHT Foundation showcase", zh: "於中華電信基金會蹲點成果發表中展示" }, text: { en: "The project was publicly presented as part of the 2024 CHT Foundation Social Design Programme.", zh: "專案於 2024 年中華電信基金會蹲點創新設計行動成果發表中公開展示。" } },
+        { title: { en: "Adopted and field-tested by the With Mud team", zh: "由與泥共好團隊實際採用並試跑" }, text: { en: "The kit was made and run by the With Mud team with local children in Xizhou, then shared on the team's official social channels.", zh: "走讀包由與泥共好團隊帶領溪州在地孩子試跑，並在官方社群發布。" } },
       // Left as the brief's own placeholder for the owner to fill in.
-      item3: { title: { en: "Team collaboration and mentorship", zh: "團隊協作與指導" }, text: { en: "[To fill in: one sentence on how the team worked and what the advisor or programme contributed.]", zh: "[待補：一句話說明團隊如何分工以及指導老師或計畫給了什麼幫助。]" } },
+        { title: { en: "Team collaboration and mentorship", zh: "團隊協作與指導" }, text: { en: "[To fill in: one sentence on how the team worked and what the advisor or programme contributed.]", zh: "[待補：一句話說明團隊如何分工以及指導老師或計畫給了什麼幫助。]" } },
+      ],
       // TODO: photo captions translated for this pass, not given in the brief.
-      photo1: { en: "CHT Foundation showcase", zh: "中華電信基金會成果發表" },
-      photo2: { en: "Field test with local children", zh: "與在地孩童的實地測試" },
-      photo3: { en: "With Mud team at the event", zh: "與泥共好團隊出席活動" },
+      photos: [
+        { en: "CHT Foundation showcase", zh: "中華電信基金會成果發表" },
+        { en: "Field test with local children", zh: "與在地孩童的實地測試" },
+        { en: "With Mud team at the event", zh: "與泥共好團隊出席活動" },
+      ],
     },
 
     reflection: {
@@ -972,9 +996,6 @@ const content = {
       },
     },
 
-    next: {
-      back: { en: "← Back to all work", zh: "← 回到所有作品" },
-    },
   },
 
   about: {
@@ -986,7 +1007,7 @@ const content = {
         zh: "我是一位剛畢業的 UI/UX 新鮮人，從大學到研究所累積了四年的使用者訪談、原型與易用性測試經驗。",
       },
       {
-        en: "",
+        en: "As AI develops fast, I know UI/UX faces new challenges too. But the old saying still holds: I am very willing to learn!",
         zh: "隨著 AI 快速發展，我了解 UI/UX 也迎來了新的挑戰，但還是那句老話：我很願意學！",
       },
     ],
@@ -1068,7 +1089,13 @@ const content = {
           { en: "Prototyping", zh: "原型製作" },
           { en: "Design system", zh: "設計系統" },
           { en: "Motion graphics", zh: "動態圖像" },
-          "Figma", "Adobe XD", "Illustrator", "Photoshop", "After Effects", "Canva", "插畫設計", "Miro", "KJ法", "Crazy 8", "Visual Studio Code",
+          // A plain string here means "the same in both languages", which is right for a product
+          // name. These two are methods, not products, so they need both languages written out.
+          "Figma", "Adobe XD", "Illustrator", "Photoshop", "After Effects", "Canva",
+          { en: "Illustration design", zh: "插畫設計" },
+          "Miro",
+          { en: "KJ method", zh: "KJ法" },
+          "Crazy 8", "Visual Studio Code",
         ],
       },
       {

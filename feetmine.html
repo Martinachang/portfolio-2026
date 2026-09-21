@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="feetmine.css">
+  <link rel="stylesheet" href="editorial.css">
 </head>
 <body data-project="feetmine" class="cs-feetmine">
   <!-- The FeetMine case study. Unlike ilandgreen.html this page is not built from `phases`:
@@ -18,19 +18,9 @@
 
   <a class="skip" href="#intro" data-text="site.skip"></a>
 
-  <header class="topbar">
-    <a class="brand" href="index.html"><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
-    <nav>
-      <a href="index.html#work" data-text="site.headerNav.work"></a>
-      <a href="index.html#about" data-text="site.headerNav.about"></a>
-      <a href="files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
-      <a href="index.html#contact" data-text="site.headerNav.contact"></a>
-    </nav>
-    <div class="lang" role="group" aria-label="Language / 語言">
-      <button type="button" data-lang="en" lang="en">EN</button>
-      <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
-    </div>
-  </header>
+  <!-- The top bar and the footer are drawn by renderChrome() in site.js, so they exist once
+       for the whole site rather than four times. Leave these two elements empty. -->
+  <header class="topbar"></header>
 
   <main>
 
@@ -404,7 +394,7 @@
     <!-- ---------- Where to go next ---------- -->
     <nav class="fm-sec fm-light fm-next" aria-label="More work">
       <div class="fm-wrap">
-        <a class="fm-back-link" href="index.html#work" data-text="feetmine.next.back"></a>
+        <a class="fm-back-link" href="index.html#work" data-text="site.backToWork"></a>
       </div>
     </nav>
 
@@ -422,7 +412,7 @@
 
   </main>
 
-  <footer><p data-text="site.footer"></p></footer>
+  <footer></footer>
 
   <!-- The lightbox: one dialog reused by every image on the page. feetmine.js copies the thumbnail's
        crop into the frame below, so a deck slide is never opened whole. -->

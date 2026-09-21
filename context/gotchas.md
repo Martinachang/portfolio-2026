@@ -1,0 +1,125 @@
+# Gotchas and commands
+
+## Running things
+
+Every page opens by double-click. **`test.html` does not.** A `file://` page may not read its
+sibling files, so it needs `http://`.
+
+```
+python3 -m http.server 8123 --bind 127.0.0.1
+# then open http://127.0.0.1:8123/test.html
+```
+
+On the owner's Windows machine, `python` and `python3` are Microsoft Store stubs that print
+nothing and exit with code 49. Use `powershell -ExecutionPolicy Bypass -File tools/serve.ps1`
+instead. It serves the same address. Any other static server on port 8123 works too.
+
+**Run the checks.** Every line must say PASS.
+
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --no-sandbox --virtual-time-budget=30000 \
+  --dump-dom http://127.0.0.1:8123/test.html 2>/dev/null \
+  | sed -n '/<pre id="results">/,/<\/pre>/p' | sed 's/<[^>]*>//g'
+```
+
+**One check always fails headless**, and only headless: the glide. `--virtual-time-budget`
+produces no animation frames. 28 PASS and that 1 FAIL is the expected result. Check the glide by
+clicking a nav link in a real browser.
+
+**Read a page console.** Every page must log nothing.
+
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --no-sandbox --virtual-time-budget=8000 \
+  --enable-logging=stderr --v=1 --dump-dom http://127.0.0.1:8123/xizhou.html \
+  2>&1 >/dev/null | grep "INFO:CONSOLE"
+```
+
+**Prove a CSS change is safe.** This is the only thing that catches a silent style regression, and
+it has caught two real ones.
+
+Write a scratch page that loads a target page in an iframe, walks every element, and records
+`getComputedStyle` for about 40 properties. Dump it before the change and after, then diff. Take
+both dumps in the same session: a transient scrollbar shifts every width by 15px and will look
+like a regression. Delete the scratch page afterwards, never commit it.
+
+**Screenshot a phone layout.** Headless Chrome enforces a 500px minimum window width, so
+`--window-size=375,…` will not work. Load the page inside a 375px `<iframe>` on a scratch page and
+screenshot that, giving the iframe the page's full `scrollHeight`.
+
+**Deploy.** Push to `main`.
+
+## Things that look like bugs
+
+**The top bar is not in the HTML.** `renderChrome()` in `site.js` draws it. Searching a page file
+for a nav link finds nothing. The skip link is the exception and stays in the HTML.
+
+**A language switch redraws everything.** `fill()` and `renderChrome()` replace `innerHTML`, so
+anything added to the DOM by hand is destroyed. Whatever must survive belongs in `content.js`, or
+must be re-applied at the end of `renderPage()`. That is why `feetmine.js` calls `reveal()` there.
+
+**The four FeetMine charts stay English in Chinese.** `img/chart1.svg` to `chart4.svg` are Figma
+exports whose labels are outlined paths, not text. Nothing can translate a shape. Each carries its
+data in a hidden table beside it, so the meaning survives; only the words in the picture are
+stuck.
+
+**A missing translation reaches the page as the word "undefined".** `t()` returns `value[lang]`
+and logs a warning. `test.html` walks `content.js` and fails on a missing half.
+
+**The language is remembered between sessions.** `localStorage.lang`. A page can load in Chinese
+for no visible reason. Clear it before deciding something is broken.
+
+**`site.js` reads `document.body` when parsed.** `content.project` and `inPagePrefix` are assigned
+at load, not inside a function. That is why script tags sit at the end of `<body>`. Moving them to
+`<head>` breaks every page.
+
+**The desk objects only drag above 720px.** `home.js` stops unless
+`getComputedStyle(object).position === "absolute"`, which `style.css` sets only on wide screens.
+Below that they are a grid and respond to clicks alone. Drag positions are not saved, so a reload
+resets the desk. The click that ends a drag is swallowed on purpose.
+
+**The hash appears 1200ms after the click.** The glide calls `history.replaceState` only when the
+animation ends. `style.css` also sets `scroll-behavior: smooth`, which covers jumps the JavaScript
+does not intercept. Both are live at once.
+
+**Scoping in `editorial.css` raises specificity.** A rule in a page part is `.cs-feetmine .fm-x`,
+not `.fm-x`. Adding a page rule that duplicates a shared selector will now win where the bare
+version used to lose. The computed-style diff above is how you catch that.
+
+## Unfinished
+
+**FeetMine's final image exports do not exist.** Each `<img>` points at a deck slide, and an
+`.fm-shot--*` class crops it to the one screen or photo that belongs there. Thirteen crops exist.
+Every one carries a `TODO`. When an export arrives, point the `<img>` at it and drop the class.
+The lightbox copies the crop class onto its frame, so check both the thumbnail and the lightbox.
+
+**Walk Xizhou has no images at all.** Its eleven slots are `.fm-shot-placeholder` dashed boxes.
+There are no exports and no deck slides to crop. This is not the same as FeetMine's crops.
+
+**Open `TODO` counts:** `feetmine.html` 11, `xizhou.html` 11, `content.js` 9, `feetmine.js` 2,
+`editorial.css` 1.
+
+**Twenty-three tracked images are referenced by nothing:** the chart PNG files the SVG exports
+replaced, deck slides `feetmine-05` to `12` plus `17` and `18`, three app screens,
+`Competitive Analysis.png`, `feetmineinterface.jpg`, and five newer SVG files (`bigger`,
+`corrective`, `look`, `sandel`, `soft`) that look like replacements for six deleted `foot-*.png`
+illustrations. Do not assume a file in `img/` is live, and do not delete any without asking. The
+owner prunes this list.
+
+**The contrast figures in `editorial.css` are hand arithmetic.** Its `TODO` says so. Confirm with
+a real tool before treating them as final.
+
+**One placeholder in the copy:** `content.xizhou.results.items[2].text` is a bracketed note.
+
+## Copy that is not final
+
+The **Chinese was drafted from the English deck and the owner has never reviewed it.** Treat it as
+a draft everywhere.
+
+FeetMine's five process phases — Research, Define, Design, Test and iterate, Launch — were
+inferred from the deck, which never states them. The owner still has to confirm them. Its
+Reflection section is a placeholder. Its numbers are the deck's own: check `img/feetmine-05.jpg`
+to `feetmine-19.jpg` before changing one.
+
+The deck reversed its two "Worked" date ranges. They were corrected here to start-to-end order.
