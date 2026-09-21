@@ -73,11 +73,11 @@ const content = {
   },
 
   // Projects, in display order. The first one is featured on the desk.
-  // Each project has its own page: copy feetmine.html and change data-project in its <body>.
+  // Each project has its own page under work/<id>/: copy one and change data-project in its <body>.
   projects: [
     {
       id: "feetmine",              // must match data-project in the page's <body>
-      page: "feetmine.html",
+      page: "work/feetmine/index.html",
       accent: "#f7943e",           // the project's own colours
       accentWash: "#ffe9d6",
       banner: "#FF9F46",           // flat colour for the Work card banner
@@ -103,14 +103,14 @@ const content = {
       // The image on the home page's Work section. FeetMine's case study (feetmine.html) is a page of its
       // own: its words live in content.feetmine below, not in `phases`.
       workImage: {
-        src: "img/feetmine-app-screens.png",
+        src: "img/feetmine/feetmine-app-screens.png",
         alt: { en: "Three FeetMine screens: measurement results, the home dashboard, and the Foot ID card", zh: "三個合步合腳畫面：量測結果、首頁儀表板，以及足型 ID 卡" },
         fit: "contain",
       },
       visualBackground: "linear-gradient(180deg, #FFB26A 0%, #FF820F 100%)",
       visualNoise: true,
       links: [
-        { label: { en: "Case study", zh: "完整案例" }, href: "feetmine.html", primary: true }, // the image links here too
+        { label: { en: "Case study", zh: "完整案例" }, href: "work/feetmine/index.html", primary: true }, // the image links here too
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/foot-dna-test", external: true },
       ],
     },
@@ -130,7 +130,7 @@ const content = {
         zh: "透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
       },
       workImage: {
-        src: "img/xizhoubanner.png",
+        src: "img/xizhou/xizhoubanner.png",
         alt: {
           en: "The Walk Xizhou key visual: a yellow folder holding the project's sticker sheet, illustrated town guide and a phone showing its LINE chatbot",
           zh: "與泥探險主視覺：一個黃色資料夾，裡面放著貼紙、手繪街區導覽與顯示 LINE 聊天機器人的手機",
@@ -144,7 +144,7 @@ const content = {
       visualBackground: "#FDF3D7",
       links: [
         // The image links here too (primary: true).
-        { label: { en: "Case study", zh: "完整案例" }, href: "xizhou.html", primary: true },
+        { label: { en: "Case study", zh: "完整案例" }, href: "work/xizhou/index.html", primary: true },
         // TODO: the first press mention only — more to be added alongside it later.
         { label: { en: "Press", zh: "新聞介紹" }, href: "https://tw.news.yahoo.com/%E7%A8%AE-%E6%A3%B5%E7%A7%91%E6%8A%80%E6%A8%B9-%E7%B5%90-%E4%B8%B2%E4%BA%BA%E6%96%87%E6%9E%9C-%E4%B8%AD%E8%8F%AF%E9%9B%BB%E4%BF%A1%E5%9F%BA%E9%87%91%E6%9C%83%E8%AE%93%E5%BD%B0%E5%8C%96%E6%BA%AA%E5%B7%9E-033730447.html", external: true },
         { label: { en: "Highlights", zh: "成果展示" }, href: "https://www.chtf.org.tw/news/844", external: true },
@@ -152,7 +152,7 @@ const content = {
     },
     {
       id: "ilandgreen",            // must match data-project in the page's <body>
-      page: "ilandgreen.html",
+      page: "work/ilandgreen/index.html",
       accent: "#3fa895",           // the project's own colours
       accentWash: "#e3f7f3",
       banner: "#77DBCC",           // flat colour for the Work card banner
@@ -178,12 +178,12 @@ const content = {
         { en: "Sustainability", zh: "永續設計" },
       ],
       cover: {
-        src: "img/ilandgreen-01.jpg",
+        src: "img/ilandgreen/ilandgreen-01.jpg",
         alt: { en: "ILANDGREEN app screens: the persona quiz and the resulting travel itinerary", zh: "綠島的應用畫面：角色測驗與對應的旅行行程" },
       },
       // The image on the home page's Work section only (the case study above still opens with `cover`).
       workImage: {
-        src: "img/ilandgreen-app-screens.png",
+        src: "img/ilandgreen/ilandgreen-app-screens.png",
         alt: { en: "Three ILANDGREEN screens: the travel mood quiz, the home screen, and the soundscape picker", zh: "三個綠島畫面：旅行心情測驗、首頁，以及音景選擇畫面" },
         fit: "contain",
       },
@@ -192,7 +192,7 @@ const content = {
       visualNoiseOpacity: 0.5,
       links: [
         // No "primary" link, so the cover image falls back to this one (see home.js).
-        { label: { en: "Demo", zh: "體驗" }, href: "ilandgreen/index.html", external: true },
+        { label: { en: "Demo", zh: "體驗" }, href: "demo/ilandgreen/index.html", external: true },
         { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/ILANDGREEN", external: true },
       ],
 
@@ -219,9 +219,9 @@ const content = {
             },
           ],
           figures: [
-            { src: "img/ilandgreen-02.jpg", alt: { en: "Persona results: Nature Lover, Eco Traveler, Curious Wanderer", zh: "測驗結果：自然愛好者、生態旅人、好奇漫遊者" } },
-            { src: "img/ilandgreen-03.jpg", alt: { en: "The itinerary built from the traveler's persona", zh: "依旅人角色所規劃出的行程" } },
-            { src: "img/ilandgreen-04.jpg", alt: { en: "Trip detail screen with slower, lower-impact activities", zh: "行程細節畫面，呈現步調較慢、衝擊較低的活動" } },
+            { src: "img/ilandgreen/ilandgreen-02.jpg", alt: { en: "Persona results: Nature Lover, Eco Traveler, Curious Wanderer", zh: "測驗結果：自然愛好者、生態旅人、好奇漫遊者" } },
+            { src: "img/ilandgreen/ilandgreen-03.jpg", alt: { en: "The itinerary built from the traveler's persona", zh: "依旅人角色所規劃出的行程" } },
+            { src: "img/ilandgreen/ilandgreen-04.jpg", alt: { en: "Trip detail screen with slower, lower-impact activities", zh: "行程細節畫面，呈現步調較慢、衝擊較低的活動" } },
           ],
         },
       ],
@@ -235,7 +235,7 @@ const content = {
       badge: "RESEARCH",
       name: "Visual Perception of Non-Human Features in Avatars",
       workImage: {
-        src: "img/avatar-perception-notion.png",
+        src: "img/avatar/avatar-perception-notion.png",
         alt: { en: "The project's Notion page, showing its metadata: authors, year, thesis type and advisor", zh: "研究專案的 Notion 頁面，顯示作者、年份、論文類型與指導教授等後設資料" },
         frame: "browser",
         url: "marsh-nannyberry-d49.notion.site",
@@ -1046,15 +1046,15 @@ const content = {
 
   // Tool logos, one SVG file each in img/. A tool named here shows its logo wherever it is listed.
   logos: {
-    Figma: "img/figma.svg",
-    "Adobe XD": "img/adobe-xd.svg",
-    Illustrator: "img/illustrator.svg",
-    Photoshop: "img/photoshop.svg",
-    "After Effects": "img/after-effects.svg",
-    Canva: "img/canva.svg",
-    Miro: "img/miro.svg",
-    Notion: "img/notion.svg",
-    "Visual Studio Code": "img/visual-studio-code.svg",
+    Figma: "img/logos/figma.svg",
+    "Adobe XD": "img/logos/adobe-xd.svg",
+    Illustrator: "img/logos/illustrator.svg",
+    Photoshop: "img/logos/photoshop.svg",
+    "After Effects": "img/logos/after-effects.svg",
+    Canva: "img/logos/canva.svg",
+    Miro: "img/logos/miro.svg",
+    Notion: "img/logos/notion.svg",
+    "Visual Studio Code": "img/logos/visual-studio-code.svg",
   },
 
   // How I work: three steps, each with a sentence and the methods and tools used at that step.

@@ -24,30 +24,51 @@ portfolio-2026/
 ├── context/gotchas.md          what bites, and how to run things
 │
 ├── index.html            129   the home page: desk, work list, about, skills, contact
-├── ilandgreen.html        62   a case study built entirely from content.js
-├── feetmine.html         428   an editorial case study
-├── xizhou.html           364   an editorial case study
-├── test.html             217   the only check; serve it over http://
 │
-├── content.js          1,123   every word on the site, in both languages
-├── site.js               130   language, the chrome, data-* filling, the glide, item templates
-├── home.js               110   the desk, the work cards, the profile lists
-├── project.js             39   fills ilandgreen.html from content.js
-├── feetmine.js           265   FeetMine's lists, charts, tables and diagrams
-├── xizhou.js              42   Walk Xizhou's lists
+├── work/                       one folder per case study, each page named index.html
+│   ├── feetmine/
+│   │   ├── index.html    428   an editorial case study
+│   │   └── feetmine.js   265   FeetMine's lists, charts, tables and diagrams
+│   ├── xizhou/
+│   │   ├── index.html    364   an editorial case study
+│   │   └── xizhou.js      42   Walk Xizhou's lists
+│   └── ilandgreen/
+│       └── index.html     62   built entirely from content.js by js/project.js
 │
-├── style.css             406   tokens and the shared site layout
-├── editorial.css         658   the two case-study pages: shared, then FeetMine, then Xizhou
+├── js/                         scripts more than one page loads
+│   ├── content.js      1,123   every word on the site, in both languages
+│   ├── site.js           133   language, the chrome, data-* filling, the glide, item templates
+│   ├── home.js           110   the desk, the work cards, the profile lists
+│   └── project.js         39   fills any standard project page from content.js
 │
-├── img/                        51 files: logos, photos, chart exports, deck slides
+├── css/
+│   ├── style.css         406   tokens and the shared site layout
+│   └── editorial.css     658   the two case-study pages: shared, then FeetMine, then Xizhou
+│
+├── img/                        by owner, not by kind
+│   ├── site/                   2 files: the mascot and the profile photo
+│   ├── logos/                  9 tool logos, one SVG each
+│   ├── feetmine/              11 files
+│   ├── xizhou/                 1 file
+│   ├── ilandgreen/             5 files
+│   ├── avatar/                 1 file
+│   └── _unused/               23 files referenced by nothing; the owner prunes them
+│
 ├── files/Resume-ENG.pdf
-├── tools/serve.ps1             a static server, for the owner's Windows machine
-└── ilandgreen/                 a separate prototype app; ignore it
+├── demo/ilandgreen/            a separate prototype app; ignore it
+└── tools/
+    ├── test.html         219   the only check; serve it over http://
+    └── serve.ps1               a static server, for the owner's Windows machine
 ```
 
-`ilandgreen/` is 12 files and 1,452 lines with its own router, state and namespace. It shares
-nothing with the site. It is served from here as the Demo link on the ILANDGREEN work card. Do not
-confuse it with `ilandgreen.html`, the case-study page. That is the easiest mistake here.
+`demo/ilandgreen/` is 12 files and 1,452 lines with its own router, state and namespace. It shares
+nothing with the site. It is served from here as the Demo link on the ILANDGREEN work card. Its
+case-study page is the unrelated `work/ilandgreen/index.html`; the parent folder is what tells the
+two apart, so always name it.
+
+A script one page loads lives beside that page, which is why `feetmine.js` and `xizhou.js` sit in
+their project folders. A script more than one page loads lives in `js/`, which is why `project.js`
+does not — any standard project page can use it.
 
 ## How a page renders
 
@@ -69,8 +90,16 @@ That is how names, email addresses and tool names stay the same in both language
 `fill(id, items, template)` replaces an element's `innerHTML`. That is why the whole page redraws
 on a language switch, and why anything added to the DOM by hand is lost when it does.
 
-One value differs per page: the home page links to its own sections with `#work`, and every other
-page needs `index.html#work`. A page declares itself the home page with `<body data-home>`.
+One value differs per page: how far it sits below the repo root. A case study carries
+`<body data-root="../../">`; the home page carries nothing, and `site.js` reads `""`. Everything
+the chrome links to lives at the root, so `root` prefixes the resume link, and `inPagePrefix`
+derives from it — an empty `root` means this is the home page, which links to its own sections
+with `#work` so the glide can take over.
+
+**A path stored in `content.js` is root-relative, and the renderer adds `root`.** `home.js` runs
+only at the root and needs no prefix; `project.js` runs at depth two and prefixes every path it
+reads. Store `img/feetmine/banner.jpg` in content, never `../../img/...` — the same value is read
+from two depths.
 
 ## Conventions
 
@@ -84,6 +113,8 @@ page needs `index.html#work`. A page declares itself the home page with `<body d
   queries sit mid-file beside the rule they belong to, so search for `@media` before editing.
 - Per-project colour arrives as a custom property set from JavaScript. Write rules against the
   property, never against a hex value that belongs to one project.
+- `img/` is filed by owner, not by kind: a new project image goes in `img/<project>/`. Anything in
+  `img/_unused/` is referenced by nothing and is the owner's to prune.
 - Comments: see the section at the end of this file.
 
 ### `content.js`
@@ -98,7 +129,8 @@ no `data-project`, so `site.js` falls back to the first entry. A project's `id` 
 Store a repeating list as an array, and use the same key name on both editorial pages: `steps`,
 `items`, `cards`, `photos`. Never numbered siblings like `step1`, `step2`.
 
-Both halves of a pair must exist. `test.html` walks the whole object and fails on a missing half.
+Both halves of a pair must exist. `tools/test.html` walks the whole object and fails on a missing
+half.
 The one exception is `line2`, the grey second half of a two-line heading: a heading that needs two
 lines in English often fits on one in Chinese.
 
@@ -128,7 +160,9 @@ Do not re-suggest these. Each was weighed and settled.
 - **The chrome stays in JavaScript.** Putting the nav back in the HTML means four copies, and the
   git history shows the same nav edit hitting three files twice in five commits.
 - **`.fm-*` is not renamed.** 1,127 occurrences across HTML, JavaScript and CSS. Pure churn.
-- **`ilandgreen/` stays where it is.** Moving it breaks the live Demo link.
+- **The demo app lives at `demo/ilandgreen/`.** It was moved out of the root to stop it reading
+  as the sibling of the case-study page. The Demo href in `content.js` moved with it, so the old
+  `/ilandgreen/` URL is dead. Do not move it again.
 
 ## Comments
 

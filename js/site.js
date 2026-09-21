@@ -67,10 +67,13 @@ document.addEventListener("click", (event) => {
 // ---------- The chrome ----------
 
 // Each page carries an empty <header class="topbar"> and an empty <footer> for renderChrome() to
-// fill. The only difference between pages is this prefix: the home page links to its own sections
-// so the glide below can take over, and every other page has to travel there first. A page
-// declares itself the home page with <body data-home>.
-const inPagePrefix = document.body.hasAttribute("data-home") ? "" : "index.html";
+// fill. Everything the chrome links to lives at the repo root, so a page below the root has to
+// climb back first: <body data-root="../../"> in work/<id>/, and nothing on the home page.
+const root = document.body.dataset.root || "";
+
+// The home page links to its own sections so the glide below can take over. Every other page has
+// to travel to index.html first. An empty root means this is the home page.
+const inPagePrefix = root && root + "index.html";
 
 function renderChrome() {
   const topbar = document.querySelector(".topbar");
@@ -80,7 +83,7 @@ function renderChrome() {
       <nav>
         <a href="${inPagePrefix}#work" data-text="site.headerNav.work"></a>
         <a href="${inPagePrefix}#about" data-text="site.headerNav.about"></a>
-        <a href="files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
+        <a href="${root}files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
         <a href="${inPagePrefix}#contact" data-text="site.headerNav.contact"></a>
       </nav>
       <div class="lang" role="group" aria-label="Language / 語言">

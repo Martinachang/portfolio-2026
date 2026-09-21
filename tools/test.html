@@ -18,9 +18,9 @@
   <h1>Site checks</h1>
   <p><strong>Desktop-width harness.</strong> The iframes below are fixed at 1200px so the wide
      layouts can be checked, so this page looks clipped on a phone — that is expected, not a bug.
-     To look at the real mobile layout, open <a href="index.html">index.html</a> itself.</p>
+     To look at the real mobile layout, open <a href="../index.html">index.html</a> itself.</p>
   <pre id="results">running…</pre>
-  <iframe id="home" src="index.html" width="1200" height="900"></iframe>
+  <iframe id="home" src="../index.html" width="1200" height="900"></iframe>
   <iframe id="project" width="1200" height="900"></iframe>
   <iframe id="case" width="1200" height="900"></iframe>
   <iframe id="xizhou" width="1200" height="900"></iframe>
@@ -143,7 +143,7 @@
         check("clicking a nav link glides to the section and sets the hash",
           () => Math.abs(win.scrollY - aboutTop) < 2 && win.location.hash === "#about");
         print();
-        project.src = "ilandgreen.html";
+        project.src = "../work/ilandgreen/index.html";
       }, 1600);
     });
 
@@ -151,7 +151,7 @@
       const win = project.contentWindow, doc = win.document;
       const $ = (s) => doc.querySelector(s);
       const entry = win.eval("content").projects.find((p) => p.id === "ilandgreen");
-      checkPage("ilandgreen.html", win);
+      checkPage("work/ilandgreen/", win);
 
       check("ILANDGREEN renders a section per phase, and every phase link resolves", () =>
         doc.querySelectorAll(".phase").length === entry.phases.length &&
@@ -160,17 +160,19 @@
       check("ILANDGREEN fills its hero and cover from content.js", () =>
         $("#case-badge").textContent === entry.badge &&
         $("#case-headline").textContent.length > 0 &&
-        $("#cover").getAttribute("src") === entry.cover.src);
+        // project.js prefixes every content.js path with the page's depth root, so this asserts
+        // the prefix is applied as well as the value coming from content.js.
+        $("#cover").getAttribute("src") === win.eval("root") + entry.cover.src);
 
       print();
-      study.src = "feetmine.html";
+      study.src = "../work/feetmine/index.html";
     });
 
     study.addEventListener("load", () => {
       const win = study.contentWindow, doc = win.document;
       const $ = (s) => doc.querySelector(s);
       const $$ = (s) => [...doc.querySelectorAll(s)];
-      checkPage("feetmine.html", win);
+      checkPage("work/feetmine/", win);
 
       check("every chart carries its data in a table as well",
         () => $$(".fm-chart").length === 4 &&
@@ -196,13 +198,13 @@
       });
 
       print();
-      xizhou.src = "xizhou.html";
+      xizhou.src = "../work/xizhou/index.html";
     });
 
     xizhou.addEventListener("load", () => {
       const win = xizhou.contentWindow, doc = win.document;
       const content = win.eval("content");
-      checkPage("xizhou.html", win);
+      checkPage("work/xizhou/", win);
 
       check("the contact button is a mailto link to the address in content.js",
         () => doc.querySelector("#fm-mail-link").href === "mailto:" + content.site.email);

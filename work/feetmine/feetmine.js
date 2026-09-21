@@ -40,7 +40,7 @@ function dataTable(caption, rows) {
      </table>`;
 }
 
-// Each of these four charts is now the exact SVG exported from Figma (img/chart1–4.svg) rather
+// Each of these four charts is now the exact SVG exported from Figma (img/feetmine/chart1–4.svg) rather
 // than a CSS/JS drawing — the source file is the design, so this stays a picture of it, not a
 // rebuild. Every label and number inside those files is a Figma "outline text" path, not a real
 // <text> node, so none of it exists for a screen reader; the img is decorative (alt="") and the
@@ -48,15 +48,15 @@ function dataTable(caption, rows) {
 // One limitation worth knowing: because the words are baked into the SVG as shapes, these four
 // charts stay in English even when the page is switched to Chinese — unlike the rest of the page.
 function renderChartSvg(figure, src, caption, rows) {
-  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
+  figure.innerHTML = `<img class="fm-chart-img" src="../../img/feetmine/${src}" alt="" loading="lazy">
      ${dataTable(caption, rows)}`;
 }
 
-// The life-stage bar (img/chart4.svg) has no percentages, just an ordered sequence of stages
+// The life-stage bar (img/feetmine/chart4.svg) has no percentages, just an ordered sequence of stages
 // with one marked as this project's focus — so its accessible table is one column of names
 // plus a note on the active row, not the label/value shape dataTable() expects.
 function renderStages(figure, src, caption, stages) {
-  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
+  figure.innerHTML = `<img class="fm-chart-img" src="../../img/feetmine/${src}" alt="" loading="lazy">
      <table class="fm-sr"><caption>${caption}</caption>
        <tbody>${stages.map((stage) => `
          <tr><th scope="row">${t(stage.name)}</th><td>${stage.active ? t(fm.field.currentFocusNote) : ""}</td></tr>`).join("")}</tbody>
@@ -159,9 +159,9 @@ const screenCrops = ["home", "ar", "result", "idcard", "growth"];
 
 function screenItem(screen, i) {
   return `<li>
-       <!-- TODO: replace with img/feetmine-screen-${screenCrops[i]}.png -->
+       <!-- TODO: replace with img/feetmine/feetmine-screen-${screenCrops[i]}.png -->
        <button type="button" class="fm-zoom fm-shot fm-shot--${screenCrops[i]}">
-         <img src="img/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
+         <img src="../../img/feetmine/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
        </button>
        <p class="fm-screen-label"><b>${two(i)}</b>${t(screen.name)}</p>
      </li>`;
@@ -169,9 +169,9 @@ function screenItem(screen, i) {
 
 function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
-       <!-- TODO: replace with img/feetmine-yodex-${i + 1}.jpg -->
+       <!-- TODO: replace with img/feetmine/feetmine-yodex-${i + 1}.jpg -->
        <button type="button" class="fm-zoom fm-shot fm-shot--yodex${i + 1}">
-         <img src="img/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
+         <img src="../../img/feetmine/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
        </button>
      </div>`;
 }

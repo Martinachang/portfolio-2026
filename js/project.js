@@ -18,7 +18,7 @@ function renderPage() {
   fill("case-meta", project.stats, (stat) => `<dt>${t(stat.label)}</dt><dd>${t(stat.value)}</dd>`);
 
   const cover = document.getElementById("cover");
-  cover.src = project.cover.src;
+  cover.src = root + project.cover.src;
   cover.alt = t(project.cover.alt);
 
   renderPhases();
@@ -34,6 +34,6 @@ function renderPhases() {
        <h3 id="phase-${i}-title"><span class="phase-mark">${t(phase.name)}</span>${phase.headline ? t(phase.headline) : ""}</h3>
        ${phase.points ? `<ul class="points">${phase.points.map(listItem).join("")}</ul>` : ""}
        <div class="figures">${phase.figures.map((figure) =>
-         `<a href="${figure.src}" target="_blank"><img src="${figure.src}" alt="${t(figure.alt)}" loading="lazy"></a>`).join("")}</div>
+         `<a href="${root + figure.src}" target="_blank"><img src="${root + figure.src}" alt="${t(figure.alt)}" loading="lazy"></a>`).join("")}</div>
      </section>`);
 }
