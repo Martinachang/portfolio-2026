@@ -1,13 +1,13 @@
 # A tiny static file server for checking the site locally on Windows.
 #
-# Why this exists: test.html has to be opened over http://, not by double-clicking it,
+# Why this exists: tools/test.html has to be opened over http://, not by double-clicking it,
 # because the browser blocks a file:// page from reading other files. The usual
 # `python3 -m http.server` does not work on a machine without Python — on Windows,
 # `python` is often a Microsoft Store stub that prints nothing and exits.
 # PowerShell can serve the folder on its own, so nothing needs installing.
 #
 #   Run:   powershell -ExecutionPolicy Bypass -File tools/serve.ps1
-#   Open:  http://127.0.0.1:8123/test.html
+#   Open:  http://127.0.0.1:8123/tools/test.html
 #   Stop:  Ctrl+C in that window
 #
 # It listens on 127.0.0.1 only, so nothing outside this computer can reach it.
@@ -51,7 +51,7 @@ try {
 }
 
 Write-Host "Serving $root"
-Write-Host "Open http://127.0.0.1:8123/test.html   (Ctrl+C to stop)"
+Write-Host "Open http://127.0.0.1:8123/tools/test.html   (Ctrl+C to stop)"
 
 while ($listener.IsListening) {
   try {

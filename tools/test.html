@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Site checks</title>
+</head>
+<body>
+  <!-- Open this page through a local server (VS Code Live Preview works). Every line should say
+       PASS, except the glide, which cannot pass in headless Chrome because --virtual-time-budget
+       produces no animation frames.
+
+       Two rules hold this harness together:
+
+       * check(name, fn) takes a function, so a throw in one assertion fails that assertion alone
+         and every later check still runs.
+       * print() runs after every page, not only the last, so a broken chain still shows what ran
+         instead of leaving this page reading "running…". -->
+  <h1>Site checks</h1>
+  <p><strong>Desktop-width harness.</strong> The iframes below are fixed at 1200px so the wide
+     layouts can be checked, so this page looks clipped on a phone — that is expected, not a bug.
+     To look at the real mobile layout, open <a href="../index.html">index.html</a> itself.</p>
+  <pre id="results">running…</pre>
+  <iframe id="home" src="../index.html" width="1200" height="900"></iframe>
+  <iframe id="project" width="1200" height="900"></iframe>
+  <iframe id="case" width="1200" height="900"></iframe>
+  <iframe id="xizhou" width="1200" height="900"></iframe>
+
+  <script>
+    const results = [];
+
+    function check(name, fn) {
+      let ok = false, note = "";
+      try { ok = Boolean(fn()); } catch (error) { note = " — " + error; }
+      results.push((ok ? "PASS  " : "FAIL  ") + name + note);
+    }
+
+    function print() {
+      const failed = results.filter((line) => line.startsWith("FAIL")).length;
+      document.getElementById("results").textContent =
+        results.join("\n") + "\n\n" + results.length + " checks, " + failed + " failed.";
+    }
+
+    // Every page: it renders at all, and it renders in both languages.
+    function checkPage(url, win) {
+      const doc = win.document;
+      const $ = (s) => doc.querySelector(s);
+      const $$ = (s) => [...doc.querySelectorAll(s)];
+      const switchTo = (lang) => $('[data-lang="' + lang + '"]').click();
+
+      check(url + " defines renderPage(), which site.js calls unguarded",
+        () => typeof win.renderPage === "function");
+
+      check(url + " draws the chrome", () =>
+        $(".topbar .brand") !== null &&
+        $$(".topbar nav a").length === Object.keys(win.eval("content").site.headerNav).length &&
+        $$(".topbar [data-lang]").length === 2 &&
+        $("footer p") !== null);
+
+      // line2 is the grey second half of a two-line heading. A heading that needs two lines in
+      // English often fits on one in Chinese, so an empty line2 is a choice, not a gap.
+      check(url + " fills every word in both languages", () => {
+        const filled = () =>
+          !doc.body.textContent.includes("undefined") &&
+          $$("[data-text]").every((el) =>
+            el.dataset.text.endsWith(".line2") || el.textContent.trim().length > 0);
+        const english = filled();
+        switchTo("zh");
+        const chinese = filled();
+        switchTo("en");
+        return english && chinese;
+      });
+
+      // An image that declares data-alt must end up with that text. An image left alt="" is
+      // decorative and needs its meaning elsewhere: a chart carries its numbers in a hidden
+      // table, and a tool logo sits beside its own name. Only the first is testable here.
+      check(url + " fills every data-alt image and backs every chart with a table", () =>
+        $$("img[data-alt]").every((img) => img.alt.trim().length > 0) &&
+        $$("img.fm-chart-img").every((img) =>
+          img.closest("figure").querySelector("table.fm-sr") !== null));
+
+      // The check above proves an image is described, not that it exists. A 404 keeps its alt
+      // text and passes. naturalWidth would catch it, but loading="lazy" images below the fold
+      // never load inside an iframe, so a HEAD on the resolved src is what covers every image.
+      check(url + " every image resolves to a file that exists", () => {
+        const images = $$("img[src]");
+        return images.length > 0 && images.every((img) => {
+          const request = new win.XMLHttpRequest();
+          request.open("HEAD", img.src, false);
+          request.send();
+          return request.status === 200;
+        });
+      });
+    }
+
+    const home = document.getElementById("home");
+    const project = document.getElementById("project");
+    const study = document.getElementById("case");
+    const xizhou = document.getElementById("xizhou");
+
+    home.addEventListener("load", () => {
+      const win = home.contentWindow, doc = win.document;
+      const $ = (s) => doc.querySelector(s);
+      const content = win.eval("content");
+      checkPage("index.html", win);
+
+      // Every word on the site is in site-text.js, so one walk covers every page's copy.
+      check("no { en, zh } pair in site-text.js is missing a half", () => {
+        const bad = [];
+        (function walk(node, path) {
+          if (node === null || typeof node !== "object") return;
+          const isPair = !Array.isArray(node) && ("en" in node || "zh" in node) &&
+            typeof (node.en === undefined ? node.zh : node.en) === "string";
+          if (isPair) {
+            const missing = !("en" in node) || !("zh" in node);
+            const empty = String(node.en || "").trim() === "" || String(node.zh || "").trim() === "";
+            if (missing || (empty && !path.endsWith(".line2"))) bad.push(path);
+            return;
+          }
+          Object.keys(node).forEach((k) =>
+            walk(node[k], path + (Array.isArray(node) ? "[" + k + "]" : "." + k)));
+        })(content, "content");
+        if (bad.length) throw new Error(bad.join(", "));
+        return true;
+      });
+
+      check("the work list renders one card per project, each with its links", () => {
+        const cards = doc.querySelectorAll(".work-item");
+        return cards.length === content.projects.length &&
+          [...cards].every((card, i) =>
+            card.querySelectorAll(".work-links .pill-link").length === content.projects[i].links.length);
+      });
+
+      check("the profile sections are filled from site-text.js", () =>
+        doc.querySelectorAll(".steps > li").length === content.skills.steps.length &&
+        doc.querySelectorAll("#experience li").length === content.about.experience.length &&
+        $("#mail-link").href === "mailto:" + content.site.email);
+
+      check("dragging moves the folder and does not follow its link", () => {
+        const folder = $(".folder");
+        folder.setPointerCapture = () => {}; // synthetic pointers cannot be captured
+        const pointer = (type, x, y) => folder.dispatchEvent(
+          new win.PointerEvent(type, { pointerId: 1, clientX: x, clientY: y, button: 0, bubbles: true }));
+        pointer("pointerdown", 100, 100);
+        pointer("pointermove", 160, 130);
+        pointer("pointerup", 160, 130);
+        const click = new win.MouseEvent("click", { bubbles: true, cancelable: true });
+        folder.dispatchEvent(click);
+        return folder.style.translate === "60px 30px" && click.defaultPrevented;
+      });
+
+      // site.js animates this over SCROLL_TIME (1200ms) and only sets the hash at the end.
+      const target = $("#about"), bar = $(".topbar"), link = $('nav a[href="#about"]');
+      const aboutTop = target.getBoundingClientRect().top - bar.offsetHeight;
+      link.click();
+      setTimeout(() => {
+        check("clicking a nav link glides to the section and sets the hash",
+          () => Math.abs(win.scrollY - aboutTop) < 2 && win.location.hash === "#about");
+        print();
+        project.src = "../work/ilandgreen/index.html";
+      }, 1600);
+    });
+
+    project.addEventListener("load", () => {
+      const win = project.contentWindow, doc = win.document;
+      const $ = (s) => doc.querySelector(s);
+      const entry = win.eval("content").projects.find((p) => p.id === "ilandgreen");
+      checkPage("work/ilandgreen/", win);
+
+      check("ILANDGREEN renders a section per phase, and every phase link resolves", () =>
+        doc.querySelectorAll(".phase").length === entry.phases.length &&
+        [...doc.querySelectorAll("#phase-nav a")].every((a) => doc.querySelector(a.hash) !== null));
+
+      check("ILANDGREEN fills its hero and cover from site-text.js", () =>
+        $("#case-badge").textContent === entry.badge &&
+        $("#case-headline").textContent.length > 0 &&
+        // js/page-project.js prefixes every site-text.js path with the page's depth root, so this asserts
+        // the prefix is applied as well as the value coming from site-text.js.
+        $("#cover").getAttribute("src") === win.eval("root") + entry.cover.src);
+
+      print();
+      study.src = "../work/feetmine/index.html";
+    });
+
+    study.addEventListener("load", () => {
+      const win = study.contentWindow, doc = win.document;
+      const $ = (s) => doc.querySelector(s);
+      const $$ = (s) => [...doc.querySelectorAll(s)];
+      checkPage("work/feetmine/", win);
+
+      check("every chart carries its data in a table as well",
+        () => $$(".fm-chart").length === 4 &&
+          $$(".fm-chart").every((c) => c.querySelector("table.fm-sr") !== null));
+
+      // This page shows no decorative images beyond the charts, so the strict rule holds here:
+      // every other image is a crop or the hero, and every one of them is described.
+      check("no image on this page is left undescribed",
+        () => $$("img").every((img) =>
+          img.classList.contains("fm-chart-img") || img.alt.trim().length > 0));
+
+      // A dot means yes. That must never be shape-only.
+      check("every comparison cell says in words what its dot means",
+        () => $$("#fm-compare tbody td").every((cell) => cell.querySelector(".fm-sr") !== null));
+
+      check("a click opens the same crop in the lightbox, not the whole slide", () => {
+        $(".fm-zoom").click();
+        const frame = $("#fm-lightbox-frame");
+        const opened = $("#fm-lightbox").open &&
+          frame.className.includes("fm-shot--") && frame.querySelector("img") !== null;
+        $("#fm-lightbox").close();
+        return opened;
+      });
+
+      print();
+      xizhou.src = "../work/xizhou/index.html";
+    });
+
+    xizhou.addEventListener("load", () => {
+      const win = xizhou.contentWindow, doc = win.document;
+      const content = win.eval("content");
+      checkPage("work/xizhou/", win);
+
+      check("the contact button is a mailto link to the address in site-text.js",
+        () => doc.querySelector("#fm-mail-link").href === "mailto:" + content.site.email);
+
+      check("the lists are rendered from site-text.js, not written out in the markup",
+        () => doc.querySelectorAll("#fm-process li").length === content.xizhou.process.steps.length);
+
+      print();
+    });
+  </script>
+</body>
+</html>

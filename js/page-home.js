@@ -1,4 +1,4 @@
-// home.js — the home page: the desk, the list of projects, and the profile sections.
+// js/page-home.js — the home page: the desk, the list of projects, and the profile sections.
 // site.js has already loaded, so t(), fill(), listItem and content.project exist.
 
 function timelineItem(item) {

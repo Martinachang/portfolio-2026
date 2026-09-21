@@ -1,24 +1,24 @@
-// project.js — a case-study page built from content.js: the hero, the cover and the phases.
+// js/page-project.js — a case-study page built from site-text.js: the hero, the cover and the phases.
 // site.js has already put this page's project (from <body data-project="…">) in content.project.
 //
-// ilandgreen.html uses this. FeetMine has a page of its own (feetmine.html + feetmine.js), so the
-// editorial blocks that only it ever used have been removed — copy ilandgreen.html to add a project.
+// work/ilandgreen/index.html uses this. Copy that page to add a standard project. A project that needs a
+// bespoke layout gets a page of its own instead, as work/feetmine/index.html and work/xizhou/index.html do.
 
 const project = content.project;
 
-// The whole section wears the project's colours.
-const section = document.querySelector(".project");
-section.style.setProperty("--accent", project.accent);
-section.style.setProperty("--accent-wash", project.accentWash);
-
 function renderPage() {
+  // The whole section wears the project's colours, the way js/page-home.js colours the desk folder.
+  const section = document.querySelector(".project");
+  section.style.setProperty("--accent", project.accent);
+  section.style.setProperty("--accent-wash", project.accentWash);
+
   document.getElementById("case-badge").textContent = project.badge;
   document.getElementById("case-headline").textContent = t(project.headline);
   document.getElementById("case-blurb").textContent = t(project.blurb);
   fill("case-meta", project.stats, (stat) => `<dt>${t(stat.label)}</dt><dd>${t(stat.value)}</dd>`);
 
   const cover = document.getElementById("cover");
-  cover.src = project.cover.src;
+  cover.src = root + project.cover.src;
   cover.alt = t(project.cover.alt);
 
   renderPhases();
@@ -34,6 +34,6 @@ function renderPhases() {
        <h3 id="phase-${i}-title"><span class="phase-mark">${t(phase.name)}</span>${phase.headline ? t(phase.headline) : ""}</h3>
        ${phase.points ? `<ul class="points">${phase.points.map(listItem).join("")}</ul>` : ""}
        <div class="figures">${phase.figures.map((figure) =>
-         `<a href="${figure.src}" target="_blank"><img src="${figure.src}" alt="${t(figure.alt)}" loading="lazy"></a>`).join("")}</div>
+         `<a href="${root + figure.src}" target="_blank"><img src="${root + figure.src}" alt="${t(figure.alt)}" loading="lazy"></a>`).join("")}</div>
      </section>`);
 }

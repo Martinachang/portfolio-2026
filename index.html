@@ -7,28 +7,18 @@
   <meta name="description" content="Portfolio of Chang Chu-Pei, UI/UX designer and researcher in Taipei.">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- The home page: the desk, the list of projects, and the profile (about, skills, contact).
-       Every element with data-text="a.b.c" gets its words from content.js (data-html for the one string with <em> in it).
-       Lists (project cards, timeline, skills) are drawn by home.js into the empty elements with an id. -->
+       Every element with data-text="a.b.c" gets its words from site-text.js (data-html for the one string with <em> in it).
+       Lists (project cards, timeline, skills) are drawn by js/page-home.js into the empty elements with an id. -->
 
   <a class="skip" href="#work" data-text="site.skip"></a>
 
-  <header class="topbar">
-    <a class="brand" href="#top"><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
-    <nav>
-      <a href="#work" data-text="site.headerNav.work"></a>
-      <a href="#about" data-text="site.headerNav.about"></a>
-      <a href="files/Resume-ENG.pdf" target="_blank" rel="noopener" data-text="site.headerNav.resume"></a>
-      <a href="#contact" data-text="site.headerNav.contact"></a>
-    </nav>
-    <div class="lang" role="group" aria-label="Language / 語言">
-      <button type="button" data-lang="en" lang="en">EN</button>
-      <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
-    </div>
-  </header>
+  <!-- The top bar and the footer are drawn by renderChrome() in site.js, so they exist once
+       for the whole site rather than four times. Leave these two elements empty. -->
+  <header class="topbar"></header>
 
   <main id="top">
 
@@ -46,17 +36,17 @@
         </div>
 
         <div class="desk-objects">
-          <!-- The folder shows the featured project (the first one in content.js). The mascot is a sticker. -->
+          <!-- The folder shows the featured project (the first one in site-text.js). The mascot is a sticker. -->
           <a class="object folder" href="#work" draggable="false">
             <span class="folder-tab" data-text="work.title"></span>
             <span class="folder-title" data-text="project.name"></span>
             <span class="folder-title folder-title-zh" data-text="project.nameZh"></span>
             <span class="folder-caption" data-text="project.summary"></span>
-            <img class="folder-mascot" src="img/mascot.png" width="363" height="342" alt="" draggable="false">
+            <img class="folder-mascot" src="img/site/mascot.png" width="363" height="342" alt="" draggable="false">
           </a>
 
           <a class="object badge" href="#about" draggable="false">
-            <img src="img/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt="" draggable="false">
+            <img src="img/site/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt="" draggable="false">
             <span class="badge-name" data-text="site.name"></span>
             <span class="badge-role" data-text="site.role"></span>
             <span class="object-link" data-text="desk.badge.tab"></span>
@@ -86,7 +76,7 @@
     <section id="about" class="section" aria-labelledby="about-title">
       <div class="wrap">
         <div class="about-grid">
-          <figure><img src="img/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt=""></figure>
+          <figure><img src="img/site/profile.jpg" width="527" height="700" data-alt="about.photoAlt" alt=""></figure>
           <div>
             <h2 id="about-title" data-text="about.greeting"></h2>
             <div id="bio"></div>
@@ -130,10 +120,10 @@
 
   </main>
 
-  <footer><p data-text="site.footer"></p></footer>
+  <footer></footer>
 
-  <script src="content.js"></script>
-  <script src="site.js"></script>
-  <script src="home.js"></script>
+  <script src="site-text.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/page-home.js"></script>
 </body>
 </html>

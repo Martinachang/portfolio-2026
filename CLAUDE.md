@@ -1,74 +1,201 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+A portfolio site for Chang Chu-Pei (張主佩), a UI/UX designer and researcher. Bilingual, English
+and Traditional Chinese. A home page with a draggable desk, one panel per project, and one
+case-study page per project.
 
-## What this is
+`docs/gotchas.md` holds the things that bite and the commands to run. Read it when something
+surprises you or before you run anything. `README.md` is the owner's copy — plain language, no
+internals — so keep it true when the tree changes.
 
-Portfolio site for Chang Chu-Pei (張主佩), UI/UX designer and researcher. Built for someone learning HTML, CSS and JavaScript, so the code stays plain: no npm, no bundler, no framework, no ES modules. Classic `<script src>` tags, so `index.html` works by double-click and in VS Code Live Preview. Hosted on GitHub Pages from the repo root. Keep it that way unless the owner asks otherwise.
+## Stack
 
-## Files
+Plain HTML, CSS and JavaScript. No npm, no bundler, no framework, no ES modules, no
+`package.json`. Classic `<script src>` tags, so every page opens by double-click and in VS Code
+Live Preview.
 
-- `index.html`: the home page. The desk, one Work panel per project, then About, How I work (three steps, `#skills`), Contact.
-- `ilandgreen.html`: the standard case-study page. `<body data-project="ilandgreen">` names its entry in `content.js`, and `project.js` fills the hero, the cover and the phases from it. To add a project: copy this file, change `data-project`, add an entry to `content.projects` (newest first; the first one is featured on the desk) and its images.
-- `feetmine.html` + `feetmine.css` + `feetmine.js`: FeetMine's case study, a page of its own — see the section below. It does not use `project.js`.
-- `content.js`: every word on the site, in both languages side by side: `{ en: "...", zh: "..." }`. Plain strings are language-neutral. Each project carries its own `accent` and `accentWash` colours, plus `headline`, `blurb` and `stats` for its panel on the home page. `content.feetmine` holds that one page's words. Only `desk.headline` may contain HTML (`<em>`); it is filled through `data-html` instead of `data-text`. `content.logos` maps a tool name to its SVG; any tool with an entry shows the logo.
-- `site.js` (shared: language, `t()`, `fill()`, `render()`, the one-second glide to `#section` links), `home.js` (project cards, profile lists, desk drag), `project.js` (phase sections), `feetmine.js`. Each page script defines `renderPage()`, which `site.js` calls on load and on every language switch.
-- `style.css`: tokens at the top, phone-first rules, then two `@media (min-width: …)` blocks at the end for wider screens. Site accent is blue; `.project`, the folder and the work cards get a project's colours from JS.
-- `test.html`: the runnable check. Open it through a local server; every line must say PASS.
-- `img/`: tool logos (`*.svg`, from simple-icons and Wikimedia Commons), `profile.jpg`, `mascot.png`, and the deck's slides as `<project>-NN.jpg`, 2000px wide, exported from `portfolio-example/` (the source deck, 19 slides at 7680×4320, git-ignored) with `sips -Z 2000 -s format jpeg -s formatOptions 80 in.jpg --out out.jpg`. ILANDGREEN shows its slides whole; FeetMine never does — it crops them (see below).
-- `menti/`: the reference screenshots the FeetMine page's layout was built from. Git-ignored, reference only — none of that page's words, images or logo are copied.
+GitHub Pages serves the repository root, so a push to `main` is a deploy. There is no build step
+and no continuous integration. Anything broken on `main` is live.
 
-## The FeetMine page
-
-An editorial case study in the style of Tammy Taabassum's Menti page: full-bleed hero, then
-full-width sections that alternate between a light (`#F1EFEA`) and a dark (`#221F1C`) theme, with
-one orange section for the design goals. Its brand colour is `#FF9F46`.
-
-- **Structure.** The sections are written out in `feetmine.html`; one-off strings carry
-  `data-text="feetmine.…"` and `site.js` fills them. `feetmine.js` defines `renderPage()` and draws
-  the parts that repeat — the lists, the three charts, the comparison table, the service flow, the
-  screen row — with the shared `fill()` helper, the way `home.js` does.
-- **Layout pieces**, each written once in `feetmine.css`: `.fm-split` (heading beside text, 1200px),
-  `.fm-h2` (two lines, the second in grey), `.fm-numlist` / `.fm-statlist`, `.fm-panels` (a
-  full-bleed row of two coloured panels, ratio set inline per feature), `.fm-card` (the dark rounded
-  card), `.fm-grain`, `.fm-shot` (image crops).
-- **Nothing on this page is a picture of a slide.** Every table and diagram is HTML, CSS and inline
-  SVG. Four charts (the three in the background section, plus the life-stage bar in field
-  research — `img/chart1.svg` through `chart4.svg`) are the exact SVGs exported from Figma rather
-  than a rebuild — their labels and numbers are Figma "outline text" paths, not real `<text>`, so
-  they're invisible to a screen reader; each chart's `<img>` is decorative (`alt=""`) and carries
-  its numbers in a visually hidden table right beside it (`renderChartSvg`/`renderStages` in
-  `feetmine.js`), the same `.fm-sr` pattern every other chart on this page uses. One tradeoff
-  worth knowing, accepted for now: because their words are baked into the SVGs as shapes, these
-  four charts stay in English even when the page is switched to Chinese, unlike the rest of the
-  page. Other images are app screens
-  and photos.
-- **Image crops.** The final exports (`img/feetmine-hero.png`, `feetmine-screen-*.png`,
-  `feetmine-yodex-*.jpg`, …) do not exist yet, so each `<img>` still points at a deck slide and an
-  `.fm-shot--*` class in `feetmine.css` crops it down to the one screen or photo that belongs there.
-  Every one is marked with a `TODO` comment. When an export arrives, point the `<img>` at it and
-  drop the `.fm-shot--*` class.
-- **Styling is scoped.** Everything is under `.cs-feetmine`, the class on that page's `<body>`, so
-  `style.css` and the other pages are untouched.
-- All of this replaced a set of generic `block-*` renderers in `project.js` and matching rules in
-  `style.css` that no other page used; they are gone.
-
-## Checking work
+## The tree
 
 ```
-powershell -ExecutionPolicy Bypass -File tools/serve.ps1   # then open http://127.0.0.1:8123/test.html
+portfolio-2026/
+├── README.md                   the owner's front door: task -> file, and the three traps
+├── CLAUDE.md                   this file
+├── docs/gotchas.md             what bites, and how to run things
+│
+├── index.html            129   the home page: desk, work list, about, skills, contact
+├── site-text.js        1,116   every word on the site, in both languages
+│
+├── work/                       one folder per case study; everything about a project is here
+│   ├── feetmine/
+│   │   ├── index.html    428   an editorial case study
+│   │   ├── feetmine.js   265   FeetMine's lists, charts, tables and diagrams
+│   │   └── img/               11 files
+│   ├── xizhou/
+│   │   ├── index.html    364   an editorial case study
+│   │   ├── xizhou.js      42   Walk Xizhou's lists
+│   │   └── img/                1 file
+│   └── ilandgreen/
+│       ├── index.html     62   built entirely from site-text.js by js/page-project.js
+│       └── img/                5 files
+│
+├── js/                         the machinery; nothing here holds copy
+│   ├── site.js           133   language, the chrome, data-* filling, the glide, item templates
+│   ├── page-home.js      110   the desk, the work cards, the profile lists
+│   └── page-project.js    39   fills any standard project page from site-text.js
+│
+├── css/
+│   ├── style.css         406   tokens and the shared site layout
+│   └── editorial.css     658   the two case-study pages: shared, then FeetMine, then Xizhou
+│
+├── img/                        site-wide images only
+│   ├── site/                   2 files: the mascot and the profile photo
+│   ├── logos/                  9 tool logos, one SVG each
+│   └── avatar-perception/      1 file: the one project with no page of its own
+│
+├── resume/Resume-ENG.pdf
+├── demo/ilandgreen-app/        a separate prototype app; ignore it
+├── tools/
+│   ├── test.html         232   the only check; serve it over http://
+│   └── serve.ps1               a static server, for the owner's Windows machine
+│
+└── feetmine.html · xizhou.html · ilandgreen.html · ilandgreen/index.html
+    forwarding stubs for the URLs the site served before the reorganisation.
+    Not pages. Do not add to them, and do not delete them without asking.
 ```
 
-`tools/serve.ps1` is a small static server written in PowerShell, because this machine has no working
-Python: `python` and `python3` are Microsoft Store stubs that print nothing and exit with code 49,
-so `python3 -m http.server` fails. Any other static server on port 8123 does just as well. The
-pages themselves still open by double-click; only `test.html` needs `http://`, because a `file://`
-page is not allowed to read the other files it checks.
+`demo/ilandgreen-app/` is 12 files and 1,452 lines with its own router, state and namespace. It
+shares nothing with the site. It is served from here as the Demo link on the ILANDGREEN work card.
+Its case-study page is the unrelated `work/ilandgreen/index.html`; the `-app` suffix is what tells
+the two apart.
 
-Headless Chrome with `--virtual-time-budget` fails the glide check (no real animation frames); the rest passes. Headless Chrome enforces a 500px minimum window width. To screenshot a phone layout, load the page inside a 375px-wide `<iframe>` in a scratch page and screenshot that; give the iframe the page's full `scrollHeight` and offset it with a negative `top` to reach a section further down.
+A script one page loads lives beside that page, which is why `feetmine.js` and `xizhou.js` sit in
+their project folders. A script more than one page loads lives in `js/`, which is why
+`page-project.js` does not — any standard project page can use it.
 
-## Content facts to know
+**A project's images live with its page**, in `work/<id>/img/`, so one folder holds everything
+about one project. Root `img/` is site-wide only. The single exception is a project with no page
+of its own: its image stays in `img/<id>/`, which is why `img/avatar-perception/` exists.
 
-- Chinese copy was drafted from the English deck and is unreviewed by the owner. The deck's two "Worked" date ranges were reversed in the source and were normalised to start–end order.
-- FeetMine's five process phases (Research, Define, Design, Test & iterate, Launch) were inferred from the deck, which never states them; the owner still has to confirm them. Its Reflection section is a placeholder.
-- The desk objects map to sections: folder → Work, badge → About, note → Skills, postcard → Contact. On screens under 720px they become a grid with no drag.
+## How a page renders
+
+Script order is the dependency graph. `site-text.js`, then `js/site.js`, then the page's own script.
+`site.js` calls `renderPage()` without a guard, so every page must define it.
+
+`render()` runs on load and on every language switch, and does four things in order:
+
+1. `renderChrome()` draws the top bar and the footer. Each page carries an empty
+   `<header class="topbar">` and an empty `<footer>` for it to fill. The nav is therefore not in
+   the HTML file. The skip link is, because a keyboard user needs it before any script runs.
+2. `[data-text="a.b.c"]` elements get `t(get("a.b.c"))`.
+3. `[data-html]` gets `innerHTML`, `[data-alt]` gets `alt`.
+4. `renderPage()` draws the lists only that page has.
+
+`t(value)` returns `value[lang]` for an `{ en, zh }` pair, and returns a plain string unchanged.
+That is how names, email addresses and tool names stay the same in both languages.
+
+`fill(id, items, template)` replaces an element's `innerHTML`. That is why the whole page redraws
+on a language switch, and why anything added to the DOM by hand is lost when it does.
+
+One value differs per page: how far it sits below the repo root. A case study carries
+`<body data-root="../../">`; the home page carries nothing, and `site.js` reads `""`. Everything
+the chrome links to lives at the root, so `root` prefixes the resume link, and `inPagePrefix`
+derives from it — an empty `root` means this is the home page, which links to its own sections
+with `#work` so the glide can take over.
+
+**A path stored in `site-text.js` is root-relative, and the renderer adds `root`.** `page-home.js`
+runs only at the root and needs no prefix; `page-project.js` runs at depth two and prefixes every
+path it reads. Store `work/feetmine/img/banner.jpg` in site-text, never `../../...` — the same
+value is read from two depths.
+
+The same file therefore has two spellings, and both are correct: `img/banner.jpg` written inside
+`work/feetmine/index.html`, `work/feetmine/img/banner.jpg` written in `site-text.js`. A path
+written in a page file or that page's own script is relative to the page.
+
+## Conventions
+
+- Two-space indent, double quotes, semicolons. Build markup with template literals and
+  `.map(...).join("")`, then hand it to `fill()`. Nothing here calls `document.createElement`.
+- Read text through `t()`, never `value.en`. Reach into content with `get("a.b.c")` or a
+  `data-text` attribute.
+- An element that JavaScript fills gets an `id` and stays empty in the HTML.
+- Give every `<section>` an `aria-labelledby` pointing at its own heading.
+- CSS is phone-first. Wider layouts sit in `@media (min-width: 720px)` and `900px` blocks. Some
+  queries sit mid-file beside the rule they belong to, so search for `@media` before editing.
+- Per-project colour arrives as a custom property set from JavaScript. Write rules against the
+  property, never against a hex value that belongs to one project.
+- A new image for a project with a page goes in `work/<project>/img/`. Root `img/` takes only
+  site-wide images: `img/site/`, `img/logos/`, and a project that has no page.
+- Comments: see the section at the end of this file.
+
+### `site-text.js`
+
+One object. Top-level keys: `site`, `desk`, `work`, `projects`, `feetmine`, `xizhou`, `about`,
+`logos`, `skills`, `contact`.
+
+Projects are newest first, because `projects[0]` is what the desk folder shows — the home page has
+no `data-project`, so `site.js` falls back to the first entry. A project's `id` must match
+`data-project` on its page's `<body>`, and must be unique even for a project with no page.
+
+Store a repeating list as an array, and use the same key name on both editorial pages: `steps`,
+`items`, `cards`, `photos`. Never numbered siblings like `step1`, `step2`.
+
+Both halves of a pair must exist. `tools/test.html` walks the whole object and fails on a missing
+half.
+The one exception is `line2`, the grey second half of a two-line heading: a heading that needs two
+lines in English often fits on one in Chinese.
+
+### `editorial.css`
+
+Three parts in order: the shared layout, then FeetMine's rules, then Walk Xizhou's.
+
+Shared rules are unscoped, because nothing else loads the file. Every rule in a page part carries
+that page's body class, so the two pages cannot reach each other. Four selectors exist in both
+parts with different values and would otherwise collide: `.fm-quote`, `.fm-table`,
+`.fm-table tbody th` and `.fm-table thead th`.
+
+A page supplies six brand tokens: `--fm-primary`, `--fm-primary-dark`, `--fm-primary-tint`,
+`--fm-accent-heading`, `--fm-accent-body` and `--fm-hero-shadow`. A third editorial page costs a
+token block, not a stylesheet.
+
+The `fm-` prefix is historical. It means the editorial layout, not FeetMine.
+
+## Already decided
+
+Do not re-suggest these. Each was weighed and settled.
+
+- **`site-text.js` stays one file, at the root.** Delete it and the complexity does not vanish, it
+  reappears as hard-coded bilingual text in four HTML files. Splitting needs either ES modules,
+  which break the double-click requirement, or more script tags in a fixed order. It sits at the
+  root, not in `js/`, because it is the file the owner edits and `js/` is machinery. Revisit only
+  for a concrete problem such as merge conflicts, never for file size.
+  Its filename and the global it defines (`content`) deliberately differ; renaming the global
+  would touch every file and buy nothing.
+- **The chrome stays in JavaScript.** Putting the nav back in the HTML means four copies, and the
+  git history shows the same nav edit hitting three files twice in five commits.
+- **`.fm-*` is not renamed.** 1,127 occurrences across HTML, JavaScript and CSS. Pure churn.
+- **The demo app lives at `demo/ilandgreen-app/`.** It was moved out of the root to stop it
+  reading as the sibling of the case-study page, and suffixed so a search for "ilandgreen" tells
+  the two apart. The Demo href in `site-text.js` moved with it. Do not move it again.
+- **The four forwarding stubs stay until the owner says otherwise.** `feetmine.html`,
+  `xizhou.html`, `ilandgreen.html` and `ilandgreen/index.html` are the URLs the deployed site
+  served before the reorganisation. GitHub Pages has no redirect config, so a stub file is the
+  only mechanism. They are not pages and carry no copy.
+
+## Comments
+
+Default to none. Good names and small functions carry it; comments rot.
+Golden rule: explain **why**, not what.
+
+- **Doc comments** on the public API surface, for callers. Go: a doc comment on
+  every exported name, starting with the name, full sentence, present tense
+  (`// ParseConfig reads ...`), no `@param` tags. TS: TSDoc on exported
+  functions, hooks and shared types.
+- **Inline comments** are rare and for maintainers: a hidden constraint, a
+  subtle invariant, a workaround for a specific bug with an issue reference,
+  deliberately unidiomatic code, or a copied snippet with its source linked.
+- Never narrate the code, never excuse unclear code (rename instead), and never
+  reference the current task or fix. "added for X flow" belongs in the PR and
+  rots in the file.

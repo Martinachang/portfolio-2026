@@ -135,12 +135,12 @@ h1 em { font-style: normal; color: var(--blue); }
 @keyframes drop {
   from { opacity: 0; translate: 0 -40px; rotate: 0deg; }
 }
-/* The bob uses transform, not translate, because dragging sets translate by hand (home.js). */
+/* The bob uses transform, not translate, because dragging sets translate by hand (js/page-home.js). */
 @keyframes float {
   50% { transform: translateY(-7px); }
 }
 
-/* The work folder. home.js gives it the newest project's colours. */
+/* The work folder. js/page-home.js gives it the newest project's colours. */
 .folder {
   grid-column: 1 / -1;
   padding: 22px 22px 26px;
@@ -238,7 +238,7 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 
 /* ---------- Work: a project page ---------- */
 
-/* project.js sets --accent and --accent-wash on .project from content.js. */
+/* js/page-project.js sets --accent and --accent-wash on .project from site-text.js. */
 .project > .wrap { position: relative; }
 .back { display: inline-block; margin-bottom: 28px; font-weight: 500; }
 
@@ -369,7 +369,7 @@ footer p { margin: 0; max-width: none; }
 /* ---------- Wider screens ---------- */
 
 @media (min-width: 720px) {
-  /* The desk: objects scatter at slight angles, drop in once on load, and can be dragged (script.js). */
+  /* The desk: objects scatter at slight angles, drop in once on load, and can be dragged (js/site.js). */
   .desk-objects { display: block; height: 600px; }
   .object {
     position: absolute;
@@ -397,9 +397,7 @@ footer p { margin: 0; max-width: none; }
   .work-item:nth-child(even) .work-visual { order: 2; }
   .work-item:nth-child(even) .work-body { order: 1; }
   .case-hero { grid-template-columns: 1fr 280px; }
-  .case-overview { grid-template-columns: 1fr 280px; }
-  /* FeetMine's hero has no side card any more (its stats moved into .case-overview below). */
-  body[data-project="feetmine"] .case-hero { grid-template-columns: 1fr; max-width: 68ch; margin-inline: auto; }
+  /* .case-hero exists on work/ilandgreen/index.html only; the editorial pages use their own .fm-* markup. */
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FeetMine — Personalized Parent-Child Shoe App | UX Case Study</title>
+  <meta name="description" content="FeetMine is a parent-child app that measures a child's feet at home with AR, explains their foot type, and recommends shoes that fit. A one-year graduation project by Chang Chu-Pei: research, design, usability testing and a Foot ID Card business model.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/editorial.css">
+</head>
+<body data-root="../../" data-project="feetmine" class="cs-feetmine">
+  <!-- The FeetMine case study. Unlike work/ilandgreen/index.html this page is not built from `phases`:
+       the sections below are written out here, every word comes from content.feetmine (data-text),
+       and feetmine.js fills the lists, charts, table and diagrams. All styling is in css/editorial.css,
+       scoped under .cs-feetmine so the rest of the site is untouched. -->
+
+  <a class="skip" href="#intro" data-text="site.skip"></a>
+
+  <!-- The top bar and the footer are drawn by renderChrome() in site.js, so they exist once
+       for the whole site rather than four times. Leave these two elements empty. -->
+  <header class="topbar"></header>
+
+  <main>
+
+    <!-- ---------- Hero: the finished banner artwork, centred on its own colour band ---------- -->
+    <div class="fm-hero">
+      <img class="fm-hero-img" src="img/banner.jpg" data-alt="feetmine.hero.alt" alt="">
+    </div>
+
+    <!-- ---------- Intro ---------- -->
+    <section id="intro" class="fm-sec fm-light fm-reveal" aria-labelledby="intro-title">
+      <div class="fm-wrap">
+        <h1 id="intro-title" class="fm-title" data-text="feetmine.intro.title"></h1>
+        <p class="fm-subtitle" data-text="feetmine.intro.subtitle"></p>
+        <div class="fm-intro-grid">
+          <div class="fm-intro-col">
+            <p class="fm-body" data-text="feetmine.intro.body"></p>
+            <div class="fm-intro-pair">
+              <div>
+                <h2 class="fm-label" data-text="feetmine.intro.problemLabel"></h2>
+                <p data-text="feetmine.intro.problem"></p>
+              </div>
+              <div>
+                <h2 class="fm-label" data-text="feetmine.intro.outcomeLabel"></h2>
+                <p data-text="feetmine.intro.outcome"></p>
+              </div>
+            </div>
+          </div>
+          <dl class="fm-meta" id="fm-meta"></dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Process. The five phases are inferred from the deck — owner to confirm. ---------- -->
+    <section class="fm-sec fm-dark fm-reveal" aria-labelledby="process-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="process-title" class="fm-h2">
+            <span data-text="feetmine.process.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.process.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="feetmine.process.lead"></p>
+        </div>
+        <ol class="fm-numlist fm-numlist--timeline" id="fm-process"></ol>
+      </div>
+    </section>
+
+    <!-- ---------- Background: three charts, each the exact SVG exported from Figma
+         (img/chart1/2/3.svg) with a visually-hidden data table beside it — see renderChartSvg
+         in feetmine.js. ---------- -->
+    <section class="fm-sec fm-light fm-reveal" aria-labelledby="background-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="background-title" class="fm-h2">
+            <span data-text="feetmine.background.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.background.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead">
+          <span data-text="feetmine.background.lead"></span>
+          <strong class="fm-stat-inline" data-text="feetmine.background.statValue"></strong>
+          <span data-text="feetmine.background.leadEnd"></span>
+        </p>
+      </div>
+      <div class="fm-wrap">
+        <p class="fm-eyebrow" data-text="feetmine.background.eyebrow"></p>
+        <div class="fm-charts">
+          <figure class="fm-chart" id="fm-chart-bars"></figure>
+          <figure class="fm-chart" id="fm-chart-ages"></figure>
+          <figure class="fm-chart" id="fm-chart-gait"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Field research: the life-stage bar ---------- -->
+    <section class="fm-sec fm-dark fm-reveal" aria-labelledby="field-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="field-title" class="fm-h2">
+            <span data-text="feetmine.field.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.field.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead" data-text="feetmine.field.lead"></p>
+      </div>
+      <div class="fm-wrap">
+        <!-- The exported Figma SVG (img/chart4.svg) — see renderStages in feetmine.js. -->
+        <figure class="fm-chart" id="fm-stages"></figure>
+        <ol class="fm-numlist fm-numlist--row" id="fm-field-points"></ol>
+        <p class="fm-quote" data-text="feetmine.field.quote"></p>
+      </div>
+    </section>
+
+    <!-- ---------- Misconceptions ---------- -->
+    <section class="fm-sec fm-light fm-reveal" aria-labelledby="misconceptions-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="misconceptions-title" class="fm-h2">
+            <span data-text="feetmine.misconceptions.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.misconceptions.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="feetmine.misconceptions.lead"></p>
+        </div>
+        <ol class="fm-numlist" id="fm-misconceptions"></ol>
+      </div>
+    </section>
+
+    <!-- ---------- How parents shop ---------- -->
+    <section class="fm-sec fm-dark fm-reveal" aria-labelledby="parents-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="parents-title" class="fm-h2">
+            <span data-text="feetmine.parents.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.parents.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="feetmine.parents.lead"></p>
+        </div>
+        <ol class="fm-statlist" id="fm-parent-stats"></ol>
+      </div>
+    </section>
+
+    <!-- ---------- Pain points and the needs behind them ---------- -->
+    <section class="fm-sec fm-light fm-reveal" aria-labelledby="pains-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="pains-title" class="fm-h2">
+            <span data-text="feetmine.pains.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.pains.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="feetmine.pains.lead"></p>
+        </div>
+        <div class="fm-pains" id="fm-pains"></div>
+      </div>
+    </section>
+
+    <!-- ---------- Competitive analysis ---------- -->
+    <section class="fm-sec fm-dark fm-reveal" aria-labelledby="compare-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="compare-title" class="fm-h2">
+            <span data-text="feetmine.compare.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.compare.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead" data-text="feetmine.compare.lead"></p>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <div class="fm-table-scroll" id="fm-compare" tabindex="0" role="region" aria-labelledby="compare-title"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Design goals ---------- -->
+    <section class="fm-sec fm-orange fm-reveal" aria-labelledby="goals-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="goals-title" class="fm-h2">
+            <span data-text="feetmine.goals.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.goals.line2"></span>
+          </h2>
+        </div>
+        <ol class="fm-numlist" id="fm-goals"></ol>
+      </div>
+    </section>
+
+    <!-- ---------- Feature #1: AR measurement ---------- -->
+    <section class="fm-sec fm-feature fm-light fm-reveal" aria-labelledby="f1-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f1-title" class="fm-h2">
+          <span data-text="feetmine.features.eyebrow1"></span>
+          <span class="fm-h2-soft" data-text="feetmine.features.one.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="feetmine.features.one.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 2fr">
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-peach)">
+          <!-- TODO: replace with img/feetmine-screen-ar.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--ar">
+            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.one.altA" alt="" loading="lazy">
+          </button>
+        </div>
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-charcoal)">
+          <!-- TODO: replace with img/feetmine-screen-home.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--home">
+            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.one.altB" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Feature #2: foot type and mascot ---------- -->
+    <section class="fm-sec fm-feature fm-dark fm-reveal" aria-labelledby="f2-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f2-title" class="fm-h2">
+          <span data-text="feetmine.features.eyebrow2"></span>
+          <span class="fm-h2-soft" data-text="feetmine.features.two.name"></span>
+        </h2>
+        <div>
+          <p class="fm-lead" data-text="feetmine.features.two.text"></p>
+          <h3 class="fm-label" data-text="feetmine.features.two.legendTitle"></h3>
+          <dl class="fm-legend" id="fm-legend"></dl>
+          <p class="fm-note" data-text="feetmine.features.two.example"></p>
+        </div>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-butter)">
+          <!-- TODO: replace with img/feetmine-screen-result.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--result">
+            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.two.altA" alt="" loading="lazy">
+          </button>
+        </div>
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-aqua)">
+          <!-- TODO: replace with img/feetmine-mascot-set.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--mascots">
+            <img src="img/feetmine-15.jpg" data-alt="feetmine.features.two.altB" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Feature #3: recommendations ---------- -->
+    <section class="fm-sec fm-feature fm-light fm-reveal" aria-labelledby="f3-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f3-title" class="fm-h2">
+          <span data-text="feetmine.features.eyebrow3"></span>
+          <span class="fm-h2-soft" data-text="feetmine.features.three.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="feetmine.features.three.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 2fr 1fr">
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-orange)">
+          <!-- TODO: replace with img/feetmine-screen-shoe.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--shoe">
+            <img src="img/feetmine-16.jpg" data-alt="feetmine.features.three.altA" alt="" loading="lazy">
+          </button>
+        </div>
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-mint)">
+          <!-- TODO: replace with img/feetmine-screen-idcard.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--idcard">
+            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.three.altB" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Feature #4: records that grow ---------- -->
+    <section class="fm-sec fm-feature fm-dark fm-reveal" aria-labelledby="f4-title">
+      <div class="fm-wrap fm-split">
+        <h2 id="f4-title" class="fm-h2">
+          <span data-text="feetmine.features.eyebrow4"></span>
+          <span class="fm-h2-soft" data-text="feetmine.features.four.name"></span>
+        </h2>
+        <p class="fm-lead" data-text="feetmine.features.four.text"></p>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 2fr">
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-coral)">
+          <!-- TODO: replace with img/feetmine-screen-growth.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--growth">
+            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.four.altA" alt="" loading="lazy">
+          </button>
+        </div>
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-blue)">
+          <!-- TODO: replace with img/feetmine-screen-record.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--record">
+            <img src="img/feetmine-16.jpg" data-alt="feetmine.features.four.altB" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Usability testing, and the flow it changed ---------- -->
+    <section class="fm-sec fm-feature fm-light fm-reveal" aria-labelledby="testing-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="testing-title" class="fm-h2">
+            <span data-text="feetmine.testing.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.testing.line2"></span>
+          </h2>
+          <p class="fm-note" data-text="feetmine.testing.lead"></p>
+        </div>
+        <ol class="fm-numlist" id="fm-testing"></ol>
+      </div>
+      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-charcoal)">
+          <p class="fm-panel-label" data-text="feetmine.testing.beforeLabel"></p>
+          <!-- TODO: replace with img/feetmine-test-before.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--before">
+            <img src="img/feetmine-14.jpg" data-alt="feetmine.testing.beforeAlt" alt="" loading="lazy">
+          </button>
+        </div>
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-peach)">
+          <p class="fm-panel-label" data-text="feetmine.testing.afterLabel"></p>
+          <!-- TODO: replace with img/feetmine-test-after.png -->
+          <button type="button" class="fm-zoom fm-shot fm-shot--after">
+            <img src="img/feetmine-14.jpg" data-alt="feetmine.testing.afterAlt" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Business model: the Foot ID Card ---------- -->
+    <section class="fm-sec fm-dark fm-reveal" aria-labelledby="business-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="business-title" class="fm-h2">
+            <span data-text="feetmine.business.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.business.line2"></span>
+          </h2>
+        </div>
+        <div>
+          <p class="fm-lead" data-text="feetmine.business.lead"></p>
+          <div class="fm-cards" id="fm-business-cards"></div>
+        </div>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card">
+          <h3 class="fm-label" data-text="feetmine.business.flowTitle"></h3>
+          <p class="fm-note" data-text="feetmine.business.flowCaption"></p>
+          <div class="fm-loop" id="fm-loop"></div>
+          <div class="fm-flow" id="fm-flow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Final designs ---------- -->
+    <section class="fm-sec fm-light fm-reveal" aria-labelledby="finals-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="finals-title" class="fm-h2">
+            <span data-text="feetmine.finals.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.finals.line2"></span>
+          </h2>
+        </div>
+        <p class="fm-lead" data-text="feetmine.finals.lead"></p>
+      </div>
+      <div class="fm-wrap">
+        <div class="fm-card fm-card--screens">
+          <ol class="fm-screens" id="fm-screens"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Results ---------- -->
+    <section class="fm-sec fm-feature fm-dark fm-reveal" aria-labelledby="results-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="results-title" class="fm-h2">
+            <span data-text="feetmine.results.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.results.line2"></span>
+          </h2>
+        </div>
+        <ol class="fm-numlist" id="fm-results"></ol>
+      </div>
+      <div class="fm-panels fm-panels--photos" style="--fm-ratio: 1fr 1fr 1fr" id="fm-photos"></div>
+    </section>
+
+    <!-- ---------- Reflection ---------- -->
+    <section class="fm-sec fm-light fm-reveal" aria-labelledby="reflection-title">
+      <div class="fm-wrap fm-split">
+        <div>
+          <h2 id="reflection-title" class="fm-h2">
+            <span data-text="feetmine.reflection.line1"></span>
+            <span class="fm-h2-soft" data-text="feetmine.reflection.line2"></span>
+          </h2>
+        </div>
+        <!-- TODO: the owner still has to write this section. -->
+        <p class="fm-lead" data-text="feetmine.reflection.body"></p>
+      </div>
+    </section>
+
+    <!-- ---------- Where to go next ---------- -->
+    <nav class="fm-sec fm-light fm-next" aria-label="More work">
+      <div class="fm-wrap">
+        <a class="fm-back-link" href="../../index.html#work" data-text="site.backToWork"></a>
+      </div>
+    </nav>
+
+    <!-- The site's own closing call to action, as on the other case-study pages. -->
+    <section class="fm-sec fm-light fm-cta-wrap" aria-labelledby="cta-title">
+      <div class="fm-wrap">
+        <div class="fm-cta">
+          <p class="fm-eyebrow" data-text="site.nav.contact"></p>
+          <h2 id="cta-title" data-text="contact.title"></h2>
+          <p data-text="contact.body"></p>
+          <a class="fm-button" id="fm-mail-link" href="#" data-text="contact.button"></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer></footer>
+
+  <!-- The lightbox: one dialog reused by every image on the page. feetmine.js copies the thumbnail's
+       crop into the frame below, so a deck slide is never opened whole. -->
+  <dialog class="fm-lightbox" id="fm-lightbox">
+    <form method="dialog"><button class="fm-lightbox-close" aria-label="Close">×</button></form>
+    <div id="fm-lightbox-frame"></div>
+  </dialog>
+
+  <script src="../../site-text.js"></script>
+  <script src="../../js/site.js"></script>
+  <script src="feetmine.js"></script>
+</body>
+</html>

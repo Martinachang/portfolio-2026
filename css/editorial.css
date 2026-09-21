@@ -1,0 +1,658 @@
+/* editorial.css — everything the two case-study pages need: work/feetmine/index.html and work/xizhou/index.html.
+
+   Three parts, in this order: the shared layout, then FeetMine's rules, then Walk Xizhou's.
+   A page supplies six brand tokens and the shared rules read them, so a third editorial page
+   costs a token block rather than a stylesheet.
+
+   Shared rules are unscoped, because nothing else loads this file. Every rule in a page part
+   carries that page's body class, so the two pages cannot reach each other. Four selectors
+   exist in both parts with different values: .fm-quote, .fm-table, .fm-table tbody th and
+   .fm-table thead th.
+
+   The fm- prefix is historical. It means the editorial layout, not FeetMine.
+
+   Phone first; the wider layouts sit in the media queries at the end of each part. */
+body {
+  /* Themes: the neutral tones, the same on every editorial page. Only the brand hue changes. */
+  --fm-light-bg: #F1EFEA;
+  --fm-dark-bg: #221F1C;
+  --fm-ink: #111111;
+  --fm-ink-invert: #FFFFFF;
+  --fm-muted: #7A7A7A;          /* 4.5:1 on the light background */
+  --fm-muted-invert: #8C8C8C;   /* 6.4:1 on the dark background */
+  --fm-charcoal: #2E2925;       /* the dark card colour, whatever the section theme */
+
+  --fm-wrap: 1200px;
+  --fm-pad: clamp(56px, 11vw, 160px);
+  --fm-gap: clamp(16px, 3vw, 36px);
+  --fm-list-gap: clamp(32px, 4vw, 48px);
+  --fm-font: "Noto Sans TC", system-ui, sans-serif;
+
+  /* The shared focus ring and link colour from style.css take the page's own brand. */
+  --accent: var(--fm-primary-dark);
+  --accent-wash: var(--fm-primary-tint);
+
+  background: var(--fm-light-bg);
+}
+
+/* position: relative makes main the containing block for the absolutely positioned .fm-sr
+   tables below. Without it their containing block is <body>, so overflow-x never clips them
+   and the page scrolls 338px sideways on a phone: clip-path hides them but does not shrink
+   the area they take up. */
+main { overflow-x: hidden; position: relative; }
+
+/* .fm-sec spans the viewport; .fm-wrap holds the readable column inside it. */
+.fm-wrap { max-width: var(--fm-wrap); margin-inline: auto; padding-inline: var(--gutter); }
+
+.fm-sec { padding-block: var(--fm-pad); }
+
+.fm-split { display: grid; gap: clamp(24px, 5vw, 64px); }
+
+/* A chart row, a table or a diagram under the heading of its own section. */
+.fm-wrap + .fm-wrap { margin-top: clamp(40px, 6vw, 80px); }
+
+/* A feature section holds its panels against its own bottom edge. */
+.fm-feature { padding-bottom: 0; }
+
+.fm-light { background: var(--fm-light-bg); color: var(--fm-ink); }
+
+.fm-dark { background: var(--fm-dark-bg); color: var(--fm-ink-invert); }
+
+.fm-orange { background: var(--fm-primary); color: var(--fm-dark-bg); }
+
+.fm-light .fm-h2-soft, .fm-light .fm-lead, .fm-light .fm-note { color: var(--fm-muted); }
+
+.fm-dark .fm-h2-soft, .fm-dark .fm-lead, .fm-dark .fm-note { color: var(--fm-muted-invert); }
+
+.fm-orange .fm-h2-soft { color: var(--fm-accent-heading); }
+
+.fm-orange .fm-lead, .fm-orange .fm-note { color: var(--fm-accent-body); }
+
+.fm-dark a { color: var(--fm-primary); }
+
+.fm-dark ::selection { background: var(--fm-primary); color: var(--fm-dark-bg); }
+
+.fm-title,
+.fm-h2,
+.fm-label,
+.fm-cta h2 {
+  font-family: var(--fm-font);
+  letter-spacing: -0.01em;
+}
+
+.fm-title { margin: 0; font-size: clamp(32px, 4.6vw, 48px); font-weight: 800; line-height: 1.1; }
+
+.fm-subtitle {
+  margin: 16px 0 clamp(32px, 5vw, 56px);
+  max-width: 40ch;
+  font-family: var(--fm-font);
+  font-size: clamp(26px, 3.6vw, 44px);
+  font-weight: 300;
+  line-height: 1.22;
+  color: var(--fm-muted);
+}
+
+/* The two-tone heading: line one in the full text colour, line two in grey. */
+.fm-h2 { margin: 0; font-size: clamp(28px, 3.8vw, 44px); font-weight: 800; line-height: 1.14; }
+
+.fm-h2 span { display: block; }
+
+.fm-lead { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.75; max-width: 46ch; }
+
+/* 44ch left it ~100px short of the .fm-split column (the same column its own h2 fills). */
+.fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 50ch; }
+
+.fm-label { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
+
+.fm-lead + .fm-label { margin-top: clamp(28px, 3vw, 40px); }
+
+.fm-eyebrow {
+  margin: 0 0 20px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--fm-primary-dark);
+}
+
+.fm-body { margin: 0 0 clamp(28px, 4vw, 40px); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; color: var(--fm-muted); }
+
+.fm-intro-grid { display: grid; gap: clamp(28px, 5vw, 56px); }
+
+/* The paragraph and the Problem/Outcome row below it share this one measure, so their right
+   edges line up instead of the row running wider than the text above it. */
+.fm-intro-col { max-width: 62ch; }
+
+.fm-intro-pair { display: grid; gap: 28px clamp(24px, 3vw, 40px); }
+
+.fm-intro-pair p { margin: 0; color: var(--fm-muted); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.8; }
+
+.fm-meta { margin: 0; display: grid; gap: 4px; }
+
+.fm-meta dt { font-size: 17px; font-weight: 700; font-family: var(--fm-font); }
+
+.fm-meta dt:not(:first-of-type) { margin-top: 24px; }
+
+.fm-meta dd { margin: 0; color: var(--fm-muted); font-size: 16px; line-height: 1.6; }
+
+.fm-orange .fm-numlist p { color: var(--fm-accent-body); }
+
+.fm-orange .fm-numlist .fm-n { color: var(--fm-dark-bg); }
+
+/* The process list reads as a timeline: a circled number per step, joined by a line running
+   down the column behind them. Tuned for the dark section it appears in. */
+.fm-numlist--timeline li { position: relative; }
+
+.fm-numlist--timeline .fm-n { display: flex; }
+
+.fm-numlist--timeline .fm-n-circle {
+  display: flex; align-items: center; justify-content: center;
+  width: 2.3em; height: 2.3em;
+  border-radius: 50%;
+  border: 1.5px solid var(--fm-primary);
+  background: color-mix(in srgb, var(--fm-primary) 15%, transparent);
+  color: var(--fm-primary);
+  font-size: 15px;
+}
+
+/* The line sits only in the gap between one circle's bottom and the next one's top, so it
+   never runs behind the circles themselves. */
+.fm-numlist--timeline li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 2.3em;
+  bottom: calc(-1 * var(--fm-list-gap));
+  left: calc(1.15em - 0.75px);
+  width: 1.5px;
+  background: var(--fm-muted-invert);
+  opacity: 0.4;
+}
+
+/* A row of points under a diagram rather than a column beside a heading. */
+.fm-numlist--row { margin-top: clamp(32px, 4vw, 48px); }
+
+/* A data table for screen readers, kept out of sight but not out of the accessibility tree. */
+.fm-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.fm-card {
+  position: relative; overflow: hidden;
+  padding: clamp(20px, 3.5vw, 44px);
+  border-radius: 32px; background: var(--fm-charcoal); color: #fff;
+}
+
+.fm-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--noise); background-size: 220px 220px; opacity: 0.09;
+}
+
+.fm-card > * { position: relative; z-index: 1; }
+
+.fm-card .fm-label { color: #fff; }
+
+.fm-card .fm-note { color: var(--fm-muted-invert); margin-top: 6px; }
+
+.fm-table-scroll { overflow-x: auto; }
+
+.fm-table-scroll:focus-visible { outline: 3px solid var(--fm-primary); outline-offset: 4px; }
+
+.fm-table th, .fm-table td { padding: 14px 12px; text-align: left; vertical-align: top; }
+
+.fm-table tbody tr + tr td, .fm-table tbody tr + tr th { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+.fm-panels { display: grid; gap: var(--fm-gap); margin-top: clamp(48px, 6vw, 88px); }
+
+.fm-panel {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: end center;
+  min-height: 380px;
+  padding: 28px 20px 0;
+  background: var(--fm-panel, transparent);
+}
+
+.fm-panel-label {
+  position: absolute; top: 20px; left: 24px; z-index: 2; margin: 0;
+  font-family: var(--fm-font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.9);
+}
+
+.fm-panels--photos { margin-top: clamp(48px, 6vw, 88px); }
+
+.fm-panels--photos .fm-panel { min-height: 0; padding: 0; background: var(--fm-charcoal); }
+
+/* The page's banner artwork, centred on its own full-width colour band rather than bled to the
+   edges. The band stays a plain light background: each page's artwork already carries its brand. */
+.fm-hero {
+  position: relative; overflow: hidden;
+  display: flex; justify-content: center;
+  padding: clamp(28px, 9vw, 48px) clamp(20px, 6vw, 40px);
+  background: var(--fm-light-bg);
+}
+
+.fm-hero-img {
+  display: block;
+  width: min(90%, 460px);
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 24px 48px var(--fm-hero-shadow);
+}
+
+@media (min-width: 720px) {
+  .fm-hero { padding-block: clamp(56px, 9vw, 96px); }
+  .fm-hero-img { width: min(88%, 1400px); }
+}
+
+.fm-grain::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image: var(--noise);
+  background-size: 200px 200px;
+  opacity: 0.08;
+}
+
+.fm-panel > * { position: relative; z-index: 2; }
+
+.fm-next { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid rgba(17, 17, 17, 0.1); }
+
+.fm-next .fm-wrap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px; }
+
+.fm-back-link { color: var(--fm-primary-dark); font-weight: 500; }
+
+.fm-cta-wrap { padding-top: 0; }
+
+.fm-cta {
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 4vw, 48px);
+  border-radius: 32px; background: var(--fm-primary-tint); text-align: center;
+}
+
+.fm-cta h2 { margin: 0 auto 12px; max-width: 18ch; font-size: clamp(26px, 3.4vw, 38px); font-weight: 800; }
+
+.fm-cta p { margin: 0 auto 8px; max-width: 46ch; color: #5C4632; }
+
+.fm-button {
+  display: inline-block; margin-top: 16px; padding: 14px 28px; border-radius: 999px;
+  background: var(--fm-dark-bg); color: #fff; font-weight: 500; text-decoration: none;
+}
+
+.fm-button:hover { background: var(--fm-primary-dark); }
+
+@media (min-width: 720px) {
+  .fm-intro-pair { grid-template-columns: 1fr 1fr; }
+  .fm-numlist--row { grid-template-columns: repeat(3, 1fr); }
+  .fm-panels { grid-template-columns: var(--fm-ratio); }
+  .fm-panel { min-height: clamp(420px, 42vw, 600px); }
+}
+
+@media (min-width: 900px) {
+  .fm-split { grid-template-columns: 1fr 1.15fr; }
+  .fm-intro-grid { grid-template-columns: 2fr 1fr; }
+  .fm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+}
+
+@media (max-width: 899px) {
+  .fm-cards { display: grid; gap: 16px; margin-top: 28px; }
+}
+
+/* ==========================================================================
+   FeetMine
+   ========================================================================== */
+
+.cs-feetmine {
+  /* Brand */
+  --fm-primary: #FF9F46;
+  --fm-primary-dark: #E0761A;   /* orange text on a light background */
+  --fm-primary-tint: #FFE7D1;
+
+  /* Text on the orange section. Two tones, both vetted against #FF9F46. */
+  --fm-accent-heading: #6B4413; /* 4.6:1 */
+  --fm-accent-body: #5C3A10;    /* 6.0:1 */
+
+  --fm-hero-shadow: rgba(90, 45, 0, 0.22);
+
+  /* Panel colours, from the mascot palette */
+  --fm-orange: #FF9F46;
+  --fm-peach: #FFC999;
+  --fm-coral: #F7876B;
+  --fm-butter: #F6CF5A;
+  --fm-mint: #8FD9A8;
+  --fm-aqua: #7FD6DC;
+  --fm-blue: #7FA7E8;
+}
+
+/* No override here: the top bar inherits style.css's own 50%-paper tint, blur(16px) and 30%
+   grain unchanged, so it matches the homepage exactly. Known tradeoff (tested and shown
+   previously): over this page's dark sections, that 50% tint drops nav-text contrast to
+   ~1.8:1, well under the 4.5:1 minimum — kept anyway per instruction to match the homepage. */
+
+/* ---------- The numbered list, and the stat list that shares its shape ---------- */
+
+.cs-feetmine .fm-numlist,
+
+
+.cs-feetmine .fm-statlist { display: grid; gap: var(--fm-list-gap); }
+.cs-feetmine .fm-numlist li,
+
+.cs-feetmine .fm-statlist li { display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 16px; }
+.cs-feetmine .fm-numlist .fm-n,
+
+.cs-feetmine .fm-statlist .fm-n {
+  grid-row: span 2;
+  font-family: var(--fm-font); font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums;
+}
+.cs-feetmine .fm-statlist .fm-n { color: var(--fm-primary); font-size: 19px; }
+.cs-feetmine .fm-light .fm-statlist .fm-n { color: var(--fm-primary-dark); }
+/* zh drops the stat number (its titles stand on their own); the freed column collapses. */
+.cs-feetmine .fm-statlist li.fm-no-stat { grid-template-columns: 1fr; }
+.cs-feetmine .fm-numlist h3,
+
+.cs-feetmine .fm-statlist h3 {
+  margin: 0; font-family: var(--fm-font); font-size: 17px; font-weight: 700; line-height: 1.45;
+}
+.cs-feetmine .fm-numlist p,
+
+.cs-feetmine .fm-statlist p { margin: 0; font-size: 16px; line-height: 1.7; }
+.cs-feetmine .fm-light .fm-numlist p,
+
+.cs-feetmine .fm-light .fm-statlist p { color: var(--fm-muted); }
+.cs-feetmine .fm-dark .fm-numlist p,
+
+.cs-feetmine .fm-dark .fm-statlist p { color: var(--fm-muted-invert); }
+
+/* ---------- Charts (background section) ---------- */
+
+.cs-feetmine .fm-charts { display: grid; gap: 20px; }
+/* Each chart is now the exact SVG exported from Figma (see renderChartSvg in feetmine.js): the
+   card, its title and its drawing are all part of that image, so .fm-chart adds no card chrome
+   of its own — just makes sure the image scales down with its column and never overflows it. */
+.cs-feetmine .fm-chart { margin: 0; }
+.cs-feetmine .fm-chart-img { display: block; width: 100%; height: auto; }
+
+.cs-feetmine .fm-quote {
+  margin: clamp(40px, 5vw, 64px) 0 0; max-width: 36ch;
+  font-family: var(--fm-font); font-size: clamp(22px, 3vw, 34px); font-weight: 700; line-height: 1.25;
+  color: var(--fm-primary);
+}
+
+/* ---------- Pain point → need ---------- */
+
+.cs-feetmine .fm-pains { display: grid; gap: clamp(32px, 4vw, 44px); }
+.cs-feetmine .fm-pain-head {
+  display: inline-block; margin: 0 0 14px; padding: 8px 18px; border-radius: 999px;
+  background: var(--fm-charcoal); color: #fff;
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+}
+.cs-feetmine .fm-pain blockquote { margin: 0; padding: 0 0 0 18px; border-left: 2px solid rgba(17, 17, 17, 0.15); }
+.cs-feetmine .fm-pain blockquote p { margin: 0; font-size: 16px; font-style: italic; line-height: 1.7; color: var(--fm-muted); }
+.cs-feetmine .fm-pain cite { display: block; margin-top: 6px; font-size: 13px; font-style: normal; color: var(--fm-muted); }
+.cs-feetmine .fm-pain-line { display: block; width: 2px; height: 34px; margin: 12px 0 12px 18px; background: rgba(17, 17, 17, 0.2); }
+.cs-feetmine .fm-need { padding: 20px 22px; border-radius: 16px; background: var(--fm-primary); color: var(--fm-dark-bg); }
+.cs-feetmine .fm-need h3 { margin: 0 0 4px; font-family: var(--fm-font); font-size: 17px; font-weight: 700; }
+.cs-feetmine .fm-need p { margin: 0; font-size: 15px; line-height: 1.6; color: #5C3A10; }
+.cs-feetmine .fm-need .fm-need-label {
+  display: block; margin-bottom: 6px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #5C3A10;
+}
+
+/* ---------- Comparison table ---------- */
+/* The five journey columns share the width evenly, so the line joining FeetMine's dots
+   runs from the centre of one dot to the centre of the next. */
+.cs-feetmine .fm-table { width: 100%; min-width: 660px; border-collapse: collapse; table-layout: fixed; }
+.cs-feetmine .fm-table th:first-child { width: 16%; }
+.cs-feetmine .fm-table thead th { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+.cs-feetmine .fm-table thead th:not(:first-child) { text-align: center; } /* over the dots below */
+.cs-feetmine .fm-table thead .fm-col-name { display: block; font-family: var(--fm-font); font-size: 15px; font-weight: 700; }
+.cs-feetmine .fm-table thead .fm-col-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--fm-muted-invert); }
+.cs-feetmine .fm-table tbody th { font-family: var(--fm-font); font-size: 15px; font-weight: 700; white-space: nowrap; }
+.cs-feetmine .fm-table td { text-align: center; }
+.cs-feetmine .fm-dot {
+  display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+  border: 2px solid var(--fm-muted-invert);
+}
+.cs-feetmine .fm-cell-note { display: block; margin-top: 8px; font-size: 12px; line-height: 1.45; color: var(--fm-muted-invert); }
+.cs-feetmine .fm-cell-empty { color: var(--fm-muted-invert); }
+/* FeetMine's own row: filled dots joined by a line, and a ring around the whole row. */
+.cs-feetmine .fm-row-mine th,
+
+.cs-feetmine .fm-row-mine td { background: rgba(255, 159, 70, 0.14); }
+.cs-feetmine .fm-row-mine th { border-radius: 12px 0 0 12px; color: var(--fm-primary); }
+.cs-feetmine .fm-row-mine td:last-child { border-radius: 0 12px 12px 0; }
+.cs-feetmine .fm-row-mine .fm-dot { background: var(--fm-primary); border-color: var(--fm-primary); }
+.cs-feetmine .fm-row-mine td { position: relative; }
+.cs-feetmine .fm-row-mine td:not(:last-child)::after {
+  content: ""; position: absolute; top: 20px; left: 50%; right: -50%; height: 2px;
+  background: var(--fm-primary);
+}
+
+/* ---------- Foot type legend (feature #2) ---------- */
+
+.cs-feetmine .fm-legend { margin: 12px 0 20px; display: grid; gap: 12px; }
+.cs-feetmine .fm-legend dt { font-size: 14px; font-weight: 700; font-family: var(--fm-font); }
+.cs-feetmine .fm-legend dd { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.cs-feetmine .fm-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--fm-muted-invert); }
+.cs-feetmine .fm-key {
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--fm-primary); color: var(--fm-dark-bg);
+  font-family: var(--fm-font); font-size: 13px; font-weight: 700;
+}
+
+/* ---------- Full-bleed panels ---------- */
+.cs-feetmine .fm-panel--center { place-items: center; padding-bottom: 28px; }
+.cs-feetmine .fm-panel[style*="peach"] .fm-panel-label,
+
+.cs-feetmine .fm-panel[style*="butter"] .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
+
+/* ---------- Image crops ----------
+   Until the final exports exist, every image here is a crop of a deck slide: the wrapper shows one
+   region of the slide and nothing else. --cx/--cy is the top-left corner of that region and
+   --cw/--ch its size, both as a fraction of the slide (all slides are 2000 x 1125).
+   When work/feetmine/img/<name>.png arrives, drop the fm-shot--* class and point the <img> at it. */
+
+.cs-feetmine .fm-shot { position: relative; overflow: hidden; aspect-ratio: var(--fm-ar); border-radius: 4px; }
+.cs-feetmine .fm-shot img {
+  position: absolute; top: 0; left: 0; max-width: none;
+  width: calc(100% / var(--cw));
+  transform: translate(calc(var(--cx) * -100%), calc(var(--cy) * -100%));
+}
+.cs-feetmine .fm-shot--home { --cx: 0.038;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.cs-feetmine .fm-shot--ar { --cx: 0.228;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.cs-feetmine .fm-shot--result { --cx: 0.418;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.cs-feetmine .fm-shot--idcard { --cx: 0.608;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.cs-feetmine .fm-shot--growth { --cx: 0.798;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
+.cs-feetmine .fm-shot--shoe { --cx: 0.085;  --cy: 0.4178; --cw: 0.265;  --ch: 0.5244; --fm-ar: 530 / 590; }
+.cs-feetmine .fm-shot--record { --cx: 0.450;  --cy: 0.1467; --cw: 0.280;  --ch: 0.5644; --fm-ar: 560 / 635; }
+.cs-feetmine .fm-shot--mascots { --cx: 0.510;  --cy: 0.8000; --cw: 0.405;  --ch: 0.1333; --fm-ar: 810 / 150; }
+.cs-feetmine .fm-shot--before { --cx: 0.0575; --cy: 0.5156; --cw: 0.1775; --ch: 0.3911; --fm-ar: 355 / 440; }
+.cs-feetmine .fm-shot--after { --cx: 0.2950; --cy: 0.5200; --cw: 0.1800; --ch: 0.4044; --fm-ar: 360 / 455; }
+.cs-feetmine .fm-shot--yodex1 { --cx: 0.0440; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+.cs-feetmine .fm-shot--yodex2 { --cx: 0.3525; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+.cs-feetmine .fm-shot--yodex3 { --cx: 0.6600; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
+
+/* A phone screen stands on the bottom edge of its panel; a wider image sits in the middle. */
+.cs-feetmine .fm-panel > .fm-shot { height: 94%; width: auto; max-height: 560px; border-radius: 12px 12px 0 0; }
+.cs-feetmine .fm-panel--center > .fm-shot { height: auto; width: min(100%, 420px); border-radius: 12px; }
+.cs-feetmine .fm-panel--center > .fm-shot--mascots { width: min(100%, 620px); }
+.cs-feetmine .fm-panels--photos .fm-shot { width: 100%; height: auto; border-radius: 0; }
+
+/* ---------- Service flow ---------- */
+
+.cs-feetmine .fm-loop { margin: 28px 0 0; }
+.cs-feetmine .fm-loop svg { width: 100%; height: auto; }
+.cs-feetmine .fm-loop text { font-family: var(--fm-font); fill: #fff; }
+.cs-feetmine .fm-loop .fm-loop-node { font-size: 15px; font-weight: 700; }
+.cs-feetmine .fm-loop .fm-loop-edge { font-size: 13px; fill: var(--fm-muted-invert); }
+/* The edges only: the arrowhead inside <defs> keeps its own fill. */
+.cs-feetmine .fm-loop svg > path { stroke: var(--fm-primary); stroke-width: 1.5; fill: none; }
+.cs-feetmine .fm-loop .fm-chip { fill: rgba(255, 159, 70, 0.18); }
+.cs-feetmine .fm-loop .fm-node-dot { fill: var(--fm-primary); }
+.cs-feetmine .fm-loop .fm-plate { fill: var(--fm-charcoal); }  /* clears the line behind the Feedback label */
+.cs-feetmine .fm-loop-stack { display: grid; gap: 10px; margin: 24px 0 0; }
+.cs-feetmine .fm-loop-stack li { display: grid; gap: 2px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.07); }
+.cs-feetmine .fm-loop-stack strong { font-family: var(--fm-font); font-size: 15px; }
+.cs-feetmine .fm-loop-stack span { font-size: 13px; color: var(--fm-muted-invert); }
+
+.cs-feetmine .fm-flow { display: grid; gap: 14px; margin-top: 32px; }
+.cs-feetmine .fm-flow-stage { display: grid; gap: 10px; align-content: start; }
+.cs-feetmine .fm-flow-bar {
+  padding: 12px 16px; border-radius: 10px; text-align: center;
+  background: var(--fm-primary); color: var(--fm-dark-bg);
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+}
+.cs-feetmine .fm-flow-items { display: grid; gap: 10px; }
+.cs-feetmine .fm-flow-items li {
+  padding: 16px; border-radius: 12px; background: var(--fm-primary-tint); color: var(--fm-dark-bg);
+  font-size: 14px; line-height: 1.5; text-align: center;
+}
+
+/* ---------- Final designs ---------- */
+
+.cs-feetmine .fm-card--screens { padding-inline: 0; }
+.cs-feetmine .fm-screens {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 74%;
+  gap: 20px; padding-inline: clamp(20px, 3.5vw, 44px);
+  overflow-x: auto; scroll-snap-type: x mandatory;
+}
+.cs-feetmine .fm-screens li { scroll-snap-align: center; }
+.cs-feetmine .fm-screens .fm-shot { width: 100%; height: auto; border-radius: 14px; }
+.cs-feetmine .fm-screen-label { display: grid; grid-template-columns: auto 1fr; gap: 8px; margin: 14px 0 0; font-size: 13px; color: var(--fm-muted-invert); }
+.cs-feetmine .fm-screen-label b { font-family: var(--fm-font); color: #fff; font-variant-numeric: tabular-nums; }
+
+/* ---------- Lightbox ---------- */
+
+.cs-feetmine .fm-zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.cs-feetmine .fm-lightbox { width: min(94vw, 1100px); padding: 0; border: 0; border-radius: 18px; background: #111; }
+.cs-feetmine .fm-lightbox::backdrop { background: rgba(17, 17, 17, 0.82); }
+.cs-feetmine .fm-lightbox .fm-shot { width: 100%; height: auto; border-radius: 18px; }
+.cs-feetmine .fm-lightbox-close {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  width: 40px; height: 40px; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9); font-size: 22px; line-height: 1; cursor: pointer;
+}
+
+/* ---------- Reveal on scroll ---------- */
+
+.cs-feetmine .fm-reveal { opacity: 0; translate: 0 24px; transition: opacity 700ms ease, translate 700ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cs-feetmine .fm-reveal.is-in { opacity: 1; translate: none; }
+
+/* ---------- Wider screens ---------- */
+
+@media (min-width: 720px) {
+  .cs-feetmine .fm-charts { grid-template-columns: repeat(3, 1fr); }
+  .cs-feetmine .fm-pains { grid-template-columns: 1fr 1fr; }
+  .cs-feetmine .fm-flow { grid-template-columns: repeat(3, 1fr); }
+  .cs-feetmine .fm-screens { grid-auto-columns: 30%; }
+  .cs-feetmine .fm-legend { grid-template-columns: repeat(2, 1fr); gap: 16px 24px; }
+}
+
+@media (min-width: 900px) {
+  .cs-feetmine .fm-screens { grid-auto-columns: 1fr; overflow-x: visible; }
+}
+
+/* The loop diagram is too wide to read on a phone: the stacked list stands in for it.
+   Both live inside #fm-loop, so it is the svg that hides, not its host. */
+@media (max-width: 719px) {
+  .cs-feetmine .fm-loop svg { display: none; }
+}
+@media (min-width: 720px) {
+  .cs-feetmine .fm-loop-stack { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-feetmine .fm-reveal { opacity: 1; translate: none; }
+}
+
+/* ==========================================================================
+   Walk Xizhou
+   ========================================================================== */
+
+.cs-xizhou {
+  --fm-primary: #FFD226;
+  /* #6B4413, not feetmine's #E0761A: a darkened orange does not clear 4.5:1 against this page's
+     brighter yellow. One tone covers every text-on-light context here, where FeetMine needs two.
+     Checked against the accent (5.9:1), the wash (7.7:1) and the light background (7.4:1).
+     TODO: plain arithmetic, not run through a checker. Confirm before treating as final. */
+  --fm-primary-dark: #6B4413;
+  --fm-primary-tint: #FDF3D7;
+  --fm-accent-heading: #6B4413;
+  --fm-accent-body: #6B4413;
+
+  --fm-hero-shadow: rgba(90, 70, 0, 0.22);
+}
+
+/* ---------- The numbered list ---------- */
+
+.cs-xizhou .fm-numlist { display: grid; gap: var(--fm-list-gap); }
+.cs-xizhou .fm-numlist li { display: grid; grid-template-columns: 3.4em 1fr; gap: 4px 16px; }
+.cs-xizhou .fm-numlist .fm-n {
+  grid-row: span 2;
+  font-family: var(--fm-font); font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums;
+}
+.cs-xizhou .fm-numlist h3 { margin: 0; font-family: var(--fm-font); font-size: 17px; font-weight: 700; line-height: 1.45; }
+.cs-xizhou .fm-numlist p { margin: 0; font-size: 16px; line-height: 1.7; }
+.cs-xizhou .fm-light .fm-numlist p { color: var(--fm-muted); }
+.cs-xizhou .fm-dark .fm-numlist p { color: var(--fm-muted-invert); }
+
+/* ---------- Pull quotes (research field quotes) ---------- */
+
+.cs-xizhou .fm-quote {
+  margin: clamp(32px, 4vw, 48px) 0 0; max-width: 44ch;
+  font-family: var(--fm-font); font-size: clamp(19px, 2.4vw, 26px); font-weight: 700; line-height: 1.3;
+  color: var(--fm-primary);
+}
+.cs-xizhou .fm-quote:first-of-type { margin-top: clamp(40px, 5vw, 64px); }
+.cs-xizhou .fm-quote p { margin: 0; }
+/* New, not in css/editorial.css: feetmine's own .fm-quote wraps a plain string with no attribution.
+   This page's quotes are cited, so the citation line needs its own (smaller, unbolded) style. */
+.cs-xizhou .fm-quote cite {
+  display: block; margin-top: 10px;
+  font-family: var(--fm-font); font-size: 13px; font-weight: 400; font-style: normal;
+  color: var(--fm-muted-invert);
+}
+
+/* ---------- The dark card, used for the problem list, the tables and the business cards ---------- */
+.cs-xizhou .fm-card p { color: var(--fm-muted-invert); }
+
+/* New, not in css/editorial.css: the six problem points. CLAUDE.md keeps site-text.js strings text-only
+   (no embedded <br>), so this is a real list rather than feetmine's one-<p>-with-<br> pattern —
+   same look (a bulleted stack of short sentences), no HTML in the content string. */
+/* No margin reset: style.css already zeroes ul margins, and .fm-card .fm-note sets the top. */
+.cs-xizhou .fm-bullet-list { padding-left: 1.2em; display: grid; gap: 12px; list-style: disc; }
+.cs-xizhou .fm-bullet-list li { padding-left: 4px; }
+
+/* ---------- Tables (research stages, business service journey) ---------- */
+.cs-xizhou .fm-table { width: 100%; min-width: 520px; border-collapse: collapse; table-layout: fixed; }
+/* Only the research table (stage name + method + purpose) needs a narrow first column; the
+   business table's three columns (Before/During/After) are equal, so it stays plain .fm-table. */
+.cs-xizhou .fm-table--stage th:first-child { width: 22%; }
+.cs-xizhou .fm-table thead th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: var(--fm-font); font-size: 15px; font-weight: 700;
+}
+.cs-xizhou .fm-table tbody th { font-family: var(--fm-font); font-size: 15px; font-weight: 700; }
+.cs-xizhou .fm-table tbody td { font-size: 14px; line-height: 1.6; color: var(--fm-muted-invert); }
+
+/* ---------- Full-bleed panels (the four Design sections, and the closing photos) ---------- */
+.cs-xizhou .fm-light .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
+
+/* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
+   no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets
+   this dashed box. Given by the owner; the light-section variant is the one addition needed to
+   keep it readable on both themes. */
+.cs-xizhou .fm-shot-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: rgba(255,255,255,0.08);
+  border: 2px dashed rgba(255,255,255,0.25);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  padding: 1rem;
+  text-align: center;
+}
+.cs-xizhou .fm-sec.fm-light .fm-shot-placeholder {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.15);
+  color: rgba(0,0,0,0.35);
+}
+/* Square corners for the full-bleed photo look, matching feetmine's own photo row — the box keeps
+   its base aspect-ratio (4/3) so the panel, which has no height of its own (min-height: 0 above),
+   still sizes correctly around it. */
+.cs-xizhou .fm-panels--photos .fm-shot-placeholder { border-radius: 0; border-width: 1px; }
