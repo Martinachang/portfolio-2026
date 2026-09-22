@@ -386,11 +386,11 @@ const content = {
         zh: "錯誤觀念易導致足部發展不良，進而影響長期足部健康。",
       },
       items: [
-        { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Poor stability makes children work harder, so they tire and trip easily.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累、摔倒。" } },
-        { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "無法支撐體重，且不易吸震，長期使足弓易塌陷，造成扁平足。" } },
-        { title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Parents shop on looks and colour, but a child's toes need room to spread. Narrow shoes chafe, squeeze the toes, and can affect bone alignment over time.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
-        { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "支撐性差，長時間穿不利足弓發展，可能因跑跳活動而歪斜。" } },
-        { title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "提供已有足弓塌陷的孩子穿，一般孩子穿不好活動，且足底力氣不易建立。" } },
+        { icon: "bigger.svg", iconAlt: { en: "A shoe photo marked with a +1 size badge, representing sizing up", zh: "鞋子照片標示 +1 尺寸徽章，代表買大一號" }, title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Poor stability makes children work harder, so they tire and trip easily.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累、摔倒。" } },
+        { icon: "soft.svg", iconAlt: { en: "A shoe photo with soft, wavy cushioning lines, representing a giving sole", zh: "鞋子照片與柔軟波浪線條，代表容易塌陷的鞋底" }, title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "無法支撐體重，且不易吸震，長期使足弓易塌陷，造成扁平足。" } },
+        { icon: "look.svg", iconAlt: { en: "A shoe photo with sparkle marks, representing a focus on looks", zh: "鞋子照片與閃亮符號，代表只重外型" }, title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Parents shop on looks and colour, but a child's toes need room to spread. Narrow shoes chafe, squeeze the toes, and can affect bone alignment over time.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
+        { icon: "sandel.svg", iconAlt: { en: "A sandal illustration beside a sun icon, representing summer footwear", zh: "涼鞋插畫搭配太陽圖示，代表夏季鞋款" }, title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "支撐性差，長時間穿不利足弓發展，可能因跑跳活動而歪斜。" } },
+        { icon: "corrective.svg", iconAlt: { en: "A shoe fitted with a corrective insole", zh: "鞋子搭配矯正鞋墊" }, title: { en: "Wear corrective shoes early", zh: "太早穿矯正鞋" }, text: { en: "Meant only for diagnosed flat feet. Wearing them unnecessarily limits mobility and weakens foot muscles.", zh: "提供已有足弓塌陷的孩子穿，一般孩子穿不好活動，且足底力氣不易建立。" } },
       ],
     },
 
@@ -451,7 +451,11 @@ const content = {
     compare: {
       // Heading: slide 11's own title, split at its natural "to" boundary.
       line1: { en: "A shoe-fitting guide connecting online sizing", zh: "一份串連線上量測" },
-      line2: { en: "to personalized picks", zh: "與個人化選鞋的合腳指南" },
+      // line2 carries two invisible line-break guards, not typos: a non-breaking space holding
+      // "personalized picks" together, and a word joiner (U+2060) between 指 and 南 — [data-text]
+      // sets textContent (js/site.js), so a wrapping <span> never survives render() and can't be
+      // used here; these characters are the only technique that works through plain text.
+      line2: { en: "to personalized picks", zh: "與個人化選鞋的合腳指⁠南" },
       // Lead: slide 11's own subtitle. Its first sentence is verbatim; the second was rewritten
       // to drop the slide's "ultimate guide" marketing register.
       lead: {
@@ -481,9 +485,9 @@ const content = {
       line1: { en: "Healthy childhood steps", zh: "FeetMine 為孩子踏穩健康的每一步" },
       line2: { en: "for lifelong comfort", zh: "讓年老時身體不再煩惱" },
       items: [
-        { title: { en: "Simplifying foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement without store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
-        { title: { en: "Guiding personalized fit", zh: "專屬個人化推薦" }, text: { en: "Turn foot data into smart recommendations to avoid sizing guesswork.", zh: "把足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
-        { title: { en: "Tracking continuous growth", zh: "持續追蹤足部成長" }, text: { en: "Integrate foot data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
+        { icon: "icon-scan.svg", iconAlt: { en: "A phone with a scan frame, representing foot measurement", zh: "手機搭配掃描框線，代表足部量測" }, title: { en: "Simplifying foot measurement", zh: "簡化足部量測" }, text: { en: "Quick home measurement without store appointments or waiting.", zh: "在家就能快速量測，不必預約或排隊等候。" } },
+        { icon: "icon-guide.svg", iconAlt: { en: "A magnifying glass with a highlight mark, representing personalized guidance", zh: "放大鏡與標記符號，代表個人化指引" }, title: { en: "Guiding personalized fit", zh: "專屬個人化推薦" }, text: { en: "Turn foot data into smart recommendations to avoid sizing guesswork.", zh: "把足部資料轉化為智慧推薦，避免尺寸用猜的。" } },
+        { icon: "icon-growth.svg", iconAlt: { en: "An upward trend line with an arrow, representing continuous growth", zh: "向上的趨勢線與箭頭，代表持續成長" }, title: { en: "Tracking continuous growth", zh: "持續追蹤足部成長" }, text: { en: "Integrate foot data tracking and recurring shopping into a seamless cycle as children grow.", zh: "隨孩子成長，將足部資料追蹤與後續購物整合成一個流暢的循環。" } },
       ],
     },
 
@@ -501,8 +505,8 @@ const content = {
           en: "Uses AR technology to allow parents to measure their child's feet anytime, anywhere, building a dedicated database.",
           zh: "運用 AR 技術，讓家長隨時隨地都能量測孩子的腳，建立專屬資料庫。",
         },
-        altA: { en: "The AR measurement screen, scanning a child's foot", zh: "AR 量測畫面，正在掃描孩子的腳" },
-        altB: { en: "The FeetMine home screen with the child's latest foot length and next shoe-changing day", zh: "合步合腳首頁，顯示孩子最新的足長與下次換鞋日" },
+        altA: { en: "A “Measure Prototype” card with a QR code linking to step-by-step measurement tips", zh: "「量測原型」卡片，內含連結至逐步量測教學的 QR Code" },
+        altB: { en: "The AR measurement screen, scanning a child's foot", zh: "AR 量測畫面，正在掃描孩子的腳" },
       },
       two: {
         name: { en: "Foot type & personal mascot", zh: "足型與專屬吉祥物" },

@@ -187,8 +187,9 @@
       const $$ = (s) => [...doc.querySelectorAll(s)];
       checkPage("work/feetmine/", win);
 
+      // The five: the three background charts, the life-stage bar, and the comparison table.
       check("every chart carries its data in a table as well",
-        () => $$(".fm-chart").length === 4 &&
+        () => $$(".fm-chart").length === 5 &&
           $$(".fm-chart").every((c) => c.querySelector("table.fm-sr") !== null));
 
       // This page shows no decorative images beyond the charts, so the strict rule holds here:
@@ -197,15 +198,20 @@
         () => $$("img").every((img) =>
           img.classList.contains("fm-chart-img") || img.alt.trim().length > 0));
 
-      // A dot means yes. That must never be shape-only.
-      check("every comparison cell says in words what its dot means",
-        () => $$("#fm-compare tbody td").every((cell) => cell.querySelector(".fm-sr") !== null));
+      // A picture cannot say "not covered" in words on its own; the hidden table beside it must,
+      // for every cell, not just somewhere on the page.
+      check("every comparison cell says in words what its picture shows",
+        () => $$("#fm-compare table.fm-sr tbody td").length > 0 &&
+          $$("#fm-compare table.fm-sr tbody td").every((cell) => cell.textContent.trim().length > 0));
 
+      // A crop (.fm-shot--*) and a final export (.fm-full-shot) both count: either way, the
+      // lightbox frame must carry the thumbnail's own class, not open the img with no framing.
       check("a click opens the same crop in the lightbox, not the whole slide", () => {
         $(".fm-zoom").click();
         const frame = $("#fm-lightbox-frame");
         const opened = $("#fm-lightbox").open &&
-          frame.className.includes("fm-shot--") && frame.querySelector("img") !== null;
+          (frame.className.includes("fm-shot--") || frame.className.includes("fm-full-shot")) &&
+          frame.querySelector("img") !== null;
         $("#fm-lightbox").close();
         return opened;
       });

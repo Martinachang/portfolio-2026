@@ -123,7 +123,7 @@
           </h2>
           <p class="fm-note" data-text="feetmine.misconceptions.lead"></p>
         </div>
-        <ol class="fm-numlist" id="fm-misconceptions"></ol>
+        <ol class="fm-numlist fm-numlist--icons-lg" id="fm-misconceptions"></ol>
       </div>
     </section>
 
@@ -166,10 +166,12 @@
         </div>
         <p class="fm-lead" data-text="feetmine.compare.lead"></p>
       </div>
+      <!-- Competitiveanalysis.svg already draws its own white rounded card, so this skips the
+           .fm-card chrome the other feature sections use for a plain photo or diagram.
+           .fm-table-scroll only does anything below 720px (css/editorial.css): the image scales
+           down to fit above that, and needs no scrolling or keyboard region there. -->
       <div class="fm-wrap">
-        <div class="fm-card">
-          <div class="fm-table-scroll" id="fm-compare" tabindex="0" role="region" aria-labelledby="compare-title"></div>
-        </div>
+        <figure class="fm-chart fm-table-scroll" id="fm-compare" tabindex="0" role="region" aria-labelledby="compare-title"></figure>
       </div>
     </section>
 
@@ -196,16 +198,14 @@
         <p class="fm-lead" data-text="feetmine.features.one.text"></p>
       </div>
       <div class="fm-panels" style="--fm-ratio: 1fr 2fr">
-        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-peach)">
-          <!-- TODO: replace with img/feetmine-screen-ar.png -->
-          <button type="button" class="fm-zoom fm-shot fm-shot--ar">
-            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.one.altA" alt="" loading="lazy">
+        <div class="fm-panel fm-panel--center fm-grain" style="--fm-panel: var(--fm-charcoal)">
+          <button type="button" class="fm-zoom fm-full-shot">
+            <img src="img/feetmineprototype.svg" data-alt="feetmine.features.one.altA" alt="" loading="lazy">
           </button>
         </div>
-        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-charcoal)">
-          <!-- TODO: replace with img/feetmine-screen-home.png -->
-          <button type="button" class="fm-zoom fm-shot fm-shot--home">
-            <img src="img/feetmine-13.jpg" data-alt="feetmine.features.one.altB" alt="" loading="lazy">
+        <div class="fm-panel fm-grain" style="--fm-panel: var(--fm-peach)">
+          <button type="button" class="fm-zoom fm-full-shot">
+            <img src="img/feature1-1.svg" data-alt="feetmine.features.one.altB" alt="" loading="lazy">
           </button>
         </div>
       </div>

@@ -148,9 +148,8 @@ lines in English often fits on one in Chinese.
 Three parts in order: the shared layout, then FeetMine's rules, then Walk Xizhou's.
 
 Shared rules are unscoped, because nothing else loads the file. Every rule in a page part carries
-that page's body class, so the two pages cannot reach each other. Four selectors exist in both
-parts with different values and would otherwise collide: `.fm-quote`, `.fm-table`,
-`.fm-table tbody th` and `.fm-table thead th`.
+that page's body class, so the two pages cannot reach each other. `.fm-quote` exists in both parts
+with different values and would otherwise collide.
 
 A page supplies six brand tokens: `--fm-primary`, `--fm-primary-dark`, `--fm-primary-tint`,
 `--fm-accent-heading`, `--fm-accent-body` and `--fm-hero-shadow`. A third editorial page costs a

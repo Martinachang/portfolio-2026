@@ -5,9 +5,8 @@
    costs a token block rather than a stylesheet.
 
    Shared rules are unscoped, because nothing else loads this file. Every rule in a page part
-   carries that page's body class, so the two pages cannot reach each other. Four selectors
-   exist in both parts with different values: .fm-quote, .fm-table, .fm-table tbody th and
-   .fm-table thead th.
+   carries that page's body class, so the two pages cannot reach each other. .fm-quote exists
+   in both parts with different values.
 
    The fm- prefix is historical. It means the editorial layout, not FeetMine.
 
@@ -351,6 +350,13 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-light .fm-statlist .fm-n { color: var(--fm-primary-dark); }
 /* zh drops the stat number (its titles stand on their own); the freed column collapses. */
 .cs-feetmine .fm-statlist li.fm-no-stat { grid-template-columns: 1fr; }
+/* An icon standing in for numberedItem's "01" (Design Goals, Misconceptions) takes the same
+   column and row-span as .fm-n, sized to match the timeline's .fm-n-circle (2.3em) so the marker
+   column carries the same visual weight either way. */
+.cs-feetmine .fm-item-icon { grid-row: span 2; align-self: start; width: 2.3em; height: 2.3em; }
+/* Misconceptions' icons read as small photos, not glyphs, and needed more presence: 1.5x here,
+   Design Goals unchanged. */
+.cs-feetmine .fm-numlist--icons-lg .fm-item-icon { width: 3.45em; height: 3.45em; }
 .cs-feetmine .fm-numlist h3,
 
 .cs-feetmine .fm-statlist h3 {
@@ -402,34 +408,7 @@ main { overflow-x: hidden; position: relative; }
 }
 
 /* ---------- Comparison table ---------- */
-/* The five journey columns share the width evenly, so the line joining FeetMine's dots
-   runs from the centre of one dot to the centre of the next. */
-.cs-feetmine .fm-table { width: 100%; min-width: 660px; border-collapse: collapse; table-layout: fixed; }
-.cs-feetmine .fm-table th:first-child { width: 16%; }
-.cs-feetmine .fm-table thead th { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
-.cs-feetmine .fm-table thead th:not(:first-child) { text-align: center; } /* over the dots below */
-.cs-feetmine .fm-table thead .fm-col-name { display: block; font-family: var(--fm-font); font-size: 15px; font-weight: 700; }
-.cs-feetmine .fm-table thead .fm-col-note { display: block; margin-top: 2px; font-size: 12px; font-weight: 400; color: var(--fm-muted-invert); }
-.cs-feetmine .fm-table tbody th { font-family: var(--fm-font); font-size: 15px; font-weight: 700; white-space: nowrap; }
-.cs-feetmine .fm-table td { text-align: center; }
-.cs-feetmine .fm-dot {
-  display: inline-block; width: 13px; height: 13px; border-radius: 50%;
-  border: 2px solid var(--fm-muted-invert);
-}
-.cs-feetmine .fm-cell-note { display: block; margin-top: 8px; font-size: 12px; line-height: 1.45; color: var(--fm-muted-invert); }
-.cs-feetmine .fm-cell-empty { color: var(--fm-muted-invert); }
-/* FeetMine's own row: filled dots joined by a line, and a ring around the whole row. */
-.cs-feetmine .fm-row-mine th,
-
-.cs-feetmine .fm-row-mine td { background: rgba(255, 159, 70, 0.14); }
-.cs-feetmine .fm-row-mine th { border-radius: 12px 0 0 12px; color: var(--fm-primary); }
-.cs-feetmine .fm-row-mine td:last-child { border-radius: 0 12px 12px 0; }
-.cs-feetmine .fm-row-mine .fm-dot { background: var(--fm-primary); border-color: var(--fm-primary); }
-.cs-feetmine .fm-row-mine td { position: relative; }
-.cs-feetmine .fm-row-mine td:not(:last-child)::after {
-  content: ""; position: absolute; top: 20px; left: 50%; right: -50%; height: 2px;
-  background: var(--fm-primary);
-}
+.cs-feetmine .fm-compare-img { height: auto; }
 
 /* ---------- Foot type legend (feature #2) ---------- */
 
@@ -444,6 +423,10 @@ main { overflow-x: hidden; position: relative; }
 }
 
 /* ---------- Full-bleed panels ---------- */
+/* Built to match Menti's own gapped panels (--fm-gap, set on body above); FeetMine's own call is
+   to run them flush instead. Overriding the property here, not --fm-gap itself, since Walk
+   Xizhou's .fm-panels (css/editorial.css's Xizhou part) reads that same shared token. */
+.cs-feetmine .fm-panels { gap: 0; }
 .cs-feetmine .fm-panel--center { place-items: center; padding-bottom: 28px; }
 .cs-feetmine .fm-panel[style*="peach"] .fm-panel-label,
 
@@ -461,8 +444,6 @@ main { overflow-x: hidden; position: relative; }
   width: calc(100% / var(--cw));
   transform: translate(calc(var(--cx) * -100%), calc(var(--cy) * -100%));
 }
-.cs-feetmine .fm-shot--home { --cx: 0.038;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
-.cs-feetmine .fm-shot--ar { --cx: 0.228;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
 .cs-feetmine .fm-shot--result { --cx: 0.418;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
 .cs-feetmine .fm-shot--idcard { --cx: 0.608;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
 .cs-feetmine .fm-shot--growth { --cx: 0.798;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
@@ -475,9 +456,18 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-shot--yodex2 { --cx: 0.3525; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
 .cs-feetmine .fm-shot--yodex3 { --cx: 0.6600; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
 
+/* A final export, not a crop from the shared deck-slide strip like .fm-shot beside it: the image
+   shows whole, at its own aspect ratio, so none of the --cx/--cy crop math above applies. */
+.cs-feetmine .fm-full-shot { display: block; overflow: hidden; border-radius: 4px; }
+.cs-feetmine .fm-full-shot img { display: block; }
+.cs-feetmine .fm-panel > .fm-full-shot img { width: auto; height: 100%; }
+.cs-feetmine .fm-panel--center > .fm-full-shot img { width: 100%; height: auto; }
+
 /* A phone screen stands on the bottom edge of its panel; a wider image sits in the middle. */
-.cs-feetmine .fm-panel > .fm-shot { height: 94%; width: auto; max-height: 560px; border-radius: 12px 12px 0 0; }
-.cs-feetmine .fm-panel--center > .fm-shot { height: auto; width: min(100%, 420px); border-radius: 12px; }
+.cs-feetmine .fm-panel > .fm-shot,
+.cs-feetmine .fm-panel > .fm-full-shot { height: 94%; width: auto; max-height: 560px; border-radius: 12px 12px 0 0; }
+.cs-feetmine .fm-panel--center > .fm-shot,
+.cs-feetmine .fm-panel--center > .fm-full-shot { height: auto; width: min(100%, 420px); border-radius: 12px; }
 .cs-feetmine .fm-panel--center > .fm-shot--mascots { width: min(100%, 620px); }
 .cs-feetmine .fm-panels--photos .fm-shot { width: 100%; height: auto; border-radius: 0; }
 
@@ -529,7 +519,9 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-zoom { display: block; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .cs-feetmine .fm-lightbox { width: min(94vw, 1100px); padding: 0; border: 0; border-radius: 18px; background: #111; }
 .cs-feetmine .fm-lightbox::backdrop { background: rgba(17, 17, 17, 0.82); }
-.cs-feetmine .fm-lightbox .fm-shot { width: 100%; height: auto; border-radius: 18px; }
+.cs-feetmine .fm-lightbox .fm-shot,
+.cs-feetmine .fm-lightbox .fm-full-shot { width: 100%; height: auto; border-radius: 18px; }
+.cs-feetmine .fm-lightbox .fm-full-shot img { width: 100%; height: auto; }
 .cs-feetmine .fm-lightbox-close {
   position: absolute; top: 10px; right: 10px; z-index: 2;
   width: 40px; height: 40px; border: 0; border-radius: 50%;
@@ -562,6 +554,17 @@ main { overflow-x: hidden; position: relative; }
 }
 @media (min-width: 720px) {
   .cs-feetmine .fm-loop-stack { display: none; }
+}
+
+/* competitive-analysis.svg has the same problem as the loop diagram above, solved the other way:
+   shrinking it to fit a phone makes its text unreadably small, so below 720px it keeps its native,
+   legible width instead and .fm-table-scroll (work/feetmine/index.html) carries the overflow
+   sideways. At 720px and up it scales down to fit .fm-wrap, same as every other .fm-chart-img. */
+@media (max-width: 719px) {
+  .cs-feetmine .fm-compare-img { width: 1462px; max-width: none; }
+}
+@media (min-width: 720px) {
+  .cs-feetmine .fm-compare-img { width: auto; max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

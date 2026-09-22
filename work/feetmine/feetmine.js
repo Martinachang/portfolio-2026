@@ -2,12 +2,18 @@
 // site.js has loaded, so t(), fill() and the shared item templates exist.
 //
 // The page's sections are written out in work/feetmine/index.html; this file draws the parts that repeat:
-// the lists, the three charts, the comparison table, the service flow and the image rows.
-// Everything here is text, CSS and inline SVG — the only <img> tags are app screens and photos.
+// the lists, the charts, the service flow and the image rows. The charts, the goal icons, the app
+// screens and the photos are this page's only <img> tags — everything else is text, CSS or inline SVG.
 
 const fm = content.feetmine;
 
 // ---------- Lists ----------
+
+// Design Goals and Misconceptions both swap the shared numberedItem's "01" for an icon naming
+// the item, since a small, varied set reads better as distinct pictures than as a count.
+function iconItem(item) {
+  return `<li><img class="fm-item-icon" src="img/${item.icon}" alt="${t(item.iconAlt)}" loading="lazy"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
+}
 
 function statItem(item) {
   // Neither language shows the stat number any more: both sets of titles stand on their own as
@@ -65,27 +71,25 @@ function renderStages(figure, src, caption, stages) {
 
 // ---------- Comparison table ----------
 
-function compareCell(cell) {
-  if (!cell) return `<td><span class="fm-cell-empty" aria-hidden="true">—</span><span class="fm-sr">${t(fm.compare.notCovered)}</span></td>`;
-  return `<td>
-       <span class="fm-dot" aria-hidden="true"></span><span class="fm-sr">${t(fm.compare.covered)}</span>
-       ${cell.note ? `<span class="fm-cell-note">${t(cell.note)}</span>` : ""}
-     </td>`;
-}
-
-function renderCompare(host) {
-  host.innerHTML = `<table class="fm-table">
-       <caption class="fm-sr">${t(fm.compare.caption)}</caption>
+// Now a picture too (img/competitive-analysis.svg), the same Figma-export-plus-hidden-table
+// pattern as renderChartSvg above: the image is decorative (alt=""), and fm.compare's own data
+// rebuilds here as a real table.fm-sr, so the comparison still reads in Chinese and to a screen
+// reader even though the picture itself is stuck in English.
+function renderCompare(figure) {
+  const c = fm.compare;
+  figure.innerHTML = `<img class="fm-chart-img fm-compare-img" src="img/competitive-analysis.svg" alt="" loading="lazy">
+     <table class="fm-sr">
+       <caption>${t(c.caption)}</caption>
        <thead>
          <tr>
-           <th scope="col"><span class="fm-col-name">${t(fm.compare.productLabel)}</span></th>
-           ${fm.compare.columns.map((column) => `
-             <th scope="col"><span class="fm-col-name">${t(column.name)}</span><span class="fm-col-note">${t(column.note)}</span></th>`).join("")}
+           <th scope="col">${t(c.productLabel)}</th>
+           ${c.columns.map((column) => `<th scope="col">${t(column.name)} — ${t(column.note)}</th>`).join("")}
          </tr>
        </thead>
-       <tbody>${fm.compare.rows.map((row) => `
-         <tr${row.highlight ? ' class="fm-row-mine"' : ""}>
-           <th scope="row">${row.name}</th>${row.cells.map(compareCell).join("")}
+       <tbody>${c.rows.map((row) => `
+         <tr>
+           <th scope="row">${row.name}</th>
+           ${row.cells.map((cell) => `<td>${cell ? t(c.covered) : t(c.notCovered)}${cell && cell.note ? " — " + t(cell.note) : ""}</td>`).join("")}
          </tr>`).join("")}
        </tbody>
      </table>`;
@@ -181,9 +185,9 @@ function photoPanel(photo, i) {
 function renderPage() {
   fill("fm-meta", fm.intro.meta, (item) => `<dt>${t(item.label)}</dt><dd>${t(item.value)}</dd>`);
   fill("fm-process", fm.process.steps, timelineItem);
-  fill("fm-misconceptions", fm.misconceptions.items, numberedItem);
+  fill("fm-misconceptions", fm.misconceptions.items, iconItem);
   fill("fm-parent-stats", fm.parents.items, statItem);
-  fill("fm-goals", fm.goals.items, numberedItem);
+  fill("fm-goals", fm.goals.items, iconItem);
   fill("fm-testing", fm.testing.items, numberedItem);
   fill("fm-results", fm.results.items, numberedItem);
   fill("fm-field-points", fm.field.points, numberedItem);
