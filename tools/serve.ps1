@@ -79,7 +79,12 @@ while ($listener.IsListening) {
       $bytes = [System.IO.File]::ReadAllBytes($full)
       $ctx.Response.ContentType = $ct
       $ctx.Response.ContentLength64 = $bytes.Length
-      $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
+      # A HEAD request asks for the headers and no body. Writing the bytes anyway is
+      # more than Content-Length allows: it throws, the reply never finishes, and the
+      # browser waits forever. test.html checks that every image resolves this way.
+      if ($ctx.Request.HttpMethod -ne 'HEAD') {
+        $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
+      }
       Write-Host ("200 {0}" -f $rel)
     } else {
       $ctx.Response.StatusCode = 404
