@@ -99,6 +99,18 @@ main { overflow-x: hidden; position: relative; }
 
 .fm-lead { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.75; max-width: 46ch; }
 
+/* One number set two lines' worth of type inside a running paragraph. line-height: 1 stops it
+   from opening a gap above its own line; <strong> already carries the weight. */
+.fm-stat-inline {
+  font-size: 2em; line-height: 1;
+  font-family: var(--fm-font); font-variant-numeric: tabular-nums;
+  color: var(--fm-primary);
+}
+
+/* #FF9F46 does not clear contrast on the light background, so a light section takes the darker
+   token — the same split .fm-statlist .fm-n makes below. */
+.fm-light .fm-stat-inline { color: var(--fm-primary-dark); }
+
 /* 44ch left it ~100px short of the .fm-split column (the same column its own h2 fills). */
 .fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 50ch; }
 

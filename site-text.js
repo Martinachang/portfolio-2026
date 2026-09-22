@@ -277,8 +277,8 @@ const content = {
       outcomeLabel: { en: "Outcome", zh: "成果" },
       // Outcome: a deliberate earlier decision, not slide text — excluded from slide-matching.
       outcome: {
-        en: "A tested end-to-end app prototype, a Foot ID Card business model for B2C and B2B, and an exhibition at YODEX with an award nomination (Vision Get Wild).",
-        zh: "一套經過測試的完整 App 原型、B2C 與 B2B 的足型 ID 卡商業模式、入圍 Vision Get Wild 以及新一代設計展展出。",
+        en: "A tested app prototype, a Foot ID Card business model for B2C and B2B, and an exhibition at YODEX with an award nomination (Vision Get Wild).",
+        zh: "經測試的 App 原型、B2C 與 B2B 的足型 ID 卡商業模式、入圍 Vision Get Wild 以及新一代設計展展出。",
       },
       // Meta: slide 05's Position / Time / Team stat lines, plus its "Graduation Project" pill for Type.
       meta: [
@@ -382,11 +382,11 @@ const content = {
       // incidence of foot-related diseases later in life"), with "misconceptions" added back in
       // for "These" so the sentence still reads clearly outside the card it sat beside on the slide.
       lead: {
-        en: "These misconceptions lead to poor foot development, negatively impacting long-term foot health.",
-        zh: "這些錯誤觀念容易導致足部發展不良，進而影響長期的足部健康。",
+        en: "These misconceptions impair foot development and long-term foot health.",
+        zh: "錯誤觀念易導致足部發展不良，進而影響長期足部健康。",
       },
       items: [
-        { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Causes poor stability and fatigue, leading to frequent tripping.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累也容易摔倒。" } },
+        { title: { en: "Buying one size up", zh: "買大一號" }, text: { en: "Poor stability makes children work harder, so they tire and trip easily.", zh: "無法提供良好的穩定度，孩子需要花費更多力氣，容易累、摔倒。" } },
         { title: { en: "Softer shoes for comfort", zh: "鞋子越軟越舒服" }, text: { en: "Lacks support and shock absorption, leading to collapsed arches and flat feet.", zh: "無法支撐體重，且不易吸震，長期使足弓易塌陷，造成扁平足。" } },
         { title: { en: "Looks above proper support", zh: "只看外型，忽略楦頭寬度" }, text: { en: "Parents shop on looks and colour, but a child's toes need room to spread. Narrow shoes chafe, squeeze the toes, and can affect bone alignment over time.", zh: "家長挑鞋多以外型與顏色為主，但孩童腳掌前端需要足夠空間讓腳趾自然展開。過窄的鞋楦會擠壓腳趾，長期可能影響骨骼排列。" } },
         { title: { en: "Wear sandals in summer", zh: "夏天讓孩子穿涼鞋" }, text: { en: "Hurts arch development and raises the risk of ankle misalignment during play.", zh: "支撐性差，長時間穿不利足弓發展，可能因跑跳活動而歪斜。" } },
