@@ -556,8 +556,8 @@ const content = {
           en: "Provides targeted shoe recommendations on performance and materials based on individual foot profiles. Users can explore reviews from peers with the same foot type, ensuring confident purchases and minimizing sizing mistakes.",
           zh: "依據個人足型檔案，提供針對性能與材質的鞋款推薦。使用者也能參考相同足型的其他人的評價，安心購買、減少選錯尺寸的機會。",
         },
-        altA: { en: "A parent browsing a recommended shoe and the foot types it suits", zh: "家長正在瀏覽推薦鞋款，以及這雙鞋適合的足型" },
-        altB: { en: "The Foot ID card screen with the child's foot type and partner stores", zh: "足型 ID 卡畫面，顯示孩子的足型與合作店家" },
+        altA: { en: "A phone recommending a shoe by foot-type fit, over a photo of a child tying their shoes", zh: "手機顯示依足型比對的鞋款推薦，背景為孩子綁鞋帶的照片" },
+        altB: { en: "A shoe selection guide screen showing the child's foot type and a matched recommendation", zh: "選鞋指南畫面，顯示孩子的足型與媒合的鞋款推薦" },
       },
       four: {
         // Name: slide 16's own card title, recased to match the other three feature names.

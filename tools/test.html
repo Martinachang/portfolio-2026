@@ -187,9 +187,10 @@
       const $$ = (s) => [...doc.querySelectorAll(s)];
       checkPage("work/feetmine/", win);
 
-      // The five: the three background charts, the life-stage bar, and the comparison table.
+      // The six: the three background charts, the life-stage bar, the comparison table, and the
+      // foot-type legend.
       check("every chart carries its data in a table as well",
-        () => $$(".fm-chart").length === 5 &&
+        () => $$(".fm-chart").length === 6 &&
           $$(".fm-chart").every((c) => c.querySelector("table.fm-sr") !== null));
 
       // This page shows no decorative images beyond the charts, so the strict rule holds here:

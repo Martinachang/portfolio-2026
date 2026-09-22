@@ -69,6 +69,17 @@ function renderStages(figure, src, caption, stages) {
      </table>`;
 }
 
+// The foot-type legend (img/foottype.svg) is the same Figma-export-plus-hidden-table pattern:
+// each row's lettered options go into one cell as plain text, since the picture's own dots and
+// letters carry no meaning a screen reader can read.
+function renderLegend(figure, src, caption, rows) {
+  figure.innerHTML = `<img class="fm-chart-img" src="img/${src}" alt="" loading="lazy">
+     <table class="fm-sr"><caption>${caption}</caption>
+       <tbody>${rows.map((row) => `
+         <tr><th scope="row">${t(row.label)}</th><td>${row.options.map((option) => `${option.key} — ${t(option.value)}`).join("; ")}</td></tr>`).join("")}</tbody>
+     </table>`;
+}
+
 // ---------- Comparison table ----------
 
 // Now a picture too (img/competitive-analysis.svg), the same Figma-export-plus-hidden-table
@@ -197,9 +208,7 @@ function renderPage() {
 
   renderStages(document.getElementById("fm-stages"), "chart4.svg", t(fm.field.stagesLabel), fm.field.stages);
 
-  fill("fm-legend", fm.features.two.legend, (row) =>
-    `<dt>${t(row.label)}</dt><dd>${row.options.map((option) =>
-      `<span><b class="fm-key">${option.key}</b>${t(option.value)}</span>`).join("")}</dd>`);
+  renderLegend(document.getElementById("fm-legend"), "foottype.svg", t(fm.features.two.legendTitle), fm.features.two.legend);
 
   fill("fm-business-cards", fm.business.cards, cardItem);
 

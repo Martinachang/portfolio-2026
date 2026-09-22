@@ -63,10 +63,10 @@ for a nav link finds nothing. The skip link is the exception and stays in the HT
 anything added to the DOM by hand is destroyed. Whatever must survive belongs in `site-text.js`, or
 must be re-applied at the end of `renderPage()`. That is why `feetmine.js` calls `reveal()` there.
 
-**Five FeetMine pictures stay English in Chinese.** `work/feetmine/img/chart1.svg` to `chart4.svg`,
-plus `competitive-analysis.svg`, are Figma exports whose labels are outlined paths, not text.
-Nothing can translate a shape. Each carries its data in a hidden table beside it, so the meaning
-survives; only the words in the picture are stuck.
+**Six FeetMine pictures stay English in Chinese.** `work/feetmine/img/chart1.svg` to `chart4.svg`,
+plus `competitive-analysis.svg` and `foottype.svg`, are Figma exports whose labels are outlined
+paths, not text. Nothing can translate a shape. Each carries its data in a hidden table beside it,
+so the meaning survives; only the words in the picture are stuck.
 
 **A missing translation reaches the page as the word "undefined".** `t()` returns `value[lang]`
 and logs a warning. `tools/test.html` walks `site-text.js` and fails on a missing half.
@@ -107,17 +107,19 @@ version used to lose. The computed-style diff above is how you catch that.
 
 **Most of FeetMine's final image exports still don't exist.** Each remaining `.fm-shot--*` `<img>`
 points at a deck slide, and the class crops it to the one screen or photo that belongs there.
-Eleven crops are still TODO. Two are done: Feature #1's AR-screen and home-screen crops became
-`img/feetmineprototype.svg` and `img/feature1-1.svg`, plain `<img>`s wrapped in `.fm-full-shot`
-instead of `.fm-shot` — a real export shows its own image whole, with no `--cx`/`--cy` crop to
-apply. When the next export arrives, point the `<img>` at it and make the same swap: drop
-`.fm-shot`/`.fm-shot--*`, add `.fm-full-shot`. The lightbox copies whichever class is on the
-thumbnail onto its frame, so check both the thumbnail and the lightbox.
+Seven crops are still TODO. Six are done: Feature #1's AR-screen and home-screen crops, Feature
+#2's measurement-result and mascot-set crops, and Feature #3's shoe-recommendation and ID-card
+crops, became `img/feetmineprototype.svg`, `img/feature1-1.svg`, `img/feature2-1.svg`,
+`img/feature2-2.svg`, `img/feature3-1.svg` and `img/feature3-2.svg` — plain `<img>`s wrapped in
+`.fm-full-shot` instead of `.fm-shot`, since a real export shows its own image whole, with no
+`--cx`/`--cy` crop to apply. When the next export arrives, point the `<img>` at it and make the
+same swap: drop `.fm-shot`/`.fm-shot--*`, add `.fm-full-shot`. The lightbox copies whichever class
+is on the thumbnail onto its frame, so check both the thumbnail and the lightbox.
 
 **Walk Xizhou has no images at all.** Its eleven slots are `.fm-shot-placeholder` dashed boxes.
 There are no exports and no deck slides to crop. This is not the same as FeetMine's crops.
 
-**Open `TODO` counts:** `work/feetmine/index.html` 9, `work/xizhou/index.html` 11,
+**Open `TODO` counts:** `work/feetmine/index.html` 5, `work/xizhou/index.html` 11,
 `site-text.js` 9, `work/feetmine/feetmine.js` 2, `css/editorial.css` 1.
 
 **The twenty-three unreferenced images were deleted.** They were the chart PNG files the SVG

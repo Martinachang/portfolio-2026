@@ -1,0 +1,27 @@
+[33mcommit 302f868a6edbcab041947bae60a4aa29da8c7b73[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Martinachang <c21m22h29@gmail.com>
+Date:   Tue Sep 22 16:40:12 2026 +0800
+
+    feetmine img and svg
+
+ CLAUDE.md                        |   5 [32m+[m[31m-[m
+ css/editorial.css                |  75 [32m++[m[31m---[m
+ docs/gotchas.md                  |  22 [32m+[m[31m-[m
+ site-text.js                     |  26 [32m+[m[31m-[m
+ tools/test.html                  |  16 [32m+[m[31m-[m
+ work/feetmine/feetmine.js        |  46 [32m+[m[31m--[m
+ work/feetmine/img/bigger.svg     |  15 [32m+[m
+ work/feetmine/img/corrective.svg |  12 [32m+[m
+ work/feetmine/img/featue3-1.svg  | 363 [32m++++++++++++++++++++++[m
+ work/feetmine/img/feature2-1.svg |  16 [32m+[m[31m-[m
+ work/feetmine/img/feature2-2.svg | 241 [32m+++++++++++++++[m
+ work/feetmine/img/feature3-2.svg | 255 [32m++++++++++++++++[m
+ work/feetmine/img/feature4-1.svg | 631 [32m++++++++++++++++++++++++++++++++++++++[m
+ work/feetmine/img/feature4-2.svg | 461 [32m++++++++++++++++++++++++++++[m
+ work/feetmine/img/look.svg       |  16 [32m+[m
+ work/feetmine/img/sandel.svg     |  22 [32m++[m
+ work/feetmine/img/soft.svg       |  21 [32m++[m
+ work/feetmine/img/usertest-1.svg | 402 [32m++++++++++++++++++++++++[m
+ work/feetmine/img/usertest-2.svg | 638 [32m+++++++++++++++++++++++++++++++++++++++[m
+ work/feetmine/index.html         |  24 [32m+[m[31m-[m
+ 20 files changed, 3202 insertions(+), 105 deletions(-)
