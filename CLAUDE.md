@@ -8,6 +8,57 @@ case-study page per project.
 surprises you or before you run anything. `README.md` is the owner's copy — plain language, no
 internals — so keep it true when the tree changes.
 
+## Where things stand (as of 2026-09-23)
+
+Everything below is committed and pushed: `git status` is clean and `origin/main` matches `HEAD`
+(`622a5e8`, "feetmine feature1 and 2 svg"). Nothing from this work is sitting uncommitted, except
+this edit itself.
+
+**Completed.** FeetMine's shared-deck-slide crop system (`.fm-shot`/`.fm-shot--*`, explained under
+"Image crops" in `editorial.css`) is being replaced feature-by-feature with real exports as they
+arrive:
+- The comparison table, the Design Goals icons, the Misconceptions icons, and the foot-type legend
+  all switched from CSS-built markup to real Figma SVGs, each paired with a hidden `table.fm-sr`
+  twin carrying the same data as real text (`renderChartSvg` / `renderCompare` / `renderLegend` in
+  `feetmine.js`) — the pattern for "a picture whose data must survive translation and screen
+  readers."
+- Feature #1, #2 and #3's panel pairs now show real exports (`feetmineprototype.svg`,
+  `feature1-1.svg` through `feature3-2.svg`) instead of crops of one shared placeholder slide. New
+  class **`.fm-full-shot`**: a whole real image needs no `--cx`/`--cy` crop math, so it replaces
+  `.fm-shot`/`.fm-shot--*` rather than adding to it. Feature #4 is still an uncropped placeholder.
+- Misconceptions and Design Goals share one `iconItem()` template and an **`.fm-item-icon`**
+  class; Misconceptions runs 1.5× larger via **`.fm-numlist--icons-lg`**, since those five icons
+  are miniature illustrations, not simple glyphs like Design Goals'.
+- Feature-panel gaps: tried flush (`gap: 0`), settled on half the shared `--fm-gap` token
+  (`clamp(8px, 1.5vw, 18px)`), overridden on `.cs-feetmine .fm-panels` only — Walk Xizhou's own
+  panels still read the full-size token, untouched.
+- A handful of copy edits (Misconceptions' lead and first item, the Intro Outcome sentence, the
+  Background section's "80%" callout sizing/colour, a couple of forced line-break fixes) and
+  several `data-alt` corrections where a swapped-in export no longer matched its old placeholder's
+  description.
+
+Walk Xizhou's case-study page and its home-page link are **not** new — `work/xizhou/index.html`
+dates to the original tree reorganisation (`6559df9`) and already works end to end. Nothing
+structural is outstanding there; only its copy placeholders (below) remain.
+
+**Open items and trade-offs.** `docs/gotchas.md` is the maintained source of truth for these —
+skim its "Unfinished" and "Copy that is not final" sections. Worth knowing up front:
+- Six FeetMine pictures (three background charts, the life-stage bar, the comparison table, the
+  foot-type legend) are Figma exports with outlined-path text, so Chinese never reaches them by
+  design — their hidden tables carry the real bilingual data instead. Separately, the newer
+  `.fm-full-shot` UI-mockup photos have real bilingual `data-alt` text, but the screenshots
+  themselves stay English (they're photos of an English UI) — a different, unavoidable version of
+  the same limitation.
+- `work/feetmine/img/feature3-1.svg` is 17MB, far heavier than anything else on the page. Flagged,
+  not addressed.
+- Xizhou has three bracket placeholders the owner hasn't filled in: the team size
+  (`content.xizhou.intro.team`, a literal `"[X] students"`), one Design Process mentorship line,
+  and the closing sentence of the Reflection paragraph.
+- Xizhou's own image slots are all still `.fm-shot-placeholder` dashed boxes — no exports exist at
+  all yet, earlier-stage than FeetMine's partial crops.
+- A stray `vg` file at the repo root (`git log` output redirected into a file by that name, not a
+  project file) hasn't been removed.
+
 ## Stack
 
 Plain HTML, CSS and JavaScript. No npm, no bundler, no framework, no ES modules, no
@@ -31,8 +82,8 @@ portfolio-2026/
 ├── work/                       one folder per case study; everything about a project is here
 │   ├── feetmine/
 │   │   ├── index.html    428   an editorial case study
-│   │   ├── feetmine.js   265   FeetMine's lists, charts, tables and diagrams
-│   │   └── img/               11 files
+│   │   ├── feetmine.js   278   FeetMine's lists, charts, tables and diagrams
+│   │   └── img/               31 files
 │   ├── xizhou/
 │   │   ├── index.html    364   an editorial case study
 │   │   ├── xizhou.js      42   Walk Xizhou's lists
