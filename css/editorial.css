@@ -653,6 +653,15 @@ main { overflow-x: hidden; position: relative; }
 .cs-xizhou .fm-table tbody th { font-family: var(--fm-font); font-size: 15px; font-weight: 700; }
 .cs-xizhou .fm-table tbody td { font-size: 14px; line-height: 1.6; color: var(--fm-muted-invert); }
 
+/* ---------- Business cards (three, not FeetMine's two) ---------- */
+/* .fm-cards (shared, in the @media (min-width: 900px) block above) is a 2-column grid — right for
+   FeetMine's own two cards, but Xizhou's third ("For local shops") wraps onto its own row under
+   it. Scoped to .cs-xizhou so FeetMine's two cards keep their own 2-column layout. 44px is the
+   shared 20px gap plus the requested 24px. */
+@media (min-width: 900px) {
+  .cs-xizhou .fm-cards { grid-template-columns: repeat(3, 1fr); gap: 44px; }
+}
+
 /* ---------- Full-bleed panels (the four Design sections, and the closing photos) ---------- */
 .cs-xizhou .fm-light .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
 
@@ -749,3 +758,8 @@ main { overflow-x: hidden; position: relative; }
    above it, now that Feature #4 has no panels of its own between them (see "Copy that is not
    final" in docs/gotchas.md). */
 #f4-funnel-shot { max-width: 720px; margin: -16px auto 0; }
+
+/* Square bottom corners only — design-3.jpg runs the full .fm-wrap width with nothing below it in
+   the section, so a rounded bottom edge reads as a gap against the section's own square edge;
+   the top corners keep the shared .fm-full-shot radius. */
+#f3-mascot-shot { border-radius: 8px 8px 0 0; }

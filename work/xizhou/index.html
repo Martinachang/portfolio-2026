@@ -224,16 +224,11 @@
         </h2>
         <p class="fm-lead" data-text="xizhou.features.three.text"></p>
       </div>
-      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
-        <div class="fm-panel fm-grain">
-          <p class="fm-panel-label" data-text="xizhou.features.three.panelALabel"></p>
-          <!-- TODO: replace with the character sheet export. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.features.three.panelALabel"></div>
-        </div>
-        <div class="fm-panel fm-grain">
-          <p class="fm-panel-label" data-text="xizhou.features.three.panelBLabel"></p>
-          <!-- TODO: replace with a photo of the mascot applied across materials. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.features.three.panelBLabel"></div>
+      <!-- design-3.jpg replaces both panels (character sheet, applied-across-materials) with one
+           image, same pattern as Feature #4's funnel diagram below. -->
+      <div class="fm-wrap">
+        <div class="fm-full-shot" id="f3-mascot-shot">
+          <img src="img/design-3.jpg" data-alt="xizhou.features.three.alt" alt="" loading="lazy">
         </div>
       </div>
     </section>
@@ -270,8 +265,12 @@
         </div>
         <div>
           <p class="fm-lead" data-text="xizhou.business.lead"></p>
-          <div class="fm-cards" id="fm-business-cards"></div>
         </div>
+      </div>
+      <!-- Full .fm-wrap width, not the fm-split column above — three cards need the whole row to
+           sit side by side instead of wrapping "For local shops" onto its own line. -->
+      <div class="fm-wrap">
+        <div class="fm-cards" id="fm-business-cards"></div>
       </div>
       <div class="fm-wrap">
         <div class="fm-card">

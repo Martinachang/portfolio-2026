@@ -920,8 +920,14 @@ const content = {
           en: "Teaching aids, signage, walking-kit cards and social posts all live in different formats and sizes. Ni Bobo is the single visual element that threads them together, making every touchpoint recognisable as one system.",
           zh: "教具、立牌、走讀卡片與社群貼文分屬不同媒材與尺寸。泥伯伯是貫穿其中的唯一視覺元素，讓每個接觸點都被認出是同一套體驗。",
         },
+        // panelALabel/panelBLabel are unused now — design-3.jpg (below) replaced both panels with
+        // one image, same as Feature #4's funnel diagram. Left here, not deleted, same reasoning.
         panelALabel: { en: "Character sheet", zh: "角色設定稿" },
         panelBLabel: { en: "Applied across materials", zh: "跨媒材應用" },
+        alt: {
+          en: "Ni Bobo's character sheet alongside the mascot applied across teaching aids, signage and social materials",
+          zh: "泥伯伯的角色設定稿，以及吉祥物應用於教具、立牌與社群素材的畫面",
+        },
       },
       four: {
         name: { en: "Online-to-offline funnel", zh: "線上到線下導流" },

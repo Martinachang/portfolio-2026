@@ -126,9 +126,9 @@ crops, became `img/feetmineprototype.svg`, `img/feature1-1.svg`, `img/feature2-1
 same swap: drop `.fm-shot`/`.fm-shot--*`, add `.fm-full-shot`. The lightbox copies whichever class
 is on the thumbnail onto its frame, so check both the thumbnail and the lightbox.
 
-**Walk Xizhou has two `.fm-shot-placeholder` slots left**: Feature #3's character-sheet and
-applied-materials panels. Feature #4 has no panels of its own any more — see the note under "Copy
-that is not final" below for what changed and where.
+**Walk Xizhou has no `.fm-shot-placeholder` slots left.** Feature #3 and Feature #4 both had their
+own two panels replaced by a single image lower in the section, not filled in — see the note under
+"Copy that is not final" below for what changed and where.
 
 **Open `TODO` counts:** `work/feetmine/index.html` 5, `work/xizhou/index.html` 11,
 `site-text.js` 9, `work/feetmine/feetmine.js` 2, `css/editorial.css` 1.
@@ -173,7 +173,13 @@ lives on as the hidden
 `<ol class="fm-sr" id="fm-funnel">` beside it, same "picture whose data must survive translation
 and screen readers" pattern as FeetMine's charts; `xizhou.features.four.panelALabel`/
 `panelBLabel` are unused now but left in site-text.js. `result-1.jpg`–`result-3.jpg` fill the
-closing photo row via `object-fit: cover`. Feature #3's two panels are still placeholders.
+closing photo row via `object-fit: cover`. Feature #3's own two panels (character sheet,
+applied-across-materials) are gone the same way as Feature #4's — replaced by one `design-3.jpg`
+below the lead paragraph, plain width: 100% with no cap (unlike `design-4.svg`'s 720px: a photo
+collage doesn't need the legibility limit a line-art diagram does). `xizhou.features.three.
+panelALabel`/`panelBLabel` are unused now but left in site-text.js, same as Feature #4's; a new
+`xizhou.features.three.alt` carries the image's real `data-alt` text instead, since design-3.jpg
+is a plain photo, not a Figma export — no hidden `.fm-sr` table needed.
 
 ## Copy that is not final
 
