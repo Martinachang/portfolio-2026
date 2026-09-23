@@ -453,13 +453,10 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel[style*="coral"] { place-items: center; }
 .cs-feetmine .fm-panel[style*="blue"] > .fm-full-shot { width: min(100%, 560px); }
 
-/* Usability testing's before/after panels: images 1.5x the usual 420px cap, and the label
-   centered and 4pt larger. "charcoal"/"peach" aren't unique here (Feature #1 uses both), so this
-   is scoped by the #testing-panels id on the panels container instead. */
-/* place-items: center splits added margin evenly above/below the centered box, so margin-top:16px
-   (not 8px) is what actually shifts the image 8px further from the label. */
-#testing-panels .fm-panel--center > .fm-full-shot { width: min(100%, 630px); margin-top: 16px; }
-#testing-panels .fm-panel-label { left: 0; width: 100%; text-align: center; font-size: calc(12px + 4pt); }
+/* Usability testing's before/after panels: images 1.5x the usual 420px cap. "charcoal"/"peach"
+   aren't unique here (Feature #1 uses both), so this is scoped by the #testing-panels id on the
+   panels container instead. */
+#testing-panels .fm-panel--center > .fm-full-shot { width: min(100%, 630px); }
 
 /* ---------- Image crops ----------
    Until the final exports exist, every image here is a crop of a deck slide: the wrapper shows one

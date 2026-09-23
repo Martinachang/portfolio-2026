@@ -75,7 +75,7 @@ const content = {
       accentWash: "#ffe9d6",
       banner: "#FF9F46",           // flat colour for the Work card banner
       badge: "COURSE",
-      name: "FeetMine",
+      name: { en: "FeetMine", zh: "合步合腳" },
       nameZh: "合步合腳",
       summary: { en: "A parent-child shoe-selection app", zh: "親子個人化選鞋 App" },
       // The panel on the home page: what changed for people, in one line, then one sentence, then two numbers.
@@ -114,8 +114,8 @@ const content = {
       accentWash: "#FDF3D7",
       banner: "#F1BF00",           // flat colour for the Work card banner
       badge: "LIVE",
-      // An { en, zh } pair, so this card's title switches with the language. The other projects keep
-      // plain-string names, so t() hands those back unchanged and they stay English in both.
+      // An { en, zh } pair, so this card's title switches with the language. ILANDGREEN keeps a
+      // plain-string name, so t() hands it back unchanged and it stays English in both.
       name: { en: "Walk Xizhou, Keep Its Story", zh: "與泥探險" },
       nameZh: "與泥探險",          // only read by the desk folder, and only for the first project
       blurb: {
@@ -225,7 +225,7 @@ const content = {
       banner: "#5b9dff",           // flat colour for the Work card banner
       visualBackground: "#5b9dff", // same blue, behind the browser mockup below
       badge: "RESEARCH",
-      name: "Visual Perception of Non-Human Features in Avatars",
+      name: { en: "Visual Perception of Non-Human Features in Avatars", zh: "虛擬角色之非人類特徵之視覺感知" },
       workImage: {
         src: "img/avatar-perception/avatar-perception-notion.png",
         alt: { en: "The project's Notion page, showing its metadata: authors, year, thesis type and advisor", zh: "研究專案的 Notion 頁面，顯示作者、年份、論文類型與指導教授等後設資料" },
@@ -607,10 +607,6 @@ const content = {
           },
         },
       ],
-      // Before/after labels: a deliberate earlier decision, not slide text — excluded from
-      // slide-matching, same treatment as Intro's body/outcome.
-      beforeLabel: { en: "AS-IS: sticker tracking", zh: "原始版本：貼紙追蹤" },
-      afterLabel: { en: "TO-BE: coin calibration", zh: "優化版本：硬幣校正" },
       beforeAlt: { en: "The old measurement flow: six screens asking parents to place coloured stickers on five foot points", zh: "舊的量測流程：六個畫面，要家長在五個足部位置貼上彩色貼紙" },
       afterAlt: { en: "The new measurement flow: one screen asking for a ten-dollar coin as a reference", zh: "新的量測流程：一個畫面，只要準備一枚十元硬幣作為參考" },
     },
