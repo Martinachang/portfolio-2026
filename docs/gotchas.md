@@ -103,6 +103,16 @@ JavaScript does not intercept. Both are live at once.
 not `.fm-x`. Adding a page rule that duplicates a shared selector will now win where the bare
 version used to lose. The computed-style diff above is how you catch that.
 
+**`.fm-panel-label` is not actually `position: absolute`.** It declares that (line ~233), but
+`.fm-panel > *` (line ~272, shared, further down the file) sets `position: relative` at equal
+specificity and wins on source order — `getComputedStyle` confirms `relative` in every browser.
+So a caption never overlays its panel's image; it's row 1 of the panel's own implicit grid (one
+column, auto-flow row), with the image as row 2 below it, zero gap by default. FeetMine's
+`#testing-panels` already works around this with `margin-top` on the image rather than fighting
+it; Xizhou's `#f1-panels .fm-panel { row-gap: 24px }` does the same with `row-gap`. Not fixed at
+the source, because FeetMine's own workaround was tuned against this exact behavior — making the
+label truly absolute would double up FeetMine's spacing.
+
 ## Unfinished
 
 **Most of FeetMine's final image exports still don't exist.** Each remaining `.fm-shot--*` `<img>`
@@ -146,13 +156,20 @@ have real exports now.** `design1-1.svg`/`design1-2.svg` (Feature #1) and `desig
 `.cs-feetmine`. `design2-1.jpg`/`design2-2.jpg` had been committed under `work/feetmine/img/` by
 mistake (unreferenced there); moved to `work/xizhou/img/` to match the "a project's images live
 with its page" rule, then `design2-2.jpg` itself was swapped for `design2-2.png` and deleted.
-Feature #2's route map (`design2-1.jpg`, `#f2-route-panel`) bleeds edge-to-edge via `object-fit:
-cover` — the same treatment FeetMine gives its own bleed panel — while the level card
-(`design2-2.png`) shows whole and centred, the shared `.fm-full-shot` default. `design-4.svg`
-(Figma export, no real `<text>` nodes) replaced Feature #4's dark funnel card, its visible step
-list, *and* its own two `.fm-shot-placeholder` panels (funnel overview, LINE chatbot) — the
-section now goes straight from its lead paragraph to the diagram, capped at 720px and centred
-(`#f4-funnel-shot`). The six funnel steps' real bilingual text lives on as the hidden
+Feature #1's photo panel (design1-1.svg, `#f1-photo-panel`) and Feature #2's route map
+(`design2-1.jpg`, `#f2-route-panel`) bleed edge-to-edge via `object-fit: cover` — the same
+treatment FeetMine gives its own bleed panel — while Feature #1's other panel (design1-2.svg, a
+screenshot with content flush to its own edges: numbered steps on the left, character bubbles on
+the right) and Feature #2's level card (`design2-2.png`) both show the whole image, centred, the
+shared `.fm-full-shot` default; `object-fit: cover` was cropping design1-2.svg's edges off before
+this was split out. Feature #2's level-card caption (`#f2-level-panel`) is 8pt over the shared
+12px, bigger than Feature #1's own captions (4pt over), both because a short caption reads small
+next to a large panel. `design-4.svg` (Figma export, no real `<text>` nodes) replaced
+Feature #4's dark funnel card, its visible step list, *and* its own two `.fm-shot-placeholder`
+panels (funnel overview, LINE chatbot) — the section now goes straight from its lead paragraph to
+the diagram (nudged up 16px via `#f4-funnel-shot`'s own negative margin, on top of the shared
+`.fm-wrap + .fm-wrap` gap), capped at 720px and centred. The six funnel steps' real bilingual text
+lives on as the hidden
 `<ol class="fm-sr" id="fm-funnel">` beside it, same "picture whose data must survive translation
 and screen readers" pattern as FeetMine's charts; `xizhou.features.four.panelALabel`/
 `panelBLabel` are unused now but left in site-text.js. `result-1.jpg`–`result-3.jpg` fill the

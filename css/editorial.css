@@ -674,6 +674,23 @@ main { overflow-x: hidden; position: relative; }
    "Level card" labels keep the shared 12px size. */
 #f1-panels .fm-panel-label { font-size: calc(12px + 4pt); }
 
+/* .fm-panel-label declares position: absolute (above), but .fm-panel > * (shared, below) sets
+   position: relative at equal specificity and wins on source order — so the label isn't actually
+   an overlay here, it's row 1 of the panel's own implicit grid (one column, auto-flow row), with
+   the image as row 2 below it. That's a latent site-wide quirk (FeetMine's #testing-panels works
+   around the same thing with margin-top on its image instead), not something to fix from this one
+   page, so this works with it: row-gap is the real "space between the caption and the image." */
+#f1-panels .fm-panel { row-gap: 24px; }
+
+/* Panel A only (design1-1.svg, a plain photo of the blackboard): fills edge-to-edge, same bleed
+   treatment as Feature #2's route map below — cropping a photo loses nothing. Panel B
+   (design1-2.svg, a screenshot of numbered instructions and character bubbles right at its own
+   edges) keeps the shared .fm-full-shot default just above instead: object-fit: cover was cutting
+   that content off on both sides, so it needs the whole image, not a crop. */
+#f1-photo-panel { padding: 0; }
+#f1-photo-panel .fm-full-shot { width: 100%; height: 100%; align-self: stretch; border-radius: 0; }
+#f1-photo-panel .fm-full-shot img { width: 100%; height: 100%; object-fit: cover; }
+
 /* Feature #2's route map (design2-1.jpg) fills its panel edge-to-edge instead of showing the
    whole image centred like every other .fm-full-shot here — the same bleed treatment FeetMine
    gives its own edge-to-edge panel (css/editorial.css, [style*="orange"]), scoped by id since
@@ -681,6 +698,11 @@ main { overflow-x: hidden; position: relative; }
 #f2-route-panel { padding: 0; }
 #f2-route-panel > .fm-full-shot { width: 100%; height: 100%; align-self: stretch; border-radius: 0; }
 #f2-route-panel > .fm-full-shot img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Level card (design2-2.png) keeps the shared .fm-full-shot treatment (whole image, centred) —
+   only its caption grows: 8pt larger than the shared 12px, matching how far Feature #1's captions
+   above already grew for the same reason (a caption competing with a large panel reads small). */
+#f2-level-panel .fm-panel-label { font-size: calc(12px + 8pt); }
 
 /* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
    no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets
@@ -723,4 +745,7 @@ main { overflow-x: hidden; position: relative; }
    centred rather than run edge-to-edge like the panels above: at full .fm-wrap width (1200px) a
    diagram this detailed reads as a wall of line-art; capping it keeps individual steps legible
    and leaves it visibly centred with margin to spare on wide screens. */
-#f4-funnel-shot { max-width: 720px; margin: 0 auto; }
+/* -16px on top of the auto-centring margin below pulls the diagram closer to the lead paragraph
+   above it, now that Feature #4 has no panels of its own between them (see "Copy that is not
+   final" in docs/gotchas.md). */
+#f4-funnel-shot { max-width: 720px; margin: -16px auto 0; }
