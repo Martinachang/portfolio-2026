@@ -632,6 +632,15 @@ main { overflow-x: hidden; position: relative; }
 .cs-xizhou .fm-bullet-list { padding-left: 1.2em; display: grid; gap: 12px; list-style: disc; }
 .cs-xizhou .fm-bullet-list li { padding-left: 4px; }
 
+/* New: this list was inheriting .fm-note's 50ch cap and .fm-card .fm-note's muted-invert grey
+   (line 114 and 211 above), both built for a narrower two-column note elsewhere on this page —
+   too cramped and too low-contrast against the solid-black card. Full width, white, 2pt larger. */
+.cs-xizhou .fm-card .fm-bullet-list {
+  max-width: none;
+  color: var(--fm-ink-invert);
+  font-size: calc(16px + 2pt);
+}
+
 /* ---------- Tables (research stages, business service journey) ---------- */
 .cs-xizhou .fm-table { width: 100%; min-width: 520px; border-collapse: collapse; table-layout: fixed; }
 /* Only the research table (stage name + method + purpose) needs a narrow first column; the
@@ -646,6 +655,17 @@ main { overflow-x: hidden; position: relative; }
 
 /* ---------- Full-bleed panels (the four Design sections, and the closing photos) ---------- */
 .cs-xizhou .fm-light .fm-panel-label { color: rgba(34, 31, 28, 0.75); }
+
+/* New: Feature #1's two panel labels are now full sentences, not short tags — give the
+   absolutely-positioned label a right edge so it wraps inside the panel instead of overflowing. */
+.cs-xizhou .fm-panel-label { right: 24px; }
+
+/* New: design1-1.svg and design1-2.svg are whole exports, not crops of a shared slide — the same
+   .fm-full-shot pattern FeetMine uses under "Image crops" below, but that page's own rules stay
+   scoped to .cs-feetmine, so this page needs its own copy. Both exports are landscape photos, so
+   full width / height auto is simpler than FeetMine's phone-mockup sizing. */
+.cs-xizhou .fm-full-shot { display: block; width: 100%; overflow: hidden; border-radius: 8px; }
+.cs-xizhou .fm-full-shot img { display: block; width: 100%; height: auto; }
 
 /* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
    no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets

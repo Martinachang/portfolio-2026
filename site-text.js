@@ -762,19 +762,18 @@ const content = {
       },
       outcomeLabel: { en: "Outcomes", zh: "成果" },
       outcome: {
-        en: "A puzzle walking kit, optimised teaching aids, field signage and an online-to-offline funnel — adopted and run by the With Mud team, presented at the CHT Foundation showcase.",
-        zh: "解謎走讀包、優化教具、場域立牌與線上到線下導流機制，由與泥共好團隊實際採用並試跑，並於中華電信基金會成果發表中展示。",
+        en: "A puzzle walking kit, optimised teaching aids, field signage and an online-to-offline funnel — adopted and run by the With Mud team, presented at the CHT Foundation showcase, and featured as a guest on Lee Wei-wen's Formosa Radio programme ‘People and Land.’",
+        zh: "解謎走讀包、優化教具、場域立牌與線上到線下導流機制，由與泥共好團隊實際採用並試跑，並於中華電信基金會成果發表中展示，且受邀參加環宇電臺李偉文老師節目【人與土地】。",
       },
-      // TODO: owner to confirm the exact team size — kept as the brief's own "[X]" placeholder.
       meta: {
         roleLabel: { en: "Role", zh: "職責" },
         role: { en: "UX research · character design · walking-kit level design", zh: "UX 研究・吉祥物角色設計・走讀關卡設計" },
         timelineLabel: { en: "Timeline", zh: "時程" },
-        timeline: { en: "2024", zh: "2024" },
+        timeline: { en: "4 months", zh: "4個月" },
         teamLabel: { en: "Team", zh: "團隊" },
-        team: { en: "[X] students · 1 CHT Foundation programme", zh: "[X] 位學生・中華電信基金會蹲點計畫" },
+        team: { en: "4 students · 1 industry mentor", zh: "4 位學生・1 位業師" },
         typeLabel: { en: "Type", zh: "類型" },
-        type: { en: "Social design · commissioned by CHT Foundation", zh: "社會設計・中華電信基金會委託" },
+        type: { en: "Social design · CHT Foundation social design programme", zh: "社會設計・中華電信基金會蹲點計畫" },
       },
     },
 
@@ -785,11 +784,12 @@ const content = {
         en: "Walk Xizhou moved from an online kickoff call to a field-tested kit adopted by the client team.",
         zh: "與泥探險從線上啟動會議，一路走到客戶團隊實際採用的試跑成果。",
       },
-      // TODO: the five steps' own text is drafted from the brief's short phrases, not verbatim —
-      // check against the owner's own account of the timeline before treating it as final.
+      // TODO: Design, Field test and Launch are still drafted from the brief's short phrases —
+      // Research and Define are now the owner's own account. Check the remaining three before
+      // treating them as final.
       steps: [
-        { title: { en: "Research", zh: "研究" }, text: { en: "Online meetings to scope the project, then a field trip to Xizhou.", zh: "線上會議討論需求，並前往溪州進行實地考察。" } },
-        { title: { en: "Define", zh: "定義" }, text: { en: "A stakeholder map, three user groups, and a design direction.", zh: "整理利害關係人地圖、劃分三類使用者，並訂出設計方向。" } },
+        { title: { en: "Research", zh: "研究" }, text: { en: "We gathered background material and drafted an interview outline, discussed the brief in an online meeting, then travelled to Xizhou for a field visit to uncover problems and opportunities.", zh: "初步蒐集資料並列出訪綱，於線上會議討論需求，並實際前往溪州進行考察，發現問題點與機會點。" } },
+        { title: { en: "Define", zh: "定義" }, text: { en: "We organised the current situation and a stakeholder map, split users into three personas, ran a competitive analysis, and set the design direction.", zh: "整理現況、利害關係人地圖、劃分三類使用者Persona、列出競品分析並訂出設計方向。" } },
         { title: { en: "Design", zh: "設計" }, text: { en: "Teaching aids, field signage, a puzzle walking kit, and the mascot Ni Bobo.", zh: "設計教具、場域立牌、解謎走讀包，以及吉祥物泥伯伯。" } },
         { title: { en: "Field test", zh: "田野測試" }, text: { en: "The team ran the kit with local children in Xizhou.", zh: "團隊帶著溪州當地孩童實際試跑走讀包。" } },
         { title: { en: "Launch", zh: "上線" }, text: { en: "Presented at the CHT Foundation; adopted by the With Mud team.", zh: "於中華電信基金會發表成果，並由與泥共好團隊採用。" } },
@@ -833,7 +833,10 @@ const content = {
       ],
       quotes: [
         {
-          text: { en: "“We don't expect visitors to fully understand the history. We just hope that Xizhou's past prosperity and culture won't be forgotten.”", zh: "「我們不期望遊客完全明白歷史，只期望過去溪州的繁榮與文化不要被遺忘。」" },
+          // The word joiner (U+2060) between 榮 and 與 keeps them on one line, same technique as
+          // feetmine.compare.line2's 指⁠南 above — [data-text] sets textContent, so a <span> never
+          // survives render() here; the invisible character is the only thing that works.
+          text: { en: "“We don't expect visitors to fully understand the history. We just hope that Xizhou's past prosperity and culture won't be forgotten.”", zh: "「我們不期望遊客完全明白歷史，只期望過去溪州的繁榮⁠與文化不要被遺忘。」" },
           cite: { en: "— With Mud team member, on Xizhou's sugar-refinery history", zh: "— 與泥共好團隊成員，談溪州糖廠歷史" },
         },
         {
@@ -899,8 +902,8 @@ const content = {
           en: "We redesigned the 'One-Day Cattle Farmer' activity worksheet: paper for on-site guidance, a QR code for extended knowledge that satisfies curiosity. We added signage throughout the site so the space explains itself, reducing how much the guide needs to narrate.",
           zh: "我們重新設計「一日養牛人」的學習單：紙本負責現場引導，QR code 補充延伸知識、激發好奇心。場域內加上介紹立牌，讓空間自己說明，減少導覽員口述的負擔。",
         },
-        panelALabel: { en: "Before / After worksheet", zh: "學習單改版前後" },
-        panelBLabel: { en: "Field signage", zh: "場域立牌" },
+        panelALabel: { en: "The original outdoor blackboard, cracked and worn from wind and rain", zh: "原場域為戶外黑板，經風吹雨淋已龜裂或斑駁" },
+        panelBLabel: { en: "New on-site signage in durable PP board with clear, legible text", zh: "新增場域立牌，塑膠pp板不易損壞且文字清晰" },
       },
       two: {
         name: { en: "Puzzle walking kit", zh: "解謎走讀包" },
@@ -971,8 +974,7 @@ const content = {
       items: [
         { title: { en: "Presented at the CHT Foundation showcase", zh: "於中華電信基金會蹲點成果發表中展示" }, text: { en: "The project was publicly presented as part of the 2024 CHT Foundation Social Design Programme.", zh: "專案於 2024 年中華電信基金會蹲點創新設計行動成果發表中公開展示。" } },
         { title: { en: "Adopted and field-tested by the With Mud team", zh: "由與泥共好團隊實際採用並試跑" }, text: { en: "The kit was made and run by the With Mud team with local children in Xizhou, then shared on the team's official social channels.", zh: "走讀包由與泥共好團隊帶領溪州在地孩子試跑，並在官方社群發布。" } },
-      // Left as the brief's own placeholder for the owner to fill in.
-        { title: { en: "Team collaboration and mentorship", zh: "團隊協作與指導" }, text: { en: "[To fill in: one sentence on how the team worked and what the advisor or programme contributed.]", zh: "[待補：一句話說明團隊如何分工以及指導老師或計畫給了什麼幫助。]" } },
+        { title: { en: "Featured on FM96.7 Formosa Radio's ‘People and Land’", zh: "參與 FM96.7 環宇廣播電臺節目【人與土地】" }, text: { en: "Shared the team's design philosophy and collaboration process, along with the insights and local stories gathered from visiting Changhua Xizhou in person.", zh: "分享團隊設計理念與合作過程，以及實際探訪彰化溪州後的體悟與在地故事" } },
       ],
       // TODO: photo captions translated for this pass, not given in the brief.
       photos: [
@@ -985,10 +987,9 @@ const content = {
     reflection: {
       line1: { en: "What I", zh: "我學到" },
       line2: { en: "learned", zh: "的事" },
-      // Left as the brief's own placeholder for the owner to fill in.
       body: {
-        en: "In resource-constrained settings, the best solution isn't always the most complete one — it's the one the organisation can sustain without you. A good interview means hearing what isn't said: the quote 'we just hope it won't be forgotten' rewrote the entire project direction, and it only came out because I kept asking why. [Add one specific thing you'd test or change if the project continued.]",
-        zh: "在資源受限的場域，最好的設計不一定最完整，而是組織自己能持續運作的那一個。好的訪談是聽見沒說出口的話：「只期望不要被遺忘」這句話改寫了整個設計方向，也是我習慣多問一句「為什麼」的地方。[補充：如果專案延續，你最想測試或改變的一件事。]",
+        en: "In a resource-constrained setting, the best design isn't always the most complete one — it's the one the organisation can keep running on its own. The line ‘we just hope it won't be forgotten’ reshaped the entire design direction, and it's exactly the kind of thing that surfaces when I make a habit of asking one more ‘why.’",
+        zh: "在資源受限的場域，最好的設計不一定最完整，而是組織自己能持續運作的那一個。「只期望不要被遺忘」這句話改寫了整個設計方向，也是我習慣多問一句「為什麼」的地方。",
       },
     },
 

@@ -137,7 +137,10 @@ stops resolving.
 **The contrast figures in `css/editorial.css` are hand arithmetic.** Its `TODO` says so. Confirm with
 a real tool before treating them as final.
 
-**One placeholder in the copy:** `content.xizhou.results.items[2].text` is a bracketed note.
+**Xizhou's Feature #1 has real exports now.** `design1-1.svg` and `design1-2.svg` replaced its two
+`.fm-shot-placeholder` boxes, wrapped in `.fm-full-shot` (same swap as FeetMine's, but Xizhou needs
+its own `.cs-xizhou .fm-full-shot` rules in `css/editorial.css` since FeetMine's stay scoped to
+`.cs-feetmine`). Features #2-#4 and the closing photos are still placeholders.
 
 ## Copy that is not final
 
