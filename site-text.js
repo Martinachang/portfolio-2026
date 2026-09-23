@@ -540,6 +540,8 @@ const content = {
             { key: "W", value: { en: "Wide", zh: "寬" } },
           ] },
         ],
+        // Kept on one line by #f2-example in editorial.css (white-space: nowrap, shrinking at
+        // narrow widths), not by line-break guards — plain text, no invisible characters needed.
         example: {
           en: "GFNO-20 = Greek foot, flat arch, low instep, regular width, 20 cm.",
           zh: "GFNO-20 ＝ 希臘型足、扁平足弓、低足背、正常足寬、20 公分。",

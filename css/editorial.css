@@ -113,6 +113,18 @@ main { overflow-x: hidden; position: relative; }
 /* 44ch left it ~100px short of the .fm-split column (the same column its own h2 fills). */
 .fm-note { margin: 20px 0 0; font-size: 16px; line-height: 1.7; max-width: 50ch; }
 
+/* GFNO-20 = ... (both languages) stays on one line. max-width:50ch above would otherwise wrap it
+   at any width, including desktop, where there's plenty of real room — nowrap alone fixes that
+   case. Below 720px the real viewport is narrower than the sentence itself (measured ~487px/470px
+   at 16px). The available width there is the viewport minus .fm-wrap's own --gutter padding on
+   both sides (16px each at 375px, per style.css), leaving ~343px, not the full viewport — 12px +
+   -0.5px letter-spacing was the smallest reduction that keeps both languages safely under that
+   narrower real width, measured with margin to spare. */
+#f2-example { white-space: nowrap; }
+@media (max-width: 719px) {
+  #f2-example { font-size: 12px; letter-spacing: -0.5px; }
+}
+
 .fm-label { margin: 0 0 8px; font-size: 17px; font-weight: 700; }
 
 .fm-lead + .fm-label { margin-top: clamp(28px, 3vw, 40px); }
