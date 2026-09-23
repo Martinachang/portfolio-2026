@@ -18,6 +18,13 @@ function quoteBlock(quote) {
      </blockquote>`;
 }
 
+// Same iconItem() pattern as feetmine.js's own (icon replacing the .fm-n number, same
+// two-row grid cell via .fm-item-icon) — insights and decisions are the only two lists
+// on this page that get icons; fm-users and fm-results keep numberedItem's plain circles.
+function iconItem(item) {
+  return `<li><img class="fm-item-icon" src="img/${item.icon}" alt="${t(item.iconAlt)}" loading="lazy"><h3>${t(item.title)}</h3><p>${t(item.text)}</p></li>`;
+}
+
 // result-1.jpg to result-3.jpg, in the same order as xz.results.photos below — a real photo
 // carries its own alt text directly, unlike the Figma-export charts above which need a hidden
 // table because their words are outlined paths, not real text.
@@ -35,8 +42,8 @@ function renderPage() {
   fill("fm-stages", xz.research.stages, stageRow);
   fill("fm-quotes", xz.research.quotes, quoteBlock);
   fill("fm-users", xz.users.items, numberedItem);
-  fill("fm-insights", xz.insights.items, numberedItem);
-  fill("fm-decisions", xz.decisions.items, numberedItem);
+  fill("fm-insights", xz.insights.items, iconItem);
+  fill("fm-decisions", xz.decisions.items, iconItem);
   fill("fm-funnel", xz.features.four.funnel.steps, stepItem); // hidden (.fm-sr): design-4.svg is the visible list
   fill("fm-business-cards", xz.business.cards, cardItem);
   fill("fm-results", xz.results.items, numberedItem);

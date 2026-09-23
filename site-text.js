@@ -865,10 +865,12 @@ const content = {
       line2: { en: "shaped every decision", zh: "決定了所有設計方向" },
       items: [
         {
+          icon: "lock.svg", iconAlt: { en: "A lock icon, representing content locked inside people", zh: "鎖頭圖示，代表被鎖在人身上的內容" },
           title: { en: "The bottleneck isn't lack of content — it's content locked inside people", zh: "瓶頸不是內容不夠，而是內容全綁在人身上" },
           text: { en: "Xizhou's stories are rich. What's missing is a way to carry them, repeat them, and let them run without anyone present. The goal wasn't to make a better tour — it was to detach the tour from the person.", zh: "溪州的故事很豐富。缺的是讓它被攜帶、重複、在沒有人的時候繼續運作的方式。目標不是做更好的導覽，而是把導覽從人身上拆下來。" },
         },
         {
+          icon: "history.svg", iconAlt: { en: "A history icon, representing Xizhou's past", zh: "歷史圖示，代表溪州的過去" },
           title: { en: "The goal isn't to make visitors understand history — it's to make sure history isn't forgotten", zh: "目標不是讓人記住歷史，而是讓歷史不被遺忘" },
           text: { en: "Once the goal shifted from 'transfer knowledge' to 'leave a memory,' gamification stopped being decoration and became the right answer: an experience that makes people actively engage leaves a deeper trace than a correct and complete explanation.", zh: "當目標從「傳遞知識」變成「不被遺忘」，遊戲化就不再是包裝，而是正解：讓人主動投入的體驗，比正確而完整的知識留下更深的痕跡。" },
         },
@@ -883,11 +885,11 @@ const content = {
         zh: "每個選擇都建立在同一個前提：組織人力少、預算有限，方案必須在我們離開後還能繼續運作。",
       },
       items: [
-        { title: { en: "A physical kit, not an app", zh: "實體走讀包，不做 App" }, text: { en: "No one on the team can maintain a digital product. A physical kit is made once and handed out repeatedly — and participants take it home as a keepsake.", zh: "組織沒有人能維護數位產品。實體包一次製作即可重複發放，參與者還能帶回家當紀念。" } },
-        { title: { en: "Alternating indoor and outdoor stops", zh: "室內外場域交替" }, text: { en: "Our field visit showed that long outdoor sessions in summer Xizhou hurt the experience. Alternating stops create natural rest points without scheduling breaks.", zh: "田調時親身感受到夏季長時間戶外活動的疲憊。室內外交替自然形成休息點，不必額外安排。" } },
-        { title: { en: "Paper worksheet + QR code, not pure paper or pure digital", zh: "紙本學習單＋QR code，不純紙本也不純數位" }, text: { en: "Paper keeps the on-site ritual of writing and discussion. The QR code carries deeper knowledge that can be updated later without reprinting.", zh: "紙本保留現場書寫與討論的儀式感，QR code 補充延伸知識且可隨時更新，不必重印。" } },
-        { title: { en: "Funnel from IG/FB to official LINE", zh: "從 FB/IG 導流到官方 LINE" }, text: { en: "A social post reaches people once and disappears. LINE lets the team push new events repeatedly, turning a one-off impression into an ongoing relationship.", zh: "社群貼文觸及一次就消失。LINE 讓團隊重複推播新活動，把一次曝光變成長期關係。" } },
-        { title: { en: "Journey ends at a local partner shop", zh: "旅程終點設在在地合作商家" }, text: { en: "Routing visitors to a partner for their final reward spills the economic benefit into the wider community — consistent with the With Mud brand's core value of 共好 (shared flourishing).", zh: "把最終獎勵設在合作商家，讓效益外溢到整個聚落，呼應品牌核心主張「共好」。" } },
+        { icon: "bag.svg", iconAlt: { en: "A bag icon, representing the physical walking kit", zh: "包包圖示，代表實體走讀包" }, title: { en: "A physical kit, not an app", zh: "實體走讀包，不做 App" }, text: { en: "No one on the team can maintain a digital product. A physical kit is made once and handed out repeatedly — and participants take it home as a keepsake.", zh: "組織沒有人能維護數位產品。實體包一次製作即可重複發放，參與者還能帶回家當紀念。" } },
+        { icon: "inoutdoor.svg", iconAlt: { en: "An indoor/outdoor icon, representing the alternating stops", zh: "室內外圖示，代表室內外場域交替" }, title: { en: "Alternating indoor and outdoor stops", zh: "室內外場域交替" }, text: { en: "Our field visit showed that long outdoor sessions in summer Xizhou hurt the experience. Alternating stops create natural rest points without scheduling breaks.", zh: "田調時親身感受到夏季長時間戶外活動的疲憊。室內外交替自然形成休息點，不必額外安排。" } },
+        { icon: "doc.svg", iconAlt: { en: "A document icon, representing the paper worksheet", zh: "文件圖示，代表紙本學習單" }, title: { en: "Paper worksheet + QR code, not pure paper or pure digital", zh: "紙本學習單＋QR code，不純紙本也不純數位" }, text: { en: "Paper keeps the on-site ritual of writing and discussion. The QR code carries deeper knowledge that can be updated later without reprinting.", zh: "紙本保留現場書寫與討論的儀式感，QR code 補充延伸知識且可隨時更新，不必重印。" } },
+        { icon: "tree.svg", iconAlt: { en: "A branching-tree icon, representing the funnel from social media to LINE", zh: "樹狀圖示，代表從社群導流至 LINE" }, title: { en: "Funnel from IG/FB to official LINE", zh: "從 FB/IG 導流到官方 LINE" }, text: { en: "A social post reaches people once and disappears. LINE lets the team push new events repeatedly, turning a one-off impression into an ongoing relationship.", zh: "社群貼文觸及一次就消失。LINE 讓團隊重複推播新活動，把一次曝光變成長期關係。" } },
+        { icon: "shop.svg", iconAlt: { en: "A shop icon, representing the local partner shop", zh: "商店圖示，代表在地合作商家" }, title: { en: "Journey ends at a local partner shop", zh: "旅程終點設在在地合作商家" }, text: { en: "Routing visitors to a partner for their final reward spills the economic benefit into the wider community — consistent with the With Mud brand's core value of 共好 (shared flourishing).", zh: "把最終獎勵設在合作商家，讓效益外溢到整個聚落，呼應品牌核心主張「共好」。" } },
       ],
     },
 

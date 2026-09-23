@@ -600,6 +600,13 @@ main { overflow-x: hidden; position: relative; }
   grid-row: span 2;
   font-family: var(--fm-font); font-weight: 700; font-size: 17px; font-variant-numeric: tabular-nums;
 }
+
+/* Insights and Decisions swap the circled number for an icon — same .fm-item-icon pattern as
+   FeetMine's Misconceptions/Design Goals (css/editorial.css, .cs-feetmine), scoped here since
+   that page's own rules stay under .cs-feetmine. Same 1.5x-larger variant too: .fm-numlist--icons-lg. */
+.cs-xizhou .fm-item-icon { grid-row: span 2; align-self: start; width: 2.3em; height: 2.3em; }
+.cs-xizhou .fm-numlist--icons-lg .fm-item-icon { width: 3.45em; height: 3.45em; }
+
 .cs-xizhou .fm-numlist h3 { margin: 0; font-family: var(--fm-font); font-size: 17px; font-weight: 700; line-height: 1.45; }
 .cs-xizhou .fm-numlist p { margin: 0; font-size: 16px; line-height: 1.7; }
 .cs-xizhou .fm-light .fm-numlist p { color: var(--fm-muted); }
