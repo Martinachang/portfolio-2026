@@ -674,6 +674,14 @@ main { overflow-x: hidden; position: relative; }
    "Level card" labels keep the shared 12px size. */
 #f1-panels .fm-panel-label { font-size: calc(12px + 4pt); }
 
+/* Feature #2's route map (design2-1.jpg) fills its panel edge-to-edge instead of showing the
+   whole image centred like every other .fm-full-shot here — the same bleed treatment FeetMine
+   gives its own edge-to-edge panel (css/editorial.css, [style*="orange"]), scoped by id since
+   Xizhou's panels carry no per-panel background colour to hook a selector to. */
+#f2-route-panel { padding: 0; }
+#f2-route-panel > .fm-full-shot { width: 100%; height: 100%; align-self: stretch; border-radius: 0; }
+#f2-route-panel > .fm-full-shot img { width: 100%; height: 100%; object-fit: cover; }
+
 /* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
    no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets
    this dashed box. Given by the owner; the light-section variant is the one addition needed to
