@@ -18,10 +18,14 @@ function quoteBlock(quote) {
      </blockquote>`;
 }
 
-// Every image is still a placeholder: no exports exist yet, and there are no deck slides to crop.
-function photoPanel(photo) {
+// result-1.jpg to result-3.jpg, in the same order as xz.results.photos below — a real photo
+// carries its own alt text directly, unlike the Figma-export charts above which need a hidden
+// table because their words are outlined paths, not real text.
+function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
-       <div class="fm-shot-placeholder">${t(photo)}</div>
+       <div class="fm-full-shot">
+         <img src="img/result-${i + 1}.jpg" alt="${t(photo)}" loading="lazy">
+       </div>
      </div>`;
 }
 
@@ -33,7 +37,7 @@ function renderPage() {
   fill("fm-users", xz.users.items, numberedItem);
   fill("fm-insights", xz.insights.items, numberedItem);
   fill("fm-decisions", xz.decisions.items, numberedItem);
-  fill("fm-funnel", xz.features.four.funnel.steps, stepItem);
+  fill("fm-funnel", xz.features.four.funnel.steps, stepItem); // hidden (.fm-sr): design-4.svg is the visible list
   fill("fm-business-cards", xz.business.cards, cardItem);
   fill("fm-results", xz.results.items, numberedItem);
   fill("fm-photos", xz.results.photos, photoPanel);

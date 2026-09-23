@@ -174,7 +174,7 @@
         </h2>
         <p class="fm-lead" data-text="xizhou.features.one.text"></p>
       </div>
-      <div class="fm-panels" style="--fm-ratio: 1fr 1fr">
+      <div class="fm-panels" id="f1-panels" style="--fm-ratio: 1fr 1fr">
         <div class="fm-panel fm-grain">
           <p class="fm-panel-label" data-text="xizhou.features.one.panelALabel"></p>
           <div class="fm-full-shot">
@@ -202,13 +202,15 @@
       <div class="fm-panels" style="--fm-ratio: 2fr 1fr">
         <div class="fm-panel fm-grain">
           <p class="fm-panel-label" data-text="xizhou.features.two.panelALabel"></p>
-          <!-- TODO: replace with the route map export. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.features.two.panelALabel"></div>
+          <div class="fm-full-shot">
+            <img src="img/design2-1.jpg" data-alt="xizhou.features.two.panelALabel" alt="" loading="lazy">
+          </div>
         </div>
         <div class="fm-panel fm-grain">
           <p class="fm-panel-label" data-text="xizhou.features.two.panelBLabel"></p>
-          <!-- TODO: replace with a level-card export. -->
-          <div class="fm-shot-placeholder" data-text="xizhou.features.two.panelBLabel"></div>
+          <div class="fm-full-shot">
+            <img src="img/design2-2.jpg" data-alt="xizhou.features.two.panelBLabel" alt="" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
@@ -257,10 +259,15 @@
           <div class="fm-shot-placeholder" data-text="xizhou.features.four.panelBLabel"></div>
         </div>
       </div>
+      <!-- design-4.svg is a Figma export with outlined-path text (no real <text> nodes), so it
+           replaces the dark card + visible step list rather than adding to it — same limitation
+           as FeetMine's charts (css/editorial.css, "Image crops"): the six funnel steps' real
+           bilingual text survives as the hidden fm-sr list beside it, not in the picture itself. -->
       <div class="fm-wrap">
-        <div class="fm-card">
-          <ol class="fm-numlist fm-numlist--row" id="fm-funnel"></ol>
+        <div class="fm-full-shot" id="f4-funnel-shot">
+          <img src="img/design-4.svg" alt="" loading="lazy">
         </div>
+        <ol class="fm-sr" id="fm-funnel"></ol>
       </div>
     </section>
 
@@ -314,9 +321,6 @@
         </div>
         <ol class="fm-numlist" id="fm-results"></ol>
       </div>
-      <!-- TODO: three photos still to come — the CHT Foundation showcase, the field test with
-           local children, and the With Mud team at the event. xizhou.js draws a placeholder for
-           each until they arrive. -->
       <div class="fm-panels fm-panels--photos" id="fm-photos" style="--fm-ratio: 1fr 1fr 1fr"></div>
     </section>
 

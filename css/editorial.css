@@ -660,12 +660,19 @@ main { overflow-x: hidden; position: relative; }
    absolutely-positioned label a right edge so it wraps inside the panel instead of overflowing. */
 .cs-xizhou .fm-panel-label { right: 24px; }
 
-/* New: design1-1.svg and design1-2.svg are whole exports, not crops of a shared slide — the same
-   .fm-full-shot pattern FeetMine uses under "Image crops" below, but that page's own rules stay
-   scoped to .cs-feetmine, so this page needs its own copy. Both exports are landscape photos, so
-   full width / height auto is simpler than FeetMine's phone-mockup sizing. */
-.cs-xizhou .fm-full-shot { display: block; width: 100%; overflow: hidden; border-radius: 8px; }
+/* New: every real export on this page (design1-*, design2-*, the funnel diagram) is a whole
+   landscape image, not a crop of a shared slide or a phone mockup — the same .fm-full-shot
+   pattern FeetMine uses under "Image crops" below, but that page's own rules stay scoped to
+   .cs-feetmine, so this page needs its own copy. align-self: center overrides .fm-panel's own
+   place-items: end center (shared, above) — a landscape photo reads better centred in its panel
+   than bottom-anchored like a phone screen. */
+.cs-xizhou .fm-full-shot { display: block; width: 100%; overflow: hidden; border-radius: 8px; align-self: center; }
 .cs-xizhou .fm-full-shot img { display: block; width: 100%; height: auto; }
+
+/* Feature #1's two captions are now full sentences (site-text.js), not short tags — 4pt larger
+   reads better at that length. Scoped to #f1-panels so Feature #2's still-short "Route map" /
+   "Level card" labels keep the shared 12px size. */
+#f1-panels .fm-panel-label { font-size: calc(12px + 4pt); }
 
 /* New, not in css/editorial.css: every image on this page is still a placeholder (no exports yet, and
    no deck slides to crop from), so instead of feetmine's .fm-shot crop mechanic every panel gets
@@ -694,3 +701,18 @@ main { overflow-x: hidden; position: relative; }
    its base aspect-ratio (4/3) so the panel, which has no height of its own (min-height: 0 above),
    still sizes correctly around it. */
 .cs-xizhou .fm-panels--photos .fm-shot-placeholder { border-radius: 0; border-width: 1px; }
+
+/* New: result-1.jpg to result-3.jpg fill their panel edge-to-edge (object-fit: cover), same square
+   corners and 4/3 box as the placeholders above — three photos of different native aspect ratios
+   read as one even row this way, matching feetmine's own photo row. */
+.cs-xizhou .fm-panels--photos .fm-full-shot {
+  width: 100%; aspect-ratio: 4/3; border-radius: 0; align-self: stretch;
+}
+.cs-xizhou .fm-panels--photos .fm-full-shot img { width: 100%; height: 100%; object-fit: cover; }
+
+/* New: design-4.svg replaces the funnel section's dark card + step list (its real bilingual text
+   now lives in the hidden #fm-funnel list beside it — see the HTML comment there). Capped and
+   centred rather than run edge-to-edge like the panels above: at full .fm-wrap width (1200px) a
+   diagram this detailed reads as a wall of line-art; capping it keeps individual steps legible
+   and leaves it visibly centred with margin to spare on wide screens. */
+#f4-funnel-shot { max-width: 720px; margin: 0 auto; }

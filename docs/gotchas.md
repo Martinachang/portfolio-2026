@@ -116,8 +116,10 @@ crops, became `img/feetmineprototype.svg`, `img/feature1-1.svg`, `img/feature2-1
 same swap: drop `.fm-shot`/`.fm-shot--*`, add `.fm-full-shot`. The lightbox copies whichever class
 is on the thumbnail onto its frame, so check both the thumbnail and the lightbox.
 
-**Walk Xizhou has no images at all.** Its eleven slots are `.fm-shot-placeholder` dashed boxes.
-There are no exports and no deck slides to crop. This is not the same as FeetMine's crops.
+**Walk Xizhou has four `.fm-shot-placeholder` slots left**: Feature #3's character-sheet and
+applied-materials panels, and Feature #4's funnel-overview and LINE-chatbot panels. Everything
+else on the page now has a real export — see the note under "Copy that is not final" below for
+what changed and where.
 
 **Open `TODO` counts:** `work/feetmine/index.html` 5, `work/xizhou/index.html` 11,
 `site-text.js` 9, `work/feetmine/feetmine.js` 2, `css/editorial.css` 1.
@@ -137,10 +139,19 @@ stops resolving.
 **The contrast figures in `css/editorial.css` are hand arithmetic.** Its `TODO` says so. Confirm with
 a real tool before treating them as final.
 
-**Xizhou's Feature #1 has real exports now.** `design1-1.svg` and `design1-2.svg` replaced its two
-`.fm-shot-placeholder` boxes, wrapped in `.fm-full-shot` (same swap as FeetMine's, but Xizhou needs
-its own `.cs-xizhou .fm-full-shot` rules in `css/editorial.css` since FeetMine's stay scoped to
-`.cs-feetmine`). Features #2-#4 and the closing photos are still placeholders.
+**Xizhou's Feature #1 and #2 panels, Feature #4's funnel diagram, and the closing three photos all
+have real exports now.** `design1-1.svg`/`design1-2.svg` (Feature #1) and `design2-1.jpg`/
+`design2-2.jpg` (Feature #2) replaced their `.fm-shot-placeholder` boxes, wrapped in `.fm-full-shot`
+— same swap as FeetMine's (`.fm-shot`/`.fm-shot--*` → `.fm-full-shot`), but Xizhou needs its own
+`.cs-xizhou .fm-full-shot` rules in `css/editorial.css` since FeetMine's stay scoped to
+`.cs-feetmine`. `design2-1.jpg`/`design2-2.jpg` had been committed under `work/feetmine/img/` by
+mistake (unreferenced there); moved to `work/xizhou/img/` to match the "a project's images live
+with its page" rule. `design-4.svg` (Figma export, no real `<text>` nodes) replaced Feature #4's
+dark funnel card and visible step list entirely, capped at 720px and centred (`#f4-funnel-shot`);
+the six steps' real bilingual text now lives in the hidden `<ol class="fm-sr" id="fm-funnel">`
+beside it, same "picture whose data must survive translation and screen readers" pattern as
+FeetMine's charts. `result-1.jpg`–`result-3.jpg` fill the closing photo row via `object-fit: cover`.
+Feature #3 and Feature #4's own panelA/panelB are still placeholders — see above.
 
 ## Copy that is not final
 
