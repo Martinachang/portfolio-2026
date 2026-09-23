@@ -361,6 +361,13 @@ html[lang="en"] .folder-title-zh { display: none; } /* the Chinese project name 
 .button:hover { background: color-mix(in srgb, var(--blue) 85%, black); }
 .button.outline { background: none; border: 2px solid var(--ink); color: var(--ink); padding-block: 10px; }
 .button.outline:hover { background: var(--card); }
+.social-links { display: flex; gap: 12px; margin-top: 8px; }
+.social-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 999px; background: var(--blue);
+}
+.social-btn:hover { background: color-mix(in srgb, var(--blue) 85%, black); }
+.social-btn img { width: 20px; height: 20px; }
 .email { margin: 16px 0 0; font-size: 15px; color: var(--ink-soft); }
 
 footer { padding: 32px var(--gutter); font-size: 14px; color: var(--ink-soft); text-align: center; }

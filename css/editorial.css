@@ -288,12 +288,13 @@ main { overflow-x: hidden; position: relative; }
 
 .fm-cta p { margin: 0 auto 8px; max-width: 46ch; color: #5C4632; }
 
-.fm-button {
-  display: inline-block; margin-top: 16px; padding: 14px 28px; border-radius: 999px;
-  background: var(--fm-dark-bg); color: #fff; font-weight: 500; text-decoration: none;
+.fm-social { display: flex; justify-content: center; gap: 12px; margin-top: 16px; }
+.fm-social-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 999px; background: var(--fm-dark-bg);
 }
-
-.fm-button:hover { background: var(--fm-primary-dark); }
+.fm-social-btn:hover { background: var(--fm-primary-dark); }
+.fm-social-btn img { width: 20px; height: 20px; }
 
 @media (min-width: 720px) {
   .fm-intro-pair { grid-template-columns: 1fr 1fr; }
