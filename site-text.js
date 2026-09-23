@@ -104,7 +104,7 @@ const content = {
       visualNoise: true,
       links: [
         { label: { en: "Case study", zh: "完整案例" }, href: "work/feetmine/index.html", primary: true }, // the image links here too
-        { label: { en: "GitHub", zh: "GitHub" }, href: "https://github.com/Martinachang/foot-dna-test", external: true },
+        { label: { en: "Prototype", zh: "Prototype" }, href: "https://www.figma.com/proto/LxhvStEThA0tCHYTZYswsR/%E6%88%91%E7%9A%84?node-id=1897-6798&viewport=8417%2C-2956%2C0.13&t=wnkarCpXSjDauRsS-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1897%3A6798&page-id=0%3A1&show-proto-sidebar=1", external: true },
       ],
     },
     {
