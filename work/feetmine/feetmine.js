@@ -139,9 +139,8 @@ function renderFlow(host) {
 // ---------- Image rows ----------
 function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
-       <!-- TODO: replace with img/feetmine-yodex-${i + 1}.jpg -->
-       <button type="button" class="fm-zoom fm-shot fm-shot--yodex${i + 1}">
-         <img src="img/feetmine-19.jpg" alt="${t(photo.alt)}" loading="lazy">
+       <button type="button" class="fm-zoom fm-full-shot">
+         <img src="img/result-${i + 1}.jpg" alt="${t(photo.alt)}" loading="lazy">
        </button>
      </div>`;
 }

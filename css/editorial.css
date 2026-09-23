@@ -460,13 +460,6 @@ main { overflow-x: hidden; position: relative; }
   width: calc(100% / var(--cw));
   transform: translate(calc(var(--cx) * -100%), calc(var(--cy) * -100%));
 }
-.cs-feetmine .fm-shot--growth { --cx: 0.798;  --cy: 0.3111; --cw: 0.165;  --ch: 0.5911; --fm-ar: 330 / 665; }
-.cs-feetmine .fm-shot--record { --cx: 0.450;  --cy: 0.1467; --cw: 0.280;  --ch: 0.5644; --fm-ar: 560 / 635; }
-.cs-feetmine .fm-shot--before { --cx: 0.0575; --cy: 0.5156; --cw: 0.1775; --ch: 0.3911; --fm-ar: 355 / 440; }
-.cs-feetmine .fm-shot--after { --cx: 0.2950; --cy: 0.5200; --cw: 0.1800; --ch: 0.4044; --fm-ar: 360 / 455; }
-.cs-feetmine .fm-shot--yodex1 { --cx: 0.0440; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
-.cs-feetmine .fm-shot--yodex2 { --cx: 0.3525; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
-.cs-feetmine .fm-shot--yodex3 { --cx: 0.6600; --cy: 0.1733; --cw: 0.2935; --ch: 0.4356; --fm-ar: 587 / 490; }
 
 /* A final export, not a crop from the shared deck-slide strip like .fm-shot beside it: the image
    shows whole, at its own aspect ratio, so none of the --cx/--cy crop math above applies. */
@@ -481,6 +474,8 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel--center > .fm-shot,
 .cs-feetmine .fm-panel--center > .fm-full-shot { height: auto; width: min(100%, 420px); border-radius: 12px; }
 .cs-feetmine .fm-panels--photos .fm-shot { width: 100%; height: auto; border-radius: 0; }
+.cs-feetmine .fm-panels--photos .fm-full-shot { width: 100%; height: auto; border-radius: 0; }
+.cs-feetmine .fm-panels--photos .fm-full-shot img { width: 100%; height: auto; }
 
 /* ---------- Service flow ---------- */
 
