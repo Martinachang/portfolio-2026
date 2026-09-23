@@ -109,47 +109,14 @@ function renderCompare(figure) {
 // ---------- Service flow ----------
 
 // The loop from the deck: the user measures a foot, the foot's metrics decide the shoes, the store
-// supplies the specs, and the user's feedback goes back to the store. Wide screens get the diagram;
-// phones get the same steps as a list (see the media queries in css/editorial.css).
+// supplies the specs, and the user's feedback goes back to the store. serviceflow-1.svg (like the
+// page's other Figma exports) has no real text, so .fm-loop-stack carries the bilingual steps —
+// visible on phones where the image is too wide to read, screen-reader-only at 720px+ where the
+// image takes over (see the media queries in css/editorial.css), instead of a separate hidden
+// table.fm-sr duplicating content this list already has.
 function renderLoop(host) {
   const loop = fm.business.loop;
-  // Three metric pairs sit above the line from the foot to the shoes: what each pair decides.
-  const chipX = [400, 545, 690];
-  const chips = loop.maps.map((map, i) => `
-     <rect class="fm-chip" x="${chipX[i] - 66}" y="50" width="132" height="30" rx="15"></rect>
-     <text class="fm-loop-edge" x="${chipX[i]}" y="70" text-anchor="middle">${t(map.from)}</text>
-     <path d="M${chipX[i]} 80 V98" marker-end="url(#fm-arrow)"></path>
-     <rect class="fm-chip" x="${chipX[i] - 66}" y="104" width="132" height="30" rx="15"></rect>
-     <text class="fm-loop-edge" x="${chipX[i]}" y="124" text-anchor="middle">${t(map.to)}</text>
-     <path d="M${chipX[i]} 134 V175"></path>`).join("");
-  // A dot on the line for each of the four players, with its name underneath.
-  const nodes = [[60, loop.user], [250, loop.foot], [790, loop.shoes], [935, loop.store]].map(([x, label]) => `
-     <circle class="fm-node-dot" cx="${x}" cy="175" r="7"></circle>
-     <text class="fm-loop-node" x="${x}" y="205" text-anchor="middle">${t(label)}</text>`).join("");
-
-  host.innerHTML = `<svg viewBox="0 0 1000 330" role="img" aria-label="${t(fm.business.flowTitle)}: ${t(fm.business.flowCaption)}">
-       <defs>
-         <marker id="fm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-           <path d="M0 0 L10 5 L0 10 z" fill="#FF9F46" stroke="none"></path>
-         </marker>
-       </defs>
-
-       ${nodes}
-
-       <path d="M72 148 H238" marker-end="url(#fm-arrow)"></path>
-       <text class="fm-loop-edge" x="155" y="140" text-anchor="middle">${t(loop.measure)}</text>
-       <path d="M238 232 H72" marker-end="url(#fm-arrow)"></path>
-       <text class="fm-loop-edge" x="155" y="252" text-anchor="middle">${t(loop.comfort)}</text>
-
-       ${chips}
-       <path d="M262 175 H778" marker-end="url(#fm-arrow)"></path>
-       <path d="M923 148 H802" marker-end="url(#fm-arrow)"></path>
-       <text class="fm-loop-edge" x="862" y="140" text-anchor="middle">${t(loop.specs)}</text>
-
-       <path d="M60 218 V290 H935 V218" marker-end="url(#fm-arrow)"></path>
-       <rect class="fm-plate" x="452" y="277" width="96" height="26" rx="13"></rect>
-       <text class="fm-loop-edge" x="500" y="295" text-anchor="middle">${t(loop.feedback)}</text>
-     </svg>
+  host.innerHTML = `<img class="fm-chart-img" src="img/serviceflow-1.svg" alt="" loading="lazy">
      <ul class="fm-loop-stack">
        <li><strong>${t(loop.user)} → ${t(loop.foot)}</strong><span>${t(loop.measure)}</span></li>
        ${loop.maps.map((map) => `<li><strong>${t(map.from)} → ${t(map.to)}</strong></li>`).join("")}
@@ -158,30 +125,18 @@ function renderLoop(host) {
      </ul>`;
 }
 
+// serviceflow-2.svg has no real text either, so the cards below stay in the DOM as the bilingual,
+// accessible version — screen-reader-only at 720px+ where the image takes over, same as fm-loop.
 function renderFlow(host) {
-  host.innerHTML = fm.business.stages.map((stage) => `
+  host.innerHTML = `<img class="fm-chart-img" src="img/serviceflow-2.svg" alt="" loading="lazy">
+     ${fm.business.stages.map((stage) => `
      <div class="fm-flow-stage">
        <p class="fm-flow-bar">${t(stage.name)}</p>
        <ul class="fm-flow-items">${stage.items.map((item) => `<li>${t(item.title)}</li>`).join("")}</ul>
-     </div>`).join("");
+     </div>`).join("")}`;
 }
 
 // ---------- Image rows ----------
-// Until the final exports exist these are crops of the deck slides; the fm-shot--* class holds the
-// crop and css/editorial.css explains it. A click opens the same crop, larger, in the lightbox.
-
-const screenCrops = ["home", "ar", "result", "idcard", "growth"];
-
-function screenItem(screen, i) {
-  return `<li>
-       <!-- TODO: replace with img/feetmine-screen-${screenCrops[i]}.png -->
-       <button type="button" class="fm-zoom fm-shot fm-shot--${screenCrops[i]}">
-         <img src="img/feetmine-13.jpg" alt="${t(screen.name)}" loading="lazy">
-       </button>
-       <p class="fm-screen-label"><b>${two(i)}</b>${t(screen.name)}</p>
-     </li>`;
-}
-
 function photoPanel(photo, i) {
   return `<div class="fm-panel fm-grain">
        <!-- TODO: replace with img/feetmine-yodex-${i + 1}.jpg -->
@@ -203,7 +158,6 @@ function renderPage() {
   fill("fm-results", fm.results.items, numberedItem);
   fill("fm-field-points", fm.field.points, numberedItem);
   fill("fm-pains", fm.pains.items, painItem);
-  fill("fm-screens", fm.finals.screens, screenItem);
   fill("fm-photos", fm.results.photos, photoPanel);
 
   renderStages(document.getElementById("fm-stages"), "chart4.svg", t(fm.field.stagesLabel), fm.field.stages);

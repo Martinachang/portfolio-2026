@@ -440,6 +440,14 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel[style*="coral"] { place-items: center; }
 .cs-feetmine .fm-panel[style*="blue"] > .fm-full-shot { width: min(100%, 560px); }
 
+/* Usability testing's before/after panels: images 1.5x the usual 420px cap, and the label
+   centered and 4pt larger. "charcoal"/"peach" aren't unique here (Feature #1 uses both), so this
+   is scoped by the #testing-panels id on the panels container instead. */
+/* place-items: center splits added margin evenly above/below the centered box, so margin-top:16px
+   (not 8px) is what actually shifts the image 8px further from the label. */
+#testing-panels .fm-panel--center > .fm-full-shot { width: min(100%, 630px); margin-top: 16px; }
+#testing-panels .fm-panel-label { left: 0; width: 100%; text-align: center; font-size: calc(12px + 4pt); }
+
 /* ---------- Image crops ----------
    Until the final exports exist, every image here is a crop of a deck slide: the wrapper shows one
    region of the slide and nothing else. --cx/--cy is the top-left corner of that region and
@@ -477,21 +485,13 @@ main { overflow-x: hidden; position: relative; }
 /* ---------- Service flow ---------- */
 
 .cs-feetmine .fm-loop { margin: 28px 0 0; }
-.cs-feetmine .fm-loop svg { width: 100%; height: auto; }
-.cs-feetmine .fm-loop text { font-family: var(--fm-font); fill: #fff; }
-.cs-feetmine .fm-loop .fm-loop-node { font-size: 15px; font-weight: 700; }
-.cs-feetmine .fm-loop .fm-loop-edge { font-size: 13px; fill: var(--fm-muted-invert); }
-/* The edges only: the arrowhead inside <defs> keeps its own fill. */
-.cs-feetmine .fm-loop svg > path { stroke: var(--fm-primary); stroke-width: 1.5; fill: none; }
-.cs-feetmine .fm-loop .fm-chip { fill: rgba(255, 159, 70, 0.18); }
-.cs-feetmine .fm-loop .fm-node-dot { fill: var(--fm-primary); }
-.cs-feetmine .fm-loop .fm-plate { fill: var(--fm-charcoal); }  /* clears the line behind the Feedback label */
 .cs-feetmine .fm-loop-stack { display: grid; gap: 10px; margin: 24px 0 0; }
 .cs-feetmine .fm-loop-stack li { display: grid; gap: 2px; padding: 14px 16px; border-radius: 12px; background: rgba(255, 255, 255, 0.07); }
 .cs-feetmine .fm-loop-stack strong { font-family: var(--fm-font); font-size: 15px; }
 .cs-feetmine .fm-loop-stack span { font-size: 13px; color: var(--fm-muted-invert); }
 
 .cs-feetmine .fm-flow { display: grid; gap: 14px; margin-top: 32px; }
+.cs-feetmine .fm-flow .fm-chart-img { grid-column: 1 / -1; }
 .cs-feetmine .fm-flow-stage { display: grid; gap: 10px; align-content: start; }
 .cs-feetmine .fm-flow-bar {
   padding: 12px 16px; border-radius: 10px; text-align: center;
@@ -506,16 +506,9 @@ main { overflow-x: hidden; position: relative; }
 
 /* ---------- Final designs ---------- */
 
-.cs-feetmine .fm-card--screens { padding-inline: 0; }
-.cs-feetmine .fm-screens {
-  display: grid; grid-auto-flow: column; grid-auto-columns: 74%;
-  gap: 20px; padding-inline: clamp(20px, 3.5vw, 44px);
-  overflow-x: auto; scroll-snap-type: x mandatory;
-}
-.cs-feetmine .fm-screens li { scroll-snap-align: center; }
-.cs-feetmine .fm-screens .fm-shot { width: 100%; height: auto; border-radius: 14px; }
-.cs-feetmine .fm-screen-label { display: grid; grid-template-columns: auto 1fr; gap: 8px; margin: 14px 0 0; font-size: 13px; color: var(--fm-muted-invert); }
-.cs-feetmine .fm-screen-label b { font-family: var(--fm-font); color: #fff; font-variant-numeric: tabular-nums; }
+.cs-feetmine .fm-card--screens { padding-inline: 0; background: none; }
+.cs-feetmine .fm-card--screens .fm-full-shot { width: 100%; }
+.cs-feetmine .fm-card--screens .fm-full-shot img { width: 100%; height: auto; }
 
 /* ---------- Lightbox ---------- */
 
@@ -542,20 +535,21 @@ main { overflow-x: hidden; position: relative; }
   .cs-feetmine .fm-charts { grid-template-columns: repeat(3, 1fr); }
   .cs-feetmine .fm-pains { grid-template-columns: 1fr 1fr; }
   .cs-feetmine .fm-flow { grid-template-columns: repeat(3, 1fr); }
-  .cs-feetmine .fm-screens { grid-auto-columns: 30%; }
 }
 
-@media (min-width: 900px) {
-  .cs-feetmine .fm-screens { grid-auto-columns: 1fr; overflow-x: visible; }
-}
-
-/* The loop diagram is too wide to read on a phone: the stacked list stands in for it.
-   Both live inside #fm-loop, so it is the svg that hides, not its host. */
+/* serviceflow-1.svg and serviceflow-2.svg are too wide to read on a phone: the stacked list and
+   the purchase-stage cards stand in for them there, and become screen-reader-only once the images
+   take over at 720px+ (same clip technique as .fm-sr). */
 @media (max-width: 719px) {
-  .cs-feetmine .fm-loop svg { display: none; }
+  .cs-feetmine .fm-loop .fm-chart-img,
+  .cs-feetmine .fm-flow .fm-chart-img { display: none; }
 }
 @media (min-width: 720px) {
-  .cs-feetmine .fm-loop-stack { display: none; }
+  .cs-feetmine .fm-loop-stack,
+  .cs-feetmine .fm-flow-stage {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
 }
 
 /* competitive-analysis.svg has the same problem as the loop diagram above, solved the other way:

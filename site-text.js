@@ -683,13 +683,10 @@ const content = {
         en: "Profile & home, AR measurement, foot ID & mascot, smart selection, and growth evaluation.",
         zh: "個人檔案與首頁、AR 量測、足型 ID 與吉祥物、智慧選鞋，以及成長評估。",
       },
-      screens: [
-        { name: { en: "Profile & home", zh: "個人檔案與首頁" } },
-        { name: { en: "AR measurement", zh: "AR 量測" } },
-        { name: { en: "Foot ID & mascot", zh: "足型 ID 與吉祥物" } },
-        { name: { en: "Smart selection", zh: "智慧選鞋" } },
-        { name: { en: "Growth evaluation", zh: "成長評估" } },
-      ],
+      altA: {
+        en: "A diagram connecting the app's five core screens — profile and home, AR measurement, foot ID and mascot, smart selection, and growth evaluation — into one flow",
+        zh: "一張圖，將應用程式的五個核心畫面──個人檔案與首頁、AR 量測、足型 ID 與吉祥物、智慧選鞋，以及成長評估──串連成一個流程",
+      },
     },
 
     results: {
