@@ -76,7 +76,6 @@ const content = {
       banner: "#FF9F46",           // flat colour for the Work card banner
       badge: "COURSE",
       name: { en: "FeetMine", zh: "合步合腳" },
-      nameZh: "合步合腳",
       summary: { en: "A parent-child shoe-selection app", zh: "親子個人化選鞋 App" },
       // The panel on the home page: what changed for people, in one line, then one sentence, then two numbers.
       headline: {
@@ -117,7 +116,6 @@ const content = {
       // An { en, zh } pair, so this card's title switches with the language. ILANDGREEN keeps a
       // plain-string name, so t() hands it back unchanged and it stays English in both.
       name: { en: "Walk Xizhou, Keep Its Story", zh: "與泥探險" },
-      nameZh: "與泥探險",          // only read by the desk folder, and only for the first project
       blurb: {
         en: "Walk Xizhou blends the town's local character with new kinds of experience, drawing young people toward rural life and helping pass on its local economy and cultural stories.",
         zh: "透過融合在地特色與創新體驗，增進年輕人對農村的興趣，並促進當地經濟與文化故事的傳承。",
@@ -150,7 +148,6 @@ const content = {
       banner: "#77DBCC",           // flat colour for the Work card banner
       badge: "COURSE",
       name: "ILANDGREEN",
-      nameZh: "綠島",
       summary: { en: "A sustainable travel companion app", zh: "永續旅行夥伴 App" },
       headline: {
         en: "From a quiz to a slower, lower-impact itinerary",

@@ -451,7 +451,7 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel[style*="coral"],
 .cs-feetmine .fm-panel[style*="blue"] { min-height: clamp(500px, 52vw, 720px); }
 .cs-feetmine .fm-panel[style*="coral"] { place-items: center; }
-.cs-feetmine .fm-panel[style*="blue"] > .fm-full-shot { width: min(100%, 560px); }
+.cs-feetmine .fm-panel[style*="blue"] > .fm-full-shot { width: min(100%, 700px); }
 
 /* Usability testing's before/after panels: images 1.5x the usual 420px cap. "charcoal"/"peach"
    aren't unique here (Feature #1 uses both), so this is scoped by the #testing-panels id on the
