@@ -454,11 +454,6 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel[style*="coral"],
 .cs-feetmine .fm-panel[style*="blue"] { min-height: clamp(500px, 52vw, 720px); }
 .cs-feetmine .fm-panel[style*="coral"] { place-items: center; }
-/* feature4-2.svg's own artwork nearly fills a panel sized to fit it, so the shared min-height
-   above (barely taller than the svg at its 700px cap) leaves no room for feature4-2bg.jpg to
-   show. The extra 140px, split above/below by fm-panel--center's place-items: center, is what
-   actually exposes the photo as bands rather than a sliver. */
-.cs-feetmine .fm-panel[style*="blue"] { min-height: calc(clamp(500px, 52vw, 720px) + 140px); }
 .cs-feetmine .fm-panel[style*="blue"]::before {
   content: ""; position: absolute; inset: 0; z-index: 1;
   background: url("img/feature4-2bg.jpg") center/cover no-repeat;
