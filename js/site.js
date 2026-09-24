@@ -79,7 +79,7 @@ function renderChrome() {
   const topbar = document.querySelector(".topbar");
   if (topbar) {
     topbar.innerHTML = `
-      <a class="brand" href="${inPagePrefix || "#top"}"><img class="brand-icon" src="${root}img/site/favicon.png" width="49" height="49" alt=""><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
+      <a class="brand" href="${inPagePrefix || "#top"}"><img class="brand-icon" src="${root}img/site/favicon.png" width="56" height="56" alt=""><span data-text="site.brandName"></span> <small data-text="site.brandNameOther"></small></a>
       <nav>
         <a href="${inPagePrefix}#work" data-text="site.headerNav.work"></a>
         <a href="${inPagePrefix}#about" data-text="site.headerNav.about"></a>
