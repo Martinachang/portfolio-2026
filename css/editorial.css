@@ -446,11 +446,19 @@ main { overflow-x: hidden; position: relative; }
 .cs-feetmine .fm-panel[style*="orange"] > .fm-full-shot img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Feature #4's panels sit taller, and its blue (center) panel's image is allowed to grow past the
-   420px cap other center panels use. Scoped to this section's two panels via [style*="coral"]/
-   [style*="blue"] — both unique to Feature #4 — so Features #1-#3 and Xizhou are unaffected. */
+   420px cap other center panels use. The blue panel keeps its flat --fm-panel colour, with
+   feature4-2bg.jpg laid over it at 80% opacity via ::before (z-index: 1, below the z-index: 2
+   .fm-full-shot content per the shared ".fm-panel > *" rule) so feature4-2.svg still reads on top.
+   Scoped to this section's two panels via [style*="coral"]/[style*="blue"] — both unique to
+   Feature #4 — so Features #1-#3 and Xizhou are unaffected. */
 .cs-feetmine .fm-panel[style*="coral"],
 .cs-feetmine .fm-panel[style*="blue"] { min-height: clamp(500px, 52vw, 720px); }
 .cs-feetmine .fm-panel[style*="coral"] { place-items: center; }
+.cs-feetmine .fm-panel[style*="blue"]::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: url("img/feature4-2bg.jpg") center/cover no-repeat;
+  opacity: 0.8;
+}
 .cs-feetmine .fm-panel[style*="blue"] > .fm-full-shot { width: min(100%, 700px); }
 
 /* Usability testing's before/after panels: images 1.5x the usual 420px cap. "charcoal"/"peach"
