@@ -8,13 +8,30 @@ case-study page per project.
 surprises you or before you run anything. `README.md` is the owner's copy — plain language, no
 internals — so keep it true when the tree changes.
 
-## Where things stand (as of 2026-09-23)
+## Where things stand (as of 2026-09-24)
 
-Everything below is committed and pushed: `git status` is clean and `origin/main` matches `HEAD`
-(`622a5e8`, "feetmine feature1 and 2 svg"). Nothing from this work is sitting uncommitted, except
-this edit itself.
+Everything is committed and pushed, and `origin/main` matches `HEAD`.
 
-**Completed.** FeetMine's shared-deck-slide crop system (`.fm-shot`/`.fm-shot--*`, explained under
+Done on 2026-09-24:
+- Feature #4's blue panel makes `feature4-2.svg` fill it edge to edge (`padding: 0`,
+  `place-items: stretch`, `object-fit: cover`), the same treatment as Feature #3's orange panel.
+  This replaced a `width: min(100%, 700px)` cap.
+- `feature4-2.svg`, `usertest-1.svg` and `usertest-2.svg` are the owner's own re-exports.
+- A background photo behind `feature4-2.svg` (`feature4-2bg.jpg`) was tried twice (`b04eaf4`,
+  `84c1af7`) and reverted (`e5a7e4e`, `48fdeae`); the owner then deleted the jpg. The SVG's own
+  artwork covers almost the whole panel, so a background photo only shows if the panel gets
+  taller or the image gets smaller.
+- Work-card titles on the home page: FeetMine (`合步合腳`) and avatar-perception
+  (`虛擬角色之非人類特徵之視覺感知`) now have `{ en, zh }` names, like Xizhou. ILANDGREEN is the
+  only project whose `name` is still a plain string.
+- The desk folder's second line (`.folder-title-zh`, read from `nameZh`) is gone, and so are all
+  the `nameZh` fields. Now that `name` is a bilingual pair, the folder title translates on its
+  own, so the second line only repeated it.
+- FeetMine Usability Testing: the "AS-IS: sticker tracking" / "TO-BE: coin calibration" panel
+  labels were removed, along with their `beforeLabel`/`afterLabel` keys and the CSS that spaced
+  them.
+
+**Completed earlier.** FeetMine's shared-deck-slide crop system (`.fm-shot`/`.fm-shot--*`, explained under
 "Image crops" in `editorial.css`) is being replaced feature-by-feature with real exports as they
 arrive:
 - The comparison table, the Design Goals icons, the Misconceptions icons, and the foot-type legend
@@ -22,10 +39,10 @@ arrive:
   twin carrying the same data as real text (`renderChartSvg` / `renderCompare` / `renderLegend` in
   `feetmine.js`) — the pattern for "a picture whose data must survive translation and screen
   readers."
-- Feature #1, #2 and #3's panel pairs now show real exports (`feetmineprototype.svg`,
-  `feature1-1.svg` through `feature3-2.svg`) instead of crops of one shared placeholder slide. New
+- All four features' panel pairs now show real exports (`feetmineprototype.svg`,
+  `feature1-1.svg` through `feature4-2.svg`) instead of crops of one shared placeholder slide. New
   class **`.fm-full-shot`**: a whole real image needs no `--cx`/`--cy` crop math, so it replaces
-  `.fm-shot`/`.fm-shot--*` rather than adding to it. Feature #4 is still an uncropped placeholder.
+  `.fm-shot`/`.fm-shot--*` rather than adding to it.
 - Misconceptions and Design Goals share one `iconItem()` template and an **`.fm-item-icon`**
   class; Misconceptions runs 1.5× larger via **`.fm-numlist--icons-lg`**, since those five icons
   are miniature illustrations, not simple glyphs like Design Goals'.
